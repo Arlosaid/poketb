@@ -1,0 +1,1425 @@
+{
+ "ariados": {
+  "base_experience": 140,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 90,
+   "def": 70,
+   "hp": 70,
+   "spa": 60,
+   "spd": 70,
+   "spe": 40
+  },
+  "capture_rate": 90,
+  "dex": 168,
+  "evolution": null,
+  "gender_rate": 4,
+  "genus_es": "Pokémon Pata Larga",
+  "growth_rate": "fast",
+  "learnset": [
+   {
+    "level": 0,
+    "move": "swords-dance"
+   },
+   {
+    "level": 1,
+    "move": "absorb"
+   },
+   {
+    "level": 1,
+    "move": "bug-bite"
+   },
+   {
+    "level": 1,
+    "move": "fell-stinger"
+   },
+   {
+    "level": 1,
+    "move": "focus-energy"
+   },
+   {
+    "level": 1,
+    "move": "poison-sting"
+   },
+   {
+    "level": 1,
+    "move": "string-shot"
+   },
+   {
+    "level": 8,
+    "move": "infestation"
+   },
+   {
+    "level": 12,
+    "move": "scary-face"
+   },
+   {
+    "level": 15,
+    "move": "night-shade"
+   },
+   {
+    "level": 19,
+    "move": "shadow-sneak"
+   },
+   {
+    "level": 23,
+    "move": "fury-swipes"
+   },
+   {
+    "level": 28,
+    "move": "sucker-punch"
+   },
+   {
+    "level": 31,
+    "move": "agility"
+   },
+   {
+    "level": 35,
+    "move": "pin-missile"
+   },
+   {
+    "level": 41,
+    "move": "psychic"
+   },
+   {
+    "level": 46,
+    "move": "poison-jab"
+   },
+   {
+    "level": 50,
+    "move": "cross-poison"
+   },
+   {
+    "level": 54,
+    "move": "sticky-web"
+   },
+   {
+    "level": 59,
+    "move": "toxic-thread"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "ariados",
+  "name_es": "Ariados",
+  "types": [
+   "bug",
+   "poison"
+  ]
+ },
+ "butterfree": {
+  "base_experience": 178,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 45,
+   "def": 50,
+   "hp": 60,
+   "spa": 90,
+   "spd": 80,
+   "spe": 70
+  },
+  "capture_rate": 45,
+  "dex": 12,
+  "evolution": null,
+  "gender_rate": 4,
+  "genus_es": "Pokémon Mariposa",
+  "growth_rate": "medium",
+  "learnset": [
+   {
+    "level": 0,
+    "move": "gust"
+   },
+   {
+    "level": 1,
+    "move": "bug-bite"
+   },
+   {
+    "level": 1,
+    "move": "gust"
+   },
+   {
+    "level": 1,
+    "move": "harden"
+   },
+   {
+    "level": 1,
+    "move": "string-shot"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 4,
+    "move": "supersonic"
+   },
+   {
+    "level": 8,
+    "move": "confusion"
+   },
+   {
+    "level": 12,
+    "move": "poison-powder"
+   },
+   {
+    "level": 12,
+    "move": "sleep-powder"
+   },
+   {
+    "level": 12,
+    "move": "stun-spore"
+   },
+   {
+    "level": 16,
+    "move": "psybeam"
+   },
+   {
+    "level": 20,
+    "move": "whirlwind"
+   },
+   {
+    "level": 24,
+    "move": "air-slash"
+   },
+   {
+    "level": 28,
+    "move": "safeguard"
+   },
+   {
+    "level": 32,
+    "move": "bug-buzz"
+   },
+   {
+    "level": 36,
+    "move": "tailwind"
+   },
+   {
+    "level": 40,
+    "move": "rage-powder"
+   },
+   {
+    "level": 44,
+    "move": "quiver-dance"
+   }
+  ],
+  "learnset_version_group": "sword-shield",
+  "name": "butterfree",
+  "name_es": "Butterfree",
+  "types": [
+   "bug",
+   "flying"
+  ]
+ },
+ "caterpie": {
+  "base_experience": 39,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 30,
+   "def": 35,
+   "hp": 45,
+   "spa": 20,
+   "spd": 20,
+   "spe": 45
+  },
+  "capture_rate": 255,
+  "dex": 10,
+  "evolution": {
+   "level": 7,
+   "to": "metapod"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Gusano",
+  "growth_rate": "medium",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "string-shot"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 9,
+    "move": "bug-bite"
+   }
+  ],
+  "learnset_version_group": "sword-shield",
+  "name": "caterpie",
+  "name_es": "Caterpie",
+  "types": [
+   "bug"
+  ]
+ },
+ "charizard": {
+  "base_experience": 240,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 84,
+   "def": 78,
+   "hp": 78,
+   "spa": 109,
+   "spd": 85,
+   "spe": 100
+  },
+  "capture_rate": 45,
+  "dex": 6,
+  "evolution": null,
+  "gender_rate": 1,
+  "genus_es": "Pokémon Llama",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 0,
+    "move": "air-slash"
+   },
+   {
+    "level": 1,
+    "move": "dragon-claw"
+   },
+   {
+    "level": 1,
+    "move": "ember"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "heat-wave"
+   },
+   {
+    "level": 1,
+    "move": "scratch"
+   },
+   {
+    "level": 1,
+    "move": "smokescreen"
+   },
+   {
+    "level": 12,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 19,
+    "move": "fire-fang"
+   },
+   {
+    "level": 24,
+    "move": "slash"
+   },
+   {
+    "level": 30,
+    "move": "flamethrower"
+   },
+   {
+    "level": 39,
+    "move": "scary-face"
+   },
+   {
+    "level": 46,
+    "move": "fire-spin"
+   },
+   {
+    "level": 54,
+    "move": "inferno"
+   },
+   {
+    "level": 62,
+    "move": "flare-blitz"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "charizard",
+  "name_es": "Charizard",
+  "types": [
+   "fire",
+   "flying"
+  ]
+ },
+ "charmander": {
+  "base_experience": 62,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 52,
+   "def": 43,
+   "hp": 39,
+   "spa": 60,
+   "spd": 50,
+   "spe": 65
+  },
+  "capture_rate": 45,
+  "dex": 4,
+  "evolution": {
+   "level": 16,
+   "to": "charmeleon"
+  },
+  "gender_rate": 1,
+  "genus_es": "Pokémon Lagartija",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "scratch"
+   },
+   {
+    "level": 4,
+    "move": "ember"
+   },
+   {
+    "level": 8,
+    "move": "smokescreen"
+   },
+   {
+    "level": 12,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 17,
+    "move": "fire-fang"
+   },
+   {
+    "level": 20,
+    "move": "slash"
+   },
+   {
+    "level": 24,
+    "move": "flamethrower"
+   },
+   {
+    "level": 28,
+    "move": "scary-face"
+   },
+   {
+    "level": 32,
+    "move": "fire-spin"
+   },
+   {
+    "level": 36,
+    "move": "inferno"
+   },
+   {
+    "level": 40,
+    "move": "flare-blitz"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "charmander",
+  "name_es": "Charmander",
+  "types": [
+   "fire"
+  ]
+ },
+ "charmeleon": {
+  "base_experience": 142,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 64,
+   "def": 58,
+   "hp": 58,
+   "spa": 80,
+   "spd": 65,
+   "spe": 80
+  },
+  "capture_rate": 45,
+  "dex": 5,
+  "evolution": {
+   "level": 36,
+   "to": "charizard"
+  },
+  "gender_rate": 1,
+  "genus_es": "Pokémon Llama",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "ember"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "scratch"
+   },
+   {
+    "level": 1,
+    "move": "smokescreen"
+   },
+   {
+    "level": 12,
+    "move": "dragon-breath"
+   },
+   {
+    "level": 19,
+    "move": "fire-fang"
+   },
+   {
+    "level": 24,
+    "move": "slash"
+   },
+   {
+    "level": 30,
+    "move": "flamethrower"
+   },
+   {
+    "level": 37,
+    "move": "scary-face"
+   },
+   {
+    "level": 48,
+    "move": "inferno"
+   },
+   {
+    "level": 54,
+    "move": "flare-blitz"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "charmeleon",
+  "name_es": "Charmeleon",
+  "types": [
+   "fire"
+  ]
+ },
+ "gloom": {
+  "base_experience": 138,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 65,
+   "def": 70,
+   "hp": 60,
+   "spa": 85,
+   "spd": 75,
+   "spe": 40
+  },
+  "capture_rate": 120,
+  "dex": 44,
+  "evolution": null,
+  "gender_rate": 4,
+  "genus_es": "Pokémon Hierbajo",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "absorb"
+   },
+   {
+    "level": 1,
+    "move": "acid"
+   },
+   {
+    "level": 1,
+    "move": "growth"
+   },
+   {
+    "level": 1,
+    "move": "sweet-scent"
+   },
+   {
+    "level": 12,
+    "move": "mega-drain"
+   },
+   {
+    "level": 14,
+    "move": "poison-powder"
+   },
+   {
+    "level": 16,
+    "move": "stun-spore"
+   },
+   {
+    "level": 18,
+    "move": "sleep-powder"
+   },
+   {
+    "level": 20,
+    "move": "giga-drain"
+   },
+   {
+    "level": 26,
+    "move": "toxic"
+   },
+   {
+    "level": 32,
+    "move": "moonblast"
+   },
+   {
+    "level": 38,
+    "move": "grassy-terrain"
+   },
+   {
+    "level": 44,
+    "move": "moonlight"
+   },
+   {
+    "level": 50,
+    "move": "petal-dance"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "gloom",
+  "name_es": "Gloom",
+  "types": [
+   "grass",
+   "poison"
+  ]
+ },
+ "hoothoot": {
+  "base_experience": 52,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 30,
+   "def": 30,
+   "hp": 60,
+   "spa": 36,
+   "spd": 56,
+   "spe": 50
+  },
+  "capture_rate": 255,
+  "dex": 163,
+  "evolution": {
+   "level": 20,
+   "to": "noctowl"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Búho",
+  "growth_rate": "medium",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "peck"
+   },
+   {
+    "level": 3,
+    "move": "tackle"
+   },
+   {
+    "level": 6,
+    "move": "echoed-voice"
+   },
+   {
+    "level": 9,
+    "move": "confusion"
+   },
+   {
+    "level": 12,
+    "move": "reflect"
+   },
+   {
+    "level": 15,
+    "move": "defog"
+   },
+   {
+    "level": 18,
+    "move": "air-slash"
+   },
+   {
+    "level": 21,
+    "move": "extrasensory"
+   },
+   {
+    "level": 24,
+    "move": "take-down"
+   },
+   {
+    "level": 27,
+    "move": "uproar"
+   },
+   {
+    "level": 30,
+    "move": "roost"
+   },
+   {
+    "level": 33,
+    "move": "moonblast"
+   },
+   {
+    "level": 36,
+    "move": "hypnosis"
+   },
+   {
+    "level": 39,
+    "move": "dream-eater"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "hoothoot",
+  "name_es": "Hoothoot",
+  "types": [
+   "normal",
+   "flying"
+  ]
+ },
+ "metapod": {
+  "base_experience": 72,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 20,
+   "def": 55,
+   "hp": 50,
+   "spa": 25,
+   "spd": 25,
+   "spe": 30
+  },
+  "capture_rate": 120,
+  "dex": 11,
+  "evolution": {
+   "level": 10,
+   "to": "butterfree"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Capullo",
+  "growth_rate": "medium",
+  "learnset": [
+   {
+    "level": 0,
+    "move": "harden"
+   },
+   {
+    "level": 1,
+    "move": "harden"
+   }
+  ],
+  "learnset_version_group": "sword-shield",
+  "name": "metapod",
+  "name_es": "Metapod",
+  "types": [
+   "bug"
+  ]
+ },
+ "noctowl": {
+  "base_experience": 158,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 50,
+   "def": 50,
+   "hp": 100,
+   "spa": 86,
+   "spd": 96,
+   "spe": 70
+  },
+  "capture_rate": 90,
+  "dex": 164,
+  "evolution": null,
+  "gender_rate": 4,
+  "genus_es": "Pokémon Búho",
+  "growth_rate": "medium",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "echoed-voice"
+   },
+   {
+    "level": 1,
+    "move": "growl"
+   },
+   {
+    "level": 1,
+    "move": "peck"
+   },
+   {
+    "level": 1,
+    "move": "sky-attack"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 9,
+    "move": "confusion"
+   },
+   {
+    "level": 12,
+    "move": "reflect"
+   },
+   {
+    "level": 18,
+    "move": "air-slash"
+   },
+   {
+    "level": 23,
+    "move": "extrasensory"
+   },
+   {
+    "level": 28,
+    "move": "take-down"
+   },
+   {
+    "level": 33,
+    "move": "uproar"
+   },
+   {
+    "level": 38,
+    "move": "roost"
+   },
+   {
+    "level": 43,
+    "move": "moonblast"
+   },
+   {
+    "level": 48,
+    "move": "hypnosis"
+   },
+   {
+    "level": 53,
+    "move": "dream-eater"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "noctowl",
+  "name_es": "Noctowl",
+  "types": [
+   "normal",
+   "flying"
+  ]
+ },
+ "oddish": {
+  "base_experience": 64,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 50,
+   "def": 55,
+   "hp": 45,
+   "spa": 75,
+   "spd": 65,
+   "spe": 30
+  },
+  "capture_rate": 255,
+  "dex": 43,
+  "evolution": {
+   "level": 21,
+   "to": "gloom"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Hierbajo",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "absorb"
+   },
+   {
+    "level": 1,
+    "move": "growth"
+   },
+   {
+    "level": 4,
+    "move": "acid"
+   },
+   {
+    "level": 8,
+    "move": "sweet-scent"
+   },
+   {
+    "level": 12,
+    "move": "mega-drain"
+   },
+   {
+    "level": 14,
+    "move": "poison-powder"
+   },
+   {
+    "level": 16,
+    "move": "stun-spore"
+   },
+   {
+    "level": 18,
+    "move": "sleep-powder"
+   },
+   {
+    "level": 20,
+    "move": "giga-drain"
+   },
+   {
+    "level": 24,
+    "move": "toxic"
+   },
+   {
+    "level": 28,
+    "move": "moonblast"
+   },
+   {
+    "level": 32,
+    "move": "grassy-terrain"
+   },
+   {
+    "level": 36,
+    "move": "moonlight"
+   },
+   {
+    "level": 40,
+    "move": "petal-dance"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "oddish",
+  "name_es": "Oddish",
+  "types": [
+   "grass",
+   "poison"
+  ]
+ },
+ "pidgeot": {
+  "base_experience": 216,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 80,
+   "def": 75,
+   "hp": 83,
+   "spa": 70,
+   "spd": 70,
+   "spe": 101
+  },
+  "capture_rate": 45,
+  "dex": 18,
+  "evolution": null,
+  "gender_rate": 4,
+  "genus_es": "Pokémon Pájaro",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "gust"
+   },
+   {
+    "level": 1,
+    "move": "hurricane"
+   },
+   {
+    "level": 1,
+    "move": "quick-attack"
+   },
+   {
+    "level": 1,
+    "move": "sand-attack"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 5,
+    "move": "sand-attack"
+   },
+   {
+    "level": 9,
+    "move": "gust"
+   },
+   {
+    "level": 13,
+    "move": "quick-attack"
+   },
+   {
+    "level": 17,
+    "move": "whirlwind"
+   },
+   {
+    "level": 22,
+    "move": "twister"
+   },
+   {
+    "level": 27,
+    "move": "feather-dance"
+   },
+   {
+    "level": 32,
+    "move": "agility"
+   },
+   {
+    "level": 38,
+    "move": "wing-attack"
+   },
+   {
+    "level": 44,
+    "move": "roost"
+   },
+   {
+    "level": 50,
+    "move": "tailwind"
+   },
+   {
+    "level": 56,
+    "move": "mirror-move"
+   },
+   {
+    "level": 62,
+    "move": "air-slash"
+   },
+   {
+    "level": 68,
+    "move": "hurricane"
+   }
+  ],
+  "learnset_version_group": "ultra-sun-ultra-moon",
+  "name": "pidgeot",
+  "name_es": "Pidgeot",
+  "types": [
+   "normal",
+   "flying"
+  ]
+ },
+ "pidgeotto": {
+  "base_experience": 122,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 60,
+   "def": 55,
+   "hp": 63,
+   "spa": 50,
+   "spd": 50,
+   "spe": 71
+  },
+  "capture_rate": 120,
+  "dex": 17,
+  "evolution": {
+   "level": 36,
+   "to": "pidgeot"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Pájaro",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "gust"
+   },
+   {
+    "level": 1,
+    "move": "sand-attack"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 5,
+    "move": "sand-attack"
+   },
+   {
+    "level": 9,
+    "move": "gust"
+   },
+   {
+    "level": 13,
+    "move": "quick-attack"
+   },
+   {
+    "level": 17,
+    "move": "whirlwind"
+   },
+   {
+    "level": 22,
+    "move": "twister"
+   },
+   {
+    "level": 27,
+    "move": "feather-dance"
+   },
+   {
+    "level": 32,
+    "move": "agility"
+   },
+   {
+    "level": 37,
+    "move": "wing-attack"
+   },
+   {
+    "level": 42,
+    "move": "roost"
+   },
+   {
+    "level": 47,
+    "move": "tailwind"
+   },
+   {
+    "level": 52,
+    "move": "mirror-move"
+   },
+   {
+    "level": 57,
+    "move": "air-slash"
+   },
+   {
+    "level": 62,
+    "move": "hurricane"
+   }
+  ],
+  "learnset_version_group": "ultra-sun-ultra-moon",
+  "name": "pidgeotto",
+  "name_es": "Pidgeotto",
+  "types": [
+   "normal",
+   "flying"
+  ]
+ },
+ "pidgey": {
+  "base_experience": 50,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 45,
+   "def": 40,
+   "hp": 40,
+   "spa": 35,
+   "spd": 35,
+   "spe": 56
+  },
+  "capture_rate": 255,
+  "dex": 16,
+  "evolution": {
+   "level": 18,
+   "to": "pidgeotto"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Pajarito",
+  "growth_rate": "medium-slow",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 5,
+    "move": "sand-attack"
+   },
+   {
+    "level": 9,
+    "move": "gust"
+   },
+   {
+    "level": 13,
+    "move": "quick-attack"
+   },
+   {
+    "level": 17,
+    "move": "whirlwind"
+   },
+   {
+    "level": 21,
+    "move": "twister"
+   },
+   {
+    "level": 25,
+    "move": "feather-dance"
+   },
+   {
+    "level": 29,
+    "move": "agility"
+   },
+   {
+    "level": 33,
+    "move": "wing-attack"
+   },
+   {
+    "level": 37,
+    "move": "roost"
+   },
+   {
+    "level": 41,
+    "move": "tailwind"
+   },
+   {
+    "level": 45,
+    "move": "mirror-move"
+   },
+   {
+    "level": 49,
+    "move": "air-slash"
+   },
+   {
+    "level": 53,
+    "move": "hurricane"
+   }
+  ],
+  "learnset_version_group": "ultra-sun-ultra-moon",
+  "name": "pidgey",
+  "name_es": "Pidgey",
+  "types": [
+   "normal",
+   "flying"
+  ]
+ },
+ "raticate": {
+  "base_experience": 145,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 81,
+   "def": 60,
+   "hp": 55,
+   "spa": 50,
+   "spd": 70,
+   "spe": 97
+  },
+  "capture_rate": 127,
+  "dex": 20,
+  "evolution": null,
+  "gender_rate": 4,
+  "genus_es": "Pokémon Ratón",
+  "growth_rate": "medium",
+  "learnset": [
+   {
+    "level": 0,
+    "move": "scary-face"
+   },
+   {
+    "level": 1,
+    "move": "focus-energy"
+   },
+   {
+    "level": 1,
+    "move": "quick-attack"
+   },
+   {
+    "level": 1,
+    "move": "scary-face"
+   },
+   {
+    "level": 1,
+    "move": "swords-dance"
+   },
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "tail-whip"
+   },
+   {
+    "level": 4,
+    "move": "quick-attack"
+   },
+   {
+    "level": 7,
+    "move": "focus-energy"
+   },
+   {
+    "level": 10,
+    "move": "bite"
+   },
+   {
+    "level": 13,
+    "move": "pursuit"
+   },
+   {
+    "level": 16,
+    "move": "hyper-fang"
+   },
+   {
+    "level": 19,
+    "move": "assurance"
+   },
+   {
+    "level": 24,
+    "move": "crunch"
+   },
+   {
+    "level": 29,
+    "move": "sucker-punch"
+   },
+   {
+    "level": 34,
+    "move": "super-fang"
+   },
+   {
+    "level": 39,
+    "move": "double-edge"
+   },
+   {
+    "level": 44,
+    "move": "endeavor"
+   }
+  ],
+  "learnset_version_group": "ultra-sun-ultra-moon",
+  "name": "raticate",
+  "name_es": "Raticate",
+  "types": [
+   "normal"
+  ]
+ },
+ "rattata": {
+  "base_experience": 51,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 56,
+   "def": 35,
+   "hp": 30,
+   "spa": 25,
+   "spd": 35,
+   "spe": 72
+  },
+  "capture_rate": 255,
+  "dex": 19,
+  "evolution": {
+   "level": 20,
+   "to": "raticate"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Ratón",
+  "growth_rate": "medium",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "tackle"
+   },
+   {
+    "level": 1,
+    "move": "tail-whip"
+   },
+   {
+    "level": 4,
+    "move": "quick-attack"
+   },
+   {
+    "level": 7,
+    "move": "focus-energy"
+   },
+   {
+    "level": 10,
+    "move": "bite"
+   },
+   {
+    "level": 13,
+    "move": "pursuit"
+   },
+   {
+    "level": 16,
+    "move": "hyper-fang"
+   },
+   {
+    "level": 19,
+    "move": "assurance"
+   },
+   {
+    "level": 22,
+    "move": "crunch"
+   },
+   {
+    "level": 25,
+    "move": "sucker-punch"
+   },
+   {
+    "level": 28,
+    "move": "super-fang"
+   },
+   {
+    "level": 31,
+    "move": "double-edge"
+   },
+   {
+    "level": 34,
+    "move": "endeavor"
+   }
+  ],
+  "learnset_version_group": "ultra-sun-ultra-moon",
+  "name": "rattata",
+  "name_es": "Rattata",
+  "types": [
+   "normal"
+  ]
+ },
+ "spinarak": {
+  "base_experience": 50,
+  "base_happiness": 70,
+  "base_stats": {
+   "atk": 60,
+   "def": 40,
+   "hp": 40,
+   "spa": 40,
+   "spd": 40,
+   "spe": 30
+  },
+  "capture_rate": 255,
+  "dex": 167,
+  "evolution": {
+   "level": 22,
+   "to": "ariados"
+  },
+  "gender_rate": 4,
+  "genus_es": "Pokémon Escupesoga",
+  "growth_rate": "fast",
+  "learnset": [
+   {
+    "level": 1,
+    "move": "poison-sting"
+   },
+   {
+    "level": 1,
+    "move": "string-shot"
+   },
+   {
+    "level": 5,
+    "move": "absorb"
+   },
+   {
+    "level": 8,
+    "move": "infestation"
+   },
+   {
+    "level": 12,
+    "move": "scary-face"
+   },
+   {
+    "level": 15,
+    "move": "night-shade"
+   },
+   {
+    "level": 19,
+    "move": "shadow-sneak"
+   },
+   {
+    "level": 22,
+    "move": "fury-swipes"
+   },
+   {
+    "level": 26,
+    "move": "sucker-punch"
+   },
+   {
+    "level": 29,
+    "move": "agility"
+   },
+   {
+    "level": 33,
+    "move": "pin-missile"
+   },
+   {
+    "level": 36,
+    "move": "psychic"
+   },
+   {
+    "level": 40,
+    "move": "poison-jab"
+   },
+   {
+    "level": 44,
+    "move": "cross-poison"
+   },
+   {
+    "level": 47,
+    "move": "sticky-web"
+   },
+   {
+    "level": 51,
+    "move": "toxic-thread"
+   }
+  ],
+  "learnset_version_group": "scarlet-violet",
+  "name": "spinarak",
+  "name_es": "Spinarak",
+  "types": [
+   "bug",
+   "poison"
+  ]
+ }
+}

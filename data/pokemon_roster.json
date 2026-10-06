@@ -1,0 +1,22 @@
+{
+	"_comment": "Especies que el juego usa. Para agregar una: añádela aquí y corre tools/fetch_sprites.py, tools/fetch_pokeapi.py y tools/import_sprites.gd.",
+	"species": [
+		{"dex": 4, "name": "charmander"},
+		{"dex": 5, "name": "charmeleon"},
+		{"dex": 6, "name": "charizard"},
+		{"dex": 10, "name": "caterpie"},
+		{"dex": 11, "name": "metapod"},
+		{"dex": 12, "name": "butterfree"},
+		{"dex": 16, "name": "pidgey"},
+		{"dex": 17, "name": "pidgeotto"},
+		{"dex": 18, "name": "pidgeot"},
+		{"dex": 19, "name": "rattata"},
+		{"dex": 20, "name": "raticate"},
+		{"dex": 43, "name": "oddish"},
+		{"dex": 44, "name": "gloom"},
+		{"dex": 163, "name": "hoothoot"},
+		{"dex": 164, "name": "noctowl"},
+		{"dex": 167, "name": "spinarak"},
+		{"dex": 168, "name": "ariados"}
+	]
+}

@@ -1,0 +1,137 @@
+{
+ "berries": {
+  "aguav": {
+   "firmness": "super-hard",
+   "flavors": {
+    "bitter": 15
+   },
+   "name": "aguav",
+   "name_es": "Baya Guaya",
+   "size_mm": 64,
+   "smoothness": 25
+  },
+  "aspear": {
+   "firmness": "super-hard",
+   "flavors": {
+    "sour": 10
+   },
+   "name": "aspear",
+   "name_es": "Baya Perasi",
+   "size_mm": 50,
+   "smoothness": 25
+  },
+  "cheri": {
+   "firmness": "soft",
+   "flavors": {
+    "spicy": 10
+   },
+   "name": "cheri",
+   "name_es": "Baya Zreza",
+   "size_mm": 20,
+   "smoothness": 25
+  },
+  "chesto": {
+   "firmness": "super-hard",
+   "flavors": {
+    "dry": 10
+   },
+   "name": "chesto",
+   "name_es": "Baya Atania",
+   "size_mm": 80,
+   "smoothness": 25
+  },
+  "figy": {
+   "firmness": "soft",
+   "flavors": {
+    "spicy": 15
+   },
+   "name": "figy",
+   "name_es": "Baya Higog",
+   "size_mm": 100,
+   "smoothness": 25
+  },
+  "iapapa": {
+   "firmness": "soft",
+   "flavors": {
+    "sour": 15
+   },
+   "name": "iapapa",
+   "name_es": "Baya Pabaya",
+   "size_mm": 223,
+   "smoothness": 25
+  },
+  "mago": {
+   "firmness": "hard",
+   "flavors": {
+    "sweet": 15
+   },
+   "name": "mago",
+   "name_es": "Baya Ango",
+   "size_mm": 126,
+   "smoothness": 25
+  },
+  "oran": {
+   "firmness": "super-hard",
+   "flavors": {
+    "bitter": 10,
+    "dry": 10,
+    "sour": 10,
+    "spicy": 10
+   },
+   "name": "oran",
+   "name_es": "Baya Aranja",
+   "size_mm": 35,
+   "smoothness": 20
+  },
+  "pecha": {
+   "firmness": "very-soft",
+   "flavors": {
+    "sweet": 10
+   },
+   "name": "pecha",
+   "name_es": "Baya Meloc",
+   "size_mm": 40,
+   "smoothness": 25
+  },
+  "rawst": {
+   "firmness": "hard",
+   "flavors": {
+    "bitter": 10
+   },
+   "name": "rawst",
+   "name_es": "Baya Safre",
+   "size_mm": 32,
+   "smoothness": 25
+  },
+  "sitrus": {
+   "firmness": "very-hard",
+   "flavors": {
+    "bitter": 10,
+    "dry": 10,
+    "sour": 10,
+    "sweet": 10
+   },
+   "name": "sitrus",
+   "name_es": "Baya Zidra",
+   "size_mm": 95,
+   "smoothness": 20
+  },
+  "wiki": {
+   "firmness": "hard",
+   "flavors": {
+    "dry": 15
+   },
+   "name": "wiki",
+   "name_es": "Baya Wiki",
+   "size_mm": 115,
+   "smoothness": 25
+  }
+ },
+ "flavors_es": {
+  "bitter": "Amargo",
+  "dry": "Seco",
+  "sour": "Ácido",
+  "spicy": "Picante",
+  "sweet": "Dulce"
+ }
+}

@@ -1,0 +1,862 @@
+{
+ "absorb": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "absorb",
+  "name_es": "Absorber",
+  "power": 20,
+  "pp": 25,
+  "priority": 0,
+  "type": "grass"
+ },
+ "acid": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "acid",
+  "name_es": "Ácido",
+  "power": 40,
+  "pp": 30,
+  "priority": 0,
+  "type": "poison"
+ },
+ "agility": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "agility",
+  "name_es": "Agilidad",
+  "power": null,
+  "pp": 30,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "air-slash": {
+  "accuracy": 95,
+  "damage_class": "special",
+  "name": "air-slash",
+  "name_es": "Tajo Aéreo",
+  "power": 75,
+  "pp": 15,
+  "priority": 0,
+  "type": "flying"
+ },
+ "assurance": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "assurance",
+  "name_es": "Buena Baza",
+  "power": 60,
+  "pp": 10,
+  "priority": 0,
+  "type": "dark"
+ },
+ "bite": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "bite",
+  "name_es": "Mordisco",
+  "power": 60,
+  "pp": 25,
+  "priority": 0,
+  "type": "dark"
+ },
+ "bug-bite": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "bug-bite",
+  "name_es": "Picadura",
+  "power": 60,
+  "pp": 20,
+  "priority": 0,
+  "type": "bug"
+ },
+ "bug-buzz": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "bug-buzz",
+  "name_es": "Zumbido",
+  "power": 90,
+  "pp": 10,
+  "priority": 0,
+  "type": "bug"
+ },
+ "confusion": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "confusion",
+  "name_es": "Confusión",
+  "power": 50,
+  "pp": 25,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "cross-poison": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "cross-poison",
+  "name_es": "Veneno X",
+  "power": 70,
+  "pp": 20,
+  "priority": 0,
+  "type": "poison"
+ },
+ "crunch": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "crunch",
+  "name_es": "Triturar",
+  "power": 80,
+  "pp": 15,
+  "priority": 0,
+  "type": "dark"
+ },
+ "defog": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "defog",
+  "name_es": "Despejar",
+  "power": null,
+  "pp": 15,
+  "priority": 0,
+  "type": "flying"
+ },
+ "double-edge": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "double-edge",
+  "name_es": "Doble Filo",
+  "power": 120,
+  "pp": 15,
+  "priority": 0,
+  "type": "normal"
+ },
+ "dragon-breath": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "dragon-breath",
+  "name_es": "Dragoaliento",
+  "power": 60,
+  "pp": 20,
+  "priority": 0,
+  "type": "dragon"
+ },
+ "dragon-claw": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "dragon-claw",
+  "name_es": "Garra Dragón",
+  "power": 80,
+  "pp": 15,
+  "priority": 0,
+  "type": "dragon"
+ },
+ "dream-eater": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "dream-eater",
+  "name_es": "Comesueños",
+  "power": 100,
+  "pp": 15,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "echoed-voice": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "echoed-voice",
+  "name_es": "Eco Voz",
+  "power": 40,
+  "pp": 15,
+  "priority": 0,
+  "type": "normal"
+ },
+ "ember": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "ember",
+  "name_es": "Ascuas",
+  "power": 40,
+  "pp": 25,
+  "priority": 0,
+  "type": "fire"
+ },
+ "endeavor": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "endeavor",
+  "name_es": "Esfuerzo",
+  "power": null,
+  "pp": 5,
+  "priority": 0,
+  "type": "normal"
+ },
+ "extrasensory": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "extrasensory",
+  "name_es": "Paranormal",
+  "power": 80,
+  "pp": 20,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "feather-dance": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "feather-dance",
+  "name_es": "Danza Pluma",
+  "power": null,
+  "pp": 15,
+  "priority": 0,
+  "type": "flying"
+ },
+ "fell-stinger": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "fell-stinger",
+  "name_es": "Aguijón Letal",
+  "power": 50,
+  "pp": 25,
+  "priority": 0,
+  "type": "bug"
+ },
+ "fire-fang": {
+  "accuracy": 95,
+  "damage_class": "physical",
+  "name": "fire-fang",
+  "name_es": "Colmillo Ígneo",
+  "power": 65,
+  "pp": 15,
+  "priority": 0,
+  "type": "fire"
+ },
+ "fire-spin": {
+  "accuracy": 85,
+  "damage_class": "special",
+  "name": "fire-spin",
+  "name_es": "Giro Fuego",
+  "power": 35,
+  "pp": 15,
+  "priority": 0,
+  "type": "fire"
+ },
+ "flamethrower": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "flamethrower",
+  "name_es": "Lanzallamas",
+  "power": 90,
+  "pp": 15,
+  "priority": 0,
+  "type": "fire"
+ },
+ "flare-blitz": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "flare-blitz",
+  "name_es": "Envite Ígneo",
+  "power": 120,
+  "pp": 15,
+  "priority": 0,
+  "type": "fire"
+ },
+ "focus-energy": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "focus-energy",
+  "name_es": "Foco Energía",
+  "power": null,
+  "pp": 30,
+  "priority": 0,
+  "type": "normal"
+ },
+ "fury-swipes": {
+  "accuracy": 80,
+  "damage_class": "physical",
+  "name": "fury-swipes",
+  "name_es": "Golpes Furia",
+  "power": 18,
+  "pp": 15,
+  "priority": 0,
+  "type": "normal"
+ },
+ "giga-drain": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "giga-drain",
+  "name_es": "Gigadrenado",
+  "power": 75,
+  "pp": 10,
+  "priority": 0,
+  "type": "grass"
+ },
+ "grassy-terrain": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "grassy-terrain",
+  "name_es": "Campo de Hierba",
+  "power": null,
+  "pp": 10,
+  "priority": 0,
+  "type": "grass"
+ },
+ "growl": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "growl",
+  "name_es": "Gruñido",
+  "power": null,
+  "pp": 40,
+  "priority": 0,
+  "type": "normal"
+ },
+ "growth": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "growth",
+  "name_es": "Desarrollo",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "normal"
+ },
+ "gust": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "gust",
+  "name_es": "Tornado",
+  "power": 40,
+  "pp": 35,
+  "priority": 0,
+  "type": "flying"
+ },
+ "harden": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "harden",
+  "name_es": "Fortaleza",
+  "power": null,
+  "pp": 30,
+  "priority": 0,
+  "type": "normal"
+ },
+ "heat-wave": {
+  "accuracy": 90,
+  "damage_class": "special",
+  "name": "heat-wave",
+  "name_es": "Onda Ígnea",
+  "power": 95,
+  "pp": 10,
+  "priority": 0,
+  "type": "fire"
+ },
+ "hurricane": {
+  "accuracy": 70,
+  "damage_class": "special",
+  "name": "hurricane",
+  "name_es": "Vendaval",
+  "power": 110,
+  "pp": 10,
+  "priority": 0,
+  "type": "flying"
+ },
+ "hyper-fang": {
+  "accuracy": 90,
+  "damage_class": "physical",
+  "name": "hyper-fang",
+  "name_es": "Hipercolmillo",
+  "power": 80,
+  "pp": 15,
+  "priority": 0,
+  "type": "normal"
+ },
+ "hypnosis": {
+  "accuracy": 60,
+  "damage_class": "status",
+  "name": "hypnosis",
+  "name_es": "Hipnosis",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "inferno": {
+  "accuracy": 50,
+  "damage_class": "special",
+  "name": "inferno",
+  "name_es": "Infierno",
+  "power": 100,
+  "pp": 5,
+  "priority": 0,
+  "type": "fire"
+ },
+ "infestation": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "infestation",
+  "name_es": "Acoso",
+  "power": 20,
+  "pp": 20,
+  "priority": 0,
+  "type": "bug"
+ },
+ "mega-drain": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "mega-drain",
+  "name_es": "Megaagotar",
+  "power": 40,
+  "pp": 15,
+  "priority": 0,
+  "type": "grass"
+ },
+ "mirror-move": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "mirror-move",
+  "name_es": "Espejo",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "flying"
+ },
+ "moonblast": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "moonblast",
+  "name_es": "Fuerza Lunar",
+  "power": 95,
+  "pp": 15,
+  "priority": 0,
+  "type": "fairy"
+ },
+ "moonlight": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "moonlight",
+  "name_es": "Luz Lunar",
+  "power": null,
+  "pp": 5,
+  "priority": 0,
+  "type": "fairy"
+ },
+ "night-shade": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "night-shade",
+  "name_es": "Tinieblas",
+  "power": null,
+  "pp": 15,
+  "priority": 0,
+  "type": "ghost"
+ },
+ "peck": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "peck",
+  "name_es": "Picotazo",
+  "power": 35,
+  "pp": 35,
+  "priority": 0,
+  "type": "flying"
+ },
+ "petal-dance": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "petal-dance",
+  "name_es": "Danza Pétalo",
+  "power": 120,
+  "pp": 10,
+  "priority": 0,
+  "type": "grass"
+ },
+ "pin-missile": {
+  "accuracy": 95,
+  "damage_class": "physical",
+  "name": "pin-missile",
+  "name_es": "Pin Misil",
+  "power": 25,
+  "pp": 20,
+  "priority": 0,
+  "type": "bug"
+ },
+ "poison-jab": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "poison-jab",
+  "name_es": "Puya Nociva",
+  "power": 80,
+  "pp": 20,
+  "priority": 0,
+  "type": "poison"
+ },
+ "poison-powder": {
+  "accuracy": 75,
+  "damage_class": "status",
+  "name": "poison-powder",
+  "name_es": "Polvo Veneno",
+  "power": null,
+  "pp": 35,
+  "priority": 0,
+  "type": "poison"
+ },
+ "poison-sting": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "poison-sting",
+  "name_es": "Picotazo Veneno",
+  "power": 15,
+  "pp": 35,
+  "priority": 0,
+  "type": "poison"
+ },
+ "psybeam": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "psybeam",
+  "name_es": "Psicorrayo",
+  "power": 65,
+  "pp": 20,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "psychic": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "psychic",
+  "name_es": "Psíquico",
+  "power": 90,
+  "pp": 10,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "pursuit": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "pursuit",
+  "name_es": "Persecución",
+  "power": 40,
+  "pp": 20,
+  "priority": 0,
+  "type": "dark"
+ },
+ "quick-attack": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "quick-attack",
+  "name_es": "Ataque Rápido",
+  "power": 40,
+  "pp": 30,
+  "priority": 1,
+  "type": "normal"
+ },
+ "quiver-dance": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "quiver-dance",
+  "name_es": "Danza Aleteo",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "bug"
+ },
+ "rage-powder": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "rage-powder",
+  "name_es": "Polvo Ira",
+  "power": null,
+  "pp": 20,
+  "priority": 2,
+  "type": "bug"
+ },
+ "reflect": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "reflect",
+  "name_es": "Reflejo",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "psychic"
+ },
+ "roost": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "roost",
+  "name_es": "Respiro",
+  "power": null,
+  "pp": 5,
+  "priority": 0,
+  "type": "flying"
+ },
+ "safeguard": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "safeguard",
+  "name_es": "Velo Sagrado",
+  "power": null,
+  "pp": 25,
+  "priority": 0,
+  "type": "normal"
+ },
+ "sand-attack": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "sand-attack",
+  "name_es": "Ataque Arena",
+  "power": null,
+  "pp": 15,
+  "priority": 0,
+  "type": "ground"
+ },
+ "scary-face": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "scary-face",
+  "name_es": "Cara Susto",
+  "power": null,
+  "pp": 10,
+  "priority": 0,
+  "type": "normal"
+ },
+ "scratch": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "scratch",
+  "name_es": "Arañazo",
+  "power": 40,
+  "pp": 35,
+  "priority": 0,
+  "type": "normal"
+ },
+ "shadow-sneak": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "shadow-sneak",
+  "name_es": "Sombra Vil",
+  "power": 40,
+  "pp": 30,
+  "priority": 1,
+  "type": "ghost"
+ },
+ "sky-attack": {
+  "accuracy": 90,
+  "damage_class": "physical",
+  "name": "sky-attack",
+  "name_es": "Ataque Aéreo",
+  "power": 140,
+  "pp": 5,
+  "priority": 0,
+  "type": "flying"
+ },
+ "slash": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "slash",
+  "name_es": "Cuchillada",
+  "power": 70,
+  "pp": 20,
+  "priority": 0,
+  "type": "normal"
+ },
+ "sleep-powder": {
+  "accuracy": 75,
+  "damage_class": "status",
+  "name": "sleep-powder",
+  "name_es": "Somnífero",
+  "power": null,
+  "pp": 15,
+  "priority": 0,
+  "type": "grass"
+ },
+ "smokescreen": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "smokescreen",
+  "name_es": "Pantalla de Humo",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "normal"
+ },
+ "sticky-web": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "sticky-web",
+  "name_es": "Red Viscosa",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "bug"
+ },
+ "string-shot": {
+  "accuracy": 95,
+  "damage_class": "status",
+  "name": "string-shot",
+  "name_es": "Disparo Demora",
+  "power": null,
+  "pp": 40,
+  "priority": 0,
+  "type": "bug"
+ },
+ "stun-spore": {
+  "accuracy": 75,
+  "damage_class": "status",
+  "name": "stun-spore",
+  "name_es": "Paralizador",
+  "power": null,
+  "pp": 30,
+  "priority": 0,
+  "type": "grass"
+ },
+ "sucker-punch": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "sucker-punch",
+  "name_es": "Golpe Bajo",
+  "power": 70,
+  "pp": 5,
+  "priority": 1,
+  "type": "dark"
+ },
+ "super-fang": {
+  "accuracy": 90,
+  "damage_class": "physical",
+  "name": "super-fang",
+  "name_es": "Superdiente",
+  "power": null,
+  "pp": 10,
+  "priority": 0,
+  "type": "normal"
+ },
+ "supersonic": {
+  "accuracy": 55,
+  "damage_class": "status",
+  "name": "supersonic",
+  "name_es": "Supersónico",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "normal"
+ },
+ "sweet-scent": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "sweet-scent",
+  "name_es": "Dulce Aroma",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "normal"
+ },
+ "swords-dance": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "swords-dance",
+  "name_es": "Danza Espada",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "normal"
+ },
+ "tackle": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "tackle",
+  "name_es": "Placaje",
+  "power": 40,
+  "pp": 35,
+  "priority": 0,
+  "type": "normal"
+ },
+ "tail-whip": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "tail-whip",
+  "name_es": "Agitacola",
+  "power": null,
+  "pp": 30,
+  "priority": 0,
+  "type": "normal"
+ },
+ "tailwind": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "tailwind",
+  "name_es": "Viento Afín",
+  "power": null,
+  "pp": 15,
+  "priority": 0,
+  "type": "flying"
+ },
+ "take-down": {
+  "accuracy": 85,
+  "damage_class": "physical",
+  "name": "take-down",
+  "name_es": "Derribo",
+  "power": 90,
+  "pp": 20,
+  "priority": 0,
+  "type": "normal"
+ },
+ "toxic": {
+  "accuracy": 90,
+  "damage_class": "status",
+  "name": "toxic",
+  "name_es": "Tóxico",
+  "power": null,
+  "pp": 10,
+  "priority": 0,
+  "type": "poison"
+ },
+ "toxic-thread": {
+  "accuracy": 100,
+  "damage_class": "status",
+  "name": "toxic-thread",
+  "name_es": "Hilo Venenoso",
+  "power": null,
+  "pp": 20,
+  "priority": 0,
+  "type": "poison"
+ },
+ "twister": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "twister",
+  "name_es": "Ciclón",
+  "power": 40,
+  "pp": 20,
+  "priority": 0,
+  "type": "dragon"
+ },
+ "uproar": {
+  "accuracy": 100,
+  "damage_class": "special",
+  "name": "uproar",
+  "name_es": "Alboroto",
+  "power": 90,
+  "pp": 10,
+  "priority": 0,
+  "type": "normal"
+ },
+ "whirlwind": {
+  "accuracy": null,
+  "damage_class": "status",
+  "name": "whirlwind",
+  "name_es": "Remolino",
+  "power": null,
+  "pp": 20,
+  "priority": -6,
+  "type": "normal"
+ },
+ "wing-attack": {
+  "accuracy": 100,
+  "damage_class": "physical",
+  "name": "wing-attack",
+  "name_es": "Ataque Ala",
+  "power": 60,
+  "pp": 35,
+  "priority": 0,
+  "type": "flying"
+ }
+}

@@ -1,0 +1,291 @@
+{
+	"alias": {
+		"Attack": "Attack",
+		"Charge": "Charge",
+		"Eat": "Idle",
+		"Faint": "Hurt",
+		"Hop": "Hop",
+		"Hurt": "Hurt",
+		"Idle": "Idle",
+		"Joy": "Hop",
+		"Laying": "Sleep",
+		"LookUp": "Idle",
+		"Nod": "Hop",
+		"Pose": "Hop",
+		"Shoot": "Shoot",
+		"Sit": "Idle",
+		"Sleep": "Sleep",
+		"Strike": "Strike",
+		"Wake": "Idle",
+		"Walk": "Walk"
+	},
+	"anims": {
+		"Attack": {
+			"bbox": [
+				-15.0,
+				-20.0,
+				29.0,
+				44.0
+			],
+			"dirs": 8,
+			"fh": 64,
+			"frames": 11,
+			"fw": 64,
+			"ground": [
+				0.0,
+				1.0
+			],
+			"hit": 2,
+			"length_ticks": 26,
+			"return": 5,
+			"rush": 1
+		},
+		"Charge": {
+			"bbox": [
+				-16.0,
+				-23.0,
+				30.0,
+				29.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 10,
+			"fw": 40,
+			"ground": [
+				1.0,
+				4.0
+			],
+			"hit": 5,
+			"length_ticks": 20,
+			"return": 9,
+			"rush": -1
+		},
+		"Double": {
+			"bbox": [
+				-28.0,
+				-23.0,
+				55.0,
+				29.0
+			],
+			"dirs": 8,
+			"fh": 72,
+			"frames": 16,
+			"fw": 64,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 36,
+			"return": -1,
+			"rush": -1
+		},
+		"Hop": {
+			"bbox": [
+				-15.0,
+				-46.0,
+				29.0,
+				50.0
+			],
+			"dirs": 8,
+			"fh": 88,
+			"frames": 10,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 9,
+			"length_ticks": 24,
+			"return": -1,
+			"rush": -1
+		},
+		"Hurt": {
+			"bbox": [
+				-14.0,
+				-29.0,
+				29.0,
+				32.0
+			],
+			"dirs": 8,
+			"fh": 64,
+			"frames": 2,
+			"fw": 48,
+			"ground": [
+				0.0,
+				0.0
+			],
+			"hit": -1,
+			"length_ticks": 10,
+			"return": -1,
+			"rush": -1
+		},
+		"Idle": {
+			"bbox": [
+				-15.0,
+				-20.0,
+				30.0,
+				24.0
+			],
+			"dirs": 8,
+			"fh": 40,
+			"frames": 10,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 74,
+			"return": -1,
+			"rush": -1
+		},
+		"Rotate": {
+			"bbox": [
+				-15.0,
+				-21.0,
+				29.0,
+				26.0
+			],
+			"dirs": 8,
+			"fh": 40,
+			"frames": 9,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 8,
+			"length_ticks": 18,
+			"return": -1,
+			"rush": -1
+		},
+		"Shoot": {
+			"bbox": [
+				-16.0,
+				-22.0,
+				30.0,
+				34.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 13,
+			"fw": 48,
+			"ground": [
+				0.0,
+				2.0
+			],
+			"hit": 5,
+			"length_ticks": 32,
+			"return": 9,
+			"rush": -1
+		},
+		"Sleep": {
+			"bbox": [
+				-13.0,
+				-20.0,
+				25.0,
+				26.0
+			],
+			"dirs": 1,
+			"fh": 32,
+			"frames": 2,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 65,
+			"return": -1,
+			"rush": -1
+		},
+		"Strike": {
+			"bbox": [
+				-15.0,
+				-20.0,
+				29.0,
+				44.0
+			],
+			"dirs": 8,
+			"fh": 64,
+			"frames": 11,
+			"fw": 64,
+			"ground": [
+				0.0,
+				1.0
+			],
+			"hit": 2,
+			"length_ticks": 26,
+			"return": 5,
+			"rush": 1
+		},
+		"Swing": {
+			"bbox": [
+				-18.0,
+				-20.0,
+				40.0,
+				45.0
+			],
+			"dirs": 8,
+			"fh": 80,
+			"frames": 9,
+			"fw": 80,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 5,
+			"length_ticks": 16,
+			"return": 5,
+			"rush": -1
+		},
+		"Twirl": {
+			"bbox": [
+				-15.0,
+				-21.0,
+				29.0,
+				26.0
+			],
+			"dirs": 8,
+			"fh": 40,
+			"frames": 9,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 8,
+			"length_ticks": 18,
+			"return": -1,
+			"rush": -1
+		},
+		"Walk": {
+			"bbox": [
+				-15.0,
+				-21.0,
+				29.0,
+				28.0
+			],
+			"dirs": 8,
+			"fh": 40,
+			"frames": 4,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 32,
+			"return": -1,
+			"rush": -1
+		}
+	},
+	"dex": 168,
+	"name": "ariados",
+	"portraits": {
+		"Angry": "res://assets/raw/spritecollab/portrait/0168/Angry.png",
+		"Normal": "res://assets/raw/spritecollab/portrait/0168/Normal.png"
+	},
+	"shadow_size": 1
+}

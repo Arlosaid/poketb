@@ -1,0 +1,58 @@
+; Engine configuration file.
+; Ventana de escritorio: franja transparente sobre la barra de tareas.
+; Ver CLAUDE.md y docs/tecnico.md antes de cambiar algo de aquí.
+
+config_version=5
+
+[application]
+
+config/name="Taskbar Pokémon"
+config/description="Idle + mascota de escritorio (uso personal, no comercial)."
+run/main_scene="res://core/Main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+run/max_fps=30
+run/low_processor_mode_sleep_usec=33000
+boot_splash/show_image=false
+boot_splash/bg_color=Color(0, 0, 0, 0)
+config/icon="res://assets/ui/icon.png"
+
+[autoload]
+
+Game="*res://core/Game.gd"
+Passthrough="*res://core/Passthrough.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=160
+window/size/mode=0
+window/size/resizable=false
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/transparent=true
+window/size/no_focus=true
+window/per_pixel_transparency/allowed=true
+window/subwindows/embed_subwindows=false
+window/vsync/vsync_mode=1
+window/energy_saving/keep_screen_on=false
+window/dpi/allow_hidpi=true
+
+[gui]
+
+theme/default_theme_scale=1.0
+common/snap_controls_to_pixels=true
+
+[physics]
+
+common/physics_ticks_per_second=30
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
+viewport/transparent_background=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 0)
+anti_aliasing/quality/msaa_2d=0

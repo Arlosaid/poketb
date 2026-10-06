@@ -1,0 +1,306 @@
+{
+	"alias": {
+		"Attack": "Attack",
+		"Charge": "Charge",
+		"Eat": "Idle",
+		"Faint": "Faint",
+		"Hop": "Hop",
+		"Hurt": "Hurt",
+		"Idle": "Idle",
+		"Joy": "Hop",
+		"Laying": "Sleep",
+		"LookUp": "Idle",
+		"Nod": "Hop",
+		"Pose": "Hop",
+		"Shoot": "Shoot",
+		"Sit": "Idle",
+		"Sleep": "Sleep",
+		"Strike": "Strike",
+		"Wake": "Idle",
+		"Walk": "Walk"
+	},
+	"anims": {
+		"Attack": {
+			"bbox": [
+				-16.0,
+				-30.0,
+				31.0,
+				54.0
+			],
+			"dirs": 8,
+			"fh": 88,
+			"frames": 14,
+			"fw": 80,
+			"ground": [
+				0.0,
+				3.0
+			],
+			"hit": 5,
+			"length_ticks": 28,
+			"return": 8,
+			"rush": 2
+		},
+		"Charge": {
+			"bbox": [
+				-15.0,
+				-25.0,
+				28.0,
+				30.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 10,
+			"fw": 48,
+			"ground": [
+				1.0,
+				4.0
+			],
+			"hit": 5,
+			"length_ticks": 20,
+			"return": 9,
+			"rush": -1
+		},
+		"Double": {
+			"bbox": [
+				-27.0,
+				-26.0,
+				53.0,
+				30.0
+			],
+			"dirs": 8,
+			"fh": 72,
+			"frames": 16,
+			"fw": 64,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 36,
+			"return": -1,
+			"rush": -1
+		},
+		"Faint": {
+			"bbox": [
+				-22.0,
+				-26.0,
+				43.0,
+				28.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 4,
+			"fw": 48,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 34,
+			"return": -1,
+			"rush": -1
+		},
+		"Hop": {
+			"bbox": [
+				-14.0,
+				-48.0,
+				27.0,
+				50.0
+			],
+			"dirs": 8,
+			"fh": 96,
+			"frames": 10,
+			"fw": 48,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 9,
+			"length_ticks": 24,
+			"return": -1,
+			"rush": -1
+		},
+		"Hurt": {
+			"bbox": [
+				-16.0,
+				-33.0,
+				31.0,
+				33.0
+			],
+			"dirs": 8,
+			"fh": 64,
+			"frames": 2,
+			"fw": 64,
+			"ground": [
+				0.0,
+				2.0
+			],
+			"hit": -1,
+			"length_ticks": 10,
+			"return": -1,
+			"rush": -1
+		},
+		"Idle": {
+			"bbox": [
+				-15.0,
+				-25.0,
+				29.0,
+				29.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 4,
+			"fw": 40,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 60,
+			"return": -1,
+			"rush": -1
+		},
+		"Rotate": {
+			"bbox": [
+				-17.0,
+				-26.0,
+				33.0,
+				30.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 9,
+			"fw": 40,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 8,
+			"length_ticks": 18,
+			"return": -1,
+			"rush": -1
+		},
+		"Shoot": {
+			"bbox": [
+				-14.0,
+				-26.0,
+				28.0,
+				37.0
+			],
+			"dirs": 8,
+			"fh": 56,
+			"frames": 11,
+			"fw": 56,
+			"ground": [
+				0.0,
+				3.0
+			],
+			"hit": 2,
+			"length_ticks": 28,
+			"return": 6,
+			"rush": -1
+		},
+		"Sleep": {
+			"bbox": [
+				-11.0,
+				-25.0,
+				27.0,
+				29.0
+			],
+			"dirs": 1,
+			"fh": 48,
+			"frames": 2,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 65,
+			"return": -1,
+			"rush": -1
+		},
+		"Strike": {
+			"bbox": [
+				-14.0,
+				-31.0,
+				30.0,
+				54.0
+			],
+			"dirs": 8,
+			"fh": 80,
+			"frames": 13,
+			"fw": 72,
+			"ground": [
+				0.0,
+				3.0
+			],
+			"hit": 4,
+			"length_ticks": 29,
+			"return": 6,
+			"rush": 2
+		},
+		"Swing": {
+			"bbox": [
+				-30.0,
+				-25.0,
+				60.0,
+				55.0
+			],
+			"dirs": 8,
+			"fh": 96,
+			"frames": 9,
+			"fw": 88,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 5,
+			"length_ticks": 16,
+			"return": 5,
+			"rush": -1
+		},
+		"Walk": {
+			"bbox": [
+				-15.0,
+				-25.0,
+				29.0,
+				29.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 4,
+			"fw": 40,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 36,
+			"return": -1,
+			"rush": -1
+		}
+	},
+	"dex": 6,
+	"name": "charizard",
+	"portraits": {
+		"Angry": "res://assets/raw/spritecollab/portrait/0006/Angry.png",
+		"Crying": "res://assets/raw/spritecollab/portrait/0006/Crying.png",
+		"Determined": "res://assets/raw/spritecollab/portrait/0006/Determined.png",
+		"Dizzy": "res://assets/raw/spritecollab/portrait/0006/Dizzy.png",
+		"Happy": "res://assets/raw/spritecollab/portrait/0006/Happy.png",
+		"Inspired": "res://assets/raw/spritecollab/portrait/0006/Inspired.png",
+		"Joyous": "res://assets/raw/spritecollab/portrait/0006/Joyous.png",
+		"Normal": "res://assets/raw/spritecollab/portrait/0006/Normal.png",
+		"Pain": "res://assets/raw/spritecollab/portrait/0006/Pain.png",
+		"Sad": "res://assets/raw/spritecollab/portrait/0006/Sad.png",
+		"Shouting": "res://assets/raw/spritecollab/portrait/0006/Shouting.png",
+		"Sigh": "res://assets/raw/spritecollab/portrait/0006/Sigh.png",
+		"Special0": "res://assets/raw/spritecollab/portrait/0006/Special0.png",
+		"Stunned": "res://assets/raw/spritecollab/portrait/0006/Stunned.png",
+		"Surprised": "res://assets/raw/spritecollab/portrait/0006/Surprised.png",
+		"Teary-Eyed": "res://assets/raw/spritecollab/portrait/0006/Teary-Eyed.png",
+		"Worried": "res://assets/raw/spritecollab/portrait/0006/Worried.png"
+	},
+	"shadow_size": 2
+}

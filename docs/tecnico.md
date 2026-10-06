@@ -1,0 +1,43 @@
+# Notas técnicas
+
+## Ventana
+- La ventana principal es borderless, transparente por píxel, siempre al frente y `no_focus`.
+  - `DesktopWindow` la coloca encima del área de trabajo (`screen_get_usable_rect`), con el ancho de la pantalla y un alto lógico de 96 px a escala entera.
+  - Cada 2 s comprueba la geometría, vuelve a ocultar el botón de la barra de tareas, reafirma el topmost y detecta apps a pantalla completa.
+- Renderizado pixel-perfect con `content_scale_mode=viewport` + `stretch=integer`. El tamaño lógico es `ancho_pantalla/escala × 96`.
+
+## Clic a través (crítico)
+- `Passthrough` (autoload) compara cada frame `DisplayServer.mouse_get_position()` con los `get_click_rect()` de los nodos registrados. Llama a `DesktopNative.set_click_through()` solo cuando el estado cambia.
+- `capture_count > 0` mantiene la ventana clicable mientras se arrastra algo.
+- No se usa `window_set_mouse_passthrough`: en Windows usa `SetWindowRgn`, que recorta el render.
+
+## GDExtension `DesktopNative` (`native/`)
+| Método | Win32 |
+|---|---|
+| `set_click_through(wid, on)` | `WS_EX_LAYERED` + `WS_EX_TRANSPARENT` (más `SetLayeredWindowAttributes(255)` la primera vez) |
+| `hide_from_taskbar(wid)` | `WS_EX_TOOLWINDOW`, sin `WS_EX_APPWINDOW`, más `ITaskbarList::DeleteTab` |
+| `reassert_topmost(wid)` | `SetWindowPos(HWND_TOPMOST, SWP_NOACTIVATE)` |
+| `get_idle_seconds()` | `GetLastInputInfo` |
+| `get_taskbar_info()` | `SHAppBarMessage(ABM_GETTASKBARPOS/ABM_GETSTATE)` |
+| `is_fullscreen_app_active()` | `SHQueryUserNotificationState` |
+
+Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde `native/`:
+`scons platform=windows target=template_debug` (y `template_release`). La primera compilación de godot-cpp tarda unos 4 min.
+
+## Pipeline de sprites
+1. `tools/fetch_sprites.py`: sparse checkout de SpriteCollab en `~/.cache/spritecollab`. Copia la forma base a `assets/raw/spritecollab/` y genera `data/sprite_credits.json`.
+2. `godot --headless --path . --import`: importa los PNG. Es necesario además para que Godot registre los `class_name` nuevos.
+3. `godot --headless --path . --script res://tools/import_sprites.gd` lee AnimData.xml y genera `pokemon/species/<name>/frames.res` + `meta.json`. Las alternativas quedan en `tools/import_log.txt`.
+
+`meta.json` por animación guarda:
+- `fw`, `fh`, `frames`, `dirs` (1 u 8);
+- `ground`: centro del marcador de sombra respecto al centro del cuadro;
+- `bbox`: píxeles opacos respecto al suelo;
+- `rush`, `hit`, `return` y `length_ticks` (a 60 fps).
+
+## Datos canon
+`tools/fetch_pokeapi.py` genera `data/species.json`, `moves.json`, `types.json`, `natures.json`, `berries.json` y `growth.json`. Cachea las respuestas en `tools/.cache/pokeapi`. Los learnsets usan el primer version group disponible entre: scarlet-violet, sword-shield, ultra-sun-ultra-moon, sun-moon y x-y.
+
+## Validación
+- `--scenario=still` deja a Charmander quieto en x lógica 100 (en pantalla: x≈180–218, y≈984–1034 a x2) y guarda `shots/p1_still.png`.
+- `tools/probe.ps1 -Action hit|move|click|find` dice qué ventana recibiría el clic, mueve el cursor y hace clic, o lista los estilos de la ventana de Godot.

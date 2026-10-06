@@ -1,0 +1,202 @@
+{
+ "adamant": {
+  "decreased": "spa",
+  "hates_flavor": "dry",
+  "increased": "atk",
+  "likes_flavor": "spicy",
+  "name": "adamant",
+  "name_es": "Firme"
+ },
+ "bashful": {
+  "decreased": null,
+  "hates_flavor": null,
+  "increased": null,
+  "likes_flavor": null,
+  "name": "bashful",
+  "name_es": "Tímida"
+ },
+ "bold": {
+  "decreased": "atk",
+  "hates_flavor": "spicy",
+  "increased": "def",
+  "likes_flavor": "sour",
+  "name": "bold",
+  "name_es": "Osada"
+ },
+ "brave": {
+  "decreased": "spe",
+  "hates_flavor": "sweet",
+  "increased": "atk",
+  "likes_flavor": "spicy",
+  "name": "brave",
+  "name_es": "Audaz"
+ },
+ "calm": {
+  "decreased": "atk",
+  "hates_flavor": "spicy",
+  "increased": "spd",
+  "likes_flavor": "bitter",
+  "name": "calm",
+  "name_es": "Serena"
+ },
+ "careful": {
+  "decreased": "spa",
+  "hates_flavor": "dry",
+  "increased": "spd",
+  "likes_flavor": "bitter",
+  "name": "careful",
+  "name_es": "Cauta"
+ },
+ "docile": {
+  "decreased": null,
+  "hates_flavor": null,
+  "increased": null,
+  "likes_flavor": null,
+  "name": "docile",
+  "name_es": "Dócil"
+ },
+ "gentle": {
+  "decreased": "def",
+  "hates_flavor": "sour",
+  "increased": "spd",
+  "likes_flavor": "bitter",
+  "name": "gentle",
+  "name_es": "Amable"
+ },
+ "hardy": {
+  "decreased": null,
+  "hates_flavor": null,
+  "increased": null,
+  "likes_flavor": null,
+  "name": "hardy",
+  "name_es": "Fuerte"
+ },
+ "hasty": {
+  "decreased": "def",
+  "hates_flavor": "sour",
+  "increased": "spe",
+  "likes_flavor": "sweet",
+  "name": "hasty",
+  "name_es": "Activa"
+ },
+ "impish": {
+  "decreased": "spa",
+  "hates_flavor": "dry",
+  "increased": "def",
+  "likes_flavor": "sour",
+  "name": "impish",
+  "name_es": "Agitada"
+ },
+ "jolly": {
+  "decreased": "spa",
+  "hates_flavor": "dry",
+  "increased": "spe",
+  "likes_flavor": "sweet",
+  "name": "jolly",
+  "name_es": "Alegre"
+ },
+ "lax": {
+  "decreased": "spd",
+  "hates_flavor": "bitter",
+  "increased": "def",
+  "likes_flavor": "sour",
+  "name": "lax",
+  "name_es": "Floja"
+ },
+ "lonely": {
+  "decreased": "def",
+  "hates_flavor": "sour",
+  "increased": "atk",
+  "likes_flavor": "spicy",
+  "name": "lonely",
+  "name_es": "Huraña"
+ },
+ "mild": {
+  "decreased": "def",
+  "hates_flavor": "sour",
+  "increased": "spa",
+  "likes_flavor": "dry",
+  "name": "mild",
+  "name_es": "Afable"
+ },
+ "modest": {
+  "decreased": "atk",
+  "hates_flavor": "spicy",
+  "increased": "spa",
+  "likes_flavor": "dry",
+  "name": "modest",
+  "name_es": "Modesta"
+ },
+ "naive": {
+  "decreased": "spd",
+  "hates_flavor": "bitter",
+  "increased": "spe",
+  "likes_flavor": "sweet",
+  "name": "naive",
+  "name_es": "Ingenua"
+ },
+ "naughty": {
+  "decreased": "spd",
+  "hates_flavor": "bitter",
+  "increased": "atk",
+  "likes_flavor": "spicy",
+  "name": "naughty",
+  "name_es": "Pícara"
+ },
+ "quiet": {
+  "decreased": "spe",
+  "hates_flavor": "sweet",
+  "increased": "spa",
+  "likes_flavor": "dry",
+  "name": "quiet",
+  "name_es": "Mansa"
+ },
+ "quirky": {
+  "decreased": null,
+  "hates_flavor": null,
+  "increased": null,
+  "likes_flavor": null,
+  "name": "quirky",
+  "name_es": "Rara"
+ },
+ "rash": {
+  "decreased": "spd",
+  "hates_flavor": "bitter",
+  "increased": "spa",
+  "likes_flavor": "dry",
+  "name": "rash",
+  "name_es": "Alocada"
+ },
+ "relaxed": {
+  "decreased": "spe",
+  "hates_flavor": "sweet",
+  "increased": "def",
+  "likes_flavor": "sour",
+  "name": "relaxed",
+  "name_es": "Plácida"
+ },
+ "sassy": {
+  "decreased": "spe",
+  "hates_flavor": "sweet",
+  "increased": "spd",
+  "likes_flavor": "bitter",
+  "name": "sassy",
+  "name_es": "Grosera"
+ },
+ "serious": {
+  "decreased": null,
+  "hates_flavor": null,
+  "increased": null,
+  "likes_flavor": null,
+  "name": "serious",
+  "name_es": "Seria"
+ },
+ "timid": {
+  "decreased": "atk",
+  "hates_flavor": "spicy",
+  "increased": "spe",
+  "likes_flavor": "sweet",
+  "name": "timid",
+  "name_es": "Miedosa"
+ }
+}

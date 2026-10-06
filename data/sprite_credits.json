@@ -1,0 +1,398 @@
+{
+ "license": "CC BY-NC 4.0",
+ "source": "https://github.com/PMDCollab/SpriteCollab",
+ "species": [
+  {
+   "dex": 4,
+   "name": "charmander",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Emboarger",
+     "contact": ""
+    },
+    {
+     "name": "baronessfaron",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 5,
+   "name": "charmeleon",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "<@!199989579682414592>",
+     "contact": ""
+    },
+    {
+     "name": "bwappi",
+     "contact": "https://bsky.app/profile/bwappi.bsky.social"
+    },
+    {
+     "name": "Grimlin",
+     "contact": "https://twitter.com/Griimlin"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "0palite",
+     "contact": "https://zeropalart.tumblr.com/"
+    }
+   ]
+  },
+  {
+   "dex": 6,
+   "name": "charizard",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Emboarger",
+     "contact": ""
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "0palite",
+     "contact": "https://zeropalart.tumblr.com/"
+    }
+   ]
+  },
+  {
+   "dex": 10,
+   "name": "caterpie",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Frostdrop1",
+     "contact": ""
+    },
+    {
+     "name": "baronessfaron",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 11,
+   "name": "metapod",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Emboarger",
+     "contact": ""
+    },
+    {
+     "name": "baronessfaron",
+     "contact": ""
+    },
+    {
+     "name": "Blanky",
+     "contact": "https://www.tumblr.com/theblankest123"
+    }
+   ]
+  },
+  {
+   "dex": 12,
+   "name": "butterfree",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Emmuffin",
+     "contact": "https://twitter.com/Ernmuffin"
+    }
+   ]
+  },
+  {
+   "dex": 16,
+   "name": "pidgey",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "JFain",
+     "contact": ""
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "JFain",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 17,
+   "name": "pidgeotto",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Tainted#3886",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 18,
+   "name": "pidgeot",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "FalafelPorpoise",
+     "contact": "https://bsky.app/profile/falafel-porpoise.bsky.social"
+    }
+   ]
+  },
+  {
+   "dex": 19,
+   "name": "rattata",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Frostdrop1",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 20,
+   "name": "raticate",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "G〜",
+     "contact": "https://bsky.app/profile/justtr4sh.pmd.social"
+    },
+    {
+     "name": "baronessfaron",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 43,
+   "name": "oddish",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Felis-Licht",
+     "contact": "https://www.deviantart.com/felis-licht/"
+    },
+    {
+     "name": "ShyStarryRain",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 44,
+   "name": "gloom",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "chikorene",
+     "contact": "<@1346022682667388968>"
+    }
+   ]
+  },
+  {
+   "dex": 163,
+   "name": "hoothoot",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "JFain",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 164,
+   "name": "noctowl",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "Emmuffin",
+     "contact": "https://twitter.com/Ernmuffin"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "G〜",
+     "contact": "https://bsky.app/profile/justtr4sh.pmd.social"
+    },
+    {
+     "name": "Magu",
+     "contact": "@magu_boi"
+    }
+   ]
+  },
+  {
+   "dex": 167,
+   "name": "spinarak",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "JFain",
+     "contact": ""
+    }
+   ]
+  },
+  {
+   "dex": 168,
+   "name": "ariados",
+   "sprite_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    }
+   ],
+   "portrait_authors": [
+    {
+     "name": "CHUNSOFT",
+     "contact": "https://www.spike-chunsoft.com/"
+    },
+    {
+     "name": "G〜",
+     "contact": "https://bsky.app/profile/justtr4sh.pmd.social"
+    }
+   ]
+  }
+ ]
+}

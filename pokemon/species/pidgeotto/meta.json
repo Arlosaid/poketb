@@ -1,0 +1,291 @@
+{
+	"alias": {
+		"Attack": "Attack",
+		"Charge": "Charge",
+		"Eat": "Idle",
+		"Faint": "Hurt",
+		"Hop": "Hop",
+		"Hurt": "Hurt",
+		"Idle": "Idle",
+		"Joy": "Hop",
+		"Laying": "Sleep",
+		"LookUp": "Idle",
+		"Nod": "Hop",
+		"Pose": "Hop",
+		"Shoot": "Shoot",
+		"Sit": "Idle",
+		"Sleep": "Sleep",
+		"Strike": "Strike",
+		"Wake": "Idle",
+		"Walk": "Walk"
+	},
+	"anims": {
+		"Attack": {
+			"bbox": [
+				-14.0,
+				-26.0,
+				28.0,
+				48.0
+			],
+			"dirs": 8,
+			"fh": 80,
+			"frames": 14,
+			"fw": 64,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 4,
+			"length_ticks": 28,
+			"return": 7,
+			"rush": -1
+		},
+		"Charge": {
+			"bbox": [
+				-15.0,
+				-22.0,
+				28.0,
+				23.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 10,
+			"fw": 32,
+			"ground": [
+				1.0,
+				4.0
+			],
+			"hit": 5,
+			"length_ticks": 20,
+			"return": 9,
+			"rush": -1
+		},
+		"Double": {
+			"bbox": [
+				-27.0,
+				-22.0,
+				53.0,
+				23.0
+			],
+			"dirs": 8,
+			"fh": 72,
+			"frames": 16,
+			"fw": 56,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 36,
+			"return": -1,
+			"rush": -1
+		},
+		"FlapAround": {
+			"bbox": [
+				-14.0,
+				-27.0,
+				27.0,
+				27.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 18,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 4,
+			"length_ticks": 36,
+			"return": 17,
+			"rush": -1
+		},
+		"Hop": {
+			"bbox": [
+				-14.0,
+				-44.0,
+				27.0,
+				46.0
+			],
+			"dirs": 8,
+			"fh": 88,
+			"frames": 10,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 9,
+			"length_ticks": 24,
+			"return": -1,
+			"rush": -1
+		},
+		"Hurt": {
+			"bbox": [
+				-15.0,
+				-31.0,
+				30.0,
+				33.0
+			],
+			"dirs": 8,
+			"fh": 64,
+			"frames": 2,
+			"fw": 48,
+			"ground": [
+				0.0,
+				2.0
+			],
+			"hit": -1,
+			"length_ticks": 10,
+			"return": -1,
+			"rush": -1
+		},
+		"Idle": {
+			"bbox": [
+				-9.0,
+				-23.0,
+				17.0,
+				25.0
+			],
+			"dirs": 8,
+			"fh": 48,
+			"frames": 4,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 48,
+			"return": -1,
+			"rush": -1
+		},
+		"Rotate": {
+			"bbox": [
+				-13.0,
+				-22.0,
+				25.0,
+				24.0
+			],
+			"dirs": 8,
+			"fh": 40,
+			"frames": 9,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 8,
+			"length_ticks": 18,
+			"return": -1,
+			"rush": -1
+		},
+		"Shoot": {
+			"bbox": [
+				-14.0,
+				-28.0,
+				27.0,
+				29.0
+			],
+			"dirs": 8,
+			"fh": 56,
+			"frames": 11,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 3,
+			"length_ticks": 30,
+			"return": 6,
+			"rush": -1
+		},
+		"Sleep": {
+			"bbox": [
+				-10.0,
+				-19.0,
+				21.0,
+				21.0
+			],
+			"dirs": 1,
+			"fh": 32,
+			"frames": 2,
+			"fw": 24,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 65,
+			"return": -1,
+			"rush": -1
+		},
+		"Strike": {
+			"bbox": [
+				-14.0,
+				-26.0,
+				28.0,
+				48.0
+			],
+			"dirs": 8,
+			"fh": 80,
+			"frames": 14,
+			"fw": 64,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 4,
+			"length_ticks": 28,
+			"return": 7,
+			"rush": -1
+		},
+		"Swing": {
+			"bbox": [
+				-21.0,
+				-20.0,
+				41.0,
+				43.0
+			],
+			"dirs": 8,
+			"fh": 72,
+			"frames": 9,
+			"fw": 72,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": 5,
+			"length_ticks": 16,
+			"return": 5,
+			"rush": -1
+		},
+		"Walk": {
+			"bbox": [
+				-10.0,
+				-20.0,
+				19.0,
+				24.0
+			],
+			"dirs": 8,
+			"fh": 40,
+			"frames": 4,
+			"fw": 32,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 32,
+			"return": -1,
+			"rush": -1
+		}
+	},
+	"dex": 17,
+	"name": "pidgeotto",
+	"portraits": {
+		"Normal": "res://assets/raw/spritecollab/portrait/0017/Normal.png",
+		"Worried": "res://assets/raw/spritecollab/portrait/0017/Worried.png"
+	},
+	"shadow_size": 1
+}

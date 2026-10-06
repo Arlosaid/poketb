@@ -1,0 +1,16 @@
+.godot/
+*.import.tmp
+native/**/*.obj
+native/**/*.os
+native/**/*.o
+native/.sconsign.dblite
+native/godot-cpp/bin/
+native/godot-cpp/gen/
+addons/desktop_native/bin/*.lib
+addons/desktop_native/bin/*.exp
+addons/desktop_native/bin/*.pdb
+addons/desktop_native/bin/*.ilk
+tools/__pycache__/
+tools/.cache/
+*.log
+shots/
