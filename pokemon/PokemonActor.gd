@@ -24,12 +24,17 @@ static var _shadow_cache := {}
 ## Si es true, se registra en Passthrough y recibe clics.
 @export var interactive := true
 
+const DIRS: Array[String] = ["S", "SE", "E", "NE", "N", "NW", "W", "SW"]
+
 var dir := "E"
 var anim := ""
 var meta: Dictionary
 
 var sprite: AnimatedSprite2D
 var shadow: Sprite2D
+
+var _shadow_track: Array = []
+var _shadow_dir := 0
 
 
 func _ready() -> void:
@@ -41,6 +46,7 @@ func _ready() -> void:
 	sprite.name = "Sprite"
 	sprite.centered = true
 	sprite.animation_finished.connect(_on_sprite_finished)
+	sprite.frame_changed.connect(_update_shadow)
 	add_child(sprite)
 	_load_species()
 	if interactive:
@@ -86,6 +92,9 @@ func play_anim(logical: String, new_dir := "", restart := false) -> void:
 	sprite.play(key)
 	if restart:
 		sprite.frame = 0
+	_shadow_track = info.get("shadow", [])
+	_shadow_dir = DIRS.find(d) if int(info["dirs"]) == 8 else 0
+	_update_shadow()
 
 
 ## Duración en segundos de una animación (sin bucle).
@@ -124,6 +133,16 @@ func get_click_rect() -> Rect2:
 func head_point() -> Vector2:
 	var bb: Array = meta["anims"][resolve("Idle")]["bbox"]
 	return Vector2(0, float(bb[1]))
+
+
+## La sombra sigue al marcador de PMD en las animaciones que se desplazan.
+func _update_shadow() -> void:
+	if _shadow_track.is_empty():
+		shadow.position = Vector2.ZERO
+		return
+	var row: Array = _shadow_track[mini(_shadow_dir, _shadow_track.size() - 1)]
+	var off: Array = row[mini(sprite.frame, row.size() - 1)]
+	shadow.position = Vector2(off[0], off[1])
 
 
 func _on_sprite_finished() -> void:

@@ -113,8 +113,10 @@ func _import_species(dex: int, name: String) -> bool:
 				at.region = Rect2(c * fw, r * fh, fw, fh)
 				frames.add_frame(key, at, float(durations[c]))
 
-		var ground := _shadow_center(sdir + src_name + "-Shadow.png", fw, fh)
+		var shadow_path := sdir + src_name + "-Shadow.png"
+		var ground := _shadow_center(shadow_path, fw, fh)
 		var bbox := _opaque_bbox(tex.get_image(), fw, fh, n_frames)
+		var shadow_frames := _shadow_frames(shadow_path, fw, fh, n_frames, n_dirs, ground)
 		meta["anims"][anim_name] = {
 			"fw": fw, "fh": fh, "frames": n_frames, "dirs": n_dirs,
 			"ground": [ground.x, ground.y],
@@ -123,6 +125,9 @@ func _import_species(dex: int, name: String) -> bool:
 			"rush": src.get("rush", -1), "hit": src.get("hit", -1), "return": src.get("ret", -1),
 			"length_ticks": _sum(durations.slice(0, n_frames)),
 		}
+		if not shadow_frames.is_empty():
+			# desplazamiento de la sombra por [dir][cuadro] respecto a `ground` (embestidas, saltos)
+			meta["anims"][anim_name]["shadow"] = shadow_frames
 
 	# Resolver alias lógicos.
 	for logical in ALTERNATIVES:
@@ -184,6 +189,31 @@ func _shadow_center(path: String, fw: int, fh: int) -> Vector2:
 		return Vector2(0, fh * 0.25)
 	var c := sum / n + Vector2(0.5, 0.5)
 	return (c - Vector2(fw, fh) / 2.0).round()
+
+
+## Desplazamiento del marcador de sombra por dirección y cuadro, relativo a `ground`.
+## Devuelve [] si la sombra no se mueve nunca (lo normal en Idle/Walk).
+func _shadow_frames(path: String, fw: int, fh: int, n_frames: int, n_dirs: int, ground: Vector2) -> Array:
+	if not ResourceLoader.exists(path):
+		return []
+	var img: Image = (load(path) as Texture2D).get_image()
+	if img.is_compressed():
+		img.decompress()
+	var out := []
+	var moves := false
+	for r in n_dirs:
+		var row := []
+		for c in n_frames:
+			var used := img.get_region(Rect2i(c * fw, r * fh, fw, fh)).get_used_rect()
+			var off := Vector2.ZERO
+			if used.size != Vector2i.ZERO:
+				var center := Vector2(used.position) + Vector2(used.size) / 2.0
+				off = (center - Vector2(fw, fh) / 2.0).round() - ground
+			if off != Vector2.ZERO:
+				moves = true
+			row.append([off.x, off.y])
+		out.append(row)
+	return out if moves else []
 
 
 ## Unión de los píxeles opacos de todos los cuadros de la fila S.

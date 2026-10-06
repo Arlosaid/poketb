@@ -1,0 +1,117 @@
+{
+	"_comment": "Fases del día: cielo (4 colores de arriba a abajo), sol/luna y re-mapeo de paleta para las capas. Los colores que no aparecen en 'remap' se quedan igual. Horas en 0..24; 'blend_h' es la duración de la transición tramada.",
+	"blend_h": 0.75,
+	"phases": {
+		"day": {
+			"start": 8.0,
+			"sky": [
+				"sky",
+				"sky",
+				"haze",
+				"mist"
+			],
+			"sun": {
+				"kind": 0,
+				"core": "paper",
+				"rim": "honey"
+			},
+			"stars": 0.0,
+			"remap": {}
+		},
+		"dawn": {
+			"start": 5.0,
+			"sky": [
+				"dusk",
+				"lilac",
+				"orchid",
+				"petal"
+			],
+			"sun": {
+				"kind": 0,
+				"core": "honey",
+				"rim": "amber"
+			},
+			"stars": 0.2,
+			"remap": {
+				"paper": "petal",
+				"mist": "petal",
+				"haze": "orchid",
+				"sky": "lilac",
+				"lime": "sprout",
+				"cream": "petal"
+			}
+		},
+		"dusk": {
+			"start": 17.0,
+			"sky": [
+				"dusk",
+				"lilac",
+				"flame",
+				"amber"
+			],
+			"sun": {
+				"kind": 0,
+				"core": "honey",
+				"rim": "flame"
+			},
+			"stars": 0.0,
+			"remap": {
+				"paper": "honey",
+				"mist": "blush",
+				"haze": "orchid",
+				"sky": "lilac",
+				"lime": "sprout",
+				"sprout": "grass",
+				"grass": "leaf",
+				"leaf": "forest",
+				"cream": "sand",
+				"sand": "tan"
+			}
+		},
+		"night": {
+			"start": 20.0,
+			"sky": [
+				"midnight",
+				"midnight",
+				"night",
+				"dusk"
+			],
+			"sun": {
+				"kind": 1,
+				"core": "mist",
+				"rim": "haze"
+			},
+			"stars": 1.0,
+			"remap": {
+				"paper": "mist",
+				"cream": "orchid",
+				"sand": "lilac",
+				"tan": "night",
+				"oak": "midnight",
+				"wood": "midnight",
+				"bark": "midnight",
+				"lime": "teal",
+				"sprout": "teal",
+				"grass": "dusk",
+				"leaf": "night",
+				"forest": "night",
+				"pine": "midnight",
+				"mist": "dusk",
+				"haze": "dusk",
+				"sky": "night",
+				"dusk": "night",
+				"night": "midnight",
+				"flame": "lilac",
+				"ember": "berry",
+				"berry": "plum",
+				"plum": "midnight",
+				"blush": "lilac",
+				"petal": "orchid",
+				"orchid": "lilac",
+				"lilac": "night",
+				"teal": "night",
+				"mint": "teal"
+			}
+		}
+	}
+}

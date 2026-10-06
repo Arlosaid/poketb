@@ -23,7 +23,8 @@ cd native && scons platform=windows target=template_debug && scons platform=wind
 python -I tools/fetch_sprites.py       # sparse checkout de SpriteCollab → assets/raw/spritecollab + data/sprite_credits.json
 python -I tools/fetch_pokeapi.py       # PokeAPI → data/*.json
 python -I tools/gen_ui.py              # marcos 9-patch, íconos, paleta → assets/ui
-python -I tools/gen_backgrounds.py     # capas de parallax → assets/bg
+python -I tools/gen_backgrounds.py     # capas de parallax → assets/bg (lee data/biomes/*.json)
+python -I tools/gen_credits.py         # CREDITS.md desde data/sprite_credits.json
 "<godot_console>" --headless --path . --script res://tools/import_sprites.gd   # AnimData.xml → SpriteFrames
 # Correr el juego
 "<godot_console>" --path . -- [--debug] [--scenario=still|pet|battle|gallery] [--autoquit=SEG]
@@ -55,7 +56,7 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 ## Estado
 - [x] Fase 0: andamiaje, documentación, compilador.
 - [x] Fase 1: ventana nativa y passthrough (validado: clic a través, sin ícono en la barra, clic sobre el sprite llega al juego).
-- [ ] Fase 2: pipeline de arte.
+- [x] Fase 2: pipeline de arte (importador, paleta, fuente, marcos, fondos con parallax, cielo según la hora). `--scenario=gallery` genera las capturas de revisión.
 - [ ] Fase 3: modo mascota.
 - [ ] Fase 4: modo pelea.
 - [ ] Fase 5: PC, guardado y offline.

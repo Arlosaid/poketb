@@ -41,3 +41,15 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 ## Validación
 - `--scenario=still` deja a Charmander quieto en x lógica 100 (en pantalla: x≈180–218, y≈984–1034 a x2) y guarda `shots/p1_still.png`.
 - `tools/probe.ps1 -Action hit|move|click|find` dice qué ventana recibiría el clic, mueve el cursor y hace clic, o lista los estilos de la ventana de Godot.
+
+## Fondos y día/noche
+- `world/Backdrop.gd` arma el cielo (`world/sky.gdshader`), las capas de `data/biomes/<id>.json` (Sprite2D con `region` y repetición) y `Ambient` (polen, luciérnagas, hojas).
+  - Las capas comparten un `ShaderMaterial` (`world/palette_lut.gdshader`) que busca el índice de paleta más cercano y lo re-mapea con la LUT de `DayNight`.
+- `world/DayNight.gd` traduce la hora a dos fases + `blend`, configura el cielo y da `sprite_tint()` para los Pokémon.
+- `--scenario=gallery` guarda en `shots/`:
+  - `p2_anim_*.png`: todas las especies en cada animación;
+  - `p2_strip_<bioma>_<hora>.png`: el panel a las 6, 12, 18 y 23 h;
+  - `p2_ui.png`: el tema de UI.
+
+## UI
+- `ui/UiTheme.gd` construye el `Theme` en código, con la fuente sin antialiasing y StyleBoxTexture 9-patch. Variaciones de tipo: `DialogPanel`, `DialogLabel` y `Slot`.

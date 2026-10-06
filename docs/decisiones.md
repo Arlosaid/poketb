@@ -38,3 +38,21 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **Suelo:** está 2 px por encima del borde de la ventana para que la sombra no se corte.
 - **Consumo inicial:** ~5% de un núcleo y ~160 MB con un Pokémon a 10 FPS. Se revisa en la Fase 6.
 - **godot-cpp** se fija en la rama 4.5, porque no hay rama 4.7 y la API de GDExtension es compatible hacia adelante.
+
+## 2026-10-06 — Fase 2 (arte)
+
+- **Fuente: Ark Pixel Font 10px proporcional, variante latina** (TakWolf, OFL 1.1, sin *Reserved Font Name*). *monogram* (CC0) quedó descartada porque itch.io no permite descargarla de forma automatizada. Ark Pixel se ve legible a 10 px, con acentos, ñ, ¡¿ y ♥. Está en `assets/fonts/`, junto con el texto de la licencia.
+- **Marcos 9-patch:**
+  - crema estilo PMD para menús y PC;
+  - "diálogo" azul noche estilo Explorers para los mensajes de combate;
+  - botones de 3 estados;
+  - marco de madera para el panel de pelea.
+
+  Todo se genera con `tools/gen_ui.py`, que verifica que cada píxel pertenezca a la paleta.
+- **Bayas:** 12 íconos de 12x12 en 3 formas (redonda, alargada y pera), cada una con la rampa de color de su baya canon.
+- **Día y noche sin salir de la paleta.** El cielo es un shader con bandas tramadas (Bayer 4x4), sol, luna creciente y estrellas. Las capas pasan por una LUT de 32x4 (`data/daynight.json`) que reasigna cada color a su variante de amanecer, atardecer o noche. Las transiciones entre fases son tramadas (45 min) y nunca generan colores intermedios. Los sprites de Pokémon (que no son de nuestra paleta) solo reciben un tinte suave.
+- **De noche, el camino es lila** (antes era azul cielo y parecía un río).
+- **Biomas como datos:** en `data/biomes/*.json` se definen la pradera y la linde del bosque, generadas por `tools/gen_backgrounds.py` (nubes, colinas, árboles, pradera con camino y matas en primer plano). Las matas de primer plano pasan por delante de los Pokémon.
+- **La sombra sigue al marcador de PMD cuadro a cuadro** en las animaciones que se desplazan (Attack, Hurt, Faint...). El importador lo guarda en `meta.json` → `anims.X.shadow[dir][frame]`.
+- **"Sit" de PMD está dibujado de espaldas** (el Pokémon sentado mirando a lo lejos). Se usa para el estado de mascota "contemplar" (mira hacia la pantalla). Para descansar de frente se usan Idle, Laying y Sleep.
+- **El panel de pelea no bloquea el mouse.** Solo son clicables los Pokémon y los botones que contiene.

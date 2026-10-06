@@ -42,6 +42,22 @@ const ALL: Array[Color] = [
 	LILAC, ORCHID, BLUSH, PETAL, TEAL, MINT,
 ]
 
+## Nombres en el mismo orden que ALL (iguales a docs/arte.md y a los JSON de datos).
+const NAMES: PackedStringArray = [
+	"ink", "bark", "wood", "oak", "tan", "sand", "cream", "paper",
+	"pine", "forest", "leaf", "grass", "sprout", "lime",
+	"midnight", "night", "dusk", "sky", "haze", "mist",
+	"plum", "berry", "ember", "flame", "amber", "honey",
+	"lilac", "orchid", "blush", "petal", "teal", "mint",
+]
+
+
+## Color por nombre ("cream", "dusk"...). Falla si no es de la paleta.
+static func by_name(color_name: String) -> Color:
+	var i := NAMES.find(color_name)
+	assert(i >= 0, "color fuera de la paleta: " + color_name)
+	return ALL[maxi(i, 0)]
+
 
 ## Color de la paleta con alfa (la transparencia sí está permitida).
 static func a(c: Color, alpha: float) -> Color:
