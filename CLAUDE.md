@@ -6,6 +6,7 @@ Documentos (mantenerlos al día al terminar cada fase):
 - `docs/diseno.md`: diseño del juego.
 - `docs/arte.md`: dirección de arte y **paleta de 32 colores** (obligatoria).
 - `docs/tecnico.md`: arquitectura, ventana nativa, pipelines.
+- `docs/mascotas.md`: guía del modo mascota (arquitectura, ajustes, recetas, pruebas e ideas pendientes). Leerla antes de tocar `pet/`.
 - `docs/decisiones.md`: registro de decisiones. Cuando haya que decidir algo sin preguntar, anotarlo aquí.
 
 ## Stack
