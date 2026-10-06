@@ -1,8 +1,9 @@
 class_name DesktopWindow
 extends Node
 ## Coloca la ventana principal como una franja justo encima de la barra de tareas,
-## con el ancho de la pantalla y escala entera. También mantiene la ventana fuera de
-## la barra de tareas, siempre al frente, y gestiona los FPS para gastar poco.
+## con el ancho de la pantalla y escala entera. La ventana principal tiene su botón en
+## la barra de tareas (con el ícono del juego) y se comporta como una app normal: si
+## abres otro programa, queda detrás. También gestiona los FPS para gastar poco.
 
 signal geometry_changed(logical_size: Vector2i)
 signal fullscreen_app_changed(active: bool)
@@ -20,7 +21,7 @@ const ACTIVE_HOLD := 1.0
 var scale := 2
 var logical_size := Vector2i(960, LOGICAL_HEIGHT)
 var fullscreen_app := false
-## Otras ventanas del juego que también van sin ícono de barra y siempre al frente.
+## Otras ventanas del juego (propiedad de la principal): sin botón propio en la barra.
 var extra_windows: Array[Window] = []
 
 var _last_geom := Rect2i()
@@ -31,6 +32,7 @@ var _maint_timer := 0.0
 
 func _ready() -> void:
 	var win := get_tree().root
+	win.title = "Taskbar Pokémon"
 	win.transparent_bg = true
 	win.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 	win.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_IGNORE
@@ -72,19 +74,15 @@ func _process(delta: float) -> void:
 		_maintain()
 
 
-## Mantenimiento periódico (barato): geometría, barra de tareas, topmost, pantalla completa.
+## Mantenimiento periódico (barato): geometría, botón de la barra de tareas, pantalla completa.
 func _maintain() -> void:
 	_relayout(false)
 	var native: Object = Game.native
 	if native == null:
 		return
-	var wins: Array[Window] = [get_tree().root]
-	wins.append_array(extra_windows)
-	for w in wins:
+	for w in extra_windows:
 		if is_instance_valid(w) and w.visible:
-			var wid := w.get_window_id()
-			native.hide_from_taskbar(wid)
-			native.reassert_topmost(wid)
+			native.hide_from_taskbar(w.get_window_id())
 	var fs: bool = native.is_fullscreen_app_active()
 	if fs != fullscreen_app:
 		fullscreen_app = fs

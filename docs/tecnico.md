@@ -1,9 +1,9 @@
 # Notas técnicas
 
 ## Ventana
-- La ventana principal es borderless, transparente por píxel, siempre al frente y `no_focus`.
+- La ventana principal es borderless, transparente por píxel y `no_focus`. Ya no es topmost: se comporta como una app normal y queda detrás de otros programas.
   - `DesktopWindow` la coloca encima del área de trabajo (`screen_get_usable_rect`), con el ancho de la pantalla y un alto lógico de 96 px a escala entera.
-  - Cada 2 s comprueba la geometría, vuelve a ocultar el botón de la barra de tareas, reafirma el topmost y detecta apps a pantalla completa.
+  - Cada 2 s comprueba la geometría, mantiene sin botón de barra las ventanas extra (panel de pelea) y detecta apps a pantalla completa. La principal sí tiene botón de barra, con `assets/ui/icon.png` (y `icon.ico` para los accesos directos).
 - Renderizado pixel-perfect con `content_scale_mode=viewport` + `stretch=integer`. El tamaño lógico es `ancho_pantalla/escala × 96`.
 
 ## Clic a través (crítico)

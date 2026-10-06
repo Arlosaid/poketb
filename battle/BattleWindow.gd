@@ -1,7 +1,7 @@
 class_name BattleWindow
 extends Window
-## Ventana propia del panel de pelea: pequeña, transparente, sin bordes, siempre al
-## frente y sin robar el foco. Se arrastra desde el camino a cualquier punto de
+## Ventana propia del panel de pelea: pequeña, transparente, sin bordes, sin botón
+## propio en la barra y sin robar el foco. Se arrastra desde el camino a cualquier punto de
 ## cualquier pantalla (ver BattleStrip). Contiene la escena y el cuadro de diálogo.
 
 ## Tamaño lógico (px antes de escalar).
@@ -19,7 +19,6 @@ func _init(scale_px: int) -> void:
 	transparent_bg = true
 	unresizable = true
 	unfocusable = true
-	always_on_top = true
 	wrap_controls = false
 	content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 	content_scale_aspect = Window.CONTENT_SCALE_ASPECT_IGNORE
@@ -33,6 +32,7 @@ func _init(scale_px: int) -> void:
 
 
 func _ready() -> void:
+	transient = true  # propiedad de la principal: sin botón propio y sube con ella
 	strip.layout(LOGICAL, "pradera", px_scale)
 
 
