@@ -6,7 +6,12 @@ extends RefCounted
 signal time_of_day_changed(phase: StringName)
 
 var paused := false
-var speed := 1.0
+## Multiplicador de depuración. Se aplica con Engine.time_scale, así que el delta
+## que llega a step() ya viene acelerado.
+var speed := 1.0:
+	set(v):
+		speed = v
+		Engine.time_scale = v
 ## Si es >= 0, sustituye a la hora real (0..24). Solo para depuración.
 var forced_hour := -1.0
 ## Segundos de juego acumulados en esta sesión.
@@ -15,9 +20,9 @@ var elapsed := 0.0
 var _phase: StringName = &""
 
 
-## Delta de juego a partir del delta real del frame.
+## Delta de juego a partir del delta del frame.
 func step(real_delta: float) -> float:
-	var d := 0.0 if paused else real_delta * speed
+	var d := 0.0 if paused else real_delta
 	elapsed += d
 	var p := phase()
 	if p != _phase:

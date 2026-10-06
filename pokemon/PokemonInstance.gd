@@ -27,6 +27,8 @@ var pets_this_hour := 0
 var pets_hour_start := 0.0
 var caught_at := 0.0
 var wild := false
+## Combates ganados (cada 5 suman +1 de amistad).
+var wins := 0
 ## PS fraccionarios acumulados al descansar (no se guardan).
 var hp_regen_acc := 0.0
 
@@ -177,7 +179,7 @@ func to_dict() -> Dictionary:
 		"uid": uid, "species": species, "nickname": nickname, "level": level, "xp": xp,
 		"nature": nature, "ivs": ivs, "hp": hp, "moves": moves, "friendship": friendship,
 		"fullness": fullness, "energy": energy, "known_flavors": known_flavors,
-		"pets_this_hour": pets_this_hour, "pets_hour_start": pets_hour_start, "caught_at": caught_at,
+		"pets_this_hour": pets_this_hour, "pets_hour_start": pets_hour_start, "caught_at": caught_at, "wins": wins,
 	}
 
 
@@ -199,4 +201,5 @@ static func from_dict(d: Dictionary) -> PokemonInstance:
 	p.pets_this_hour = int(d.get("pets_this_hour", 0))
 	p.pets_hour_start = float(d.get("pets_hour_start", 0.0))
 	p.caught_at = float(d.get("caught_at", 0.0))
+	p.wins = int(d.get("wins", 0))
 	return p

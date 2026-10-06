@@ -13,6 +13,7 @@ var world: Node2D
 var home: HomeArea
 var hud: Control
 var battle: BattleStrip
+var combat: BattleController
 
 var _battle_rect := Rect2i()
 var _needs_timer := 0.0
@@ -36,6 +37,10 @@ func _ready() -> void:
 	battle = BattleStrip.new()
 	battle.name = "BattleStrip"
 	hud.add_child(battle)
+	combat = BattleController.new()
+	combat.name = "BattleController"
+	add_child(combat)
+	combat.setup(battle, desk, hud)
 	home = HomeArea.new()
 	home.name = "Home"
 	home.setup(desk, hud)
@@ -47,6 +52,8 @@ func _ready() -> void:
 	Game.roster.changed.connect(_sync_home)
 	home.pc_requested.connect(_open_pc)
 	tray.open_pc_requested.connect(_open_pc)
+	tray.debug_action.connect(_on_debug)
+	combat.fighters_changed.connect(_sync_home)
 
 	Game.roster.new_game()
 	_on_geometry(desk.logical_size)
@@ -71,18 +78,13 @@ func _on_geometry(logical: Vector2i) -> void:
 	var w := int(round(logical.x * BATTLE_WIDTH_FRAC))
 	_battle_rect = Rect2i(logical.x - w - 2, logical.y - BATTLE_HEIGHT, w, BATTLE_HEIGHT)
 	battle.layout(_battle_rect, "pradera", desk.scale)
+	combat.relayout()
 	_apply_mode(false)
 
 
-## Pokémon que están peleando ahora (fase 4: los decide BattleController).
+## Pokémon que están peleando ahora (los decide BattleController).
 func fighting_uids() -> Array:
-	if Game.mode != Game.MODE_BATTLE:
-		return []
-	var out := []
-	for p in Game.roster.team_members():
-		if Game.roster.can_fight(p):
-			out.append(p.uid)
-	return out
+	return combat.fighting_uids()
 
 
 func _sync_home() -> void:
@@ -95,7 +97,8 @@ func _sync_home() -> void:
 	# El compañero siempre está visible: si no pelea, pasea por casa.
 	if c != 0 and c not in fighting and c not in uids:
 		uids.append(c)
-	home.sync(uids, c)
+	# Los que vuelven de pelear entran caminando desde el lado del panel.
+	home.sync(uids, c, home.x_max if Game.mode == Game.MODE_BATTLE else -1.0)
 
 
 func _on_mode_changed(_m: StringName) -> void:
@@ -115,6 +118,20 @@ func _apply_mode(animate: bool) -> void:
 	var right := float(desk.logical_size.x - 10) if resting else _battle_rect.position.x - HOME_GAP
 	home.set_bounds(10.0, right, desk.ground_y())
 	_sync_home()
+
+
+func _on_debug(id: int) -> void:
+	match id:
+		Tray.DBG_LEVELS:
+			combat.debug_levels(5)
+		Tray.DBG_EVOLVE:
+			combat.debug_evolve()
+		Tray.DBG_BOSS:
+			combat.debug_force_boss()
+		Tray.DBG_SHOT:
+			Game.shot("debug_%d" % Time.get_unix_time_from_system())
+		Tray.DBG_NIGHT:
+			battle.backdrop.refresh()
 
 
 func _open_pc() -> void:

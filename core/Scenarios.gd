@@ -17,6 +17,8 @@ func run(m: Node, scenario_name: String) -> void:
 			await _gallery()
 		"pet":
 			await _pet()
+		"battle":
+			await _battle()
 		_:
 			push_error("Escenario desconocido: " + scenario_name)
 	Game.quit()
@@ -216,3 +218,43 @@ func _pet_with_preferences() -> Dictionary:
 		if n["likes_flavor"] != null and by_flavor.has(n["likes_flavor"]) and by_flavor.has(n["hates_flavor"]):
 			return {"mon": mon, "like": by_flavor[n["likes_flavor"]], "hate": by_flavor[n["hates_flavor"]]}
 	return {}
+
+
+## Pelea acelerada: encuentros, golpes, captura, subida de nivel, evolución y jefe.
+## Toma una captura la primera vez que ocurre cada momento clave.
+func _battle() -> void:
+	var r := Game.roster
+	var ch: PokemonInstance = r.get_member(r.companion)
+	# Charmander a un paso del Nv. 16 para ver la evolución.
+	ch.gain_exp(SpeciesDB.exp_for_level(ch.data()["growth_rate"], 15) - ch.xp)
+	ch.xp = SpeciesDB.exp_for_level(ch.data()["growth_rate"], 16) - 3
+	ch.hp = ch.max_hp()
+	ch.friendship = 210  # para ver los efectos de afecto
+	var pg := PokemonInstance.create("pidgey", 4)
+	r.add(pg)
+	r.set_team([pg.uid, ch.uid])  # Pidgey lidera: peleas más largas → captura
+	var bc: BattleController = main.combat
+	bc.route["capture"]["chance_per_turn"] = 1.0
+	bc.route["walk_seconds"] = [1.5, 2.0]
+	var seen := {}
+	bc.event.connect(func(kind: String) -> void:
+		if seen.has(kind):
+			return
+		seen[kind] = true
+		var delay: float = {"hit": 0.12, "shake": 0.05, "evolving": 0.1, "levelup": 0.15, "encounter": 0.1, "boss": 0.3, "caught": 0.3, "victory": 0.1}.get(kind, 0.2)
+		await get_tree().create_timer(delay).timeout
+		await Game.shot("p4_" + kind))
+	Game.set_mode(Game.MODE_BATTLE)
+	Game.clock.speed = 2.0
+	await _wait(3.0)
+	await Game.shot("p4_walk")
+	var t := 0.0
+	while t < 160.0 and not (seen.has("cleared") and seen.has("caught") and seen.has("evolved")):
+		await _wait(1.0)
+		t += 1.0 * Game.clock.speed
+		if bc.progress >= 3 and not seen.has("boss") and seen.has("evolved") and seen.has("caught"):
+			bc.debug_force_boss()
+	Game.clock.speed = 1.0
+	print("[battle] eventos vistos: ", seen.keys(), " progreso ", bc.progress, " equipo ", r.team_members().map(func(p): return "%s Nv%d PS%d/%d" % [p.species, p.level, p.hp, p.max_hp()]))
+	await _wait(1.0)
+	await Game.shot("p4_end")

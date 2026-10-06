@@ -76,3 +76,25 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **Inactividad:** tras 5 minutos sin teclado ni mouse, los de casa se duermen. Al volver, despiertan escalonados (0.5–3 s).
 - **El compañero gana +1 de amistad cada 10 minutos** de paseo, como en HGSS.
 - **El movimiento de las mascotas usa tiempo real**, así que siguen animadas en pausa. Las necesidades usan el tiempo de juego, que respeta la pausa y la velocidad x10.
+
+## 2026-10-06 — Fase 4 (pelea)
+
+- **Puesta en escena:**
+  - El líder se queda en x=96 del panel y los demás lo siguen en fila (hasta 4 visibles).
+  - El salvaje entra caminando desde la derecha mientras el fondo sigue avanzando, y se detiene a 50 px del líder. Así los golpes de PMD (embestida de ~18 px) "conectan" sin teletransportes.
+- **Turnos:** el orden lo da la Velocidad (en empate, al azar). Se elige el movimiento ponderando potencia × efectividad × STAB × precisión, con algo de azar. Los movimientos especiales usan la animación Shoot si la especie la tiene.
+- **Golpe:** el daño se aplica en el HitFrame de AnimData. El defensor hace Hurt, con un destello PAPER de 0.08 s, una sacudida de ±2 px, el escenario se mueve 1 px y aparece el número flotante (HONEY si es crítico).
+- **Afecto (amistad ≥200):**
+  - críticos con probabilidad 1/8 y, a veces, el mensaje "¡X dio un golpe crítico para no decepcionarte!";
+  - 10% de aguantar con 1 PS ("¡X aguantó para no decepcionarte!").
+- **EXP:** fórmula Gen 7 para todos los que pelean (Repartir EXP); el jefe da x1.5. El "+EXP" flotante se muestra solo sobre el líder para no amontonar texto. Cada 5 victorias suman +1 de amistad.
+- **Captura:** cuando el salvaje tiene <50% de PS, un 25% de probabilidad en el turno del líder. Se usan las 4 comprobaciones de Gen 5+ y la Poké Ball sacude min(n, 3) veces. Capturar también da EXP (Gen 6+). Lo capturado va al equipo si hay lugar; si no, a la PC.
+- **Evolución:** el Pokémon se vuelve silueta PAPER (shader `pokemon/flash.gdshader`) y alterna 7 veces entre las dos especies, cada vez más rápido. Luego destellos y la nueva forma con Joy.
+- **Debilitado:** baja 1 de amistad, sale caminando del panel por la izquierda y entra a casa por el borde. Si cae todo el equipo, el salvaje se va y el panel queda en "Descansando…" hasta que alguien tenga ≥60 de energía y ≥50% de PS.
+- **Jefe:** aparece tras 20 encuentros. Su nombre va en HONEY. La primera vez que se le vence aparece "¡Ruta despejada! Próximamente: Bosque Verde…"; luego la ruta se repite para seguir entrenando.
+- **Bioma:** la ruta pasa a "bosque" al 70% del progreso, con un velo crema de 0.7 s.
+- **Mensajes** en una cajita de diálogo encima del panel. Si hay cola, cada uno se muestra al menos 0.55 s, para no atrasarse.
+- **Texto sobre el cielo:** PAPER con sombra INK de 1 px. El contorno de Godot en la fuente pixel se veía sucio.
+- **La barra de avance de la ruta** es una pestaña de madera sobre el borde del marco, para no tapar el sol.
+- **La velocidad x10 de depuración** usa `Engine.time_scale`, así que acelera también los tweens y las animaciones.
+- **En pausa** no se inician encuentros nuevos ni se avanza; la pelea en curso termina su turno.

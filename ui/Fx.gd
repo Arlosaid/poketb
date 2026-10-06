@@ -90,8 +90,10 @@ static func float_text(parent: Node, pos: Vector2, text: String, color: Color, o
 	l.add_theme_font_override("font", UiTheme.font())
 	l.add_theme_font_size_override("font_size", UiTheme.FONT_SIZE)
 	l.add_theme_color_override("font_color", color)
-	l.add_theme_color_override("font_outline_color", outline)
-	l.add_theme_constant_override("outline_size", 2)
+	# sombra dura de 1 px (un contorno en fuente pixel se ve sucio)
+	l.add_theme_color_override("font_shadow_color", outline)
+	l.add_theme_constant_override("shadow_offset_x", 1)
+	l.add_theme_constant_override("shadow_offset_y", 1)
 	l.z_index = 20
 	parent.add_child(l)
 	l.reset_size()

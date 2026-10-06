@@ -60,3 +60,9 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 - `pet/HomeArea.gd` sincroniza quién está en casa. `pet/PetBrain.gd` es la máquina de estados de cada mascota.
 - `ui/Bubble.gd` (retrato con alternativas de emoción), `ui/BerryMenu.gd` y `ui/Fx.gd` (corazones, zzz, polvo, destellos, texto flotante).
 - Para probar: `Passthrough.fake_mouse` y `Game.forced_idle` simulan el cursor y la inactividad en los escenarios.
+
+## Pelea
+- `battle/BattleMath.gd` reúne las fórmulas puras: daño Gen 5+, elección de movimiento, EXP Gen 7, captura Gen 5+ y tablas ponderadas.
+- `battle/BattleController.gd` es la máquina de estados (IDLE, WALK, BATTLE, RESTING). Las secuencias son corrutinas que `_epoch` cancela al cambiar de modo. La señal `event(kind)` marca los momentos clave.
+- HUD: `InfoChip` (nombre, PS y EXP), `RouteProgress` (pestaña sobre el marco), `BattleLog` (diálogo encima del panel) y `ui/HpBar.gd`.
+- Las rutas se definen en `data/routes/*.json`: tablas de día y de noche, rango de niveles, secciones de bioma, jefe, captura y botín de bayas.
