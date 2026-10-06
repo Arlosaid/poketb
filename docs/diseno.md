@@ -81,7 +81,7 @@ Ventana nativa pequeña, con un marco estilo PC de Pokémon y tres pestañas:
 
 Además muestra los créditos y las opciones.
 
-La PC ahora tiene seis pestañas: **Pokémon** (equipo y cajas), **Entrenar**, **Mochila**, **Árbol**, **Bayas** y **Créditos**, con las monedas siempre visibles arriba.
+Se abre con la **Poké Ball** que está en la casa (a la izquierda) o en el panel de pelea (abajo a la derecha), además de la burbuja de la mascota y la bandeja. La PC ahora tiene seis pestañas: **Pokémon** (equipo y cajas), **Entrenar**, **Mochila**, **Árbol**, **Bayas** y **Créditos**, con las monedas siempre visibles arriba.
 
 ## Bandeja
 Menú: Abrir PC / Equipo · Modo pelea / Modo descanso · Pausar · Créditos · Salir. Con `--debug` aparece también un submenú Debug.

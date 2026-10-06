@@ -12,7 +12,7 @@ Documentos (mantenerlos al día al terminar cada fase):
 - Godot **4.7.2-stable**, con GDScript y el renderer `gl_compatibility`.
   - Editor: `C:\Users\Alonso\Desktop\Godot_v4.7.2-stable_win64.exe`.
   - Consola para logs: `..._console.exe`.
-- GDExtension propia en `native/` (C++, godot-cpp 4.5 como submódulo y SCons). Expone el singleton `DesktopNative` para clic a través real, ocultar el ícono de la barra de tareas, la inactividad del sistema, info de la barra y detección de pantalla completa. La DLL compilada queda en `addons/desktop_native/bin/`.
+- GDExtension propia en `native/` (C++, godot-cpp 4.5 como submódulo y SCons). Expone el singleton `DesktopNative` para clic a través real, clic sin activar, ocultar el ícono de la barra de tareas, la inactividad del sistema, info de la barra y detección de pantalla completa. La DLL compilada queda en `addons/desktop_native/bin/`.
 - Python 3.12 para las herramientas de desarrollo en `tools/`. Correr siempre con `python -I`.
 
 ## Comandos
@@ -33,7 +33,7 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 ```
 
 ## Reglas no negociables
-1. **No estorbar el trabajo.** Las zonas vacías siempre dejan pasar el mouse: solo los sprites y la UI registrados en `Passthrough` son clicables. La ventana usa `no_focus`, así que nunca roba el foco.
+1. **No estorbar el trabajo.** Las zonas vacías siempre dejan pasar el mouse: solo los sprites y la UI registrados en `Passthrough` son clicables. Hacer clic en el juego nunca roba el foco (`DesktopNative.no_activate_on_click`: `WM_MOUSEACTIVATE` → `MA_NOACTIVATE`), pero el botón de la barra de tareas sí lo trae al frente.
 2. **Consumo bajo.** 30 FPS en combate o interacción (`keep_awake`), 20 en paseos (`keep_ambient`), 10 en reposo y 5 con una app a pantalla completa. No hacer trabajo por frame que pueda ir en un timer.
 3. **Pixel-perfect.** Escala entera, filtro Nearest, sin escalas ni rotaciones fraccionarias del pixel art.
 4. **Paleta cerrada.** Usar los colores de `core/Palette.gd`. Nunca hex sueltos en el código ni en las escenas.

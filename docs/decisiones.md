@@ -134,3 +134,9 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **Sin monedas de pago real ni castigos:** comprar nunca se puede perder ni se descuenta nada por perder combates.
 - **PC más grande:** 504x262 lógicos (antes 448x214) para caber las seis pestañas.
 - **Offline:** también da monedas y objetos (con la misma eficiencia del 35%). Con 3 h salieron ~545 monedas con el equipo inicial.
+
+## 2026-10-06 — Botón de la PC y la barra de tareas
+
+- **Botón visible para la PC:** antes solo se abría desde la burbuja de la mascota o el menú de la bandeja, y no se encontraba. Ahora hay una Poké Ball en la casa y otra en el panel de pelea.
+- **Sin `no_focus`:** Godot lo implementa con `WS_EX_NOACTIVATE`, y Windows nunca activa desde la barra de tareas una ventana con ese estilo: al hacer clic en su botón, el juego no venía al frente. Ahora `no_focus=false` y la extensión intercepta `WM_MOUSEACTIVATE` → `MA_NOACTIVATE`. Así, hacer clic en las mascotas sigue sin robar el foco (comprobado con un clic real), pero el botón de la barra y Alt-Tab sí activan el juego.
+- **Las pruebas de clic sintético en la barra de Windows 11 no son fiables entre procesos:** el clic inyectado se atribuye a PowerShell y Explorer no puede traer otra app al frente (ni siquiera un proyecto vacío de Godot). El clic en la barra se valida a mano.

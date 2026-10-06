@@ -9,6 +9,7 @@
 #include <windows.h>
 #include <shellapi.h>
 #include <shobjidl.h>
+#include <commctrl.h>
 #endif
 
 using namespace godot;
@@ -34,6 +35,7 @@ void DesktopNative::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("is_click_through", "window_id"), &DesktopNative::is_click_through);
 	ClassDB::bind_method(D_METHOD("hide_from_taskbar", "window_id"), &DesktopNative::hide_from_taskbar);
 	ClassDB::bind_method(D_METHOD("reassert_topmost", "window_id"), &DesktopNative::reassert_topmost);
+	ClassDB::bind_method(D_METHOD("no_activate_on_click", "window_id"), &DesktopNative::no_activate_on_click);
 	ClassDB::bind_method(D_METHOD("get_idle_seconds"), &DesktopNative::get_idle_seconds);
 	ClassDB::bind_method(D_METHOD("get_taskbar_info"), &DesktopNative::get_taskbar_info);
 	ClassDB::bind_method(D_METHOD("is_fullscreen_app_active"), &DesktopNative::is_fullscreen_app_active);
@@ -115,6 +117,35 @@ void DesktopNative::reassert_topmost(int64_t p_window_id) {
 		return;
 	}
 	SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
+#endif
+}
+
+#ifdef _WIN32
+// Hacer clic en la ventana no la activa (no roba el foco ni la sube), pero el botón de la
+// barra de tareas o Alt-Tab sí pueden traerla al frente (a diferencia de WS_EX_NOACTIVATE).
+static LRESULT CALLBACK _no_activate_proc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp, UINT_PTR id, DWORD_PTR data) {
+	if (msg == WM_MOUSEACTIVATE) {
+		return MA_NOACTIVATE;
+	}
+	if (msg == WM_NCDESTROY) {
+		RemoveWindowSubclass(hwnd, _no_activate_proc, id);
+	}
+	return DefSubclassProc(hwnd, msg, wp, lp);
+}
+#endif
+
+void DesktopNative::no_activate_on_click(int64_t p_window_id) {
+#ifdef _WIN32
+	HWND hwnd = _hwnd(p_window_id);
+	if (!hwnd) {
+		return;
+	}
+	// Idempotente: con el mismo id, SetWindowSubclass solo actualiza los datos.
+	SetWindowSubclass(hwnd, _no_activate_proc, 1, 0);
+	LONG_PTR ex = GetWindowLongPtrW(hwnd, GWL_EXSTYLE);
+	if (ex & WS_EX_NOACTIVATE) {
+		SetWindowLongPtrW(hwnd, GWL_EXSTYLE, ex & ~WS_EX_NOACTIVATE);
+	}
 #endif
 }
 

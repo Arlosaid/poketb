@@ -17,6 +17,7 @@
 | `set_click_through(wid, on)` | `WS_EX_LAYERED` + `WS_EX_TRANSPARENT` (más `SetLayeredWindowAttributes(255)` la primera vez) |
 | `hide_from_taskbar(wid)` | `WS_EX_TOOLWINDOW`, sin `WS_EX_APPWINDOW`, más `ITaskbarList::DeleteTab` |
 | `reassert_topmost(wid)` | `SetWindowPos(HWND_TOPMOST, SWP_NOACTIVATE)` |
+| `no_activate_on_click(wid)` | Subclase (`SetWindowSubclass`): `WM_MOUSEACTIVATE` → `MA_NOACTIVATE`; quita `WS_EX_NOACTIVATE`. Se llama cada 2 s desde `DesktopWindow._maintain` (idempotente). |
 | `get_idle_seconds()` | `GetLastInputInfo` |
 | `get_taskbar_info()` | `SHAppBarMessage(ABM_GETTASKBARPOS/ABM_GETSTATE)` |
 | `is_fullscreen_app_active()` | `SHQueryUserNotificationState` |
@@ -82,3 +83,7 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 - Íconos de objetos, vitaminas y moneda: `tools/gen_ui.py` → `assets/ui/items.png`, `vitamins.png`, `coin.png`.
 - Tras agregar `class_name` nuevos hay que correr `godot --headless --path . --import` una vez para actualizar el caché de clases.
 - `--scenario=growth` compra mejoras, comprueba el daño con y sin bonos y el guardado ida y vuelta, y saca las capturas `p7_pc_*`.
+
+## Botón de la PC
+- `ui/PCButton.gd`: Poké Ball clicable (registrada en `Passthrough`) que abre la PC. Hay una en la casa (`Main.pc_button`, a la izquierda sobre la barra) y otra en el panel de pelea (`BattleController.pc_button`, abajo a la derecha). Al pasar el cursor da un saltito y muestra "PC".
+- `--scenario=hold` no hace nada hasta `--autoquit`: sirve para pruebas externas (estilos de ventana, barra de tareas).

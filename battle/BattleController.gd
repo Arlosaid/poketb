@@ -42,6 +42,8 @@ var is_boss := false
 var our_chip: InfoChip
 var foe_chip: InfoChip
 var progress_bar: RouteProgress
+## Poké Ball sobre el camino que abre la PC.
+var pc_button: PCButton
 var _wipe_rect: ColorRect
 
 var _walk_timer := 0.0
@@ -67,6 +69,8 @@ func setup(s: BattleStrip, d: DesktopWindow, route_id := "ruta_1") -> void:
 	for c in [our_chip, foe_chip, _wipe_rect]:
 		strip.inner.add_child(c)
 	strip.add_child(progress_bar)
+	pc_button = PCButton.new()
+	strip.add_child(pc_button)
 	relayout()
 
 
@@ -80,6 +84,7 @@ func relayout() -> void:
 	foe_chip.position = Vector2(w - 4 - foe_chip.size.x, CHIP_Y)
 	progress_bar.position = Vector2(round((strip.size.x - progress_bar.size.x) / 2.0), CHIP_Y + 17.0)
 	_wipe_rect.size = strip.inner.size
+	pc_button.position = Vector2(w - PCButton.SIZE.x - 3, strip.ground_y() - PCButton.SIZE.y + 1).round()
 	log_box.area_width = strip.size.x
 	var b := _section_biome()
 	if b != biome or strip.backdrop.biome.get("id", "") != b:

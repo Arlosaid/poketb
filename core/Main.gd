@@ -11,6 +11,8 @@ var battle: BattleStrip
 var combat: BattleController
 var saver: SaveManager
 var pc: PCWindow
+## Poké Ball en la casa que abre la PC (también hay una en el panel de pelea).
+var pc_button: PCButton
 
 var _battle_placed := false
 var _needs_timer := 0.0
@@ -31,6 +33,10 @@ func _ready() -> void:
 	hud.theme = UiTheme.theme()
 	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(hud)
+	pc_button = PCButton.new()
+	pc_button.name = "PCButton"
+	hud.add_child(pc_button)
+	pc_button.pressed.connect(_open_pc)
 	# La pelea vive en su propia ventana, que se arrastra a cualquier parte.
 	battle_win = BattleWindow.new(desk.scale)
 	battle_win.name = "BattleWindow"
@@ -59,6 +65,7 @@ func _ready() -> void:
 	Game.mode_changed.connect(_on_mode_changed)
 	Game.roster.changed.connect(_sync_home)
 	home.pc_requested.connect(_open_pc)
+	combat.pc_button.pressed.connect(_open_pc)
 	tray.open_pc_requested.connect(_open_pc)
 	tray.debug_action.connect(_on_debug)
 	tray.credits_requested.connect(func() -> void: _open_pc("creditos"))
@@ -90,6 +97,7 @@ func _process(_delta: float) -> void:
 
 func _on_geometry(logical: Vector2i) -> void:
 	hud.size = logical
+	pc_button.position = Vector2(4, desk.ground_y() - PCButton.SIZE.y + 1).round()
 	battle_win.rescale(desk.scale)
 	if _battle_placed:
 		battle_win.place(battle_win.position)
@@ -124,7 +132,7 @@ func _on_mode_changed(_m: StringName) -> void:
 ## ocupan todo el ancho de la barra. La casa siempre usa todo el ancho.
 func _apply_mode(_animate: bool) -> void:
 	_update_battle_visibility()
-	home.set_bounds(10.0, float(desk.logical_size.x - 10), desk.ground_y())
+	home.set_bounds(26.0, float(desk.logical_size.x - 10), desk.ground_y())
 	_sync_home()
 
 

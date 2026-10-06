@@ -7,7 +7,7 @@ import os
 env = SConscript("godot-cpp/SConstruct")
 env.Append(CPPPATH=["src/"])
 if env["platform"] == "windows":
-    env.Append(LIBS=["user32", "shell32", "ole32"])
+    env.Append(LIBS=["user32", "shell32", "ole32", "comctl32"])
 
 sources = Glob("src/*.cpp")
 out_dir = "../addons/desktop_native/bin/"

@@ -28,6 +28,9 @@ func run(m: Node, scenario_name: String) -> void:
 			await _save_load()
 		"growth":
 			await _growth()
+		"hold":
+			# no hace nada: para pruebas externas (probe.ps1, barra de tareas) hasta --autoquit
+			await _wait(3600.0)
 		_:
 			push_error("Escenario desconocido: " + scenario_name)
 	Game.quit()

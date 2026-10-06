@@ -34,6 +34,10 @@ public:
 	// Vuelve a poner la ventana encima de todo sin robar el foco.
 	void reassert_topmost(int64_t p_window_id);
 
+	// Los clics del mouse no activan la ventana (no roban el foco), pero el botón de la
+	// barra de tareas sí la trae al frente. Quita WS_EX_NOACTIVATE si lo tenía.
+	void no_activate_on_click(int64_t p_window_id);
+
 	// Segundos desde la última entrada de teclado/mouse en el sistema.
 	double get_idle_seconds() const;
 

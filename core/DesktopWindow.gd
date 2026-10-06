@@ -80,6 +80,9 @@ func _maintain() -> void:
 	var native: Object = Game.native
 	if native == null:
 		return
+	# Clic sin activar (no roba el foco), pero el botón de la barra la trae al frente.
+	if native.has_method("no_activate_on_click"):
+		native.no_activate_on_click(get_tree().root.get_window_id())
 	for w in extra_windows:
 		if is_instance_valid(w) and w.visible:
 			native.hide_from_taskbar(w.get_window_id())
