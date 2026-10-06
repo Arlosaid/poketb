@@ -1,0 +1,16 @@
+{
+ "size": 7,
+ "index": {
+  "heart": 0,
+  "note": 1,
+  "exclaim": 2,
+  "question": 3,
+  "dots": 4,
+  "anger": 5,
+  "sweat": 6,
+  "zzz": 7,
+  "star": 8,
+  "berry": 9,
+  "ball": 10
+ }
+}

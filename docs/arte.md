@@ -69,3 +69,10 @@ Una sola fuente pixel (ver `docs/decisiones.md` → Fuente) en su tamaño nativo
 ## Juice (sutil)
 - Números de daño que suben 6 px con easing y se desvanecen. Golpe: *shake* de 1–2 px durante 0.15 s. Corazones `blush`/`petal` al acariciar. "Zzz" en `paper` al dormir.
 - Transiciones de paneles: aparecen desde 4 px abajo con alfa 0→1 en 0.2 s.
+
+## Modo mascota (Fase 8)
+- **Globito de emoción** (`emote_bubble.png`, 11x13 + sombra) con íconos de 7x7 (`emotes.png`): corazón, nota, exclamación, pregunta, puntos, enojo, sudor, Zzz, estrella, baya y pelota. Es la forma por defecto de reaccionar: chica y sin texto.
+- **Globo de texto delgado** (`text_bubble.png`, 9-patch con margen 2, y `text_tail.png`): una sola línea, sin retrato.
+- **Botón compacto "Chip"** (`chip*.png`, 9-patch con margen 2) con íconos de acción de 9x9 (`actions.png`): baya, pelota, luna, sol y ficha.
+- **Pelota de juguete** (`toy_ball.png`, 8x8): flama con lunares, contorno tinta. No rota: al rodar se espeja horizontalmente.
+- Todo lo genera `tools/gen_ui.py` con la paleta y pasa su chequeo.

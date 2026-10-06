@@ -129,6 +129,17 @@ func face_towards(x: float) -> void:
 		play_anim(anim, nd)
 
 
+## Globo, emoción o ficha que cuelga de este actor (uno de cada tipo), o null.
+func attached(key: StringName) -> Node:
+	if not has_meta(key):
+		return null
+	var n: Variant = get_meta(key)
+	if is_instance_valid(n):
+		return n
+	remove_meta(key)
+	return null
+
+
 ## Rect clicable en coordenadas del viewport (usa el bbox de Idle, estable entre cuadros).
 func get_click_rect() -> Rect2:
 	var bb: Array = meta["anims"][resolve("Idle")]["bbox"]

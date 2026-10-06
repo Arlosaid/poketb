@@ -8,6 +8,7 @@ Genera:
   data/natures.json   naturalezas: stat +/- y sabor favorito/odiado
   data/berries.json   bayas del MVP con sabores y potencia
   data/growth.json    EXP total por nivel para cada curva de crecimiento
+  data/characteristics.json  características (IV más alto, Gen 4+): texto en español
 
 Uso:  python -I tools/fetch_pokeapi.py
 Las respuestas se cachean en tools/.cache/pokeapi/ para no repetir peticiones.
@@ -194,6 +195,17 @@ def main():
         for lv in g["levels"]:
             growth_out[gn][lv["level"]] = lv["experience"]
 
+    # Característica canon: stat con el IV más alto (empates por orden PS, Ata, Def, Vel,
+    # AtEsp, DefEsp) y ese IV módulo 5. Ver PokemonInstance.characteristic().
+    chars_out = {}
+    for i in range(1, 31):
+        c = get("characteristic/%d" % i)
+        desc = c["descriptions"]
+        es = next((d["description"] for d in desc if d["language"]["name"] == "es"), None)
+        en = next((d["description"] for d in desc if d["language"]["name"] == "en"), "")
+        key = "%s_%d" % (STAT_KEYS[c["highest_stat"]["name"]], c["gene_modulo"])
+        chars_out[key] = {"es": es or en, "en": en}
+
     def dump(name, obj):
         with open(os.path.join(ROOT, "data", name), "w", encoding="utf-8") as f:
             json.dump(obj, f, ensure_ascii=False, indent=1, sort_keys=True)
@@ -205,6 +217,7 @@ def main():
     dump("natures.json", natures_out)
     dump("berries.json", berries_out)
     dump("growth.json", growth_out)
+    dump("characteristics.json", chars_out)
 
 
 if __name__ == "__main__":

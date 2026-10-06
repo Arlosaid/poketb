@@ -1,0 +1,37 @@
+{
+ "_doc": "Categorías de apps para que las mascotas reaccionen a lo que haces. Solo se compara el nombre del ejecutable de la ventana activa (nunca títulos ni contenido) y nada de esto se guarda. Se apaga desde la bandeja: 'Reaccionar a mis apps'.",
+ "categories": {
+  "code": ["code.exe", "cursor.exe", "devenv.exe", "idea64.exe", "pycharm64.exe", "rider64.exe", "webstorm64.exe", "clion64.exe", "sublime_text.exe", "notepad++.exe", "zed.exe", "godot.exe", "godot_v4.7.2-stable_win64.exe", "unity.exe"],
+  "terminal": ["windowsterminal.exe", "wt.exe", "powershell.exe", "pwsh.exe", "cmd.exe", "conhost.exe", "mintty.exe", "wezterm-gui.exe", "alacritty.exe"],
+  "office": ["winword.exe", "excel.exe", "powerpnt.exe", "onenote.exe", "outlook.exe", "notion.exe", "obsidian.exe", "acrord32.exe", "acrobat.exe", "sumatrapdf.exe", "notepad.exe"],
+  "browser": ["chrome.exe", "msedge.exe", "firefox.exe", "brave.exe", "opera.exe", "vivaldi.exe", "arc.exe"],
+  "video": ["vlc.exe", "mpc-hc64.exe", "mpc-be64.exe", "mpv.exe", "potplayermini64.exe", "wmplayer.exe", "video.ui.exe", "microsoft.media.player.exe"],
+  "music": ["spotify.exe", "itunes.exe", "foobar2000.exe", "musicbee.exe", "aimp.exe"],
+  "chat": ["discord.exe", "whatsapp.exe", "telegram.exe", "slack.exe", "teams.exe", "ms-teams.exe", "signal.exe", "zoom.exe"],
+  "game": ["steam.exe", "steamwebhelper.exe", "epicgameslauncher.exe", "battle.net.exe", "riotclientservices.exe", "minecraft.exe", "javaw.exe"],
+  "art": ["aseprite.exe", "photoshop.exe", "krita.exe", "clipstudiopaint.exe", "blender.exe", "gimp-2.10.exe", "figma.exe", "mspaint.exe", "paint.net.exe"]
+ },
+ "_doc_reactions": "Cómo reacciona la casa al cambiar a cada categoría. emote: globito; anim: animación lógica; calm: multiplicador de ganas de pasear mientras sigas en esa app; watch: se sientan de espaldas a 'mirar' la pantalla contigo.",
+ "reactions": {
+  "code":     {"emote": "note",     "calm": 0.6},
+  "terminal": {"emote": "question", "calm": 0.6},
+  "office":   {"emote": "dots",     "calm": 0.6},
+  "browser":  {"emote": "",         "calm": 1.0},
+  "video":    {"emote": "star",     "calm": 0.4, "watch": true},
+  "music":    {"emote": "note",     "anim": "Dance", "calm": 1.0},
+  "chat":     {"emote": "exclaim",  "calm": 1.0},
+  "game":     {"emote": "exclaim",  "anim": "Joy", "calm": 1.0},
+  "art":      {"emote": "star",     "anim": "LookUp", "calm": 0.8}
+ },
+ "wellbeing": {
+  "_doc": "Recordatorio de pausa: tras work_minutes de uso continuo (sin pausas de break_minutes), el compañero te propone descansar. Si descansas, el equipo recibe 'ánimo' (cheer_exp_pct de EXP extra durante cheer_minutes).",
+  "work_minutes": 50,
+  "break_minutes": 3,
+  "remind_again_minutes": 20,
+  "cheer_exp_pct": 10,
+  "cheer_minutes": 30,
+  "late_night_from": 0,
+  "late_night_to": 5,
+  "battery_low": 15
+ }
+}

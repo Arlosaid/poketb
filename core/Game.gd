@@ -4,6 +4,9 @@ extends Node
 
 signal mode_changed(mode: StringName)
 signal pause_changed(paused: bool)
+signal settings_changed
+## Las mascotas se escondieron un rato (o volvieron).
+signal pets_hidden_changed(hidden: bool)
 
 const MODE_BATTLE := &"battle"
 const MODE_REST := &"rest"
@@ -24,6 +27,15 @@ var autoquit := 0.0
 var forced_idle := -1.0
 ## Ventana del panel de pelea (para incluirla en las capturas de revisión).
 var battle_window: Window = null
+## Opciones del jugador (bandeja). Se guardan en save.json.
+##   topmost: las mascotas quedan por delante de las demás ventanas.
+##   flights: los voladores pasean a veces por la pantalla.
+##   app_react: reaccionan a la app activa (solo el nombre del ejecutable, nunca títulos).
+##   wellbeing: recordatorio de pausa y de dormir.
+var settings := {"topmost": true, "flights": true, "app_react": true, "wellbeing": true}
+## Hasta cuándo (segundos de Time.get_ticks_msec) las mascotas están escondidas.
+var _hide_until := 0.0
+var _hidden := false
 
 
 func _enter_tree() -> void:
@@ -44,6 +56,8 @@ func _enter_tree() -> void:
 
 func _process(delta: float) -> void:
 	dt = clock.step(delta)
+	if _hidden:
+		_update_hidden()
 	if autoquit > 0.0:
 		autoquit -= delta
 		if autoquit <= 0.0:
@@ -55,6 +69,35 @@ func user_idle_seconds() -> float:
 	if forced_idle >= 0.0:
 		return forced_idle
 	return native.get_idle_seconds() if native else 0.0
+
+
+func set_setting(key: String, value: Variant) -> void:
+	settings[key] = value
+	settings_changed.emit()
+
+
+func load_settings(d: Dictionary) -> void:
+	for k in settings:
+		if d.has(k):
+			settings[k] = d[k]
+	settings_changed.emit()
+
+
+## Esconde las mascotas `minutes` minutos (0 = mostrarlas ya).
+func hide_pets(minutes: float) -> void:
+	_hide_until = Time.get_ticks_msec() / 1000.0 + minutes * 60.0
+	_update_hidden()
+
+
+func pets_hidden() -> bool:
+	return _hidden
+
+
+func _update_hidden() -> void:
+	var h := Time.get_ticks_msec() / 1000.0 < _hide_until
+	if h != _hidden:
+		_hidden = h
+		pets_hidden_changed.emit(h)
 
 
 func set_mode(m: StringName) -> void:

@@ -1,9 +1,10 @@
 class_name DesktopWindow
 extends Node
 ## Coloca la ventana principal como una franja justo encima de la barra de tareas,
-## con el ancho de la pantalla y escala entera. La ventana principal tiene su botón en
-## la barra de tareas (con el ícono del juego) y se comporta como una app normal: si
-## abres otro programa, queda detrás. También gestiona los FPS para gastar poco.
+## con el ancho de la pantalla y escala entera. Por defecto queda por delante de las
+## demás ventanas (opción "Siempre al frente" de la bandeja); como las zonas vacías
+## dejan pasar el mouse y se esconde con apps a pantalla completa, no estorba.
+## También gestiona los FPS para gastar poco.
 
 signal geometry_changed(logical_size: Vector2i)
 signal fullscreen_app_changed(active: bool)
@@ -38,7 +39,18 @@ func _ready() -> void:
 	win.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_IGNORE
 	win.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
 	_relayout(true)
+	Game.settings_changed.connect(_apply_topmost)
+	_apply_topmost()
 	_maintain()
+
+
+## Mascotas siempre al frente (opción). Las ventanas propiedad de la principal
+## (PC, pelea, vuelo) quedan encima de ella igual.
+func _apply_topmost() -> void:
+	var on: bool = Game.settings.get("topmost", true)
+	var win := get_tree().root
+	if win.always_on_top != on:
+		win.always_on_top = on
 
 
 ## Pide FPS altos durante un momento (combates, interacción, arrastrar).
@@ -60,7 +72,9 @@ func ground_y() -> float:
 func _process(delta: float) -> void:
 	var now := Time.get_ticks_msec() / 1000.0
 	var target := FPS_IDLE
-	if fullscreen_app:
+	# Nadie mirando (pantalla completa, mascotas escondidas o 5 min sin tocar la PC):
+	# lo mínimo, aunque haya un combate (como ya pasaba con pantalla completa).
+	if fullscreen_app or Game.pets_hidden() or Game.user_idle_seconds() >= PetBrain.USER_IDLE_SLEEP:
 		target = FPS_HIDDEN
 	elif now < _active_until:
 		target = FPS_ACTIVE
@@ -83,6 +97,9 @@ func _maintain() -> void:
 	# Clic sin activar (no roba el foco), pero el botón de la barra la trae al frente.
 	if native.has_method("no_activate_on_click"):
 		native.no_activate_on_click(get_tree().root.get_window_id())
+	# Otra app "siempre al frente" puede taparnos: lo reafirmamos sin robar el foco.
+	if Game.settings.get("topmost", true) and not fullscreen_app:
+		native.reassert_topmost(get_tree().root.get_window_id())
 	for w in extra_windows:
 		if is_instance_valid(w) and w.visible:
 			native.hide_from_taskbar(w.get_window_id())

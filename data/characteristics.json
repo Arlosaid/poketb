@@ -1,0 +1,122 @@
+{
+ "atk_0": {
+  "en": "Proud of its power",
+  "es": "Se enorgullece de su fuerza"
+ },
+ "atk_1": {
+  "en": "Likes to thrash about",
+  "es": "Le gusta revolverse"
+ },
+ "atk_2": {
+  "en": "A little quick tempered",
+  "es": "A veces se enfada"
+ },
+ "atk_3": {
+  "en": "Likes to fight",
+  "es": "Le gusta luchar"
+ },
+ "atk_4": {
+  "en": "Quick tempered",
+  "es": "Tiene mal genio"
+ },
+ "def_0": {
+  "en": "Sturdy body",
+  "es": "Se caracteriza por su cuerpo resistente"
+ },
+ "def_1": {
+  "en": "Capable of taking hits",
+  "es": "Encaja bien los ataques"
+ },
+ "def_2": {
+  "en": "Highly persistent",
+  "es": "Es muy persistente"
+ },
+ "def_3": {
+  "en": "Good endurance",
+  "es": "Se caracteriza por ser muy resistente"
+ },
+ "def_4": {
+  "en": "Good perseverance",
+  "es": "Es muy perseverante"
+ },
+ "hp_0": {
+  "en": "Loves to eat",
+  "es": "Le encanta comer"
+ },
+ "hp_1": {
+  "en": "Takes plenty of siestas",
+  "es": "A menudo se duerme"
+ },
+ "hp_2": {
+  "en": "Nods off a lot",
+  "es": "Duerme mucho"
+ },
+ "hp_3": {
+  "en": "Scatters things often",
+  "es": "Suele desordenar cosas"
+ },
+ "hp_4": {
+  "en": "Likes to relax",
+  "es": "Le gusta relajarse"
+ },
+ "spa_0": {
+  "en": "Highly curious",
+  "es": "Siente mucha curiosidad por todo"
+ },
+ "spa_1": {
+  "en": "Mischievous",
+  "es": "Le gusta hacer travesuras"
+ },
+ "spa_2": {
+  "en": "Thoroughly cunning",
+  "es": "Es muy sagaz"
+ },
+ "spa_3": {
+  "en": "Often lost in thought",
+  "es": "A menudo está en Babia"
+ },
+ "spa_4": {
+  "en": "Very finicky",
+  "es": "Es muy tiquismiquis"
+ },
+ "spd_0": {
+  "en": "Strong willed",
+  "es": "Se distingue por su gran fuerza de voluntad"
+ },
+ "spd_1": {
+  "en": "Somewhat vain",
+  "es": "Es un poco petulante"
+ },
+ "spd_2": {
+  "en": "Strongly defiant",
+  "es": "Es muy insolente"
+ },
+ "spd_3": {
+  "en": "Hates to lose",
+  "es": "Odia perder"
+ },
+ "spd_4": {
+  "en": "Somewhat stubborn",
+  "es": "Es un poco cabezota"
+ },
+ "spe_0": {
+  "en": "Likes to run",
+  "es": "Le gusta ir muy rápido"
+ },
+ "spe_1": {
+  "en": "Alert to sounds",
+  "es": "Siempre tiene el oído alerta"
+ },
+ "spe_2": {
+  "en": "Impetuous and silly",
+  "es": "Es de carácter simple e impetuoso"
+ },
+ "spe_3": {
+  "en": "Somewhat of a clown",
+  "es": "Le encanta hacer payasadas"
+ },
+ "spe_4": {
+  "en": "Quick to flee",
+  "es": "Huye rápido"
+ }
+}

@@ -61,6 +61,7 @@ func _ready() -> void:
 	world.add_child(home)
 
 	desk.fullscreen_app_changed.connect(_on_fullscreen_app)
+	Game.pets_hidden_changed.connect(func(_h: bool) -> void: _update_pet_visibility())
 	desk.geometry_changed.connect(_on_geometry)
 	Game.mode_changed.connect(_on_mode_changed)
 	Game.roster.changed.connect(_sync_home)
@@ -205,7 +206,14 @@ func _notification(what: int) -> void:
 		saver.save()
 
 
-func _on_fullscreen_app(active: bool) -> void:
-	world.visible = not active
-	hud.visible = not active
+func _on_fullscreen_app(_active: bool) -> void:
+	_update_pet_visibility()
 	_update_battle_visibility()
+
+
+## Las mascotas se esconden con una app a pantalla completa o con "Esconder mascotas".
+func _update_pet_visibility() -> void:
+	var hidden := desk.fullscreen_app or Game.pets_hidden()
+	world.visible = not hidden
+	hud.visible = not hidden
+	home.set_hidden(hidden)

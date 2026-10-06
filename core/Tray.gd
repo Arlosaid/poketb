@@ -6,7 +6,9 @@ signal open_pc_requested
 signal credits_requested
 signal debug_action(id: int)
 
-enum { ID_PC, ID_BATTLE, ID_REST, ID_PAUSE, ID_CREDITS, ID_QUIT }
+enum { ID_PC, ID_BATTLE, ID_REST, ID_PAUSE, ID_CREDITS, ID_QUIT, ID_HIDE, ID_TOPMOST, ID_FLIGHTS, ID_APPS, ID_WELLBEING }
+## Minutos que se esconden las mascotas con "Esconder mascotas".
+const HIDE_MINUTES := 30.0
 enum { DBG_SPEED, DBG_LEVELS, DBG_EVOLVE, DBG_NIGHT, DBG_BOSS, DBG_SHOT }
 
 var indicator: StatusIndicator
@@ -24,6 +26,12 @@ func _ready() -> void:
 	menu.add_radio_check_item("Modo pelea", ID_BATTLE)
 	menu.add_radio_check_item("Modo descanso", ID_REST)
 	menu.add_check_item("Pausar", ID_PAUSE)
+	menu.add_separator()
+	menu.add_check_item("Esconder mascotas 30 min", ID_HIDE)
+	menu.add_check_item("Siempre al frente", ID_TOPMOST)
+	menu.add_check_item("Vuelos por la pantalla", ID_FLIGHTS)
+	menu.add_check_item("Reaccionar a mis apps", ID_APPS)
+	menu.add_check_item("Recordar pausas", ID_WELLBEING)
 	menu.add_separator()
 	menu.add_item("Créditos", ID_CREDITS)
 	if Game.debug:
@@ -52,6 +60,8 @@ func _ready() -> void:
 
 	Game.mode_changed.connect(func(_m: StringName) -> void: _sync())
 	Game.pause_changed.connect(func(_p: bool) -> void: _sync())
+	Game.settings_changed.connect(_sync)
+	Game.pets_hidden_changed.connect(func(_h: bool) -> void: _sync())
 	_sync()
 
 
@@ -59,6 +69,9 @@ func _sync() -> void:
 	menu.set_item_checked(menu.get_item_index(ID_BATTLE), Game.mode == Game.MODE_BATTLE)
 	menu.set_item_checked(menu.get_item_index(ID_REST), Game.mode == Game.MODE_REST)
 	menu.set_item_checked(menu.get_item_index(ID_PAUSE), Game.clock.paused)
+	menu.set_item_checked(menu.get_item_index(ID_HIDE), Game.pets_hidden())
+	for pair in [[ID_TOPMOST, "topmost"], [ID_FLIGHTS, "flights"], [ID_APPS, "app_react"], [ID_WELLBEING, "wellbeing"]]:
+		menu.set_item_checked(menu.get_item_index(pair[0]), bool(Game.settings.get(pair[1], true)))
 	if debug_menu:
 		debug_menu.set_item_checked(debug_menu.get_item_index(DBG_SPEED), Game.clock.speed > 1.0)
 		debug_menu.set_item_checked(debug_menu.get_item_index(DBG_NIGHT), Game.clock.forced_hour >= 0.0)
@@ -76,6 +89,16 @@ func _on_id(id: int) -> void:
 			Game.toggle_pause()
 		ID_CREDITS:
 			credits_requested.emit()
+		ID_HIDE:
+			Game.hide_pets(0.0 if Game.pets_hidden() else HIDE_MINUTES)
+		ID_TOPMOST:
+			Game.set_setting("topmost", not Game.settings.get("topmost", true))
+		ID_FLIGHTS:
+			Game.set_setting("flights", not Game.settings.get("flights", true))
+		ID_APPS:
+			Game.set_setting("app_react", not Game.settings.get("app_react", true))
+		ID_WELLBEING:
+			Game.set_setting("wellbeing", not Game.settings.get("wellbeing", true))
 		ID_QUIT:
 			Game.quit()
 

@@ -144,31 +144,47 @@ func _gallery() -> void:
 func _pet() -> void:
 	Game.set_mode(Game.MODE_REST)
 	var r := Game.roster
-	for sp in ["pidgey", "oddish", "caterpie"]:
+	for sp in ["pidgey", "oddish", "caterpie", "rattata"]:
 		r.add(PokemonInstance.create(sp, 4))
 	await _wait(3.0)
 	await Game.shot("p3_home")
+	for u in main.home.home_uids():
+		var m: PokemonInstance = r.get_member(u)
+		print("[pet] %s: %s (%s) «%s»" % [m.species, Personality.trait_name(m), m.characteristic_key(), Personality.characteristic_text(m)])
 
 	var cid := r.companion
 	var a: PokemonActor = main.home.actor_for(cid)
 	var b: PetBrain = main.home.brain_for(cid)
-	b.force_state(PetBrain.State.IDLE, 1e9)
+	_hold_all(1e9)
 	a.position.x = 120
 	await _wait(0.3)
+	# Caricia: corazones y, si tiene hambre, el globito de la baya.
+	r.get_member(cid).fullness = 10.0
 	b.pet()
 	await _wait(0.45)
-	await Game.shot("p3_pet")
-	await _wait(2.0)
+	await Game.shot("p8_pet")
+	await _wait(2.5)
+	r.get_member(cid).fullness = 80.0
 
+	# Clic derecho: barrita de acciones (sin PC) y menú compacto de bayas.
+	b.force_state(PetBrain.State.IDLE, 1e9)
+	b.open_actions()
+	await _wait(0.3)
+	await Game.shot("p8_actions")
 	b.open_berries()
 	await _wait(0.3)
-	await Game.shot("p3_berry_menu")
+	await Game.shot("p8_berry_menu")
+	b._close_popups()
 
-	# Una baya que le guste y otra que no, según la naturaleza (regla canon).
+	# Ficha compacta.
+	b.show_card()
+	await _wait(0.3)
+	await Game.shot("p8_card")
+	await _wait(0.3)
+
+	# Una baya que le guste (globo de texto delgado) y otra que no.
 	var picked := _pet_with_preferences()
-	if picked.is_empty():
-		push_warning("Ningún Pokémon con gustos (todas las naturalezas neutras)")
-	else:
+	if not picked.is_empty():
 		var mon: PokemonInstance = picked["mon"]
 		var pb: PetBrain = main.home.brain_for(mon.uid)
 		var pa: PokemonActor = main.home.actor_for(mon.uid)
@@ -176,45 +192,135 @@ func _pet() -> void:
 		pa.position.x = 260
 		r.add_berry(picked["like"])
 		r.add_berry(picked["hate"])
-		print("[pet] ", mon.species, " ", mon.nature, " le gusta ", picked["like"], " odia ", picked["hate"])
 		pb.feed(picked["like"])
-		await _wait(0.8)
-		await Game.shot("p3_eating")
-		await _wait(1.5)
-		await Game.shot("p3_feed_like")
+		await _wait(2.3)
+		await Game.shot("p8_feed_like")
 		await _wait(3.0)
 		pb.feed(picked["hate"])
 		await _wait(2.3)
-		await Game.shot("p3_feed_hate")
+		await Game.shot("p8_feed_hate")
 		await _wait(3.0)
 
-	# Mira al cursor.
-	b.force_state(PetBrain.State.IDLE, 1e9)
-	Passthrough.fake_mouse = Vector2(a.position.x + 40, 30)
-	await _wait(0.4)
-	await Game.shot("p3_look_right")
-	Passthrough.fake_mouse = Vector2(a.position.x - 30, 95)
-	await _wait(0.4)
-	await Game.shot("p3_look_downleft")
+	# Cosquillas y rascar.
+	_hold_all(1e9)
+	b.tickle()
+	await _wait(0.35)
+	await Game.shot("p8_tickle")
+	await _wait(2.0)
+	b.rub()
+	await _wait(0.35)
+	await Game.shot("p8_rub")
+	await _wait(2.0)
 
-	# Arrastrar y soltar.
-	Passthrough.fake_mouse = Vector2(a.position.x + 20, 40)
-	b.force_state(PetBrain.State.DRAG)
-	await _wait(0.3)
-	await Game.shot("p3_drag")
+	# Herido: los mimos curan un poco.
+	var cm: PokemonInstance = r.get_member(cid)
+	cm.hp = maxi(1, cm.max_hp() / 4)
+	b.force_state(PetBrain.State.LAY, 1e9)
+	b.pet()
+	await _wait(0.4)
+	await Game.shot("p8_cuddle_heal")
+	cm.hp = cm.max_hp()
+	await _wait(2.0)
+
+	# Todos los globitos de emoción, uno por mascota.
+	_hold_all(1e9)
+	var icons := ["heart", "note", "exclaim", "question", "dots", "anger", "sweat", "zzz", "star", "berry", "ball"]
+	var uids: Array = main.home.home_uids()
+	for i in uids.size():
+		var ea: PokemonActor = main.home.actor_for(uids[i])
+		ea.position.x = 40 + i * 40
+		Emote.show_on(main.home, ea, icons[i % icons.size()], 3.0)
+	await _wait(0.4)
+	await Game.shot("p8_emotes")
+	for i in uids.size():
+		Emote.show_on(main.home, main.home.actor_for(uids[i]), icons[(i + uids.size()) % icons.size()], 3.0)
+	await _wait(0.4)
+	await Game.shot("p8_emotes2")
+	await _wait(2.5)
+
+	# Pelota: la tiras y los juguetones la persiguen.
+	_hold_all(0.0)
+	a.position.x = 150
+	main.home.throw_ball_from(a)
+	b.start_chase()
+	for u in uids:
+		if u != cid:
+			main.home.brain_for(u).start_chase()
+	await _wait(1.6)
+	await Game.shot("p8_ball")
+	await _wait(2.5)
+	await Game.shot("p8_ball2")
+	await _wait(3.0)
+
+	# Vida social: dos mascotas se saludan.
+	_hold_all(1e9)
+	var b2: PetBrain = main.home.brain_for(uids[1])
+	b2.actor.position.x = 200
+	a.position.x = 150
+	b.social_start("greet", b2)
+	b2.social_invite("greet", b)
+	await _wait(2.6)
+	await Game.shot("p8_social")
+	await _wait(2.0)
+
+	# Lanzarlo: da una voltereta al caer.
+	_hold_all(1e9)
+	a.position = Vector2(100, 40)
+	b._vx = 200.0
+	b._vy = -100.0
 	b.force_state(PetBrain.State.FALL)
+	await _wait(1.2)
+	await Game.shot("p8_tumble")
+	await _wait(2.0)
+
+	# Recordatorio de pausa y ánimo al descansar.
+	_hold_all(1e9)
+	Passthrough.fake_mouse = Vector2(300, 60)
+	main.home.suggest_break()
+	await _wait(3.2)
+	await Game.shot("p8_break")
+	await _wait(2.0)
+	main.home.break_taken()
+	await _wait(0.6)
+	await Game.shot("p8_cheer")
+	print("[pet] ánimo: +%d%% EXP (contento: %s)" % [int(r.cheer_exp_pct(cm)), str(cm.is_cheerful())])
 	Passthrough.fake_mouse = Vector2.INF
-	await _wait(0.42)
-	await Game.shot("p3_land")
+	await _wait(3.0)
+
+	# Viendo un video: se sientan a mirar contigo.
+	_hold_all(0.0)
+	main.home.sense.app_changed.emit("video")
 	await _wait(1.0)
+	await Game.shot("p8_watch")
+	main.home.sense.app_changed.emit("")
+
+	# Vuelo por la pantalla (la ventanita de vuelo se captura aparte).
+	var flier: PetBrain = null
+	for u in uids:
+		if Personality.can_fly(r.get_member(u).species):
+			flier = main.home.brain_for(u)
+	if flier:
+		main.home.force_flight(flier)
+		await _wait(2.5)
+		await Game.shot_window(main.home.flight, "p8_flight")
+		print("[pet] vuelo: ventana en ", main.home.flight.position)
+		main.home.abort_flight()
+		await _wait(1.5)
 
 	# De noche y con la PC inactiva: todos se acurrucan.
 	Game.clock.forced_hour = 23.0
 	Game.forced_idle = 400.0
+	_hold_all(0.0)
 	await _wait(2.5)
 	await Game.shot("p3_sleep")
-	Game.forced_idle = -1.0
+	Game.forced_idle = 0.0
 	Game.clock.forced_hour = -1.0
+
+
+## Deja a todas las mascotas quietas `sec` segundos (0 = que sigan con su vida).
+func _hold_all(sec: float) -> void:
+	for u in main.home.home_uids():
+		main.home.brain_for(u).force_state(PetBrain.State.IDLE, sec)
 
 
 ## Busca un Pokémon de casa cuya naturaleza tenga gustos y elige bayas para probar.

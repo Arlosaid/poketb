@@ -2,6 +2,7 @@
 
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
+#include <godot_cpp/variant/string.hpp>
 
 namespace godot {
 
@@ -46,6 +47,14 @@ public:
 
 	// true si hay una app a pantalla completa (juego, video, presentación).
 	bool is_fullscreen_app_active() const;
+
+	// Nombre del ejecutable de la ventana activa en minúsculas ("code.exe"), o "" si es
+	// este mismo juego o no se puede saber. Privacidad: NUNCA lee títulos ni contenido;
+	// abre el proceso solo con PROCESS_QUERY_LIMITED_INFORMATION y cierra el handle.
+	String get_foreground_app() const;
+
+	// {has_battery: bool, percent: int (0-100, -1 si se desconoce), charging: bool}
+	Dictionary get_power_status() const;
 };
 
 } // namespace godot

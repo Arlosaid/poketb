@@ -22,6 +22,7 @@ const WANTED: Array[String] = [
 	"Walk", "Idle", "Sleep", "EventSleep", "Wake", "Laying", "Sit", "Eat", "Hop", "Nod",
 	"Pose", "LookUp", "Attack", "Strike", "Shoot", "Charge", "Swing", "Double", "Rotate",
 	"Hurt", "Pain", "Faint", "Tumble", "FlapAround", "TailWhip", "Twirl",
+	"DeepBreath", "Trip", "LeapForth",
 ]
 ## Animaciones lógicas que usa el juego → candidatas en orden de preferencia.
 const ALTERNATIVES := {
@@ -43,6 +44,14 @@ const ALTERNATIVES := {
 	"Hurt": ["Hurt", "Pain", "Idle"],
 	"Faint": ["Faint", "Hurt"],
 	"Joy": ["Hop", "Pose", "Nod", "Idle"],
+	# Modo mascota (fase 8): estirarse, bailar, lucirse, reírse, tropezar y saltar.
+	"Stretch": ["DeepBreath", "Nod", "Idle"],
+	"Dance": ["Twirl", "Rotate", "Double", "Hop"],
+	"Show": ["FlapAround", "TailWhip", "Pose", "Twirl", "Rotate", "Hop"],
+	"Laugh": ["Rotate", "Twirl", "Double", "Hop"],
+	"Tumble": ["Tumble", "Trip", "Hurt"],
+	"Trip": ["Trip", "Tumble", "Hurt"],
+	"Leap": ["LeapForth", "Hop"],
 }
 const LOOPING: Array[String] = ["Walk", "Idle", "Sleep", "EventSleep", "Laying", "Sit", "Eat", "Charge", "FlapAround"]
 

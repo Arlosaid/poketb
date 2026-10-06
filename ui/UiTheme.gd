@@ -63,5 +63,20 @@ static func theme() -> Theme:
 	t.set_color("font_disabled_color", "Button", Palette.OAK)
 	t.set_type_variation("Slot", "PanelContainer")
 	t.set_stylebox("panel", "Slot", nine("res://assets/ui/slot.png", 4, 3))
+	# Modo mascota: botón compacto de ícono y globo de texto delgado (ver fase 8).
+	t.set_type_variation("Chip", "Button")
+	t.set_stylebox("normal", "Chip", nine("res://assets/ui/chip.png", 2, 2))
+	t.set_stylebox("hover", "Chip", nine("res://assets/ui/chip_hover.png", 2, 2))
+	t.set_stylebox("pressed", "Chip", nine("res://assets/ui/chip_pressed.png", 2, 2))
+	t.set_stylebox("disabled", "Chip", nine("res://assets/ui/chip.png", 2, 2))
+	t.set_stylebox("focus", "Chip", StyleBoxEmpty.new())
+	t.set_constant("h_separation", "Chip", 0)
+	t.set_type_variation("TextBubble", "PanelContainer")
+	var tb := nine("res://assets/ui/text_bubble.png", 2, 2)
+	tb.content_margin_left = 4
+	tb.content_margin_right = 5
+	tb.content_margin_top = 1
+	tb.content_margin_bottom = 2
+	t.set_stylebox("panel", "TextBubble", tb)
 	_theme = t
 	return t

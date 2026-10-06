@@ -50,6 +50,7 @@ func save(age := 0.0) -> void:
 		"roster": Game.roster.to_dict(),
 		"route": {"id": combat.route.get("id", "ruta_1"), "progress": combat.progress, "cleared": combat.cleared},
 		"ui": {"battle_pos": _battle_pos_json()},
+		"settings": Game.settings,
 	}
 	var tmp := _file() + ".tmp"
 	var f := FileAccess.open("user://" + tmp, FileAccess.WRITE)
@@ -84,6 +85,7 @@ func load_game() -> float:
 	combat.progress = int(r.get("progress", 0))
 	combat.cleared = bool(r.get("cleared", false))
 	Game.mode = StringName(d.get("mode", "battle"))
+	Game.load_settings(d.get("settings", {}))
 	var bp = d.get("ui", {}).get("battle_pos")
 	if bp is Array and bp.size() == 2:
 		saved_battle_pos = Vector2i(int(bp[0]), int(bp[1]))

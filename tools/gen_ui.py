@@ -405,6 +405,225 @@ def check_palette():
     print("paleta OK en", len(_written), "imágenes")
 
 
+# ---------------------------------------------------------------- modo mascota (fase 8)
+# Globo de emoción chiquito (estilo de los compañeros de HGSS): 11x13 + sombra.
+EMOTE_BUBBLE = [
+    "..#######..",
+    ".#ppppppp#.",
+    "#ppppppppp#",
+    "#ppppppppp#",
+    "#ppppppppp#",
+    "#ppppppppp#",
+    "#ppppppppp#",
+    "#ppppppppp#",
+    "#ppppppppp#",
+    ".#ppppppp#.",
+    "..###p###..",
+    "....#p#....",
+    ".....#.....",
+]
+# Íconos de 7x7 que van dentro del globo. El orden define el índice en emotes.png
+# (ver ui/Emote.gd).
+EMOTE_ICONS = [
+    ("heart", [
+        ".ee.ee.",
+        "ebpebbe",
+        "ebbbbbe",
+        ".ebbbe.",
+        "..ebe..",
+        "...e...",
+        ".......",
+    ], {"e": "ember", "b": "blush", "p": "petal"}),
+    ("note", [
+        "..nnnnn",
+        "..n...n",
+        "..n...n",
+        "..n...n",
+        "nnn.nnn",
+        "nnn.nnn",
+        ".n...n.",
+    ], {"n": "night"}),
+    ("exclaim", [
+        "..eee..",
+        "..eee..",
+        "..eee..",
+        "...e...",
+        "...e...",
+        ".......",
+        "..eee..",
+    ], {"e": "ember"}),
+    ("question", [
+        "..ddd..",
+        ".d...d.",
+        ".....d.",
+        "...dd..",
+        "...d...",
+        ".......",
+        "...d...",
+    ], {"d": "dusk"}),
+    ("dots", [
+        ".......",
+        ".......",
+        ".......",
+        ".o.o.o.",
+        ".......",
+        ".......",
+        ".......",
+    ], {"o": "wood"}),
+    ("anger", [
+        ".......",
+        ".e.e...",
+        "ee.ee..",
+        ".......",
+        "ee.ee..",
+        ".e.e...",
+        ".......",
+    ], {"e": "ember"}),
+    ("sweat", [
+        "...h...",
+        "...h...",
+        "..hhs..",
+        ".hpsss.",
+        ".hssss.",
+        "..sss..",
+        ".......",
+    ], {"h": "haze", "p": "paper", "s": "sky"}),
+    ("zzz", [
+        ".......",
+        ".ddddd.",
+        "....d..",
+        "...d...",
+        "..d....",
+        ".ddddd.",
+        ".......",
+    ], {"d": "dusk"}),
+    ("star", [
+        "...a...",
+        "...a...",
+        "..aha..",
+        "aahhhaa",
+        "..aha..",
+        "...a...",
+        "...a...",
+    ], {"a": "amber", "h": "honey"}),
+    ("berry", [
+        "....g..",
+        "...g...",
+        ".BBBBB.",
+        "BLBBBBD",
+        "BBBBBBD",
+        ".BBBDD.",
+        "..DDD..",
+    ], {"g": "leaf", "B": "ember", "L": "petal", "D": "berry"}),
+    ("ball", [
+        "..FFF..",
+        ".aFFwF.",
+        "FFwFFFF",
+        "FFFFFwE",
+        "FwFFFEE",
+        ".FFFEE.",
+        "..EEE..",
+    ], {"F": "flame", "a": "amber", "w": "paper", "E": "ember"}),
+]
+# Pelota de juguete (se lanza, rebota y la persiguen).
+TOY_BALL = [
+    "..####..",
+    ".#aFFF#.",
+    "#aFFwFF#",
+    "#FwFFFF#",
+    "#FFFFwE#",
+    "#FFwFEE#",
+    ".#FEEE#.",
+    "..####..",
+]
+TOY_BALL_KEY = {"#": "ink", "a": "amber", "F": "flame", "w": "paper", "E": "ember"}
+# Botón compacto (9-patch, margen 2): normal, encima y presionado.
+CHIP = [
+    ".####.",
+    "#hhhh#",
+    "#hccs#",
+    "#hccs#",
+    "#ssss#",
+    ".####.",
+]
+# Globo de texto delgado (9-patch, margen 2) y su colita.
+TEXT_BUBBLE = [
+    ".#####.",
+    "#ppppp#",
+    "#ppppp#",
+    "#ppppp#",
+    "#ppppp#",
+    "#ppppp#",
+    ".#####.",
+]
+TEXT_TAIL = [
+    "#ppp#",
+    ".#p#.",
+    "..#..",
+]
+
+
+def _disc(img, cx, cy, r, color, hole=None):
+    for y in range(img.height):
+        for x in range(img.width):
+            if (x + 0.5 - cx) ** 2 + (y + 0.5 - cy) ** 2 <= r * r:
+                if hole and (x + 0.5 - hole[0]) ** 2 + (y + 0.5 - hole[1]) ** 2 <= hole[2] ** 2:
+                    continue
+                img.putpixel((x, y), rgba(color))
+
+
+def action_icons():
+    """Íconos de 9x9 (con contorno) para la barrita de acciones: baya, pelota,
+    dormir, despertar y ficha. Orden = índice en actions.png (ver ui/ActionBar.gd)."""
+    icons = []
+    berry = dict((n, (m, k)) for n, m, k in EMOTE_ICONS)["berry"]
+    icons.append(outlined(from_map(*berry)))
+    icons.append(from_map(TOY_BALL, TOY_BALL_KEY))
+    moon = Image.new("RGBA", (7, 7), (0, 0, 0, 0))
+    _disc(moon, 3.5, 3.5, 3.5, "honey", hole=(5.3, 2.4, 2.9))
+    icons.append(outlined(moon, "wood"))
+    sun = Image.new("RGBA", (9, 9), (0, 0, 0, 0))
+    _disc(sun, 4.5, 4.5, 2.6, "amber")
+    sun.putpixel((4, 4), rgba("honey"))
+    sun.putpixel((3, 3), rgba("honey"))
+    for (x, y) in ((4, 0), (4, 8), (0, 4), (8, 4), (1, 1), (7, 1), (1, 7), (7, 7)):
+        sun.putpixel((x, y), rgba("flame"))
+    icons.append(sun)
+    card = from_map([
+        "#########",
+        "#ppppppp#",
+        "#bbpooop#",
+        "#bbppppp#",
+        "#pppooop#",
+        "#ppppppp#",
+        "#pooooop#",
+        "#ppppppp#",
+        "#########",
+    ], {"#": "wood", "p": "paper", "b": "blush", "o": "oak"})
+    icons.append(card)
+    sheet = Image.new("RGBA", (9 * len(icons), 9), (0, 0, 0, 0))
+    for i, ic in enumerate(icons):
+        sheet.alpha_composite(ic, (i * 9 + (9 - ic.width) // 2, (9 - ic.height) // 2))
+    save(sheet, "actions.png")
+
+
+def pet_ui():
+    save(with_drop_shadow(from_map(EMOTE_BUBBLE, {"#": "wood", "p": "paper"})), "emote_bubble.png")
+    sheet = Image.new("RGBA", (7 * len(EMOTE_ICONS), 7), (0, 0, 0, 0))
+    for i, (_n, rows, key) in enumerate(EMOTE_ICONS):
+        sheet.alpha_composite(from_map(rows, key), (i * 7, 0))
+    save(sheet, "emotes.png")
+    with open(os.path.join(OUT, "emotes_index.json"), "w", encoding="utf-8") as f:
+        json.dump({"size": 7, "index": {n: i for i, (n, _r, _k) in enumerate(EMOTE_ICONS)}}, f, indent=1)
+    save(from_map(TOY_BALL, TOY_BALL_KEY), "toy_ball.png")
+    save(with_drop_shadow(from_map(CHIP, {"#": "wood", "h": "paper", "c": "cream", "s": "sand"})), "chip.png")
+    save(with_drop_shadow(from_map(CHIP, {"#": "wood", "h": "paper", "c": "paper", "s": "cream"})), "chip_hover.png")
+    save(with_drop_shadow(from_map(CHIP, {"#": "wood", "h": "tan", "c": "sand", "s": "sand"})), "chip_pressed.png")
+    save(with_drop_shadow(from_map(TEXT_BUBBLE, {"#": "wood", "p": "paper"})), "text_bubble.png")
+    save(with_drop_shadow(from_map(TEXT_TAIL, {"#": "wood", "p": "paper"})), "text_tail.png")
+    action_icons()
+
+
 def main():
     palette_png()
     ball = from_map(POKEBALL_16, POKEBALL_KEY)
@@ -433,6 +652,7 @@ def main():
     save(dust_sheet(), "dust.png")
     berries_sheet()
     items_sheet()
+    pet_ui()
     check_palette()
 
 

@@ -2,20 +2,27 @@
 	"alias": {
 		"Attack": "Attack",
 		"Charge": "Charge",
+		"Dance": "Rotate",
 		"Eat": "Eat",
 		"Faint": "Faint",
 		"Hop": "Hop",
 		"Hurt": "Hurt",
 		"Idle": "Idle",
 		"Joy": "Hop",
+		"Laugh": "Rotate",
 		"Laying": "Laying",
+		"Leap": "LeapForth",
 		"LookUp": "LookUp",
 		"Nod": "Nod",
 		"Pose": "Pose",
 		"Shoot": "Shoot",
+		"Show": "Pose",
 		"Sit": "Sit",
 		"Sleep": "Sleep",
+		"Stretch": "DeepBreath",
 		"Strike": "Strike",
+		"Trip": "Trip",
+		"Tumble": "Tumble",
 		"Wake": "Wake",
 		"Walk": "Walk"
 	},
@@ -763,6 +770,66 @@
 					],
 					[
 						-1.0,
+						0.0
+					]
+				]
+			]
+		},
+		"DeepBreath": {
+			"bbox": [
+				-11.0,
+				-20.0,
+				20.0,
+				22.0
+			],
+			"dirs": 1,
+			"fh": 32,
+			"frames": 9,
+			"fw": 24,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 62,
+			"return": -1,
+			"rush": -1,
+			"shadow": [
+				[
+					[
+						0.0,
+						0.0
+					],
+					[
+						0.0,
+						0.0
+					],
+					[
+						-1.0,
+						0.0
+					],
+					[
+						0.0,
+						0.0
+					],
+					[
+						-1.0,
+						0.0
+					],
+					[
+						0.0,
+						0.0
+					],
+					[
+						-1.0,
+						0.0
+					],
+					[
+						0.0,
+						0.0
+					],
+					[
+						0.0,
 						0.0
 					]
 				]
@@ -1685,6 +1752,54 @@
 			"length_ticks": 12,
 			"return": -1,
 			"rush": -1
+		},
+		"LeapForth": {
+			"bbox": [
+				-9.0,
+				-41.0,
+				17.0,
+				45.0
+			],
+			"dirs": 1,
+			"fh": 80,
+			"frames": 6,
+			"fw": 24,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 14,
+			"return": -1,
+			"rush": -1,
+			"shadow": [
+				[
+					[
+						0.0,
+						0.0
+					],
+					[
+						0.0,
+						0.0
+					],
+					[
+						0.0,
+						-4.0
+					],
+					[
+						0.0,
+						-8.0
+					],
+					[
+						0.0,
+						-12.0
+					],
+					[
+						0.0,
+						-16.0
+					]
+				]
+			]
 		},
 		"LookUp": {
 			"bbox": [
@@ -3237,6 +3352,26 @@
 					]
 				]
 			]
+		},
+		"Trip": {
+			"bbox": [
+				-19.0,
+				-18.0,
+				32.0,
+				21.0
+			],
+			"dirs": 8,
+			"fh": 32,
+			"frames": 5,
+			"fw": 40,
+			"ground": [
+				0.0,
+				4.0
+			],
+			"hit": -1,
+			"length_ticks": 22,
+			"return": -1,
+			"rush": -1
 		},
 		"Tumble": {
 			"bbox": [

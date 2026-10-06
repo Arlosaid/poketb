@@ -63,9 +63,12 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 - [x] Fase 5: PC, guardado y offline (`--scenario=save_write` y luego `--scenario=save_load`; capturas p5_*).
 - [x] Fase 6: pulido y créditos (`--scenario=showcase`: vista de conjunto de día y de noche).
 - [x] Fase 7: progresión estilo Taskbar Hero: monedas, árbol del entrenador, vitaminas, movimientos con maestría, objetos fusionables (`--scenario=growth`; capturas p7_*).
+- [x] Fase 8: mascotas vivas: siempre al frente, personalidad canon, diversión, globitos chicos, cosquillas, rascar, lanzar, pelota, juegos entre ellas, vuelos por la pantalla, reacciones a la PC y pausas (`--scenario=pet`; capturas p8_*).
 
 ## Ideas para después del MVP
 - Ruta 2 "Bosque Verde" (solo es un JSON de ruta y un bioma).
 - Movimientos de estado.
+- Shiny (bajar variantes de SpriteCollab; tasa canon 1/4096).
+- Posarse sobre la barra de título de la ventana activa (estilo Shimeji).
 - Sonidos suaves enganchados a `BattleController.event`.
 - Panel de pelea redimensionable desde la PC.

@@ -27,8 +27,8 @@ Mis Pokémon viven sobre mi barra de tareas. Mientras trabajo, una parte de mi e
 
 ## Mascotas
 - Estados: pasear, quieto, sentarse, dormir, mirar al cursor, recibir caricias, comer, ser arrastrado y caer.
-- **Acariciar** (clic): corazones, retrato Happy y +amistad (con límite por hora para que no se pueda abusar).
-- **Dar baya** (clic derecho o el botón de la burbuja): un menú chiquito con las bayas que tengo. Reacciona según su naturaleza:
+- **Acariciar** (clic): corazones y +amistad (con límite por hora para que no se pueda abusar).
+- **Dar baya** (clic derecho → baya): un menú chiquito con las bayas que tengo. Reacciona según su naturaleza:
   - le gusta: Happy/Joyous, +amistad y el gusto queda "descubierto" en la PC;
   - no le gusta: retrato Sad, poca amistad.
 - **Arrastrar y soltar:** cae con suavidad y rebota un poco.
@@ -37,6 +37,27 @@ Mis Pokémon viven sobre mi barra de tareas. Mientras trabajo, una parte de mi e
   - Energía: baja al pelear y sube en casa.
   - Con hambre o energía bajas solo se pone de mal humor (retrato Worried/Sad) y gana menos amistad.
 - **Noche:** duermen más. Tras 5 min sin actividad en la PC, se acurrucan a dormir.
+
+## Mascotas vivas (Fase 8)
+- **Siempre visibles:** por delante de las demás ventanas, salvo con apps a pantalla completa. Desde la bandeja se pueden esconder 30 min o quitar "Siempre al frente".
+- **Personalidad:** cada Pokémon tiene su característica canon ("Le encanta comer", "Huye rápido"…) y de ahí un rasgo: Glotón, Dormilón, Travieso, Tranquilo, Orgulloso, Enérgico, Gruñón, Juguetón, Curioso, Soñador, Tiquismiquis, Payaso o Tímido. El rasgo cambia cuánto pasean, duermen, bailan, se lucen, juegan o miran el cielo. También tienen un lugar favorito en la casa, y los nocturnos duermen de día.
+- **Necesidades:** saciedad, energía, **diversión** y amistad, visibles en la ficha.
+- **Interacciones:**
+  - **Clic:** caricia.
+  - **4 clics rápidos:** cosquillas.
+  - **Frotar el mouse encima:** rascarle.
+  - **Arrastrar y soltar:** lanzarlo. Da una voltereta, y los voladores planean.
+  - **Dejar el mouse quieto encima:** ficha.
+  - **Clic derecho:** baya, pelota, dormir/despertar o ficha.
+  - **Pelota:** la lanzas (o la arrastras) y los juguetones la persiguen y la patean.
+- **Entre ellos:** se saludan, se persiguen y duermen la siesta juntos. Cuanto más juegan juntos, más se buscan (lazos).
+- **Vuelos:** de vez en cuando, los voladores dan un paseo por toda la pantalla y vuelven a casa.
+- **Reaccionan a la PC:**
+  - **Según la app:** con apps de trabajo están más tranquilos, con música bailan, con videos se sientan a mirar contigo y con juegos se emocionan.
+  - **Al volver tras un rato:** te reciben.
+  - **Pausas:** tras 50 min seguidos, te proponen una pausa; si la tomas, el equipo gana +10 % de EXP durante 30 min.
+  - **Otros avisos:** de madrugada te dicen que ya es tarde, y te avisan si queda poca batería.
+- **Cuidar sirve:** los mimos curan un poco a los heridos o debilitados, y un Pokémon contento gana +5 % de EXP.
 
 ## Amistad (0–255)
 | Evento | Cambio |

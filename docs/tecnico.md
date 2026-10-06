@@ -21,6 +21,8 @@
 | `get_idle_seconds()` | `GetLastInputInfo` |
 | `get_taskbar_info()` | `SHAppBarMessage(ABM_GETTASKBARPOS/ABM_GETSTATE)` |
 | `is_fullscreen_app_active()` | `SHQueryUserNotificationState` |
+| `get_foreground_app()` | `GetForegroundWindow` → `GetWindowThreadProcessId` → `OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION)` → `QueryFullProcessImageNameW`; devuelve solo el nombre del .exe en minúsculas ("" si es el propio juego). Nunca lee títulos. |
+| `get_power_status()` | `GetSystemPowerStatus` → `{has_battery, percent, charging}` |
 
 Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde `native/`:
 `scons platform=windows target=template_debug` (y `template_release`). La primera compilación de godot-cpp tarda unos 4 min.
@@ -87,3 +89,13 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 ## Botón de la PC
 - `ui/PCButton.gd`: Poké Ball clicable (registrada en `Passthrough`) que abre la PC. Hay una en la casa (`Main.pc_button`, a la izquierda sobre la barra) y otra en el panel de pelea (`BattleController.pc_button`, abajo a la derecha). Al pasar el cursor da un saltito y muestra "PC".
 - `--scenario=hold` no hace nada hasta `--autoquit`: sirve para pruebas externas (estilos de ventana, barra de tareas).
+
+## Mascotas vivas (Fase 8)
+- `pet/PetBrain.gd`: máquina de estados por mascota (IDLE, WANDER, SIT, LAY, SLEEP, WAKE, LOOK, PETTED, EAT, DRAG, FALL, ACT, CHASE, SOCIAL, FOLLOW, AWAY). `_choose_next` pondera según el rasgo (`Personality.weights`), la hora (y si es nocturno), el cansancio, la diversión, la salud y la app activa (`home.calm`, `home.watching`, `home.music`).
+- Interacciones: clic = caricia (y `Roster.cuddle_heal` si está herido); 4 clics en 1.3 s = cosquillas; 5 cambios de dirección del mouse encima en 1.6 s = rascar; mouse quieto 1.2 s encima = `PetCard`; arrastrar y soltar = lanzar con la velocidad del cursor (los voladores planean); clic derecho = `ActionBar`.
+- `pet/HomeArea.gd`: coordina la pelota (`ToyBall`), los juegos entre mascotas (`start_social`: saludo, persecución, siesta juntos; elige compañero según `Roster.bonds`), los vuelos (`FlightWindow`) y las reacciones de `PcSense`.
+- `pet/PcSense.gd`: sondeo cada 3 s de la app activa (`data/apps.json`), el regreso tras ≥5 min fuera, la racha de uso (recordatorio de pausa), la madrugada y la batería. En los escenarios no sondea; las señales se disparan a mano.
+- `pet/Personality.gd`: característica canon → rasgo (`data/characteristics.json`, `data/personality.json`).
+- UI: `ui/Emote.gd` (globito con ícono de 7x7, no clicable), `ui/Bubble.gd` (`Bubble.say`, una línea, no clicable), `ui/ActionBar.gd`, `ui/BerryMenu.gd` (compacto) y `ui/PetCard.gd`. `PokemonActor.attached(key)` devuelve el cartel activo ("bubble", "emote" o "card"); solo hay uno a la vez.
+- Ajustes del jugador en `Game.settings` (`topmost`, `flights`, `app_react`, `wellbeing`), guardados en `save.json` y editables desde la bandeja. `Game.hide_pets(min)` esconde las mascotas.
+- Escenario: `--scenario=pet` genera p3_home, p3_sleep y p8_* (caricia, acciones, bayas, ficha, comer, cosquillas, rascar, mimos que curan, emociones, pelota, saludo, voltereta, pausa, ánimo, video y vuelo).

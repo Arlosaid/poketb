@@ -22,6 +22,14 @@ const COMPANION_FRIEND_EVERY := 600.0
 ## Energía mínima para pelear y para volver a la ruta después de descansar.
 const ENERGY_TO_FIGHT := 10.0
 const ENERGY_TO_RETURN := 60.0
+## Diversión: de 100 a 0 en ~8 h en casa despierto (el rasgo la acelera o frena).
+const FUN_DECAY_HOME := 100.0 / (8.0 * 3600.0)
+## Mimos a un Pokémon herido o debilitado: cura una parte (con espera entre mimos).
+const CUDDLE_HEAL_FRAC := 0.08
+const CUDDLE_ENERGY := 3.0
+const CUDDLE_COOLDOWN := 12.0
+## Ánimo de "contento" (por Pokémon) en % de EXP.
+const CHEERFUL_EXP_PCT := 5.0
 
 var members := {}            # uid → PokemonInstance
 var team: Array[int] = []    # uids en orden
@@ -31,7 +39,13 @@ var gold := 0
 var skills := {}             # id del nodo → nivel
 var bag := {}                # "id:nivel" → cantidad
 var next_uid := 1
+## Lazos entre mascotas ("uidA:uidB" con uidA < uidB → puntos). Suben al jugar juntas.
+var bonds := {}
+## Hasta cuándo (unix) dura el ánimo del equipo por haber descansado tú también.
+var cheer_until := 0.0
+var cheer_pct := 0.0
 var _companion_timer := 0.0
+var _cuddle_at := {}         # uid → unix del último mimo que curó (no se guarda)
 var _fx := {}                # caché de efectos del árbol
 
 
@@ -112,6 +126,9 @@ func tick(dt: float, battling: Array, sleeping: Array) -> void:
 		if in_battle:
 			p.energy = maxf(0.0, p.energy - ENERGY_DRAIN_BATTLE * dt)
 		else:
+			if u not in sleeping:
+				var fd := FUN_DECAY_HOME * float(Personality.weights(p).get("fun_decay", 1.0))
+				p.fun = maxf(0.0, p.fun - fd * dt)
 			var regen := ENERGY_REGEN_HOME * (ENERGY_REGEN_SLEEP_MULT if u in sleeping else 1.0) * (1.0 + fx("regen") / 100.0)
 			p.energy = minf(100.0, p.energy + regen * dt)
 			if p.hp < p.max_hp():
@@ -141,6 +158,56 @@ func pet(p: PokemonInstance) -> int:
 	var before := p.friendship
 	p.add_friendship(1)
 	return p.friendship - before
+
+
+## Jugar (pelota, cosquillas, rascar): sube la diversión y cuenta como caricia para la
+## amistad (con el mismo límite por hora). Devuelve la amistad ganada.
+func play(p: PokemonInstance, fun_gain: float) -> int:
+	p.fun = minf(100.0, p.fun + fun_gain)
+	return pet(p)
+
+
+## Mimos que curan: si está herido o debilitado, recupera un poco de PS y energía.
+## Devuelve los PS curados (0 si no hacía falta o si es muy pronto desde el último).
+func cuddle_heal(p: PokemonInstance) -> int:
+	if p.hp >= p.max_hp():
+		return 0
+	var now := Time.get_unix_time_from_system()
+	if now - float(_cuddle_at.get(p.uid, 0.0)) < CUDDLE_COOLDOWN:
+		return 0
+	_cuddle_at[p.uid] = now
+	var heal := mini(p.max_hp() - p.hp, maxi(1, int(ceil(p.max_hp() * CUDDLE_HEAL_FRAC))))
+	p.hp += heal
+	p.energy = minf(100.0, p.energy + CUDDLE_ENERGY)
+	changed.emit()
+	return heal
+
+
+static func _bond_key(a: int, b: int) -> String:
+	return "%d:%d" % [mini(a, b), maxi(a, b)]
+
+
+func bond(a: int, b: int) -> int:
+	return int(bonds.get(_bond_key(a, b), 0))
+
+
+func add_bond(a: int, b: int, n := 1) -> void:
+	var k := _bond_key(a, b)
+	bonds[k] = mini(100, int(bonds.get(k, 0)) + n)
+
+
+## El equipo se anima cuando tú también descansas (recordatorio de pausa).
+func start_cheer(pct: float, minutes: float) -> void:
+	cheer_pct = pct
+	cheer_until = Time.get_unix_time_from_system() + minutes * 60.0
+
+
+## Extra de EXP (%) por ánimo: el del equipo y el de estar contento.
+func cheer_exp_pct(p: PokemonInstance) -> float:
+	var pct := cheer_pct if Time.get_unix_time_from_system() < cheer_until else 0.0
+	if p.is_cheerful():
+		pct += CHEERFUL_EXP_PCT
+	return pct
 
 
 ## Da una baya. Devuelve {reaction, flavor, friendship, healed}.
@@ -365,7 +432,7 @@ func to_dict() -> Dictionary:
 	var ms := []
 	for u in members:
 		ms.append(members[u].to_dict())
-	return {"members": ms, "team": team, "companion": companion, "berries": berries, "next_uid": next_uid, "gold": gold, "skills": skills, "bag": bag}
+	return {"members": ms, "team": team, "companion": companion, "berries": berries, "next_uid": next_uid, "gold": gold, "skills": skills, "bag": bag, "bonds": bonds, "cheer_until": cheer_until, "cheer_pct": cheer_pct}
 
 
 func from_dict(d: Dictionary) -> void:
@@ -380,6 +447,9 @@ func from_dict(d: Dictionary) -> void:
 	gold = int(d.get("gold", 0))
 	skills = _ints(d.get("skills", {}))
 	bag = _ints(d.get("bag", {}))
+	bonds = _ints(d.get("bonds", {}))
+	cheer_until = float(d.get("cheer_until", 0.0))
+	cheer_pct = float(d.get("cheer_pct", 0.0))
 	_fx.clear()
 	changed.emit()
 	berries_changed.emit()

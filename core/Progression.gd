@@ -205,9 +205,9 @@ static func gold_for_win(foe: PokemonInstance, boss: bool, route: Dictionary, fi
 	return maxi(1, int(round(base * (1.0 + pct / 100.0))))
 
 
-## Multiplicador de EXP para un Pokémon (árbol + Huevo Suerte).
+## Multiplicador de EXP para un Pokémon (árbol + Huevo Suerte + ánimo por cuidarlo).
 static func exp_mult(p: PokemonInstance) -> float:
-	return 1.0 + (Game.roster.fx("exp") + held_effect(p.held, "exp")) / 100.0
+	return 1.0 + (Game.roster.fx("exp") + held_effect(p.held, "exp") + Game.roster.cheer_exp_pct(p)) / 100.0
 
 
 ## Sorteo de un objeto soltado: devuelve la llave "id:nivel". El jefe asegura un nivel mínimo.

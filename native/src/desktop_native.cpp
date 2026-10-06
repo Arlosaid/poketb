@@ -39,6 +39,8 @@ void DesktopNative::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_idle_seconds"), &DesktopNative::get_idle_seconds);
 	ClassDB::bind_method(D_METHOD("get_taskbar_info"), &DesktopNative::get_taskbar_info);
 	ClassDB::bind_method(D_METHOD("is_fullscreen_app_active"), &DesktopNative::is_fullscreen_app_active);
+	ClassDB::bind_method(D_METHOD("get_foreground_app"), &DesktopNative::get_foreground_app);
+	ClassDB::bind_method(D_METHOD("get_power_status"), &DesktopNative::get_power_status);
 }
 
 #ifdef _WIN32
@@ -188,4 +190,56 @@ bool DesktopNative::is_fullscreen_app_active() const {
 	}
 #endif
 	return false;
+}
+
+String DesktopNative::get_foreground_app() const {
+#ifdef _WIN32
+	HWND hwnd = GetForegroundWindow();
+	if (!hwnd) {
+		return String();
+	}
+	DWORD pid = 0;
+	GetWindowThreadProcessId(hwnd, &pid);
+	if (pid == 0 || pid == GetCurrentProcessId()) {
+		return String();
+	}
+	HANDLE proc = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid);
+	if (!proc) {
+		return String();
+	}
+	wchar_t buf[MAX_PATH];
+	DWORD len = MAX_PATH;
+	BOOL ok = QueryFullProcessImageNameW(proc, 0, buf, &len);
+	CloseHandle(proc);
+	if (!ok || len == 0) {
+		return String();
+	}
+	// Solo el nombre del archivo, sin la ruta.
+	DWORD start = 0;
+	for (DWORD i = 0; i < len; i++) {
+		if (buf[i] == L'\\' || buf[i] == L'/') {
+			start = i + 1;
+		}
+	}
+	buf[len < MAX_PATH ? len : MAX_PATH - 1] = 0;
+	return String(buf + start).to_lower();
+#else
+	return String();
+#endif
+}
+
+Dictionary DesktopNative::get_power_status() const {
+	Dictionary d;
+	d["has_battery"] = false;
+	d["percent"] = -1;
+	d["charging"] = false;
+#ifdef _WIN32
+	SYSTEM_POWER_STATUS ps;
+	if (GetSystemPowerStatus(&ps)) {
+		d["has_battery"] = ps.BatteryFlag != 128 && ps.BatteryFlag != 255;
+		d["percent"] = ps.BatteryLifePercent == 255 ? -1 : (int64_t)ps.BatteryLifePercent;
+		d["charging"] = ps.ACLineStatus == 1;
+	}
+#endif
+	return d;
 }

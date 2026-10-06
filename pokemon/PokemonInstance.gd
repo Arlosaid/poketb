@@ -21,6 +21,12 @@ var friendship := 70
 var fullness := 80.0
 ## Energía 0..100. Baja peleando y se recupera en casa.
 var energy := 100.0
+## Diversión 0..100 (como en Poké Recreo). Baja con el tiempo y sube jugando con él.
+var fun := 80.0
+## Valor de personalidad (como el PID de los juegos): desempata la característica.
+var pid := 0
+## Lugar favorito en casa (0..1 del ancho); se elige al azar la primera vez.
+var fav_x := -1.0
 ## Sabores descubiertos: {"spicy": "likes" | "hates" | "neutral"}
 var known_flavors := {}
 ## Control anti-abuso de caricias: caricias contadas en la hora actual.
@@ -55,6 +61,8 @@ static func create(sp: String, lvl: int, rng: RandomNumberGenerator = null) -> P
 	for s in STATS:
 		p.ivs[s] = r.randi_range(0, 31)
 	p.friendship = int(p.data()["base_happiness"])
+	p.pid = r.randi()
+	p.fav_x = r.randf()
 	p.moves = p.moves_at_level(lvl)
 	p.hp = p.max_hp()
 	return p
@@ -242,6 +250,28 @@ func add_friendship(amount: int) -> void:
 	friendship = clampi(friendship + amount, 0, 255)
 
 
+## Característica canon (Gen 4+): stat con el IV más alto; los empates se resuelven
+## empezando por el stat (PID mod 6) en el orden PS, Ata, Def, Vel, AtEsp, DefEsp.
+## Devuelve la llave de data/characteristics.json ("hp_0", "spe_3"...).
+func characteristic_key() -> String:
+	const ORDER: Array[String] = ["hp", "atk", "def", "spe", "spa", "spd"]
+	var start := pid % 6
+	var best := ""
+	var best_iv := -1
+	for i in 6:
+		var s: String = ORDER[(start + i) % 6]
+		var iv := int(ivs.get(s, 0))
+		if iv > best_iv:
+			best_iv = iv
+			best = s
+	return "%s_%d" % [best, best_iv % 5]
+
+
+## Contento: bien comido, descansado y entretenido (da un pequeño extra de EXP).
+func is_cheerful() -> bool:
+	return fullness >= 50.0 and energy >= 40.0 and fun >= 60.0
+
+
 ## Reacción canon a un sabor según la naturaleza: "likes", "hates" o "neutral".
 func flavor_reaction(flavor: String) -> String:
 	if flavor == "":
@@ -258,7 +288,7 @@ func to_dict() -> Dictionary:
 	return {
 		"uid": uid, "species": species, "nickname": nickname, "level": level, "xp": xp,
 		"nature": nature, "ivs": ivs, "hp": hp, "moves": moves, "friendship": friendship,
-		"fullness": fullness, "energy": energy, "known_flavors": known_flavors,
+		"fullness": fullness, "energy": energy, "fun": fun, "pid": pid, "fav_x": fav_x, "known_flavors": known_flavors,
 		"pets_this_hour": pets_this_hour, "pets_hour_start": pets_hour_start, "caught_at": caught_at, "wins": wins,
 		"doses": doses, "move_mastery": move_mastery, "held": held, "custom_moves": custom_moves,
 	}
@@ -278,6 +308,10 @@ static func from_dict(d: Dictionary) -> PokemonInstance:
 	p.friendship = int(d["friendship"])
 	p.fullness = float(d.get("fullness", 80.0))
 	p.energy = float(d.get("energy", 100.0))
+	p.fun = float(d.get("fun", 80.0))
+	# Partidas anteriores a la fase 8: un PID estable derivado del uid y la especie.
+	p.pid = int(d.get("pid", hash("%d:%s" % [p.uid, p.species]) & 0x7fffffff))
+	p.fav_x = float(d.get("fav_x", float(p.pid % 1000) / 1000.0))
 	p.known_flavors = d.get("known_flavors", {})
 	p.pets_this_hour = int(d.get("pets_this_hour", 0))
 	p.pets_hour_start = float(d.get("pets_hour_start", 0.0))
