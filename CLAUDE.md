@@ -16,6 +16,7 @@ Documentos (mantenerlos al día al terminar cada fase):
 - Python 3.12 para las herramientas de desarrollo en `tools/`. Correr siempre con `python -I`.
 
 ## Comandos
+Para jugar: doble clic en `Jugar-Pokemon.bat` (en el Escritorio) o en `Jugar.bat` (en el proyecto). No hay `.exe` exportado: faltan las plantillas de exportación de Godot (~1 GB, Editor → Administrar plantillas de exportación).
 ```bash
 # Compilar la extensión nativa (desde una consola con el entorno de MSVC, ver docs/tecnico.md)
 cd native && scons platform=windows target=template_debug && scons platform=windows target=template_release
