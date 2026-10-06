@@ -18,6 +18,7 @@ static func choose_move(att: PokemonInstance, def: PokemonInstance, rng: RandomN
 	for m in att.moves:
 		var md := SpeciesDB.move(m)
 		var power := float(md["power"]) if md["power"] != null else 40.0
+		power *= 1.0 + att.mastery(m) * float(Progression.mastery_cfg()["pct_per_level"]) / 100.0
 		var eff := SpeciesDB.effectiveness(md["type"], def.types())
 		var stab := 1.5 if md["type"] in att.types() else 1.0
 		var acc := float(md["accuracy"]) / 100.0 if md["accuracy"] != null else 1.0
@@ -39,11 +40,17 @@ static func attack(att: PokemonInstance, def: PokemonInstance, move_name: String
 	var a := att.stat("atk" if physical else "spa")
 	var d := def.stat("def" if physical else "spd")
 	var power := float(md["power"])
+	var owned := att.uid != 0
+	if owned:
+		# maestría del movimiento (+10% de potencia por nivel)
+		power *= 1.0 + att.mastery(move_name) * float(Progression.mastery_cfg()["pct_per_level"]) / 100.0
 	var lvl := float(att.level)
 	var base := floorf(floorf(floorf(2.0 * lvl / 5.0 + 2.0) * power * a / d) / 50.0) + 2.0
 	var stab := 1.5 if md["type"] in att.types() else 1.0
 	var eff := SpeciesDB.effectiveness(md["type"], def.types())
 	var crit_p := AFFECTION_CRIT_CHANCE if affection else CRIT_CHANCE
+	if owned:
+		crit_p += (Game.roster.fx("crit") + Progression.held_effect(att.held, "crit")) / 100.0
 	var crit := rng.randf() < crit_p
 	r["crit"] = crit
 	r["affection_crit"] = crit and affection and rng.randf() < 0.5
@@ -51,6 +58,8 @@ static func attack(att: PokemonInstance, def: PokemonInstance, move_name: String
 	if eff == 0.0:
 		return r
 	var dmg: float = base * (CRIT_MULT if crit else 1.0) * rng.randf_range(0.85, 1.0) * stab * eff
+	if owned:
+		dmg *= 1.0 + Game.roster.fx("dmg") / 100.0
 	r["damage"] = maxi(1, int(floor(dmg)))
 	return r
 

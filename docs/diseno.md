@@ -58,6 +58,21 @@ Con ≥200 de amistad se activan los efectos de afecto Gen 6+: un 10% de aguanta
   - jefe Pidgeotto, Nv. 14.
 - Los capturados van a la PC, desde donde se arma el equipo (hasta 6) y se elige al compañero.
 
+## Progresión (Fase 7)
+Inspirada en Taskbar Hero, pero con piezas de Pokémon. Todo se paga con **monedas** que caen al ganar combates (también offline).
+- **Monedas:** `base_experience × nivel × 0.1 / 5` por victoria (jefe ×5). Se ven arriba en la PC y como "+N" sobre el líder.
+- **Árbol del entrenador** (pestaña Árbol): mejoras globales de todo el equipo en 4 ramas. Cada nodo tiene niveles, costo creciente y requisitos de otros nodos.
+  - Combate: Fuerza (daño), Guardia (Def/DefEsp), Vigor (PS), Paso ligero (Vel), Ojo ágil (crítico).
+  - Captura: Puntería (Poké Ball), Ojo clínico (lanzas antes), Red segura (más lanzamientos), Bola dorada (empujón final).
+  - Economía: Botín (monedas), Estudio (EXP), Rastreo (más bayas y objetos).
+  - Cuidado: Siesta (descansan más rápido), Merienda (más lento el hambre), Vínculo (más caricias por hora).
+- **Entrenar** (pestaña Entrenar, por Pokémon):
+  - **Vitaminas** (PS Plus, Proteína, Hierro, Calcio, Zinc, Carburante): hasta 10 dosis por stat, +4% del stat cada una.
+  - **Movimientos:** se eligen a mano hasta 4 de los que ya aprendió; cada uno sube de **maestría** (0–5, +10% de potencia por nivel).
+  - **Objetos:** 2 por Pokémon.
+- **Mochila:** objetos equipables (Cinta Fuerte, Gafas Especiales, Casco Dentado, Chaleco Asalto, Garra Rápida, Restos, Periscopio, Huevo Suerte, Moneda Amuleto) con 4 niveles: Común, Poco común, Raro y Épico. **3 iguales del mismo nivel se fusionan en 1 del siguiente.** Caen con 12% de probabilidad al ganar; el jefe siempre suelta uno de nivel Poco común o mejor.
+- Nada de esto se pierde ni se castiga: el árbol y los objetos son un camino de mejora sin vuelta atrás.
+
 ## La PC
 Ventana nativa pequeña, con un marco estilo PC de Pokémon y tres pestañas:
 - **Cajas:** retrato, nombre, nivel, naturaleza, corazones de amistad y gustos de sabor descubiertos.
@@ -65,6 +80,8 @@ Ventana nativa pequeña, con un marco estilo PC de Pokémon y tres pestañas:
 - **Bayas:** el inventario.
 
 Además muestra los créditos y las opciones.
+
+La PC ahora tiene seis pestañas: **Pokémon** (equipo y cajas), **Entrenar**, **Mochila**, **Árbol**, **Bayas** y **Créditos**, con las monedas siempre visibles arriba.
 
 ## Bandeja
 Menú: Abrir PC / Equipo · Modo pelea / Modo descanso · Pausar · Créditos · Salir. Con `--debug` aparece también un submenú Debug.

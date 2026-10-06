@@ -315,6 +315,70 @@ def berries_sheet():
         json.dump({"cell": 12, "index": index}, f, indent=1)
 
 
+# --- Objetos, vitaminas y moneda (12x12; la moneda 8x8) -------------------------------------
+# Orden = campo "icon" de data/items.json.
+ITEM_ICONS = [
+    # 0 Cinta Fuerte
+    ["............", "............", "..OOOOOOOO..", ".OBBBBBBBBO.", ".OBLLLLLLBO.", ".OBBBBBBBBO.",
+     ".OBDDDDDDBO.", ".OBBBBBBBBO.", ".OBBBBBBBBO.", "..OOOOOOOO..", "............", "............"],
+    # 1 Gafas Especiales
+    ["............", "............", "............", ".OOOO..OOOO.", "OLLLLOOLLLLO", "OLMMLOOLMMLO",
+     "OLLLLOOLLLLO", ".OOOO..OOOO.", "............", "............", "............", "............"],
+    # 2 Casco Dentado
+    ["............", "....OOOO....", "..OOLLBBOO..", ".OLLBBBBBDO.", ".OLBBBBBBDO.", ".OBBBBBBBDO.",
+     "OOOOOOOOOOOO", "OLOLOOOOLOLO", ".O.O....O.O.", "............", "............", "............"],
+    # 3 Chaleco Asalto
+    ["............", ".OOO....OOO.", ".OBBO..OBBO.", ".OBBBOOBBBO.", ".OBBBLLBBBO.", ".OBDBLLBDBO.",
+     ".OBDBLLBDBO.", ".OBBBLLBBBO.", ".OBBBBBBBBO.", ".OOOOOOOOOO.", "............", "............"],
+    # 4 Garra Rápida
+    ["............", "......OO....", ".....OLLO...", "....OLLO....", "...OLLLO....", "..OLLLBO....",
+     "..OLLBO.....", ".OLLBO......", ".OLBO.......", ".OBO........", ".OO.........", "............"],
+    # 5 Restos
+    ["............", "...OOOOOO...", "..OGGGGGGO..", ".OGLLGGLLGO.", ".OGLLGGLLGO.", ".OGGGGGGGGO.",
+     ".OEEEEEEEEO.", "..OGGGGGGO..", "...OOOOOO...", "............", "............", "............"],
+    # 6 Periscopio
+    ["...OOOOOO...", "..OMMOOMMO..", ".OMMMOOMMMO.", "OMMMMOOMMMMO", "OMMMMOOMMMMO", "OOOOOOOOOOOO",
+     "OOOOOOOOOOOO", "OMMMMOOMMMMO", "OMMMMOOMMMMO", ".OMMMOOMMMO.", "..OMMOOMMO..", "...OOOOOO..."],
+    # 7 Huevo Suerte
+    ["............", "....OOOO....", "...OPPPPO...", "..OPPLPPPO..", "..OPPPPPPO..", ".OPPPPPPPDO.",
+     ".OPPBBPPPDO.", ".OPPBBPPPDO.", ".OPPPPPPDDO.", "..OPPPPDDO..", "...ODDDDO...", "....OOOO...."],
+    # 8 Moneda Amuleto
+    ["...OOOOOO...", "..OHHHHHHO..", ".OHHAAAAHHO.", "OHHAHHHHAHHO", "OHAHHPPHHAHO", "OHAHPHHHHAHO",
+     "OHAHHHHHHAHO", "OHAHHHHHHAHO", ".OHAAAAAAHO.", "..OAAAAAAO..", "...OOOOOO...", "............"],
+]
+ITEM_KEY = {
+    "O": "ink", "B": "ember", "D": "berry", "L": "honey", "M": "mist", "G": "grass", "E": "forest",
+    "P": "petal", "H": "honey", "A": "amber",
+}
+# Casco y chaleco usan otros colores base: se pintan con su propia clave.
+ITEM_KEYS = {
+    2: {"O": "ink", "B": "dusk", "D": "night", "L": "haze"},
+    3: {"O": "ink", "B": "teal", "D": "forest", "L": "mint"},
+    4: {"O": "ink", "B": "tan", "L": "paper"},
+    5: {"O": "ink", "G": "grass", "L": "lime", "E": "forest"},
+    7: {"O": "ink", "P": "petal", "L": "paper", "B": "blush", "D": "blush"},
+}
+COIN = ["..OOOO..", ".OHHHAO.", "OHHPHHAO", "OHHHHHAO", "OHHHHHAO", "OHHHHAAO", ".OAAAAO.", "..OOOO.."]
+VITAMIN = ["............", "....OOOO....", "....OTTO....", "....OOOO....", "...OLLLLO...", "..OLKKKKLO..",
+           "..OLKPPKLO..", "..OLKPPKLO..", "..OLKKKKLO..", "..OLKKKKLO..", "...OOOOOO...", "............"]
+VITAMIN_COLORS = ["ember", "flame", "honey", "orchid", "mint", "sky"]  # hp atk def spa spd spe
+
+
+def items_sheet():
+    sheet = Image.new("RGBA", (12 * len(ITEM_ICONS), 12), (0, 0, 0, 0))
+    for i, rows in enumerate(ITEM_ICONS):
+        key = dict(ITEM_KEY)
+        key.update(ITEM_KEYS.get(i, {}))
+        sheet.alpha_composite(from_map(rows, key), (i * 12, 0))
+    save(sheet, "items.png")
+    vit = Image.new("RGBA", (12 * len(VITAMIN_COLORS), 12), (0, 0, 0, 0))
+    for i, c in enumerate(VITAMIN_COLORS):
+        key = {"O": "ink", "T": "tan", "L": "paper", "K": c, "P": "paper"}
+        vit.alpha_composite(from_map(VITAMIN, key), (i * 12, 0))
+    save(vit, "vitamins.png")
+    save(from_map(COIN, {"O": "ink", "H": "honey", "A": "amber", "P": "paper"}), "coin.png")
+
+
 def palette_png():
     names = list(PALETTE.keys())
     img = Image.new("RGBA", (len(names), 1))
@@ -368,6 +432,7 @@ def main():
     save(outlined(from_map(DROP, {"h": "mist", "p": "paper", "s": "haze"}), "dusk"), "sweat.png")
     save(dust_sheet(), "dust.png")
     berries_sheet()
+    items_sheet()
     check_palette()
 
 

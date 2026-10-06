@@ -62,9 +62,10 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 - [x] Fase 4: modo pelea (`--scenario=battle`: encuentro, golpe, captura, nivel, evolución, jefe, debilitado; capturas p4_*).
 - [x] Fase 5: PC, guardado y offline (`--scenario=save_write` y luego `--scenario=save_load`; capturas p5_*).
 - [x] Fase 6: pulido y créditos (`--scenario=showcase`: vista de conjunto de día y de noche).
+- [x] Fase 7: progresión estilo Taskbar Hero: monedas, árbol del entrenador, vitaminas, movimientos con maestría, objetos fusionables (`--scenario=growth`; capturas p7_*).
 
 ## Ideas para después del MVP
 - Ruta 2 "Bosque Verde" (solo es un JSON de ruta y un bioma).
-- Movimientos de estado y objetos.
+- Movimientos de estado.
 - Sonidos suaves enganchados a `BattleController.event`.
 - Panel de pelea redimensionable desde la PC.

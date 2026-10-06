@@ -1,0 +1,29 @@
+{
+	"_nota": "Árbol del Entrenador: mejoras globales para todo el equipo, pagadas con monedas. 'effect' lo interpreta core/Progression.gd; 'per_level' es el valor por nivel (porcentaje salvo que se indique). Costo del siguiente nivel = cost_base * cost_growth ^ nivel_actual.",
+	"branches": [
+		{"id": "combate", "name_es": "Combate", "color": "ember"},
+		{"id": "captura", "name_es": "Captura", "color": "teal"},
+		{"id": "economia", "name_es": "Economía", "color": "amber"},
+		{"id": "cuidado", "name_es": "Cuidado", "color": "leaf"}
+	],
+	"nodes": [
+		{"id": "fuerza", "branch": "combate", "row": 0, "name_es": "Fuerza", "desc_es": "Más daño en todos los movimientos.", "effect": "dmg", "per_level": 4, "max": 10, "cost_base": 60, "cost_growth": 1.35, "requires": []},
+		{"id": "guardia", "branch": "combate", "row": 1, "name_es": "Guardia", "desc_es": "Más Defensa y Def. Esp. a todo el equipo.", "effect": "def", "per_level": 4, "max": 10, "cost_base": 70, "cost_growth": 1.35, "requires": [{"id": "fuerza", "level": 2}]},
+		{"id": "vigor", "branch": "combate", "row": 2, "name_es": "Vigor", "desc_es": "Más PS máximos.", "effect": "hp", "per_level": 4, "max": 10, "cost_base": 80, "cost_growth": 1.35, "requires": [{"id": "guardia", "level": 2}]},
+		{"id": "paso_ligero", "branch": "combate", "row": 3, "name_es": "Paso ligero", "desc_es": "Más Velocidad.", "effect": "spe", "per_level": 3, "max": 8, "cost_base": 90, "cost_growth": 1.4, "requires": [{"id": "fuerza", "level": 3}]},
+		{"id": "ojo_agil", "branch": "combate", "row": 4, "name_es": "Ojo ágil", "desc_es": "Más probabilidad de golpe crítico (puntos).", "effect": "crit", "per_level": 1.5, "max": 8, "cost_base": 120, "cost_growth": 1.45, "requires": [{"id": "paso_ligero", "level": 3}]},
+
+		{"id": "punteria", "branch": "captura", "row": 0, "name_es": "Puntería", "desc_es": "Las Poké Ball atrapan más fácil.", "effect": "ball", "per_level": 8, "max": 10, "cost_base": 70, "cost_growth": 1.4, "requires": []},
+		{"id": "ojo_clinico", "branch": "captura", "row": 1, "name_es": "Ojo clínico", "desc_es": "Lanzas la Poké Ball con el salvaje menos débil (puntos de PS).", "effect": "throw_hp", "per_level": 3, "max": 5, "cost_base": 90, "cost_growth": 1.45, "requires": [{"id": "punteria", "level": 2}]},
+		{"id": "red_segura", "branch": "captura", "row": 2, "name_es": "Red segura", "desc_es": "Más lanzamientos por turno.", "effect": "throw_chance", "per_level": 5, "max": 5, "cost_base": 110, "cost_growth": 1.45, "requires": [{"id": "ojo_clinico", "level": 2}]},
+		{"id": "bola_dorada", "branch": "captura", "row": 3, "name_es": "Bola dorada", "desc_es": "Un empujón extra al atrapar.", "effect": "ball", "per_level": 25, "max": 1, "cost_base": 600, "cost_growth": 1.0, "requires": [{"id": "punteria", "level": 5}]},
+
+		{"id": "botin", "branch": "economia", "row": 0, "name_es": "Botín", "desc_es": "Más monedas por combate.", "effect": "gold", "per_level": 6, "max": 10, "cost_base": 50, "cost_growth": 1.38, "requires": []},
+		{"id": "estudio", "branch": "economia", "row": 1, "name_es": "Estudio", "desc_es": "Más EXP al ganar.", "effect": "exp", "per_level": 5, "max": 10, "cost_base": 80, "cost_growth": 1.38, "requires": [{"id": "botin", "level": 1}]},
+		{"id": "rastreo", "branch": "economia", "row": 2, "name_es": "Rastreo", "desc_es": "Más probabilidad de hallar bayas y objetos.", "effect": "drops", "per_level": 6, "max": 8, "cost_base": 100, "cost_growth": 1.4, "requires": [{"id": "botin", "level": 3}]},
+
+		{"id": "siesta", "branch": "cuidado", "row": 0, "name_es": "Siesta", "desc_es": "Descansan más rápido en casa (PS y energía).", "effect": "regen", "per_level": 10, "max": 5, "cost_base": 60, "cost_growth": 1.45, "requires": []},
+		{"id": "merienda", "branch": "cuidado", "row": 1, "name_es": "Merienda", "desc_es": "Les da hambre más despacio.", "effect": "hunger", "per_level": 8, "max": 5, "cost_base": 70, "cost_growth": 1.45, "requires": [{"id": "siesta", "level": 1}]},
+		{"id": "vinculo", "branch": "cuidado", "row": 2, "name_es": "Vínculo", "desc_es": "Más caricias por hora que cuentan para la amistad (puntos).", "effect": "pets", "per_level": 2, "max": 5, "cost_base": 90, "cost_growth": 1.5, "requires": [{"id": "merienda", "level": 2}]}
+	]
+}

@@ -1,10 +1,11 @@
 class_name PCWindow
 extends Window
 ## La PC: ventana nativa pequeña (transitoria de la principal, así que no aparece en la
-## barra de tareas) con marco propio. Pestañas: Pokémon (equipo + cajas + detalle),
-## Bayas y Créditos.
+## barra de tareas) con marco propio. Pestañas: Pokémon (equipo + cajas + detalle), Entrenar
+## (vitaminas, movimientos, objetos), Mochila (fusionar y equipar), Árbol del entrenador,
+## Bayas y Créditos. Las monedas se ven siempre arriba.
 
-const LOGICAL := Vector2i(448, 214)
+const LOGICAL := Vector2i(504, 262)
 const FLAVORS: Array[String] = ["spicy", "dry", "sweet", "bitter", "sour"]
 const STAT_ES := {"atk": "Ata", "def": "Def", "spa": "AtEsp", "spd": "DefEsp", "spe": "Vel"}
 
@@ -17,6 +18,11 @@ var _team_cells: Array[MonCell] = []
 var _box_grid: GridContainer
 var _detail: VBoxContainer
 var _berry_list: VBoxContainer
+var _gold: Label
+var _train: TrainPage
+var _bag: BagPage
+var _tree: TreePage
+var _current := "pokemon"
 var _drag_from := Vector2i.ZERO
 var _drag_win := Vector2i.ZERO
 var _dragging := false
@@ -59,13 +65,20 @@ func _ready() -> void:
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
 	bar.add_child(icon)
 	var t := Label.new()
-	t.text = "PC Pokémon"
-	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	t.text = "PC"
 	bar.add_child(t)
+	var coin := TextureRect.new()
+	coin.texture = Progression.coin_icon()
+	coin.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+	bar.add_child(coin)
+	_gold = Label.new()
+	_gold.add_theme_color_override("font_color", Palette.BARK)
+	_gold.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bar.add_child(_gold)
 	var group := ButtonGroup.new()
-	for id in ["pokemon", "bayas", "creditos"]:
+	for id in ["pokemon", "entrenar", "mochila", "arbol", "bayas", "creditos"]:
 		var b := Button.new()
-		b.text = {"pokemon": "Pokémon", "bayas": "Bayas", "creditos": "Créditos"}[id]
+		b.text = {"pokemon": "Pokémon", "entrenar": "Entrenar", "mochila": "Mochila", "arbol": "Árbol", "bayas": "Bayas", "creditos": "Créditos"}[id]
 		b.toggle_mode = true
 		b.button_group = group
 		b.focus_mode = Control.FOCUS_NONE
@@ -82,6 +95,14 @@ func _ready() -> void:
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	v.add_child(body)
 	_pages["pokemon"] = _build_pokemon_page()
+	_train = TrainPage.new()
+	_train.pick.connect(_select)
+	_pages["entrenar"] = _train
+	_bag = BagPage.new()
+	_bag.pick.connect(_select)
+	_pages["mochila"] = _bag
+	_tree = TreePage.new()
+	_pages["arbol"] = _tree
 	_pages["bayas"] = _build_berries_page()
 	_pages["creditos"] = _build_credits_page()
 	for k in _pages:
@@ -91,6 +112,7 @@ func _ready() -> void:
 
 	Game.roster.changed.connect(refresh)
 	Game.roster.berries_changed.connect(_fill_berries)
+	Game.roster.wallet_changed.connect(_on_wallet)
 	close_requested.connect(close)
 	show_tab("pokemon")
 	refresh()
@@ -101,9 +123,32 @@ func close() -> void:
 
 
 func show_tab(id: String) -> void:
+	_current = id
 	for k in _pages:
 		_pages[k].visible = (k == id)
 	_tab_buttons[id].button_pressed = true
+	_refresh_current()
+
+
+func _on_wallet() -> void:
+	_gold.text = "%d" % Game.roster.gold
+	_refresh_current()
+
+
+## Solo se reconstruye la pestaña que se ve (las demás se arman al abrirlas).
+func _refresh_current() -> void:
+	if not is_inside_tree() or _gold == null:
+		return
+	_gold.text = "%d" % Game.roster.gold
+	_train.uid = selected_uid
+	_bag.uid = selected_uid
+	match _current:
+		"entrenar":
+			_train.refresh()
+		"mochila":
+			_bag.refresh()
+		"arbol":
+			_tree.refresh()
 
 
 # ------------------------------------------------------------------ Pokémon
@@ -176,6 +221,7 @@ func refresh() -> void:
 	if selected_uid == 0 or r.get_member(selected_uid) == null:
 		selected_uid = r.companion
 	_fill_detail()
+	_refresh_current()
 
 
 func _select(uid: int) -> void:

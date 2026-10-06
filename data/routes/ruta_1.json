@@ -118,5 +118,52 @@
 				"weight": 4
 			}
 		]
+	},
+	"rewards": {
+		"gold_per_exp_unit": 0.1,
+		"boss_gold_mult": 5
+	},
+	"item_drops": {
+		"chance": 0.12,
+		"boss_chance": 1.0,
+		"boss_min_tier": 2,
+		"table": [
+			{
+				"item": "muscle_band",
+				"weight": 10
+			},
+			{
+				"item": "wise_glasses",
+				"weight": 10
+			},
+			{
+				"item": "rocky_helmet",
+				"weight": 10
+			},
+			{
+				"item": "assault_vest",
+				"weight": 10
+			},
+			{
+				"item": "quick_claw",
+				"weight": 8
+			},
+			{
+				"item": "leftovers",
+				"weight": 8
+			},
+			{
+				"item": "scope_lens",
+				"weight": 6
+			},
+			{
+				"item": "lucky_egg",
+				"weight": 5
+			},
+			{
+				"item": "amulet_coin",
+				"weight": 5
+			}
+		]
 	}
 }

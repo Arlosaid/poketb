@@ -1,0 +1,31 @@
+{
+	"_nota": "Objetos equipables (cada Pokémon lleva 2) y vitaminas. Los objetos se fusionan: 3 iguales del mismo nivel dan 1 del siguiente. 'effect' lo interpreta core/Progression.gd; 'tiers' = valor por nivel del objeto.",
+	"tiers": [
+		{"name_es": "Común", "color": "tan"},
+		{"name_es": "Poco común", "color": "grass"},
+		{"name_es": "Raro", "color": "sky"},
+		{"name_es": "Épico", "color": "orchid"}
+	],
+	"merge_count": 3,
+	"items": {
+		"muscle_band": {"name_es": "Cinta Fuerte", "desc_es": "Ataque", "effect": "atk", "tiers": [3, 6, 10, 15], "icon": 0},
+		"wise_glasses": {"name_es": "Gafas Especiales", "desc_es": "Ataque Esp.", "effect": "spa", "tiers": [3, 6, 10, 15], "icon": 1},
+		"rocky_helmet": {"name_es": "Casco Dentado", "desc_es": "Defensa", "effect": "def", "tiers": [3, 6, 10, 15], "icon": 2},
+		"assault_vest": {"name_es": "Chaleco Asalto", "desc_es": "Def. Esp.", "effect": "spd", "tiers": [3, 6, 10, 15], "icon": 3},
+		"quick_claw": {"name_es": "Garra Rápida", "desc_es": "Velocidad", "effect": "spe", "tiers": [3, 6, 10, 15], "icon": 4},
+		"leftovers": {"name_es": "Restos", "desc_es": "PS máximos", "effect": "hp", "tiers": [4, 8, 13, 20], "icon": 5},
+		"scope_lens": {"name_es": "Periscopio", "desc_es": "Crítico", "effect": "crit", "tiers": [1.5, 3, 5, 8], "icon": 6},
+		"lucky_egg": {"name_es": "Huevo Suerte", "desc_es": "EXP", "effect": "exp", "tiers": [5, 10, 16, 25], "icon": 7},
+		"amulet_coin": {"name_es": "Moneda Amuleto", "desc_es": "Monedas", "effect": "gold", "tiers": [5, 10, 16, 25], "icon": 8}
+	},
+	"vitamins": {
+		"hp": {"name_es": "PS Plus", "stat_es": "PS", "color": "ember"},
+		"atk": {"name_es": "Proteína", "stat_es": "Ata", "color": "flame"},
+		"def": {"name_es": "Hierro", "stat_es": "Def", "color": "honey"},
+		"spa": {"name_es": "Calcio", "stat_es": "AtEsp", "color": "orchid"},
+		"spd": {"name_es": "Zinc", "stat_es": "DefEsp", "color": "mint"},
+		"spe": {"name_es": "Carburante", "stat_es": "Vel", "color": "sky"}
+	},
+	"vitamin": {"max": 10, "pct_per_dose": 4, "cost_base": 30, "cost_per_dose": 15, "cost_level_div": 10},
+	"mastery": {"max": 5, "pct_per_level": 10, "cost_base": 70, "power_div": 50}
+}

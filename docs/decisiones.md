@@ -123,3 +123,14 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **Capturas de la pelea:** `Game.shot()` guarda también `<nombre>_battle.png` con la ventana de pelea.
 
 - **Botón en la barra de tareas e ícono (revierte la decisión de ocultarlo):** la ventana principal ya no es topmost ni se oculta de la barra; así, al abrir otro programa el juego queda detrás y se recupera desde su botón. El panel de pelea sigue sin botón (`WS_EX_TOOLWINDOW`). `Taskbar Pokemon.lnk` (en el proyecto y el Escritorio) usa `assets/ui/icon.ico`. No hay `.exe` propio, así que el ícono del ejecutable no aplica hasta exportar.
+
+## 2026-10-06 — Fase 7 (progresión estilo Taskbar Hero)
+
+- **Vitaminas en vez de runas:** el equivalente Pokémon de "runas que cuestan oro" son las vitaminas (Proteína, Hierro...). En los juegos dan EV, pero con +10 EV el cambio es invisible en niveles bajos, así que aquí cada dosis suma +4% del stat (mínimo +1), hasta 10 dosis. **Es una capa de juego encima del canon, no canon.**
+- **Objetos fusionables:** Taskbar Hero fusiona equipo; aquí son objetos que los Pokémon llevan en los juegos (Cinta Fuerte, Restos, Huevo Suerte...). 3 iguales → 1 de nivel superior, 4 niveles. Cada Pokémon lleva 2.
+- **Maestría de movimientos** (0–5, +10% de potencia por nivel) en lugar de "subir de nivel" los ataques, para no tocar los niveles canon de aprendizaje. Los movimientos activos se eligen a mano entre los ya aprendidos; si el jugador no elige, se mantiene el automático (los 4 últimos).
+- **Árbol global** pagado con monedas (ahora existen: `base_experience × nivel × 0.1 / 5`). Los números del árbol, objetos y monedas son de juego, no canon; viven en `data/skill_tree.json`, `data/items.json` y `rewards` de la ruta, así que se pueden ajustar sin tocar código.
+- **Los salvajes no reciben bonos:** `stat()` solo suma bonos si `uid != 0`. Así el árbol hace más fácil el juego sin tocar los salvajes.
+- **Sin monedas de pago real ni castigos:** comprar nunca se puede perder ni se descuenta nada por perder combates.
+- **PC más grande:** 504x262 lógicos (antes 448x214) para caber las seis pestañas.
+- **Offline:** también da monedas y objetos (con la misma eficiencia del 35%). Con 3 h salieron ~545 monedas con el equipo inicial.

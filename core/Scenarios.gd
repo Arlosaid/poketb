@@ -26,6 +26,8 @@ func run(m: Node, scenario_name: String) -> void:
 			await _save_write()
 		"save_load":
 			await _save_load()
+		"growth":
+			await _growth()
 		_:
 			push_error("Escenario desconocido: " + scenario_name)
 	Game.quit()
@@ -302,6 +304,62 @@ func _save_load() -> void:
 	await _wait(0.3)
 	await Game.shot_window(main.pc, "p5_pc_creditos")
 	await _wait(8.0)  # margen para comprobar con tools/probe.ps1 que la PC no está en la barra
+
+
+## Progresión: monedas, árbol, vitaminas, movimientos y objetos (capturas p7_*).
+func _growth() -> void:
+	var r := Game.roster
+	var ch: PokemonInstance = r.get_member(r.companion)
+	ch.gain_exp(SpeciesDB.exp_for_level(ch.data()["growth_rate"], 14) - ch.xp)
+	r.add(PokemonInstance.create("pidgey", 6))
+	r.add_gold(2400)
+	var hp0 := ch.max_hp()
+	var atk0 := ch.stat("atk")
+	for id in ["fuerza", "fuerza", "fuerza", "guardia", "punteria", "punteria", "botin", "siesta"]:
+		print("[growth] compra ", id, ": ", r.buy_skill(id))
+	for st in ["atk", "atk", "spe"]:
+		r.buy_vitamin(ch, st)
+	r.buy_mastery(ch, ch.moves[-1])
+	r.buy_mastery(ch, ch.moves[-1])
+	for k in ["muscle_band:0", "muscle_band:0", "muscle_band:0", "muscle_band:1", "scope_lens:0", "lucky_egg:2", "amulet_coin:3", "leftovers:0"]:
+		r.add_item(k)
+	r.equip(ch, "scope_lens:0")
+	print("[growth] merge: ", r.merge("muscle_band:0"))
+	print("[growth] PS %d → %d, Ata %d → %d, oro %d" % [hp0, ch.max_hp(), atk0, ch.stat("atk"), r.gold])
+	# daño: el mismo ataque contra un salvaje, sin y con bonos
+	var foe := PokemonInstance.create("rattata", 12)
+	foe.wild = true
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 7
+	var with_bonus := 0
+	var without := 0
+	var saved_uid := ch.uid
+	for i in 200:
+		with_bonus += BattleMath.attack(ch, foe, ch.moves[-1], rng)["damage"]
+	ch.uid = 0
+	rng.seed = 7
+	for i in 200:
+		without += BattleMath.attack(ch, foe, ch.moves[-1], rng)["damage"]
+	ch.uid = saved_uid
+	print("[growth] daño medio %.1f (con bonos) vs %.1f (sin)" % [with_bonus / 200.0, without / 200.0])
+	# ida y vuelta del guardado con los datos nuevos
+	var copy := Roster.new()
+	copy.from_dict(JSON.parse_string(JSON.stringify(r.to_dict())))
+	var c2: PokemonInstance = copy.get_member(ch.uid)
+	var same := copy.gold == r.gold and copy.skills == r.skills and copy.bag == r.bag \
+		and c2.held == ch.held and c2.doses == ch.doses and c2.move_mastery == ch.move_mastery \
+		and c2.max_hp() == ch.max_hp() and c2.stat("atk") == ch.stat("atk")
+	print("[growth] guardado ida y vuelta: ", "OK" if same else "FALLA")
+	main._open_pc("pokemon")
+	await _wait(0.6)
+	for tab in ["entrenar", "mochila", "arbol"]:
+		main.pc.show_tab(tab)
+		await _wait(0.4)
+		await Game.shot_window(main.pc, "p7_pc_" + tab)
+	main.pc.show_tab("pokemon")
+	await _wait(0.4)
+	await Game.shot_window(main.pc, "p7_pc_pokemon")
+	await _wait(0.5)
 
 
 ## Vista de conjunto: casa con mascotas + pelea, de día y de noche.

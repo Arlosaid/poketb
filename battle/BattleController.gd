@@ -501,7 +501,7 @@ func _victory(e: int, captured: bool) -> void:
 	for p in fighters:
 		if p.is_fainted():
 			continue
-		var gain := BattleMath.exp_gain(p.level, wild, is_boss)
+		var gain := int(round(BattleMath.exp_gain(p.level, wild, is_boss) * Progression.exp_mult(p)))
 		var ups := p.gain_exp(gain)
 		var a: PokemonActor = actors.get(p.uid)
 		if a and p == _lead():
@@ -524,12 +524,26 @@ func _victory(e: int, captured: bool) -> void:
 			return
 		await evolve(e, p)
 
-	# Botín: a veces una baya.
+	# Monedas
+	var coins := Progression.gold_for_win(wild, is_boss, route, fighters)
+	Game.roster.add_gold(coins)
+	var lead_a: PokemonActor = actors.get(_lead().uid) if _lead() else null
+	if lead_a:
+		Fx.float_text(strip.stage, lead_a.position + lead_a.head_point() + Vector2(0, -8), "+%d" % coins, Palette.HONEY, Palette.INK)
+
+	# Botín: a veces una baya y, más raro, un objeto (el jefe siempre suelta uno).
 	var drops: Dictionary = route["drops"]
-	if not captured and rng.randf() < float(drops["chance"]):
+	var luck := 1.0 + Game.roster.fx("drops") / 100.0
+	if not captured and rng.randf() < float(drops["chance"]) * luck:
 		var b := BattleMath.pick_weighted(drops["table"], "berry", rng)
 		Game.roster.add_berry(b)
 		log_box.say("¡Encontraste una %s!" % SpeciesDB.berry(b)["name_es"], 1.4)
+	var idrops: Dictionary = route.get("item_drops", {})
+	if not idrops.is_empty() and (is_boss or (not captured and rng.randf() < float(idrops["chance"]) * luck)):
+		var key := Progression.roll_item(idrops, rng, is_boss)
+		Game.roster.add_item(key)
+		log_box.say("¡Encontraste %s (%s)!" % [Progression.item_name(key), Progression.tier_name(Progression.key_tier(key))], 1.6)
+		event.emit("item")
 
 	progress += 1
 	if is_boss:
@@ -574,7 +588,8 @@ func _should_throw() -> bool:
 	if is_boss or wild == null:
 		return false
 	var c: Dictionary = route["capture"]
-	return wild.hp_frac() < float(c["hp_below"]) and rng.randf() < float(c["chance_per_turn"])
+	var r := Game.roster
+	return wild.hp_frac() < float(c["hp_below"]) + r.fx("throw_hp") / 100.0 		and rng.randf() < float(c["chance_per_turn"]) + r.fx("throw_chance") / 100.0
 
 
 ## Lanza una Poké Ball con arco, la absorbe, sacude (1–3) y decide. Devuelve si atrapó.
@@ -606,7 +621,7 @@ func _throw_ball(e: int, thrower: PokemonInstance) -> bool:
 	var t3 := ball.create_tween()
 	t3.tween_property(ball, "position", ground, 0.25).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	await t3.finished
-	var checks := BattleMath.capture_checks(wild, rng)
+	var checks := BattleMath.capture_checks(wild, rng, 1.0 + Game.roster.fx("ball") / 100.0)
 	for i in mini(checks, 3):
 		await _wait(0.45)
 		if not _alive(e):
@@ -635,7 +650,7 @@ func _throw_ball(e: int, thrower: PokemonInstance) -> bool:
 		# EXP también al capturar (Gen 6+), y luego al equipo o a la PC
 		for p in fighters:
 			if not p.is_fainted():
-				p.gain_exp(BattleMath.exp_gain(p.level, mon, false))
+				p.gain_exp(int(round(BattleMath.exp_gain(p.level, mon, false) * Progression.exp_mult(p))))
 		Game.roster.add(mon)
 		if Game.roster.team.has(mon.uid):
 			log_box.say("%s se une a tu equipo." % mon.display_name(), 1.4)

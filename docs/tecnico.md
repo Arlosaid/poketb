@@ -71,3 +71,14 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 - `core/SaveManager.gd` maneja `save(age)` y `load_game()`, que devuelve los segundos que pasaron. `Main._notification(WM_CLOSE_REQUEST)` guarda al salir.
 - `battle/OfflineSim.gd` (simulación) y `ui/OfflineSummary.gd` (resumen).
 - `ui/PCWindow.gd` (Window nativa con la misma escala entera) y `ui/MonCell.gd` (casilla con drag & drop). `Game.shot_window()` captura ventanas secundarias.
+
+## Progresión (Fase 7)
+- `core/Progression.gd`: datos y fórmulas puras (árbol, objetos, costos, monedas, EXP, sorteo de objetos). Lee `data/skill_tree.json` y `data/items.json`.
+- Estado: `Roster` guarda `gold`, `skills` (nodo → nivel) y `bag` (`"objeto:nivel"` → cantidad); cada `PokemonInstance` guarda `doses`, `move_mastery`, `held` y `custom_moves`. Las compras son métodos de `Roster` (`buy_skill`, `buy_vitamin`, `buy_mastery`, `equip`, `merge`...). `Roster.fx(efecto)` es la suma cacheada de un efecto del árbol. La señal `wallet_changed` avisa de monedas y mochila sin reconstruir al equipo en ruta.
+- `PokemonInstance.stat()` suma árbol, objetos y vitaminas **solo si `uid != 0`** (los salvajes usan las stats canon puras). Por eso `OfflineSim` y `BattleController` crean los salvajes con `uid = 0`, y solo reciben uid al capturarse.
+- `BattleMath.attack` aplica maestría, daño y crítico del árbol y de objetos. La captura usa el parámetro `ball` que ya existía.
+- Interfaz: `ui/TrainPage.gd`, `ui/BagPage.gd`, `ui/TreePage.gd` (solo reconstruyen la pestaña visible), `ui/ItemCell.gd`, `ui/MonPicker.gd`, `ui/Pips.gd`, `ui/Widgets.gd`.
+- El guardado sigue en `version` 1: los campos nuevos tienen valor por defecto, así que las partidas anteriores cargan sin cambios.
+- Íconos de objetos, vitaminas y moneda: `tools/gen_ui.py` → `assets/ui/items.png`, `vitamins.png`, `coin.png`.
+- Tras agregar `class_name` nuevos hay que correr `godot --headless --path . --import` una vez para actualizar el caché de clases.
+- `--scenario=growth` compra mejoras, comprueba el daño con y sin bonos y el guardado ida y vuelta, y saca las capturas `p7_pc_*`.

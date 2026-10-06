@@ -19,7 +19,7 @@ static func run(seconds: float, battle_mode: bool, combat: BattleController) -> 
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
 	var route := combat.route
-	var summary := {"seconds": secs, "capped": seconds > MAX_SECONDS, "wins": 0, "berries": {}, "mons": []}
+	var summary := {"seconds": secs, "capped": seconds > MAX_SECONDS, "wins": 0, "gold": 0, "items": {}, "berries": {}, "mons": []}
 	var before := {}
 	for p in roster.team_members():
 		before[p.uid] = {"name": p.display_name(), "level": p.level, "xp": p.xp, "species": p.species}
@@ -47,18 +47,29 @@ static func run(seconds: float, battle_mode: bool, combat: BattleController) -> 
 			var lvl := clampi(int(round(lerpf(lr[0], lr[1], f))) + rng.randi_range(-1, 1), 2, 100)
 			var table: Array = route["day"]
 			var foe := PokemonInstance.create(BattleMath.pick_weighted(table, "species", rng), lvl, rng)
+			foe.wild = true
+			var team_fighters: Array = fighting.map(func(u): return roster.get_member(u))
+			var coins := Progression.gold_for_win(foe, false, route, team_fighters)
+			roster.add_gold(coins)
+			summary["gold"] = int(summary["gold"]) + coins
 			summary["wins"] += 1
 			combat.progress = mini(combat.progress + 1, int(route["encounters_to_boss"]))
 			for u in fighting:
 				var p: PokemonInstance = roster.get_member(u)
-				p.gain_exp(BattleMath.exp_gain(p.level, foe, false))
+				p.gain_exp(int(round(BattleMath.exp_gain(p.level, foe, false) * Progression.exp_mult(p))))
 				p.wins += 1
 				if p.wins % 5 == 0:
 					p.add_friendship(1)
 				var to := p.evolution_ready()
 				if to != "":
 					p.evolve(to)
-			if rng.randf() < float(route["drops"]["chance"]):
+			var luck := 1.0 + roster.fx("drops") / 100.0
+			var idrops: Dictionary = route.get("item_drops", {})
+			if not idrops.is_empty() and rng.randf() < float(idrops["chance"]) * luck:
+				var key := Progression.roll_item(idrops, rng, false)
+				roster.add_item(key)
+				summary["items"][key] = int(summary["items"].get(key, 0)) + 1
+			if rng.randf() < float(route["drops"]["chance"]) * luck:
 				var b := BattleMath.pick_weighted(route["drops"]["table"], "berry", rng)
 				roster.add_berry(b)
 				summary["berries"][b] = int(summary["berries"].get(b, 0)) + 1

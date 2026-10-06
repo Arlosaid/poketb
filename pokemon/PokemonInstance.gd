@@ -3,6 +3,7 @@ extends RefCounted
 ## Un Pokémon concreto del jugador (o un salvaje): datos canon + estado de mascota.
 
 const MAX_MOVES := 4
+const HELD_MAX := 2
 const STATS: Array[String] = ["hp", "atk", "def", "spa", "spd", "spe"]
 
 var uid := 0
@@ -31,6 +32,14 @@ var wild := false
 var wins := 0
 ## PS fraccionarios acumulados al descansar (no se guardan).
 var hp_regen_acc := 0.0
+## Vitaminas tomadas por stat: {"atk": 3} (cada dosis cuesta monedas, ver Progression).
+var doses := {}
+## Maestría de movimientos: {"ember": 2}.
+var move_mastery := {}
+## Objetos equipados (llaves "id:nivel"), máximo HELD_MAX.
+var held: Array[String] = []
+## Si el jugador eligió los movimientos a mano, subir de nivel no los cambia.
+var custom_moves := false
 
 
 static func create(sp: String, lvl: int, rng: RandomNumberGenerator = null) -> PokemonInstance:
@@ -64,7 +73,19 @@ func types() -> Array:
 
 
 ## Stat canon (EV = 0). HP: ((2B+IV)·L/100)+L+10; resto: (((2B+IV)·L/100)+5)·naturaleza.
+## Los Pokémon del jugador (uid != 0) suman encima el árbol, los objetos y las vitaminas.
 func stat(s: String) -> int:
+	var v := canon_stat(s)
+	if uid == 0:
+		return v
+	var out := int(round(v * (1.0 + bonus_pct(s) / 100.0)))
+	var d := vitamin_doses(s)
+	if d > 0:
+		out += maxi(d, int(round(v * d * float(Progression.vitamin_cfg()["pct_per_dose"]) / 100.0)))
+	return out
+
+
+func canon_stat(s: String) -> int:
 	var base := int(data()["base_stats"][s])
 	var iv := int(ivs.get(s, 15))
 	if s == "hp":
@@ -76,6 +97,27 @@ func stat(s: String) -> int:
 	elif n["decreased"] == s:
 		v = int(floor(v * 0.9))
 	return v
+
+
+## Porcentaje extra de un stat por el árbol y los objetos.
+func bonus_pct(s: String) -> float:
+	var pct := Progression.held_effect(held, s)
+	match s:
+		"hp":
+			pct += Game.roster.fx("hp")
+		"def", "spd":
+			pct += Game.roster.fx("def")
+		"spe":
+			pct += Game.roster.fx("spe")
+	return pct
+
+
+func vitamin_doses(s: String) -> int:
+	return int(doses.get(s, 0))
+
+
+func mastery(move_name: String) -> int:
+	return int(move_mastery.get(move_name, 0))
 
 
 func max_hp() -> int:
@@ -90,19 +132,57 @@ func is_fainted() -> bool:
 	return hp <= 0
 
 
-## Últimos 4 movimientos de daño aprendidos hasta `lvl` (en el MVP no hay movimientos de estado).
-func moves_at_level(lvl: int) -> Array[String]:
+## Movimientos de daño aprendidos hasta `lvl` (en el MVP no hay movimientos de estado).
+func moves_known_at(lvl: int) -> Array[String]:
 	var out: Array[String] = []
 	for m in data()["learnset"]:
-		if int(m["level"]) <= lvl:
+		if int(m["level"]) <= lvl and m["move"] not in out:
 			var md := SpeciesDB.move(m["move"])
-			if md["damage_class"] != "status" and md["power"] != null and m["move"] not in out:
+			if md["damage_class"] != "status" and md["power"] != null:
 				out.append(m["move"])
 	if out.is_empty():
 		out.append("tackle")
+	return out
+
+
+func available_moves() -> Array[String]:
+	return moves_known_at(level)
+
+
+## Últimos 4 movimientos de daño aprendidos hasta `lvl`.
+func moves_at_level(lvl: int) -> Array[String]:
+	var out := moves_known_at(lvl)
 	while out.size() > MAX_MOVES:
 		out.pop_front()
 	return out
+
+
+## Cambia los movimientos elegidos a mano (1–4, todos disponibles).
+func set_moves(chosen: Array) -> void:
+	var ok: Array[String] = []
+	var avail := available_moves()
+	for m in chosen:
+		if m in avail and m not in ok and ok.size() < MAX_MOVES:
+			ok.append(m)
+	if ok.is_empty():
+		return
+	moves = ok
+	custom_moves = true
+
+
+## Tras subir de nivel o evolucionar: automático, o los elegidos que sigan siendo válidos.
+func refresh_moves() -> void:
+	if custom_moves:
+		var keep: Array[String] = []
+		var avail := available_moves()
+		for m in moves:
+			if m in avail:
+				keep.append(m)
+		if not keep.is_empty():
+			moves = keep
+			return
+		custom_moves = false
+	moves = moves_at_level(level)
 
 
 func exp_to_next() -> int:
@@ -130,7 +210,7 @@ func gain_exp(amount: int) -> Array[int]:
 		hp += max_hp() - old_max  # como en los juegos: sube lo que subió el máximo
 		ups.append(level)
 	if not ups.is_empty():
-		moves = moves_at_level(level)
+		refresh_moves()
 	return ups
 
 
@@ -148,7 +228,7 @@ func evolve(to: String) -> void:
 	var frac := hp_frac()
 	species = to
 	hp = maxi(1, int(round(max_hp() * frac)))
-	moves = moves_at_level(level)
+	refresh_moves()
 
 
 ## Ánimo: bien atendido o de mal humor (gana menos amistad, nunca castigos crueles).
@@ -180,6 +260,7 @@ func to_dict() -> Dictionary:
 		"nature": nature, "ivs": ivs, "hp": hp, "moves": moves, "friendship": friendship,
 		"fullness": fullness, "energy": energy, "known_flavors": known_flavors,
 		"pets_this_hour": pets_this_hour, "pets_hour_start": pets_hour_start, "caught_at": caught_at, "wins": wins,
+		"doses": doses, "move_mastery": move_mastery, "held": held, "custom_moves": custom_moves,
 	}
 
 
@@ -202,4 +283,8 @@ static func from_dict(d: Dictionary) -> PokemonInstance:
 	p.pets_hour_start = float(d.get("pets_hour_start", 0.0))
 	p.caught_at = float(d.get("caught_at", 0.0))
 	p.wins = int(d.get("wins", 0))
+	p.doses = Roster._ints(d.get("doses", {}))
+	p.move_mastery = Roster._ints(d.get("move_mastery", {}))
+	p.held.assign(d.get("held", []))
+	p.custom_moves = bool(d.get("custom_moves", false))
 	return p

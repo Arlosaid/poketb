@@ -55,14 +55,25 @@ func _build(s: Dictionary, companion: String) -> void:
 	var bt := 0
 	for b in s["berries"]:
 		bt += int(s["berries"][b])
+	var it := 0
+	for k in s.get("items", {}):
+		it += int(s["items"][k])
 	var first := "Ganaron %d combates" % int(s["wins"]) if int(s["wins"]) > 0 else "Descansaron tranquilos en casa"
-	lines.append(first + (" y encontraron %d baya%s." % [bt, "" if bt == 1 else "s"] if bt > 0 else "."))
+	var gold := int(s.get("gold", 0))
+	lines.append(first + (" y juntaron %d monedas." % gold if gold > 0 else "."))
+	var found: PackedStringArray = []
+	if bt > 0:
+		found.append("%d baya%s" % [bt, "" if bt == 1 else "s"])
+	if it > 0:
+		found.append("%d objeto%s" % [it, "" if it == 1 else "s"])
+	if not found.is_empty():
+		lines.append("Encontraron " + " y ".join(found) + ".")
 	if not evos.is_empty():
 		var shown := evos.slice(0, 2)
 		lines.append(("¡Nueva evolución: %s!" if evos.size() == 1 else "¡Nuevas evoluciones: %s!") % (" y ".join(shown) + (" (+%d)" % (evos.size() - 2) if evos.size() > 2 else "")))
 	elif not best.is_empty():
 		lines.append("%s: Nv. %d → %d%s" % [best["name"], best["from_level"], best["to_level"], (" (y %d más subieron)" % (ups - 1)) if ups > 1 else ""])
-	if s["mons"].any(func(m): return m["hungry"]):
+	if lines.size() < 4 and s["mons"].any(func(m): return m["hungry"]):
 		lines.append("Alguien tiene hambre… ¡dale una baya!")
 	for t in lines:
 		var l := Label.new()
