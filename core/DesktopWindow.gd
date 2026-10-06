@@ -10,6 +10,8 @@ signal fullscreen_app_changed(active: bool)
 ## Alto lógico de la franja (px antes de escalar). Deja aire para burbujas y saltos.
 const LOGICAL_HEIGHT := 96
 const FPS_ACTIVE := 30
+## Movimiento tranquilo (paseos, caminata de la ruta): suficiente para 1 px por cuadro.
+const FPS_AMBIENT := 20
 const FPS_IDLE := 10
 const FPS_HIDDEN := 5
 ## Segundos que se mantienen los FPS altos tras la última petición de actividad.
@@ -21,6 +23,7 @@ var fullscreen_app := false
 
 var _last_geom := Rect2i()
 var _active_until := 0.0
+var _ambient_until := 0.0
 var _maint_timer := 0.0
 
 
@@ -34,9 +37,14 @@ func _ready() -> void:
 	_maintain()
 
 
-## Pide FPS altos durante un momento (llamarlo mientras algo se mueve).
+## Pide FPS altos durante un momento (combates, interacción, arrastrar).
 func keep_awake() -> void:
 	_active_until = Time.get_ticks_msec() / 1000.0 + ACTIVE_HOLD
+
+
+## Pide FPS intermedios (paseos y caminata por la ruta).
+func keep_ambient() -> void:
+	_ambient_until = Time.get_ticks_msec() / 1000.0 + ACTIVE_HOLD
 
 
 ## Y lógica del suelo: justo encima del borde de la barra de tareas, con 2 px
@@ -47,7 +55,13 @@ func ground_y() -> float:
 
 func _process(delta: float) -> void:
 	var now := Time.get_ticks_msec() / 1000.0
-	var target := FPS_HIDDEN if fullscreen_app else (FPS_ACTIVE if now < _active_until else FPS_IDLE)
+	var target := FPS_IDLE
+	if fullscreen_app:
+		target = FPS_HIDDEN
+	elif now < _active_until:
+		target = FPS_ACTIVE
+	elif now < _ambient_until:
+		target = FPS_AMBIENT
 	if Engine.max_fps != target:
 		Engine.max_fps = target
 	_maint_timer -= delta

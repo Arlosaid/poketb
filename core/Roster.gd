@@ -80,8 +80,8 @@ func set_companion(uid: int) -> void:
 		changed.emit()
 
 
-func set_team(uids: Array[int]) -> void:
-	team = uids.slice(0, TEAM_MAX)
+func set_team(uids: Array) -> void:
+	team.assign(uids.slice(0, TEAM_MAX).map(func(x): return int(x)))
 	changed.emit()
 
 

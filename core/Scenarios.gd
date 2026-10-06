@@ -9,6 +9,7 @@ var main: Node
 
 func run(m: Node, scenario_name: String) -> void:
 	main = m
+	Game.forced_idle = 0.0  # resultados deterministas: el usuario "está activo"
 	await get_tree().process_frame
 	match scenario_name:
 		"still":
@@ -19,6 +20,8 @@ func run(m: Node, scenario_name: String) -> void:
 			await _pet()
 		"battle":
 			await _battle()
+		"showcase":
+			await _showcase()
 		"save_write":
 			await _save_write()
 		"save_load":
@@ -299,3 +302,44 @@ func _save_load() -> void:
 	await _wait(0.3)
 	await Game.shot_window(main.pc, "p5_pc_creditos")
 	await _wait(8.0)  # margen para comprobar con tools/probe.ps1 que la PC no está en la barra
+
+
+## Vista de conjunto: casa con mascotas + pelea, de día y de noche.
+func _showcase() -> void:
+	var r := Game.roster
+	var ch: PokemonInstance = r.get_member(r.companion)
+	ch.level = 9
+	ch.hp = ch.max_hp()
+	for sp in ["pidgey", "oddish", "caterpie", "rattata"]:
+		var p := PokemonInstance.create(sp, 4)
+		r.add(p)
+	# Charmander pelea solo; los demás descansan en casa.
+	var others: Array[int] = [ch.uid]
+	for p in r.members.values():
+		if p.uid != ch.uid:
+			others.append(p.uid)
+	r.set_team(others)
+	for p in r.team_members():
+		if p.uid != ch.uid:
+			p.energy = 5.0  # cansados: se quedan en casa
+	main.combat.route["walk_seconds"] = [2.0, 3.0]
+	Game.set_mode(Game.MODE_BATTLE)
+	for hour in [12.0, 21.5]:
+		Game.clock.forced_hour = hour
+		main.battle.backdrop.refresh()
+		main.combat._apply_tint()
+		var bc: BattleController = main.combat
+		var got := [false]
+		var cb := func(kind: String) -> void:
+			if kind == "hit":
+				got[0] = true
+		bc.event.connect(cb)
+		var t := 0.0
+		while not got[0] and t < 30.0:
+			await _wait(0.25)
+			t += 0.25
+		bc.event.disconnect(cb)
+		await _wait(0.1)
+		await Game.shot("p6_showcase_%02d" % int(hour))
+		await _wait(4.0)
+	Game.clock.forced_hour = -1.0

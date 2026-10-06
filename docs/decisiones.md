@@ -101,7 +101,7 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 
 ## 2026-10-06 — Fase 5 (PC, guardado y offline)
 
-- **Guardado** en `user://save.json` (en Windows: `%APPDATA%\Godotpp_userdata\Taskbar Pokémon\`). Se guarda cada 60 s reales y al salir. La escritura es atómica (`.tmp` + renombrar) y el archivo lleva `version` del esquema. Los escenarios usan `scenario_save.json` y nunca tocan la partida real.
+- **Guardado** en `user://save.json` (en Windows: `%APPDATA%/Godot/app_userdata/Taskbar Pokémon/`). Se guarda cada 60 s reales y al salir. La escritura es atómica (`.tmp` + renombrar) y el archivo lleva `version` del esquema. Los escenarios usan `scenario_save.json` y nunca tocan la partida real.
 - **Ritmo:** la caminata entre encuentros pasó de 6–12 s a 18–35 s. Con el ritmo anterior, 3 h offline llevaban al equipo del Nv. 5 al 22, demasiado rápido para algo que corre todo el día.
 - **Offline:** simulación por minutos, con tope de 8 h y eficiencia del 35% ("pelean con más calma sin ti"). Respeta energía, descansos y hambre. Da EXP, evoluciones, bayas y amistad. No captura y nunca enfrenta al jefe, que siempre se pelea en vivo. El resumen es compacto (título + 3 renglones) para caber en la franja.
 - **La PC** es una `Window` nativa transitoria de la principal: no aparece en la barra de tareas (verificado). No usa `always_on_top`, porque Godot no lo permite en transitorias; igual queda encima por ser propiedad de una ventana topmost. Se mueve arrastrando la barra de título.
@@ -110,3 +110,11 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
   - Bayas.
   - Créditos: también se abre desde la bandeja. Los IDs de Discord sin nombre público se muestran como "usuario anónimo de Discord".
 - **La estrella** de la casilla marca al compañero. Los debilitados aparecen semitransparentes.
+
+## 2026-10-06 — Fase 6 (pulido)
+
+- **FPS en tres niveles:** 30 (combates, interacción, arrastrar), 20 (paseos y caminata de la ruta, suficiente para 1 px por cuadro), 10 (todo quieto) y 5 con una app a pantalla completa. Consumo medido con el juego normal: ~5% de un núcleo (~0.4% del CPU total de 12 hilos) y ~180 MB.
+- **Inactividad:** si un Pokémon vuelve a casa mientras estás inactivo, primero camina a su lugar y luego se duerme (antes se dormían todos amontonados junto al panel).
+- **Los escenarios fijan `Game.forced_idle = 0`** para que los resultados no dependan de si el usuario tocó el mouse.
+- **Créditos dentro del juego:** pestaña "Créditos" de la PC, también desde la bandeja. `CREDITS.md` se genera con `tools/gen_credits.py`.
+- **Las partidas creadas durante las pruebas se borraron:** el primer arranque real empieza de cero, con Charmander Nv. 5.

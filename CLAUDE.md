@@ -33,7 +33,7 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 
 ## Reglas no negociables
 1. **No estorbar el trabajo.** Las zonas vacías siempre dejan pasar el mouse: solo los sprites y la UI registrados en `Passthrough` son clicables. La ventana usa `no_focus`, así que nunca roba el foco.
-2. **Consumo bajo.** 30 FPS con animación, 10 FPS en reposo y 5 FPS con una app en pantalla completa. No hacer trabajo por frame que pueda ir en un timer.
+2. **Consumo bajo.** 30 FPS en combate o interacción (`keep_awake`), 20 en paseos (`keep_ambient`), 10 en reposo y 5 con una app a pantalla completa. No hacer trabajo por frame que pueda ir en un timer.
 3. **Pixel-perfect.** Escala entera, filtro Nearest, sin escalas ni rotaciones fraccionarias del pixel art.
 4. **Paleta cerrada.** Usar los colores de `core/Palette.gd`. Nunca hex sueltos en el código ni en las escenas.
 5. **Datos separados de la lógica.** Especies, movimientos, rutas, biomas y bayas viven en `data/*.json`. Agregar contenido no debe requerir tocar código.
@@ -60,4 +60,10 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 - [x] Fase 3: modo mascota (`--scenario=pet` genera las capturas p3_*).
 - [x] Fase 4: modo pelea (`--scenario=battle`: encuentro, golpe, captura, nivel, evolución, jefe, debilitado; capturas p4_*).
 - [x] Fase 5: PC, guardado y offline (`--scenario=save_write` y luego `--scenario=save_load`; capturas p5_*).
-- [ ] Fase 6: pulido y créditos.
+- [x] Fase 6: pulido y créditos (`--scenario=showcase`: vista de conjunto de día y de noche).
+
+## Ideas para después del MVP
+- Ruta 2 "Bosque Verde" (solo es un JSON de ruta y un bioma).
+- Movimientos de estado y objetos.
+- Sonidos suaves enganchados a `BattleController.event`.
+- Panel de pelea redimensionable desde la PC.

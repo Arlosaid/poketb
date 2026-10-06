@@ -112,7 +112,7 @@ func _process(delta: float) -> void:
 	match state:
 		State.WALK:
 			strip.backdrop.scroll(SCROLL_SPEED * delta)
-			desk.keep_awake()
+			desk.keep_ambient()
 			_walk_timer -= Game.dt
 			if _walk_timer <= 0.0:
 				_encounter(_epoch)

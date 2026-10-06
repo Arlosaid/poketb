@@ -106,7 +106,8 @@ func _process(delta: float) -> void:
 
 	# PC inactiva: los de casa se acurrucan; al volver, se despiertan de a poco.
 	var user_idle := Game.user_idle_seconds() >= USER_IDLE_SLEEP
-	if user_idle and state in [State.IDLE, State.WANDER, State.SIT, State.LOOK]:
+	# (si va caminando, primero llega a su lugar y luego se duerme)
+	if user_idle and state in [State.IDLE, State.SIT, State.LOOK]:
 		_forced_sleep = true
 		_enter(State.SLEEP, 1e9)
 	elif not user_idle and _forced_sleep and state == State.SLEEP:
@@ -171,7 +172,7 @@ func _walk(delta: float) -> void:
 		return
 	actor.play_anim("Walk", "E" if dx > 0.0 else "W")
 	actor.position.x += signf(dx) * minf(absf(dx), WALK_SPEED * delta)
-	home.desk.keep_awake()
+	home.desk.keep_ambient()
 
 
 func _fall(delta: float) -> void:
