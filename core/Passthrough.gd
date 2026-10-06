@@ -20,6 +20,8 @@ var _hover: Node = null
 var capture_count := 0
 ## Si es true, nunca se activa el clic a través (por ejemplo, sin la extensión).
 var disabled := false
+## Si es finito, sustituye a la posición real del cursor (escenarios automatizados).
+var fake_mouse := Vector2.INF
 
 
 func register(n: Node) -> void:
@@ -41,6 +43,8 @@ func hovered() -> Node:
 
 ## Posición del cursor en coordenadas del viewport principal, aunque la ventana no reciba eventos.
 func mouse_in_viewport() -> Vector2:
+	if fake_mouse.is_finite():
+		return fake_mouse
 	var win := get_tree().root
 	var local := Vector2(DisplayServer.mouse_get_position() - win.position)
 	return win.get_final_transform().affine_inverse() * local

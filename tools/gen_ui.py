@@ -245,6 +245,64 @@ BERRIES = [
 ]
 
 
+Z_SMALL = [
+    "pppp",
+    "..p.",
+    ".p..",
+    "pppp",
+]
+Z_BIG = [
+    "ppppp",
+    "...p.",
+    "..p..",
+    ".p...",
+    "ppppp",
+]
+ANGER = [
+    ".e.e.",
+    "ee.ee",
+    ".....",
+    "ee.ee",
+    ".e.e.",
+]
+DROP = [
+    "..h..",
+    ".hhs.",
+    "hhpss",
+    "hpsss",
+    ".sss.",
+]
+
+
+def outlined(img, color="ink"):
+    """Contorno de 1 px (4 vecinos) alrededor de los píxeles opacos."""
+    w, h = img.size
+    out = Image.new("RGBA", (w + 2, h + 2), (0, 0, 0, 0))
+    src = img.load()
+    o = out.load()
+    for y in range(h):
+        for x in range(w):
+            if src[x, y][3] > 0:
+                for dx, dy in ((0, 1), (2, 1), (1, 0), (1, 2), (1, 1)):
+                    if o[x + dx, y + dy][3] == 0:
+                        o[x + dx, y + dy] = rgba(color)
+    out.alpha_composite(img, (1, 1))
+    return out
+
+
+def dust_sheet():
+    """Nubecita de polvo al aterrizar: 3 cuadros de 9x5 que se expanden y se deshacen."""
+    sheet = Image.new("RGBA", (27, 5), (0, 0, 0, 0))
+    frames = [
+        ["..m...m..", ".mpm.mpm.", "..m...m..", ".........", "........."],
+        [".m.....m.", "mpm...mpm", ".mm...mm.", "........."[0:9], "........."],
+        ["m.......m", ".m.....m.", ".........", ".........", "........."],
+    ]
+    for i, fr in enumerate(frames):
+        sheet.alpha_composite(from_map(fr, {"m": "mist", "p": "paper"}), (i * 9, 0))
+    return sheet
+
+
 def berries_sheet():
     sheet = Image.new("RGBA", (12 * len(BERRIES), 12), (0, 0, 0, 0))
     index = {}
@@ -304,6 +362,11 @@ def main():
     save(from_map(HEART, HEART_KEY), "heart.png")
     save(from_map(HEART, HEART_EMPTY_KEY), "heart_empty.png")
     save(from_map(SPARKLE, SPARKLE_KEY), "sparkle.png")
+    save(outlined(from_map(Z_SMALL, {"p": "paper"}), "dusk"), "z_small.png")
+    save(outlined(from_map(Z_BIG, {"p": "paper"}), "dusk"), "z_big.png")
+    save(from_map(ANGER, {"e": "ember"}), "anger.png")
+    save(outlined(from_map(DROP, {"h": "mist", "p": "paper", "s": "haze"}), "dusk"), "sweat.png")
+    save(dust_sheet(), "dust.png")
     berries_sheet()
     check_palette()
 

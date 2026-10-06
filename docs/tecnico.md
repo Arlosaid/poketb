@@ -53,3 +53,10 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 
 ## UI
 - `ui/UiTheme.gd` construye el `Theme` en código, con la fuente sin antialiasing y StyleBoxTexture 9-patch. Variaciones de tipo: `DialogPanel`, `DialogLabel` y `Slot`.
+
+## Modelo y mascotas
+- `pokemon/SpeciesDB.gd` da acceso de solo lectura a `data/*.json`. `pokemon/PokemonInstance.gd` calcula los stats canon (EV 0), la EXP por curva, los movimientos (los últimos 4 de daño), la evolución, la amistad, la saciedad, la energía y los sabores descubiertos.
+- `core/Roster.gd` (en `Game.roster`) guarda los miembros, el equipo, el compañero y las bayas, y aplica `tick()` (necesidades), `pet()` y `feed()`.
+- `pet/HomeArea.gd` sincroniza quién está en casa. `pet/PetBrain.gd` es la máquina de estados de cada mascota.
+- `ui/Bubble.gd` (retrato con alternativas de emoción), `ui/BerryMenu.gd` y `ui/Fx.gd` (corazones, zzz, polvo, destellos, texto flotante).
+- Para probar: `Passthrough.fake_mouse` y `Game.forced_idle` simulan el cursor y la inactividad en los escenarios.

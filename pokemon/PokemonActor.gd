@@ -33,6 +33,13 @@ var meta: Dictionary
 var sprite: AnimatedSprite2D
 var shadow: Sprite2D
 
+## Altura sobre el suelo (px). La sombra se queda en el suelo mientras está en el aire.
+var air := 0.0:
+	set(v):
+		air = v
+		if shadow:
+			_update_shadow()
+
 var _shadow_track: Array = []
 var _shadow_dir := 0
 
@@ -137,12 +144,13 @@ func head_point() -> Vector2:
 
 ## La sombra sigue al marcador de PMD en las animaciones que se desplazan.
 func _update_shadow() -> void:
+	var base := Vector2(0, air)
 	if _shadow_track.is_empty():
-		shadow.position = Vector2.ZERO
+		shadow.position = base
 		return
 	var row: Array = _shadow_track[mini(_shadow_dir, _shadow_track.size() - 1)]
 	var off: Array = row[mini(sprite.frame, row.size() - 1)]
-	shadow.position = Vector2(off[0], off[1])
+	shadow.position = base + Vector2(off[0], off[1])
 
 
 func _on_sprite_finished() -> void:

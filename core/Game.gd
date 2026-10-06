@@ -9,6 +9,7 @@ const MODE_BATTLE := &"battle"
 const MODE_REST := &"rest"
 
 var clock := GameClock.new()
+var roster := Roster.new()
 var mode: StringName = MODE_BATTLE
 var debug := false
 ## Escenario automatizado para validar (pet, battle, gallery...). Vacío = juego normal.
@@ -19,6 +20,8 @@ var native: Object = null
 var dt := 0.0
 ## Si es > 0, el juego se cierra solo tras estos segundos (para pruebas automáticas).
 var autoquit := 0.0
+## Si es >= 0, sustituye a la inactividad real del sistema (escenarios y depuración).
+var forced_idle := -1.0
 
 
 func _enter_tree() -> void:
@@ -43,6 +46,13 @@ func _process(delta: float) -> void:
 		autoquit -= delta
 		if autoquit <= 0.0:
 			quit()
+
+
+## Segundos sin tocar teclado ni mouse en todo el sistema (GetLastInputInfo).
+func user_idle_seconds() -> float:
+	if forced_idle >= 0.0:
+		return forced_idle
+	return native.get_idle_seconds() if native else 0.0
 
 
 func set_mode(m: StringName) -> void:

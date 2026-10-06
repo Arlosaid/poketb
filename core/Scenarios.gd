@@ -15,6 +15,8 @@ func run(m: Node, scenario_name: String) -> void:
 			await _still()
 		"gallery":
 			await _gallery()
+		"pet":
+			await _pet()
 		_:
 			push_error("Escenario desconocido: " + scenario_name)
 	Game.quit()
@@ -25,12 +27,14 @@ func _wait(sec: float) -> void:
 
 
 func _still() -> void:
-	var a := PokemonActor.new()
-	a.species = "charmander"
-	main.world.add_child(a)
-	a.position = Vector2(100, main.desk.ground_y())
+	Game.set_mode(Game.MODE_REST)
+	await _wait(0.5)
+	var a: PokemonActor = main.home.actor_for(Game.roster.companion)
+	var b: PetBrain = main.home.brain_for(Game.roster.companion)
+	a.position.x = 100
+	b.force_state(PetBrain.State.IDLE, 1e9)
 	a.play_anim("Idle", "S")
-	await _wait(1.5)
+	await _wait(1.0)
 	await Game.shot("p1_still")
 	await _wait(20.0)
 
@@ -121,3 +125,94 @@ func _gallery() -> void:
 	d.add_child(dl)
 	await _wait(0.3)
 	await Game.shot("p2_ui")
+
+
+func _pet() -> void:
+	Game.set_mode(Game.MODE_REST)
+	var r := Game.roster
+	for sp in ["pidgey", "oddish", "caterpie"]:
+		r.add(PokemonInstance.create(sp, 4))
+	await _wait(3.0)
+	await Game.shot("p3_home")
+
+	var cid := r.companion
+	var a: PokemonActor = main.home.actor_for(cid)
+	var b: PetBrain = main.home.brain_for(cid)
+	b.force_state(PetBrain.State.IDLE, 1e9)
+	a.position.x = 120
+	await _wait(0.3)
+	b.pet()
+	await _wait(0.45)
+	await Game.shot("p3_pet")
+	await _wait(2.0)
+
+	b.open_berries()
+	await _wait(0.3)
+	await Game.shot("p3_berry_menu")
+
+	# Una baya que le guste y otra que no, según la naturaleza (regla canon).
+	var picked := _pet_with_preferences()
+	if picked.is_empty():
+		push_warning("Ningún Pokémon con gustos (todas las naturalezas neutras)")
+	else:
+		var mon: PokemonInstance = picked["mon"]
+		var pb: PetBrain = main.home.brain_for(mon.uid)
+		var pa: PokemonActor = main.home.actor_for(mon.uid)
+		pb.force_state(PetBrain.State.IDLE, 1e9)
+		pa.position.x = 260
+		r.add_berry(picked["like"])
+		r.add_berry(picked["hate"])
+		print("[pet] ", mon.species, " ", mon.nature, " le gusta ", picked["like"], " odia ", picked["hate"])
+		pb.feed(picked["like"])
+		await _wait(0.8)
+		await Game.shot("p3_eating")
+		await _wait(1.5)
+		await Game.shot("p3_feed_like")
+		await _wait(3.0)
+		pb.feed(picked["hate"])
+		await _wait(2.3)
+		await Game.shot("p3_feed_hate")
+		await _wait(3.0)
+
+	# Mira al cursor.
+	b.force_state(PetBrain.State.IDLE, 1e9)
+	Passthrough.fake_mouse = Vector2(a.position.x + 40, 30)
+	await _wait(0.4)
+	await Game.shot("p3_look_right")
+	Passthrough.fake_mouse = Vector2(a.position.x - 30, 95)
+	await _wait(0.4)
+	await Game.shot("p3_look_downleft")
+
+	# Arrastrar y soltar.
+	Passthrough.fake_mouse = Vector2(a.position.x + 20, 40)
+	b.force_state(PetBrain.State.DRAG)
+	await _wait(0.3)
+	await Game.shot("p3_drag")
+	b.force_state(PetBrain.State.FALL)
+	Passthrough.fake_mouse = Vector2.INF
+	await _wait(0.42)
+	await Game.shot("p3_land")
+	await _wait(1.0)
+
+	# De noche y con la PC inactiva: todos se acurrucan.
+	Game.clock.forced_hour = 23.0
+	Game.forced_idle = 400.0
+	await _wait(2.5)
+	await Game.shot("p3_sleep")
+	Game.forced_idle = -1.0
+	Game.clock.forced_hour = -1.0
+
+
+## Busca un Pokémon de casa cuya naturaleza tenga gustos y elige bayas para probar.
+func _pet_with_preferences() -> Dictionary:
+	var by_flavor := {}
+	for bname in SpeciesDB.berries():
+		var f := SpeciesDB.dominant_flavor(bname)
+		if f != "" and not by_flavor.has(f):
+			by_flavor[f] = bname
+	for u in main.home.home_uids():
+		var mon: PokemonInstance = Game.roster.get_member(u)
+		var n := SpeciesDB.nature(mon.nature)
+		if n["likes_flavor"] != null and by_flavor.has(n["likes_flavor"]) and by_flavor.has(n["hates_flavor"]):
+			return {"mon": mon, "like": by_flavor[n["likes_flavor"]], "hate": by_flavor[n["hates_flavor"]]}
+	return {}

@@ -56,3 +56,23 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **La sombra sigue al marcador de PMD cuadro a cuadro** en las animaciones que se desplazan (Attack, Hurt, Faint...). El importador lo guarda en `meta.json` → `anims.X.shadow[dir][frame]`.
 - **"Sit" de PMD está dibujado de espaldas** (el Pokémon sentado mirando a lo lejos). Se usa para el estado de mascota "contemplar" (mira hacia la pantalla). Para descansar de frente se usan Idle, Laying y Sleep.
 - **El panel de pelea no bloquea el mouse.** Solo son clicables los Pokémon y los botones que contiene.
+
+## 2026-10-06 — Fase 3 (mascotas)
+
+- **Compañero:** puede ser cualquier Pokémon propio. Si está en el equipo y puede pelear, en modo pelea camina dentro del panel; si no pelea (descanso, cansado, debilitado o fuera del equipo), pasea por casa. Así siempre está visible y nunca aparece duplicado. Al empezar, el compañero es Charmander.
+- **Quién vive en casa:**
+  - en modo pelea, los del equipo que no pueden pelear (debilitados o con energía <10) más el compañero si no pelea;
+  - en modo descanso, todo el equipo más el compañero.
+- **Modo descanso:** el panel de pelea baja y se esconde detrás del borde de la barra, y la casa ocupa todo el ancho.
+- **Controles:**
+  - clic: acariciar;
+  - mantener y mover: arrastrar (la sombra se queda en el suelo) y al soltar cae con un rebotito y polvo;
+  - clic derecho, o el botón "Baya" del bocadillo: menú de bayas;
+  - botón "PC" (solo en el bocadillo del compañero): abre la PC.
+- **Al acariciar** salen corazones y un retrato Happy. Si tiene hambre o está cansado, el retrato es Worried o Sigh, con una pista ("Tiene hambre…"). Las caricias dan +1 de amistad, hasta 10 por hora.
+- **Bayas:** el sabor dominante se compara con la naturaleza (canon). Si le gusta: +3 de amistad, retrato Joyous y "¡Le encanta! (sabor)". Si es neutra: +2, Happy y "¡Ñam!". Si no le gusta: +1, Sad, una gota de sudor y "No le gustó… (sabor)". El sabor queda descubierto para la PC. Además dan +30 de saciedad (Zidra +40); Aranja cura 10 PS y Zidra el 25%.
+- **Mal humor** (saciedad <25 o energía <15): las ganancias de amistad se reducen a la mitad y de vez en cuando aparece una vena de enojo o una gota. No hay ningún otro castigo.
+- **Mira al cursor sin darse vuelta nunca:** de lado (E/W), de frente (S) si el cursor está justo encima, o en diagonal hacia abajo (SE/SW) si está a la altura de la barra. Las direcciones N/NE/NW de PMD muestran la espalda y se ven raras en vista lateral.
+- **Inactividad:** tras 5 minutos sin teclado ni mouse, los de casa se duermen. Al volver, despiertan escalonados (0.5–3 s).
+- **El compañero gana +1 de amistad cada 10 minutos** de paseo, como en HGSS.
+- **El movimiento de las mascotas usa tiempo real**, así que siguen animadas en pausa. Las necesidades usan el tiempo de juego, que respeta la pausa y la velocidad x10.
