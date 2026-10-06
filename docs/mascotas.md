@@ -34,17 +34,20 @@ Documento de traspaso: cómo está hecho el modo mascota (Fase 8), dónde se aju
 | `ui/ActionBar.gd` | Barrita del clic derecho (íconos de 9x9 en botones "Chip"). |
 | `ui/BerryMenu.gd` | Menú compacto de bayas (solo íconos; la info aparece al pasar el mouse). |
 | `ui/PetCard.gd` | Ficha: nombre, nivel, rasgo, característica y 4 barritas. |
-| `core/Roster.gd` | Necesidades (`tick`), `pet`, `play`, `cuddle_heal`, `bonds`, `start_cheer` y `cheer_exp_pct`. |
+| `core/Roster.gd` | Necesidades (`tick`), `pet`, `play`, `cuddle_heal`, `bonds`, `start_cheer` y `cheer_exp_pct`. Quiénes pasean: `pets`, `pet_uids()`, `toggle_pet()` y `PETS_MAX`. |
 | `pokemon/PokemonInstance.gd` | Campos `fun`, `pid` y `fav_x`; `characteristic_key()`, `is_cheerful()`. |
 | `core/Game.gd` | `settings` (topmost, flights, app_react, wellbeing), `hide_pets()` y `pets_hidden()`. |
-| `core/Tray.gd` | Opciones de la bandeja. |
+| `core/Tray.gd` | Opciones de la bandeja, incluido el submenú "Mascotas" (`_sync_pets`). |
 | `core/DesktopWindow.gd` | Siempre al frente (`_apply_topmost` y `reassert_topmost` cada 2 s) y FPS. |
 | `native/src/desktop_native.cpp` | `get_foreground_app()` y `get_power_status()`. |
 | `data/personality.json` | Característica → rasgo, pesos por rasgo, especies nocturnas y voladoras. |
 | `data/apps.json` | `.exe` → categoría, reacción por categoría y tiempos de bienestar. |
 | `data/characteristics.json` | Textos canon de las 30 características (los genera `fetch_pokeapi.py`). |
 | `tools/gen_ui.py` → `pet_ui()` | Arte: globitos, íconos, chip, globo de texto y pelota. |
-| `tools/import_sprites.gd` | `WANTED` y `ALTERNATIVES`: animaciones lógicas y sus alternativas. |
+| `tools/pack_sprites.py` | `WANTED` y `ALTERNATIVES`: animaciones lógicas y sus alternativas. |
+| `pet/TypeAct.gd` | Acciones propias de cada tipo (brasas, fuente, chispas, excavar, teletransporte, atravesar, hilo de seda…). |
+| `data/pet_types.json` | Qué acciones tiene cada tipo, con su animación, partículas, duración y peso. |
+| `battle/MoveFx.gd` | Animación de los movimientos (también se usa en casa para entrenar). |
 
 ## Cómo funciona
 
@@ -59,6 +62,10 @@ Documento de traspaso: cómo está hecho el modo mascota (Fase 8), dónde se aju
   - el cansancio, el aburrimiento y la salud (débil: descansa más; debilitado: solo lay o sleep);
   - la app activa: `home.calm`, `home.watching`, `home.music`.
 - Mientras hay un menú abierto (`_menu`), la mascota espera.
+
+### Quién pasea
+- `Main._sync_home` muestra `Roster.pet_uids()` menos los que pelean. El compañero siempre está incluido.
+- El jugador elige desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Hay un máximo de 6 a la vez y pueden venir de las cajas.
 
 ### Interacciones
 | Gesto | Efecto |
@@ -79,12 +86,31 @@ Documento de traspaso: cómo está hecho el modo mascota (Fase 8), dónde se aju
   - `nap`: se duerme al lado de uno que ya duerme.
 - Al terminar bien: `add_bond +1` y +5 de diversión a los dos.
 
+### Acciones por tipo (Fase 9)
+- `_choose_next` tiene dos opciones más: `type` (`start_type_act`) y `train`. Sus pesos base están en `data/pet_types.json` (`base_weight`, `train_weight`) y los rasgos los multiplican (`type` y `train` en `personality.json`).
+- `TypeAct.pick(tipos, noche)` sortea entre las acciones de sus tipos (algunas solo de día o de noche). Clases (`kind`):
+  - `particles`/`glow`: anima y suelta partículas con un patrón (`rise`, `fall`, `orbit`, `fountain`, `zap`, `puff`, `sparkle`);
+  - `teleport` (psíquico, fantasma, siniestro): se desvanece y aparece en otro lado;
+  - `dig` (tierra): se hunde, un rastro de polvo avanza bajo tierra y sale en otro lado;
+  - `phase` (fantasma; siniestro de noche): se vuelve translúcido y flota a la deriva;
+  - `hover` (volador, psíquico): se eleva y se mece;
+  - `roll` (roca, acero): rueda por el suelo;
+  - `web` (bicho): se cuelga de un hilo de seda desde arriba y se balancea.
+- Si la mascota cambia de estado a mitad (la arrastras, la acaricias), `TypeAct` se cancela y deja al actor como estaba.
+
+### Entrenar y combates de práctica (Fase 9)
+- `train()`: practica uno de sus movimientos con la misma animación de la pelea, pero en chico (`MoveFx` con `small`), y a veces dice el nombre del movimiento.
+- Vida social `spar` (probabilidad `spar_chance` × rasgo): se ponen a unos pasos y se turnan 4 veces. No hay daño: el otro hace "Hurt" de juego y al final los dos asienten con corazones (+1 de lazo y +6 de diversión).
+
 ### Vuelos
+- Vuelan los de tipo volador, los de forma con alas (`wings`, `bug-wings`), los de la habilidad Levitación, los fantasmas sin patas y la lista `fly` de `personality.json`; nunca los de `no_fly`. Son ~190 especies.
+- Estilo (`Personality.flight_style`): `bird`, `bug` (aleteo nervioso), `dragon` (rápido, con rizos) y `float` (fantasmas y levitadores: lento y translúcido). Se puede forzar por especie con `flight_style`.
 - Condiciones en `can_start_flight`:
   - opción activa, sin pantalla completa y con el usuario activo hace <60 s;
-  - una pausa de 2–5 min entre vuelos y de 8–15 min por Pokémon;
-  - energía y PS suficientes, y la hora correcta (nocturno o diurno).
-- La ruta (`start_flight`) va del suelo a la altura de crucero, cruza al borde lejano, vuelve y aterriza en una x al azar de la casa. Luego `land_from_flight` baja planeando.
+  - pausas y vuelos simultáneos en `personality.json → flight` (por defecto, 45–120 s entre vuelos, 3–6 min por Pokémon y hasta 2 a la vez);
+  - energía y PS suficientes, y la hora correcta (nocturnos: la lista `nocturnal` más los tipos fantasma y siniestro).
+- La ruta (`start_flight`) cruza **toda la pantalla** en zigzag, de un borde al otro y a alturas al azar (3–5 tramos); a veces da un rizo o se queda flotando unos segundos, y aterriza en una x al azar de la casa. Luego `land_from_flight` baja planeando.
+- Cada vuelo usa una `FlightWindow` del grupo (se reusan); su tamaño se ajusta al Pokémon (mínimo 64x64 lógicos).
 - Para probarla: `home.force_flight(brain)`.
 
 ### Reacciones a la PC (`PcSense` → `HomeArea`)
@@ -112,8 +138,9 @@ Documento de traspaso: cómo está hecho el modo mascota (Fase 8), dónde se aju
 - **Un comportamiento autónomo nuevo:**
   1. Agrega la clave al diccionario de `_choose_next` y su `match`.
   2. Agrega el peso por defecto en `defaults`.
-  3. Si usa una animación nueva, agrégala a `WANTED` y `ALTERNATIVES` en `tools/import_sprites.gd` y reimporta.
-- **Una animación lógica:** la agregas a `ALTERNATIVES` con una lista de candidatas (la última debe existir siempre: Idle o Hop). Para reimportar: `godot_console --headless --path . --script res://tools/import_sprites.gd`. Muchas especies solo tienen 13 animaciones, así que siempre hay que dar alternativas. Usa `actor.has_real(name)` si una conducta depende de la animación real.
+  3. Si usa una animación nueva, agrégala a `WANTED` y `ALTERNATIVES` en `tools/pack_sprites.py` y vuelve a empacar.
+- **Una acción de tipo:** agrégala en `data/pet_types.json` (con un `kind` existente no hay que tocar código).
+- **Una animación lógica:** la agregas a `ALTERNATIVES` con una lista de candidatas (la última debe existir siempre: Idle o Hop). Para regenerar: `python -I tools/pack_sprites.py` y `godot_console --headless --path . --import`. Muchas especies solo tienen 13 animaciones, así que siempre hay que dar alternativas. Usa `actor.has_real(name)` si una conducta depende de la animación real.
 - **Un ícono de globito:** agrégalo a `EMOTE_ICONS` en `tools/gen_ui.py` (7x7, paleta) y corre `python -I tools/gen_ui.py`. El índice sale de `emotes_index.json`.
 - **Una acción del clic derecho:**
   1. Dibuja un ícono de 9x9 en `action_icons()` (`gen_ui.py`).
@@ -127,6 +154,7 @@ Documento de traspaso: cómo está hecho el modo mascota (Fase 8), dónde se aju
   - En GDScript, protege la llamada con `has_method` por si la DLL es vieja.
 
 ## Cómo probar
+- `"<godot_console>" --path . -- --scenario=types --autoquit=120`: acciones por tipo, entrenar, combate de práctica y los cuatro estilos de vuelo (`p9_*`).
 - `"<godot_console>" --path . -- --scenario=pet --autoquit=150`
   - Genera `shots/p3_home`, `p3_sleep` y `p8_*`: caricia, acciones, bayas, ficha, comer, cosquillas, rascar, mimos que curan, emociones, pelota, saludo, voltereta, pausa, ánimo, video y vuelo (la ventanita del vuelo se captura aparte en `p8_flight.png`).
   - Imprime el rasgo de cada mascota y el ánimo.

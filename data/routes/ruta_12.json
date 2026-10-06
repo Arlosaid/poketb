@@ -1,0 +1,578 @@
+{
+ "id": "ruta_12",
+ "name_es": "Calle Victoria (Ruta 12)",
+ "encounters_to_boss": 24,
+ "level_range": [
+  55,
+  70
+ ],
+ "walk_seconds": [
+  18,
+  35
+ ],
+ "sections": [
+  {
+   "from": 0.0,
+   "biome": "montana"
+  },
+  {
+   "from": 0.5,
+   "biome": "volcan"
+  }
+ ],
+ "day": [
+  {
+   "species": "rapidash",
+   "min_level": 40,
+   "weight": 4
+  },
+  {
+   "species": "scyther",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "pinsir",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "lapras",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "shuckle",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "heracross",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "magmortar",
+   "min_level": 44,
+   "weight": 2
+  },
+  {
+   "species": "mamoswine",
+   "min_level": 47,
+   "weight": 3
+  },
+  {
+   "species": "krookodile",
+   "min_level": 40,
+   "weight": 1
+  },
+  {
+   "species": "vanilluxe",
+   "min_level": 47,
+   "weight": 3
+  },
+  {
+   "species": "chandelure",
+   "min_level": 55,
+   "weight": 1
+  },
+  {
+   "species": "cryogonal",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mienshao",
+   "min_level": 50,
+   "weight": 3
+  },
+  {
+   "species": "hydreigon",
+   "min_level": 64,
+   "weight": 1
+  },
+  {
+   "species": "volcarona",
+   "min_level": 59,
+   "weight": 1
+  },
+  {
+   "species": "hawlucha",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "carbink",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "dhelmise",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "nihilego",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "buzzwole",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "pheromosa",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "xurkitree",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "celesteela",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "kartana",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "guzzlord",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "stakataka",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "blacephalon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "arctozolt",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "duraludon",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "dragapult",
+   "min_level": 60,
+   "weight": 1
+  },
+  {
+   "species": "ursaluna",
+   "min_level": 44,
+   "weight": 5
+  },
+  {
+   "species": "cyclizar",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "dondozo",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "kingambit",
+   "min_level": 66,
+   "weight": 1
+  },
+  {
+   "species": "slither-wing",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "sandy-shocks",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "iron-treads",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "iron-bundle",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "iron-hands",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "iron-moth",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "roaring-moon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "iron-valiant",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "iron-leaves",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "gouging-fire",
+   "min_level": 2,
+   "weight": 1
+  }
+ ],
+ "night": [
+  {
+   "species": "rapidash",
+   "min_level": 40,
+   "weight": 2
+  },
+  {
+   "species": "scyther",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "pinsir",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "lapras",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "shuckle",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "heracross",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "magmortar",
+   "min_level": 44,
+   "weight": 1
+  },
+  {
+   "species": "mamoswine",
+   "min_level": 47,
+   "weight": 1
+  },
+  {
+   "species": "krookodile",
+   "min_level": 40,
+   "weight": 6
+  },
+  {
+   "species": "vanilluxe",
+   "min_level": 47,
+   "weight": 1
+  },
+  {
+   "species": "chandelure",
+   "min_level": 55,
+   "weight": 6
+  },
+  {
+   "species": "cryogonal",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mienshao",
+   "min_level": 50,
+   "weight": 1
+  },
+  {
+   "species": "hydreigon",
+   "min_level": 64,
+   "weight": 6
+  },
+  {
+   "species": "volcarona",
+   "min_level": 59,
+   "weight": 1
+  },
+  {
+   "species": "hawlucha",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "carbink",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "dhelmise",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "nihilego",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "buzzwole",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "pheromosa",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "xurkitree",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "celesteela",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "kartana",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "guzzlord",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "stakataka",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "blacephalon",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "arctozolt",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "duraludon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "dragapult",
+   "min_level": 60,
+   "weight": 6
+  },
+  {
+   "species": "ursaluna",
+   "min_level": 44,
+   "weight": 2
+  },
+  {
+   "species": "cyclizar",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "dondozo",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "kingambit",
+   "min_level": 66,
+   "weight": 2
+  },
+  {
+   "species": "slither-wing",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "sandy-shocks",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "iron-treads",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "iron-bundle",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "iron-hands",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "iron-moth",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "roaring-moon",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "iron-valiant",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "iron-leaves",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "gouging-fire",
+   "min_level": 2,
+   "weight": 1
+  }
+ ],
+ "boss": {
+  "species": "hydreigon",
+  "level": 74,
+  "title_es": "¡Un Hydreigon imponente bloquea el camino!"
+ },
+ "cleared_es": "¡Ruta despejada! Rumbo a Santuario Legendario…",
+ "next": "ruta_13",
+ "capture": {
+  "hp_below": 0.5,
+  "chance_per_turn": 0.25
+ },
+ "drops": {
+  "chance": 0.35,
+  "table": [
+   {
+    "berry": "oran",
+    "weight": 30
+   },
+   {
+    "berry": "pecha",
+    "weight": 12
+   },
+   {
+    "berry": "cheri",
+    "weight": 12
+   },
+   {
+    "berry": "chesto",
+    "weight": 10
+   },
+   {
+    "berry": "rawst",
+    "weight": 10
+   },
+   {
+    "berry": "aspear",
+    "weight": 10
+   },
+   {
+    "berry": "figy",
+    "weight": 6
+   },
+   {
+    "berry": "wiki",
+    "weight": 6
+   },
+   {
+    "berry": "mago",
+    "weight": 6
+   },
+   {
+    "berry": "aguav",
+    "weight": 6
+   },
+   {
+    "berry": "iapapa",
+    "weight": 6
+   },
+   {
+    "berry": "sitrus",
+    "weight": 4
+   }
+  ]
+ },
+ "rewards": {
+  "gold_per_exp_unit": 0.1,
+  "boss_gold_mult": 5
+ },
+ "item_drops": {
+  "chance": 0.12,
+  "boss_chance": 1.0,
+  "boss_min_tier": 2,
+  "table": [
+   {
+    "item": "muscle_band",
+    "weight": 10
+   },
+   {
+    "item": "wise_glasses",
+    "weight": 10
+   },
+   {
+    "item": "rocky_helmet",
+    "weight": 10
+   },
+   {
+    "item": "assault_vest",
+    "weight": 10
+   },
+   {
+    "item": "quick_claw",
+    "weight": 8
+   },
+   {
+    "item": "leftovers",
+    "weight": 8
+   },
+   {
+    "item": "scope_lens",
+    "weight": 6
+   },
+   {
+    "item": "lucky_egg",
+    "weight": 5
+   },
+   {
+    "item": "amulet_coin",
+    "weight": 5
+   }
+  ]
+ }
+}

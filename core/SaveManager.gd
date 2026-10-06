@@ -82,6 +82,7 @@ func load_game() -> float:
 		return -1.0
 	Game.roster.from_dict(d["roster"])
 	var r: Dictionary = d.get("route", {})
+	combat.load_route(String(r.get("id", "ruta_1")))
 	combat.progress = int(r.get("progress", 0))
 	combat.cleared = bool(r.get("cleared", false))
 	Game.mode = StringName(d.get("mode", "battle"))

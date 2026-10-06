@@ -41,16 +41,39 @@ func _ready() -> void:
 	_relayout(true)
 	Game.settings_changed.connect(_apply_topmost)
 	_apply_topmost()
+	# Al volver al juego (botón de la barra de tareas, Alt-Tab), el panel sube con él.
+	win.focus_entered.connect(raise_extra_windows)
 	_maintain()
 
 
-## Mascotas siempre al frente (opción). Las ventanas propiedad de la principal
-## (PC, pelea, vuelo) quedan encima de ella igual.
+## Mascotas siempre al frente (opción). Godot no deja usar always_on_top en las
+## ventanas transitorias (pelea), así que esas se suben a mano con raise_extra_windows.
 func _apply_topmost() -> void:
 	var on: bool = Game.settings.get("topmost", true)
 	var win := get_tree().root
 	if win.always_on_top != on:
 		win.always_on_top = on
+		if not on:
+			# Quitar el "siempre al frente" del panel: al recrear su ventana nativa
+			# (ocultar y mostrar) vuelve a ser una ventana normal propiedad de la principal.
+			for w in extra_windows:
+				if is_instance_valid(w) and w.visible:
+					w.hide()
+					w.show()
+	raise_extra_windows()
+
+
+## Sube las otras ventanas visibles del juego (panel de pelea) por delante de las demás
+## apps, sin robar el foco. Una ventana propiedad de una topmost NO es topmost por sí
+## sola: al crearla (cada vez que se muestra) queda en la capa normal y cualquier app
+## la tapa, y el botón de la barra no la recupera. Por eso se reafirma como la principal.
+func raise_extra_windows() -> void:
+	var native: Object = Game.native
+	if native == null or fullscreen_app or not Game.settings.get("topmost", true):
+		return
+	for w in extra_windows:
+		if is_instance_valid(w) and w.visible:
+			native.reassert_topmost(w.get_window_id())
 
 
 ## Pide FPS altos durante un momento (combates, interacción, arrastrar).
@@ -100,6 +123,7 @@ func _maintain() -> void:
 	# Otra app "siempre al frente" puede taparnos: lo reafirmamos sin robar el foco.
 	if Game.settings.get("topmost", true) and not fullscreen_app:
 		native.reassert_topmost(get_tree().root.get_window_id())
+	raise_extra_windows()
 	for w in extra_windows:
 		if is_instance_valid(w) and w.visible:
 			native.hide_from_taskbar(w.get_window_id())

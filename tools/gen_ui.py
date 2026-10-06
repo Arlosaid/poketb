@@ -624,6 +624,51 @@ def pet_ui():
     action_icons()
 
 
+# ---------------------------------------------------------------- movimientos (fase 9)
+# Partículas de 8x8 en tres tonos: h (claro), m (medio), d (oscuro). Cada fila de
+# fx_parts.png es un tipo (colores de data/move_fx_rules.json → type_colors) y cada
+# columna una forma (mismo orden que "parts").
+FX_PARTS = {
+    "orb_s": ["........", "........", "...dd...", "..dhmd..", "..dmmd..", "...dd...", "........", "........"],
+    "orb_m": ["........", "..dddd..", ".dhhmmd.", ".dhmmmd.", ".dmmmmd.", ".dmmmmd.", "..dddd..", "........"],
+    "orb_l": ["..dddd..", ".dhhhmd.", "dhhmmmmd", "dhmmmmmd", "dmmmmmmd", "dmmmmmmd", ".dmmmmd.", "..dddd.."],
+    "star": ["d..h..d.", ".d.h.d..", "..hmh...", "hhmmmhh.", "..hmh...", ".d.h.d..", "d..h..d.", "........"],
+    "spark": ["........", "....hh..", "...hd...", "..hhhhd.", "....dh..", "...dh...", "..dh....", "........"],
+    "flame": ["...h....", "...hm...", "..hmm...", "..hmmd..", ".hmhmmd.", ".mhhhmd.", ".dmhhmd.", "..dddd.."],
+    "drop": ["...d....", "..dmd...", "..dmd...", ".dhmmd..", ".dhmmd..", ".dmmmd..", "..ddd...", "........"],
+    "bubble": ["........", "..ddd...", ".dh..d..", ".d...d..", ".d..md..", "..ddd...", "........", "........"],
+    "leaf": ["........", "......d.", "....ddm.", "..dhhmd.", ".dhmmd..", ".dmmd...", "d.dd....", "........"],
+    "shard": ["...d....", "..dhd...", "..dhmd..", ".dhhmd..", ".dhmmd..", "..dmd...", "..dmd...", "...d...."],
+    "flake": ["...h....", ".h.h.h..", "..hmh...", "hhmdmhh.", "..hmh...", ".h.h.h..", "...h....", "........"],
+    "rock": ["........", "..ddd...", ".dhhmd..", "dhmmmmd.", "dmmmmdd.", ".dddd...", "........", "........"],
+    "dust": ["........", "........", "..hh....", ".hmmh.h.", "hmmmmhmh", ".mmmmmm.", "..dddd..", "........"],
+    "note": ["....dd..", "....dhd.", "....d.d.", "....d...", "..ddd...", ".dhmd...", ".dmmd...", "..dd...."],
+    "feather": ["......dh", ".....dhm", "....dhm.", "...dhm..", "..dhm...", ".dmm....", "dd......", "........"],
+    "swirl": ["........", "..hhhh..", ".h....d.", "h..mm..d", "h.m..d.d", "h..dd..d", ".d....d.", "..dddd.."],
+    "wisp": ["...d....", "..dm....", "..dmd...", ".dmhmd..", ".dhhmd..", ".dmhmd..", "..dmmd..", "...dd..."],
+    "needle": ["........", "........", "......d.", "dmmmmmhh", "......d.", "........", "........", "........"],
+    "ring": ["..hhhm..", ".h....m.", "h......m", "h......d", "h......d", "m......d", ".m....d.", "..mddd.."],
+    "heart": ["........", ".dd.dd..", "dhmdmmd.", "dhmmmmd.", ".dmmmd..", "..dmd...", "...d....", "........"],
+    "crescent": ["...hhd..", ".....hd.", "......hd", "......md", "......md", ".....md.", "...mmd..", "........"],
+    "petal": ["........", "...dd...", "..dhmd..", ".dhmmd..", ".dmmd...", "..dd....", "........", "........"],
+}
+
+
+def fx_parts():
+    with open(os.path.join(ROOT, "data", "move_fx_rules.json"), encoding="utf-8") as f:
+        rules = json.load(f)
+    parts, types = rules["parts"], list(rules["type_colors"])
+    assert set(parts) == set(FX_PARTS), "FX_PARTS y move_fx_rules.json → parts no coinciden"
+    sheet = Image.new("RGBA", (8 * len(parts), 8 * len(types)), (0, 0, 0, 0))
+    for row, t in enumerate(types):
+        h, m, d = rules["type_colors"][t]
+        for col, name in enumerate(parts):
+            sheet.alpha_composite(from_map(FX_PARTS[name], {"h": h, "m": m, "d": d}), (col * 8, row * 8))
+    save(sheet, "fx_parts.png")
+    with open(os.path.join(OUT, "fx_parts_index.json"), "w", encoding="utf-8") as f:
+        json.dump({"size": 8, "parts": parts, "types": types}, f, indent=1)
+
+
 def main():
     palette_png()
     ball = from_map(POKEBALL_16, POKEBALL_KEY)
@@ -653,6 +698,7 @@ def main():
     berries_sheet()
     items_sheet()
     pet_ui()
+    fx_parts()
     check_palette()
 
 

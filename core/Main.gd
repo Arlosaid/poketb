@@ -114,13 +114,11 @@ func fighting_uids() -> Array:
 func _sync_home() -> void:
 	var fighting := fighting_uids()
 	var uids := []
-	for p in Game.roster.team_members():
-		if p.uid not in fighting:
-			uids.append(p.uid)
+	# Pasean las mascotas elegidas (el compañero siempre) que no estén peleando.
+	for u in Game.roster.pet_uids():
+		if u not in fighting:
+			uids.append(u)
 	var c := Game.roster.companion
-	# El compañero siempre está visible: si no pelea, pasea por casa.
-	if c != 0 and c not in fighting and c not in uids:
-		uids.append(c)
 	# Los que vuelven de pelear entran caminando desde el lado del panel.
 	home.sync(uids, c, _panel_entry_x() if Game.mode == Game.MODE_BATTLE else -1.0)
 
@@ -141,6 +139,9 @@ func _update_battle_visibility() -> void:
 	var show := Game.mode == Game.MODE_BATTLE and not desk.fullscreen_app
 	if battle_win.visible != show:
 		battle_win.visible = show
+		if show:
+			# Cada vez que se muestra, Godot crea la ventana nativa de nuevo (sin topmost).
+			desk.raise_extra_windows()
 
 
 ## X (en la franja de casa) por donde entran caminando los que vuelven de pelear:

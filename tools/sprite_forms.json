@@ -1,0 +1,7 @@
+{
+ "_doc": "Especies sin sprite de la forma base en SpriteCollab pero con el de una forma alternativa: dex -> subcarpeta. Lo usan tools/fetch_sprites.py y tools/pack_sprites.py.",
+ "870": "0002",
+ "999": "0001",
+ "1008": "0001",
+ "668": "0000/0000/0002"
+}

@@ -6,9 +6,7 @@ extends Node2D
 
 signal pc_requested
 
-## Pausa mínima entre dos vuelos cualesquiera, y entre dos vuelos del mismo Pokémon (s).
-const FLIGHT_GAP := Vector2(120.0, 300.0)
-const FLIGHT_GAP_SAME := Vector2(480.0, 900.0)
+## Pausas entre vuelos y vuelos simultáneos: data/personality.json → "flight".
 ## Solo vuelan si estás usando la PC (si no hay nadie mirando, no gastan).
 const FLIGHT_MAX_USER_IDLE := 60.0
 const SOCIAL_RANGE := 220.0
@@ -25,11 +23,13 @@ var watching := false
 ## Estás con música: bailan más.
 var music := false
 var ball: ToyBall
+## Última ventana de vuelo usada (los escenarios la capturan).
 var flight: FlightWindow
 var sense: PcSense
 
 var _brains := {}   # uid → PetBrain
-var _flier: PetBrain
+var _flight_windows: Array[FlightWindow] = []
+var _fliers := {}  # FlightWindow → PetBrain
 var _next_flight_at := 0.0
 var _flight_ready_at := {}  # uid → segundos (ticks) desde que puede volver a volar
 
@@ -38,7 +38,7 @@ func setup(d: DesktopWindow, h: Control) -> void:
 	desk = d
 	hud = h
 	y_sort_enabled = true
-	_next_flight_at = _now() + randf_range(40.0, 90.0)
+	_next_flight_at = _now() + randf_range(20.0, 50.0)
 	sense = PcSense.new()
 	sense.name = "PcSense"
 	add_child(sense)
@@ -98,10 +98,7 @@ func sync(uids: Array, companion_uid: int, enter_from_x := -1.0) -> void:
 		if u not in uids:
 			var b: PetBrain = _brains[u]
 			_brains.erase(u)
-			if b == _flier:
-				_flier = null
-				if flight:
-					flight.abort()
+			_abort_flight_of(b)
 			_leave(b.actor)
 	for u in uids:
 		var mon: PokemonInstance = Game.roster.get_member(u)
@@ -252,6 +249,8 @@ func start_social(b: PetBrain) -> void:
 			b.force_state(PetBrain.State.IDLE, 2.0)
 			return
 		kind = "nap"
+	elif b.mon.energy > 40.0 and o.mon.energy > 40.0 and randf() < float(TypeAct.data()["spar_chance"]) * b._wv("train"):
+		kind = "spar"
 	elif b.mon.energy > 30.0 and o.mon.energy > 30.0 and randf() < 0.45:
 		kind = "chase"
 	b.social_start(kind, o)
@@ -267,7 +266,8 @@ func _flights_allowed() -> bool:
 
 
 func can_start_flight(b: PetBrain) -> bool:
-	if _flier != null or _now() < _next_flight_at or not _flights_allowed():
+	var cfg := Personality.flight_cfg()
+	if _fliers.size() >= int(cfg.get("max_fliers", 2)) or _now() < _next_flight_at or not _flights_allowed():
 		return false
 	if not Personality.can_fly(b.mon.species) or b.mon.energy < 30.0 or b.mon.hp_frac() < 0.5:
 		return false
@@ -276,57 +276,97 @@ func can_start_flight(b: PetBrain) -> bool:
 	return _now() >= float(_flight_ready_at.get(b.mon.uid, 0.0))
 
 
-## Despega: lo esconde en casa y lo lleva la ventanita de vuelo por la pantalla.
+## Ventana de vuelo libre (se reusan; hay tantas como vuelos simultáneos).
+func _free_flight_window() -> FlightWindow:
+	for f in _flight_windows:
+		if not f.visible and not _fliers.has(f):
+			return f
+	var fw := FlightWindow.new(desk.scale)
+	fw.name = "FlightWindow%d" % _flight_windows.size()
+	fw.desk = desk
+	get_tree().root.add_child(fw)
+	fw.finished.connect(_on_flight_finished.bind(fw))
+	_flight_windows.append(fw)
+	return fw
+
+
+## Despega: lo esconde en casa y lo lleva una ventanita por TODA la pantalla: cruza de
+## un borde al otro a distintas alturas, a veces da un rizo o se queda flotando un
+## momento, y vuelve a aterrizar en casa.
 func start_flight(b: PetBrain) -> void:
-	if flight == null:
-		flight = FlightWindow.new(desk.scale)
-		flight.name = "FlightWindow"
-		flight.desk = desk
-		get_tree().root.add_child(flight)
-		flight.finished.connect(_on_flight_finished)
+	var fw := _free_flight_window()
+	flight = fw
 	var root := get_tree().root
 	var sc := float(desk.scale)
 	var start := Vector2(root.position) + b.actor.position * sc
 	var usable := DisplayServer.screen_get_usable_rect(DisplayServer.window_get_current_screen())
-	var top := float(usable.position.y) + 40.0 * sc
-	var h := float(usable.size.y)
-	var cruise_y := clampf(float(usable.end.y) - h * randf_range(0.45, 0.8), top, float(usable.end.y) - 80.0 * sc)
-	var dir := 1.0 if b.actor.position.x < (x_min + x_max) / 2.0 else -1.0
-	var margin := 50.0 * sc
-	var far_x := float(usable.end.x) - margin if dir > 0.0 else float(usable.position.x) + margin
+	var top := float(usable.position.y) + 30.0 * sc
+	var bottom := float(usable.end.y) - 90.0 * sc
+	var left := float(usable.position.x) + 40.0 * sc
+	var right := float(usable.end.x) - 40.0 * sc
+	var style := Personality.flight_style(b.mon.species)
 	var land_x := randf_range(x_min, x_max)
 	var land := Vector2(float(root.position.x) + land_x * sc, float(root.position.y) + (ground_y - 26.0) * sc)
-	var pts := PackedVector2Array([
-		Vector2(start.x + dir * 90.0 * sc, lerpf(start.y, cruise_y, 0.6)),
-		Vector2(lerpf(start.x, far_x, 0.5), cruise_y - h * 0.08),
-		Vector2(far_x, cruise_y),
-		Vector2(lerpf(far_x, land.x, 0.5), cruise_y + h * randf_range(-0.12, 0.05)),
-		Vector2(land.x, land.y - 50.0 * sc),
-		land,
-	])
+	var pts := PackedVector2Array()
+	var pauses := {}
+	var side := 1.0 if b.actor.position.x < (x_min + x_max) / 2.0 else -1.0
+	pts.append(Vector2(start.x + side * 70.0 * sc, lerpf(start.y, bottom, 0.5)))
+	var legs := randi_range(3, 5) if style != "float" else randi_range(2, 3)
+	for i in legs:
+		# cruza la pantalla en zigzag, de un borde al otro y a alturas distintas
+		if i > 0:
+			side = -side
+		var x := right - randf_range(0.0, 0.25) * (right - left) if side > 0.0 else left + randf_range(0.0, 0.25) * (right - left)
+		var y := randf_range(top, bottom)
+		var mid := Vector2(lerpf(pts[pts.size() - 1].x, x, 0.5), randf_range(top, bottom))
+		pts.append(mid)
+		if style in ["bird", "dragon"] and randf() < 0.35:
+			# rizo: una vuelta completa alrededor de un punto
+			var c := mid + Vector2(0, -40.0 * sc)
+			for k in range(1, 7):
+				var ang := PI / 2.0 + side * TAU * k / 6.0
+				pts.append(c + Vector2(cos(ang), sin(ang)) * 40.0 * sc)
+		pts.append(Vector2(x, y))
+		if randf() < 0.4:
+			pauses[pts.size() - 1] = randf_range(1.5, 3.5)  # se queda flotando un momento
+	pts.append(Vector2(land.x, lerpf(top, bottom, 0.7)))
+	pts.append(Vector2(land.x, land.y - 50.0 * sc))
+	pts.append(land)
 	for i in pts.size():
-		pts[i].y = clampf(pts[i].y, top, land.y)
-	_flier = b
-	_next_flight_at = _now() + randf_range(FLIGHT_GAP.x, FLIGHT_GAP.y)
-	_flight_ready_at[b.mon.uid] = _now() + randf_range(FLIGHT_GAP_SAME.x, FLIGHT_GAP_SAME.y)
+		pts[i] = Vector2(clampf(pts[i].x, left, right), clampf(pts[i].y, top, land.y))
+	_fliers[fw] = b
+	var cfg := Personality.flight_cfg()
+	var gap: Array = cfg.get("gap", [45, 120])
+	var gap_same: Array = cfg.get("gap_same", [180, 360])
+	_next_flight_at = _now() + randf_range(float(gap[0]), float(gap[1]))
+	_flight_ready_at[b.mon.uid] = _now() + randf_range(float(gap_same[0]), float(gap_same[1]))
 	Emote.show_on(self, b.actor, "exclaim", 0.8)
 	b.leave_flying()
-	flight.fly(b.mon.species, start, pts, desk.scale)
+	fw.fly(b.mon.species, start, pts, desk.scale, style, pauses)
 
 
-func _on_flight_finished(land: Vector2i) -> void:
-	var b := _flier
-	_flier = null
+func _on_flight_finished(land: Vector2i, fw: FlightWindow) -> void:
+	var b: PetBrain = _fliers.get(fw)
+	_fliers.erase(fw)
 	if b == null or not is_instance_valid(b):
 		return
 	var x := (float(land.x) - float(get_tree().root.position.x)) / float(desk.scale)
 	b.land_from_flight(x)
 
 
-## Cancela un vuelo en curso (pantalla completa, esconder mascotas).
+## Cancela los vuelos en curso (pantalla completa, esconder mascotas).
 func abort_flight() -> void:
-	if flight and flight.visible:
-		flight.abort()
+	for f in _flight_windows:
+		if f.visible:
+			f.abort()
+
+
+## Aterriza ya a este Pokémon si estaba volando (se fue de casa).
+func _abort_flight_of(b: PetBrain) -> void:
+	for f in _fliers.keys():
+		if _fliers[f] == b:
+			_fliers.erase(f)
+			f.abort()
 
 
 ## Para los escenarios: hace volar ya a este Pokémon.
@@ -334,6 +374,38 @@ func force_flight(b: PetBrain) -> void:
 	_next_flight_at = 0.0
 	_flight_ready_at.erase(b.mon.uid)
 	start_flight(b)
+
+
+# ------------------------------------------------------------------ combate de práctica
+
+## Se turnan para lucir movimientos (sin daño: solo el efecto y un "¡ay!" de juego).
+func run_spar(a: PetBrain, b: PetBrain) -> void:
+	var busy := [PetBrain.State.DRAG, PetBrain.State.FALL, PetBrain.State.AWAY]
+	for t in [[a, b], [b, a], [a, b], [b, a]]:
+		if not (is_instance_valid(t[0]) and is_instance_valid(t[1])):
+			return
+		var att: PetBrain = t[0]
+		var def: PetBrain = t[1]
+		if att.state in busy or def.state in busy:
+			return
+		# el que espera se queda quieto mirando
+		def._act("Idle", "E" if att.actor.position.x > def.actor.position.x else "W", 2.5)
+		var fx: MoveFx = await att.perform_move(att.pick_move(), MoveFx.body_center(def.actor), def.actor)
+		if fx == null:
+			return
+		await fx.wait_impact()
+		if is_instance_valid(def) and def.state == PetBrain.State.ACT:
+			def.actor.play_anim("Hurt", def.actor.dir, true)
+		await get_tree().create_timer(1.0).timeout
+	if not (is_instance_valid(a) and is_instance_valid(b)):
+		return
+	for p: PetBrain in [a, b]:
+		if p.state == PetBrain.State.ACT:
+			var other: PetBrain = b if p == a else a
+			p._act("Nod", "E" if other.actor.position.x > p.actor.position.x else "W")
+			Fx.hearts(self, p.actor.position + p.actor.head_point(), 2)
+			p.mon.fun = minf(100.0, p.mon.fun + 6.0)
+	Game.roster.add_bond(a.mon.uid, b.mon.uid, 1)
 
 
 # ------------------------------------------------------------------ reacciones a la PC

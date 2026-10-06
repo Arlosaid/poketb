@@ -1,0 +1,141 @@
+{
+	"id": "nieve",
+	"name_es": "Cumbre nevada",
+	"seed": 57,
+	"tile_w": 256,
+	"height": 56,
+	"ground_y": 49,
+	"particles": {
+		"day": "pollen",
+		"night": "pollen"
+	},
+	"layers": [
+		{
+			"name": "clouds",
+			"gen": "clouds",
+			"speed": 0.06,
+			"drift": 1.5,
+			"colors": [
+				"paper",
+				"mist",
+				"haze"
+			],
+			"y": [
+				3,
+				16
+			],
+			"count": 4,
+			"overlay": false
+		},
+		{
+			"name": "far",
+			"gen": "hills",
+			"speed": 0.12,
+			"colors": [
+				"paper",
+				"mist",
+				"haze"
+			],
+			"base_y": 30,
+			"amp": 13,
+			"waves": [
+				[
+					1,
+					1.0
+				],
+				[
+					4,
+					0.6
+				],
+				[
+					9,
+					0.25
+				]
+			],
+			"overlay": false
+		},
+		{
+			"name": "far2",
+			"gen": "hills",
+			"speed": 0.2,
+			"colors": [
+				"paper",
+				"mist",
+				"haze"
+			],
+			"base_y": 38,
+			"amp": 5,
+			"waves": [
+				[
+					2,
+					1.0
+				],
+				[
+					5,
+					0.4
+				]
+			],
+			"overlay": false
+		},
+		{
+			"name": "mid",
+			"gen": "trees",
+			"speed": 0.4,
+			"colors": [
+				"teal",
+				"pine",
+				"pine",
+				"midnight"
+			],
+			"base_y": 41,
+			"count": 6,
+			"r": [
+				3,
+				6
+			],
+			"gap": 0.4
+		},
+		{
+			"name": "near",
+			"gen": "meadow",
+			"speed": 1.0,
+			"colors": [
+				"paper",
+				"mist",
+				"mist",
+				"haze",
+				"paper",
+				"mist",
+				"haze",
+				"paper"
+			],
+			"top_y": 42,
+			"path": [
+				45,
+				53
+			],
+			"flowers": [
+				"paper",
+				"haze",
+				"mint"
+			]
+		},
+		{
+			"name": "front",
+			"gen": "tufts",
+			"speed": 1.35,
+			"colors": [
+				"paper",
+				"mist",
+				"haze",
+				"dusk"
+			],
+			"flowers": [
+				"paper",
+				"mint",
+				"mist"
+			],
+			"count": 3
+		}
+	]
+}

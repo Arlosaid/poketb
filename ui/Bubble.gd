@@ -57,11 +57,7 @@ static func say(hud: Control, actor: PokemonActor, text: String, life := -1.0) -
 
 
 static func portrait_for(species: String, emotion: String) -> Texture2D:
-	var ports: Dictionary = PokemonActor.load_meta(species).get("portraits", {})
-	for e in PORTRAIT_FALLBACK.get(emotion, [emotion, "Normal"]):
-		if ports.has(e):
-			return load(ports[e])
-	return null
+	return PokemonActor.portrait(species, PORTRAIT_FALLBACK.get(emotion, [emotion, "Normal"]))
 
 
 func _place() -> void:

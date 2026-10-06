@@ -70,7 +70,6 @@ func show_mon(p: PokemonInstance) -> void:
 		_name.text = ""
 		_sub.text = ""
 		return
-	var ports: Dictionary = PokemonActor.load_meta(p.species)["portraits"]
-	_portrait.texture = load(ports.get("Normal", ports.values()[0]))
+	_portrait.texture = PokemonActor.portrait(p.species)
 	_name.text = p.display_name()
 	_sub.text = "Nv. %d · %s" % [p.level, "/".join(p.types().map(func(t): return SpeciesDB.type_es(t)))]

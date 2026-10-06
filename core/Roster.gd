@@ -1,6 +1,7 @@
 class_name Roster
 extends RefCounted
-## Colección del jugador: todos los Pokémon, el equipo (máx. 6), el compañero y las bayas.
+## Colección del jugador: todos los Pokémon, el equipo (máx. 6), las mascotas (máx. 6),
+## el compañero y las bayas.
 ## También aplica las necesidades (hambre, energía, PS en casa) y la amistad.
 
 signal changed
@@ -9,6 +10,8 @@ signal berries_changed
 signal wallet_changed
 
 const TEAM_MAX := 6
+## Cuántos pasean a la vez por la casa (el compañero siempre está, y cuenta).
+const PETS_MAX := 6
 ## Por segundo de juego.
 const FULLNESS_DECAY_HOME := 100.0 / (10.0 * 3600.0)   # de lleno a vacío en ~10 h
 const FULLNESS_DECAY_BATTLE_MULT := 2.0
@@ -34,6 +37,8 @@ const CHEERFUL_EXP_PCT := 5.0
 var members := {}            # uid → PokemonInstance
 var team: Array[int] = []    # uids en orden
 var companion := 0
+## Los que el jugador eligió como mascotas (uids). Pueden estar en el equipo o en las cajas.
+var pets: Array[int] = []
 var berries := {}            # nombre → cantidad
 var gold := 0
 var skills := {}             # id del nodo → nivel
@@ -52,6 +57,7 @@ var _fx := {}                # caché de efectos del árbol
 func new_game() -> void:
 	members.clear()
 	team.clear()
+	pets.clear()
 	var starter := PokemonInstance.create("charmander", 5)
 	add(starter)
 	companion = starter.uid
@@ -72,6 +78,8 @@ func add(p: PokemonInstance) -> void:
 	members[p.uid] = p
 	if team.size() < TEAM_MAX:
 		team.append(p.uid)
+	if pets.size() < PETS_MAX:
+		pets.append(p.uid)
 	changed.emit()
 
 
@@ -106,6 +114,42 @@ func set_companion(uid: int) -> void:
 
 func set_team(uids: Array) -> void:
 	team.assign(uids.slice(0, TEAM_MAX).map(func(x): return int(x)))
+	changed.emit()
+
+
+## ¿Pasea por la casa? El compañero siempre.
+func is_pet(uid: int) -> bool:
+	return uid == companion or uid in pets
+
+
+## Mascotas elegidas, con el compañero siempre incluido (y sin pasarse de PETS_MAX).
+func pet_uids() -> Array[int]:
+	var out: Array[int] = []
+	if members.has(companion):
+		out.append(companion)
+	for u in pets:
+		if out.size() >= PETS_MAX:
+			break
+		if members.has(u) and u not in out:
+			out.append(u)
+	return out
+
+
+## ¿Se puede sacar a pasear a uno más?
+func pets_full() -> bool:
+	return pet_uids().size() >= PETS_MAX
+
+
+## Lo saca a pasear o lo guarda en la PC. El compañero no se puede guardar.
+func toggle_pet(uid: int) -> void:
+	if not members.has(uid) or uid == companion:
+		return
+	if uid in pets:
+		pets.erase(uid)
+	elif not pets_full():
+		pets.append(uid)
+	else:
+		return
 	changed.emit()
 
 
@@ -432,7 +476,7 @@ func to_dict() -> Dictionary:
 	var ms := []
 	for u in members:
 		ms.append(members[u].to_dict())
-	return {"members": ms, "team": team, "companion": companion, "berries": berries, "next_uid": next_uid, "gold": gold, "skills": skills, "bag": bag, "bonds": bonds, "cheer_until": cheer_until, "cheer_pct": cheer_pct}
+	return {"members": ms, "team": team, "companion": companion, "pets": pets, "berries": berries, "next_uid": next_uid, "gold": gold, "skills": skills, "bag": bag, "bonds": bonds, "cheer_until": cheer_until, "cheer_pct": cheer_pct}
 
 
 func from_dict(d: Dictionary) -> void:
@@ -442,6 +486,8 @@ func from_dict(d: Dictionary) -> void:
 		members[p.uid] = p
 	team.assign(d["team"].map(func(x): return int(x)))
 	companion = int(d.get("companion", 0))
+	# partidas viejas: las mascotas eran el equipo
+	pets.assign(d.get("pets", d["team"]).map(func(x): return int(x)))
 	berries = d.get("berries", {})
 	next_uid = int(d.get("next_uid", members.size() + 1))
 	gold = int(d.get("gold", 0))

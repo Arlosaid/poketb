@@ -12,6 +12,9 @@ extends Node
 ## - arrastrar y soltar: se puede lanzar (los voladores planean);
 ## - quedarse quieto encima: ficha compacta;
 ## - clic derecho: barrita de acciones (baya, pelota, dormir/despertar, ficha).
+##
+## Además, cada tipo tiene acciones propias (TypeAct, data/pet_types.json), entrena sus
+## movimientos con su animación (MoveFx) y a veces hace combates de práctica con otra.
 
 enum State { IDLE, WANDER, SIT, LAY, SLEEP, WAKE, LOOK, PETTED, EAT, DRAG, FALL, ACT, CHASE, SOCIAL, FOLLOW, AWAY }
 
@@ -74,6 +77,8 @@ var _chase_max := 3
 ## Cada uno corre a un lado distinto de la pelota (así no se amontonan).
 var _chase_off := 0.0
 var _land_hard := false
+## Acción de tipo en curso (si la hay).
+var _type_act: TypeAct
 
 
 func setup(a: PokemonActor, p: PokemonInstance, h: HomeArea) -> void:
@@ -97,6 +102,7 @@ static func _now() -> float:
 # ------------------------------------------------------------------ estados
 
 func _enter(s: State, duration := 0.0) -> void:
+	_type_act = null
 	state = s
 	_timer = duration
 	_speed = 1.0
@@ -140,6 +146,7 @@ func _enter(s: State, duration := 0.0) -> void:
 
 ## Animación de una vez (estirarse, bailar, lucirse...) y luego vuelve a estar quieto.
 func _act(anim: String, dir := "S", extra := 0.4) -> void:
+	_type_act = null
 	state = State.ACT
 	_speed = 1.0
 	actor.play_anim(anim, dir, true)
@@ -165,11 +172,14 @@ func _choose_next() -> void:
 		"sky": (0.5 if actor.has_real("LookUp") else 0.0) * _wv("sky") * (2.0 if night else 1.0),
 		"social": (1.0 * _wv("social") * calm * (1.6 if bored else 1.0)) if home.has_partner_for(self) else 0.0,
 		"ball": (3.0 * _wv("ball") * (1.6 if bored else 1.0)) if home.ball_available() and mon.energy > 20.0 else 0.0,
-		"fly": (0.5 * _wv("fly")) if home.can_start_flight(self) else 0.0,
+		"fly": (1.4 * _wv("fly")) if home.can_start_flight(self) else 0.0,
+		# propio de su tipo (brasas, chispas, excavar...) y practicar sus movimientos
+		"type": float(TypeAct.data()["base_weight"]) * _wv("type") * calm,
+		"train": (float(TypeAct.data()["train_weight"]) * _wv("train") * calm) if mon.energy > 25.0 else 0.0,
 	}
 	if weak:
 		# Débil: descansa para recuperarse (y los mimos le curan un poco).
-		for k in ["dance", "show", "social", "ball", "fly"]:
+		for k in ["dance", "show", "social", "ball", "fly", "type", "train"]:
 			c[k] = 0.0
 		c["wander"] *= 0.3
 		c["lay"] *= 4.0
@@ -200,6 +210,8 @@ func _choose_next() -> void:
 			"social": home.start_social(self)
 			"ball": start_chase()
 			"fly": home.start_flight(self)
+			"type": start_type_act()
+			"train": train()
 		return
 	_enter(State.IDLE, 2.0)
 
@@ -405,6 +417,65 @@ func _mood(delta: float) -> void:
 		Emote.show_on(home, actor, icon, 2.0)
 
 
+# ------------------------------------------------------------------ tipo y movimientos
+
+## Hace algo propio de su tipo (data/pet_types.json).
+func start_type_act(forced: Dictionary = {}, forced_type := "") -> void:
+	var pick := [forced, forced_type] if not forced.is_empty() else TypeAct.pick(mon.types(), Game.clock.is_night())
+	if pick.is_empty():
+		_enter(State.IDLE, 2.0)
+		return
+	_type_act = null
+	state = State.ACT
+	_speed = 1.0
+	_timer = float(pick[0].get("dur", 2.0)) + 12.0  # red de seguridad: TypeAct avisa al terminar
+	_type_act = TypeAct.start(self, pick[0], pick[1])
+
+
+## TypeAct terminó bien.
+func end_type_act() -> void:
+	_type_act = null
+	mon.fun = minf(100.0, mon.fun + 3.0)
+	_enter(State.IDLE, randf_range(1.5, 3.0))
+
+
+## Movimiento al azar de los que sabe.
+func pick_move() -> String:
+	return mon.moves.pick_random() if not mon.moves.is_empty() else "tackle"
+
+
+## Practica un movimiento en el aire, con su animación de pelea en chiquito.
+func train(move := "") -> void:
+	var m := move if move != "" else pick_move()
+	var face := 1.0 if actor.position.x < (home.x_min + home.x_max) / 2.0 else -1.0
+	if randf() < 0.3:
+		face = -face
+	var aim := MoveFx.body_center(actor) + Vector2(face * 34.0, 0)
+	perform_move(m, aim, null)
+	mon.energy = maxf(0.0, mon.energy - 1.0)
+	mon.fun = minf(100.0, mon.fun + 2.0)
+	if randf() < 0.35:
+		Bubble.say(home.hud, actor, "¡%s!" % SpeciesDB.move(m)["name_es"], 1.6)
+
+
+## Usa `m` hacia `aim` (o hacia `target`): cuerpo + efecto. Queda en ACT mientras dura.
+func perform_move(m: String, aim: Vector2, target: PokemonActor) -> MoveFx:
+	_type_act = null
+	state = State.ACT
+	_speed = 1.0
+	var body := MoveFx.body_anim(m)
+	var d := "E" if aim.x >= actor.position.x else "W"
+	actor.play_anim(body, d, true)
+	_timer = maxf(actor.anim_length(body), 0.6) + 1.0
+	home.desk.keep_awake()
+	await get_tree().create_timer(actor.hit_time(body)).timeout
+	if state != State.ACT or not is_instance_valid(actor):
+		return null
+	var fx := MoveFx.create(home, actor, aim, m, target, true)
+	fx.start()
+	return fx
+
+
 # ------------------------------------------------------------------ juego y vida social
 
 ## Persigue la pelota de casa.
@@ -460,7 +531,7 @@ func social_invite(kind: String, from: PetBrain) -> void:
 	_partner = from
 	_social_kind = kind
 	match kind:
-		"greet":
+		"greet", "spar":
 			state = State.SOCIAL
 			_timer = 6.0
 		"chase":
@@ -508,6 +579,13 @@ func _social(delta: float) -> void:
 			_act("Joy", "E" if dx > 0.0 else "W")
 			other._act("Laugh")
 			Emote.show_on(home, actor, "note")
+		"spar":
+			# se ponen a unos pasos y se turnan para lucir sus movimientos
+			if absf(dx) > 36.0:
+				_walk(delta, pa.position.x - signf(dx) * 32.0, false)
+				return
+			_social_end(true)
+			home.run_spar(self, other)
 		"nap":
 			if absf(dx) > 15.0:
 				_walk(delta, pa.position.x - signf(dx) * 14.0, false)

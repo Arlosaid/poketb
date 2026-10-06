@@ -1,37 +1,250 @@
 {
  "_doc": "Personalidad de mascota. Cada Pokémon tiene un rasgo que sale de su característica canon (data/characteristics.json: IV más alto y ese IV módulo 5). Los rasgos solo cambian pesos y tiempos del comportamiento en casa; nunca stats. Ver pet/Personality.gd.",
  "by_characteristic": {
-  "hp_0": "gloton", "hp_1": "dormilon", "hp_2": "dormilon", "hp_3": "travieso", "hp_4": "tranquilo",
-  "atk_0": "orgulloso", "atk_1": "energico", "atk_2": "grunon", "atk_3": "energico", "atk_4": "grunon",
-  "def_0": "tranquilo", "def_1": "tranquilo", "def_2": "jugueton", "def_3": "tranquilo", "def_4": "jugueton",
-  "spa_0": "curioso", "spa_1": "travieso", "spa_2": "curioso", "spa_3": "sonador", "spa_4": "tiquismiquis",
-  "spd_0": "orgulloso", "spd_1": "orgulloso", "spd_2": "travieso", "spd_3": "energico", "spd_4": "tranquilo",
-  "spe_0": "energico", "spe_1": "curioso", "spe_2": "payaso", "spe_3": "payaso", "spe_4": "timido"
+  "hp_0": "gloton",
+  "hp_1": "dormilon",
+  "hp_2": "dormilon",
+  "hp_3": "travieso",
+  "hp_4": "tranquilo",
+  "atk_0": "orgulloso",
+  "atk_1": "energico",
+  "atk_2": "grunon",
+  "atk_3": "energico",
+  "atk_4": "grunon",
+  "def_0": "tranquilo",
+  "def_1": "tranquilo",
+  "def_2": "jugueton",
+  "def_3": "tranquilo",
+  "def_4": "jugueton",
+  "spa_0": "curioso",
+  "spa_1": "travieso",
+  "spa_2": "curioso",
+  "spa_3": "sonador",
+  "spa_4": "tiquismiquis",
+  "spd_0": "orgulloso",
+  "spd_1": "orgulloso",
+  "spd_2": "travieso",
+  "spd_3": "energico",
+  "spd_4": "tranquilo",
+  "spe_0": "energico",
+  "spe_1": "curioso",
+  "spe_2": "payaso",
+  "spe_3": "payaso",
+  "spe_4": "timido"
  },
  "defaults": {
-  "wander": 1.0, "idle": 1.0, "sit": 1.0, "lay": 1.0, "sleep": 1.0, "stretch": 1.0, "dance": 1.0,
-  "show": 1.0, "sky": 1.0, "social": 1.0, "ball": 1.0, "fly": 1.0,
-  "walk_speed": 1.0, "look_range": 1.0, "fun_decay": 1.0, "shy": 0.0
+  "wander": 1.0,
+  "idle": 1.0,
+  "sit": 1.0,
+  "lay": 1.0,
+  "sleep": 1.0,
+  "stretch": 1.0,
+  "dance": 1.0,
+  "show": 1.0,
+  "sky": 1.0,
+  "social": 1.0,
+  "ball": 1.0,
+  "fly": 1.0,
+  "walk_speed": 1.0,
+  "look_range": 1.0,
+  "fun_decay": 1.0,
+  "shy": 0.0,
+  "type": 1.0,
+  "train": 1.0
  },
  "traits": {
-  "gloton":       {"name_es": "Glotón",       "idle": 1.2, "ball": 0.8, "hungry_at": 45},
-  "dormilon":     {"name_es": "Dormilón",     "sleep": 2.5, "lay": 2.0, "wander": 0.7, "walk_speed": 0.8},
-  "travieso":     {"name_es": "Travieso",     "ball": 1.6, "social": 1.5, "dance": 1.3, "fun_decay": 1.3},
-  "tranquilo":    {"name_es": "Tranquilo",    "sit": 1.8, "lay": 1.5, "wander": 0.7, "fun_decay": 0.7, "walk_speed": 0.85},
-  "orgulloso":    {"name_es": "Orgulloso",    "show": 2.5, "stretch": 1.3},
-  "energico":     {"name_es": "Enérgico",     "wander": 1.6, "ball": 1.4, "walk_speed": 1.35, "sleep": 0.6, "fly": 1.5},
-  "grunon":       {"name_es": "Gruñón",       "social": 0.6, "idle": 1.3, "show": 1.3},
-  "jugueton":     {"name_es": "Juguetón",     "ball": 2.2, "social": 1.6, "dance": 1.5, "fun_decay": 1.4},
-  "curioso":      {"name_es": "Curioso",      "wander": 1.3, "sky": 2.0, "look_range": 1.6, "fly": 1.3},
-  "sonador":      {"name_es": "Soñador",      "sky": 2.5, "sit": 1.8, "walk_speed": 0.85},
-  "tiquismiquis": {"name_es": "Tiquismiquis", "idle": 1.2, "stretch": 1.5},
-  "payaso":       {"name_es": "Payaso",       "dance": 2.5, "show": 1.6, "social": 1.4},
-  "timido":       {"name_es": "Tímido",       "social": 0.5, "look_range": 0.7, "shy": 1.0, "sit": 1.3}
+  "gloton": {
+   "name_es": "Glotón",
+   "idle": 1.2,
+   "ball": 0.8,
+   "hungry_at": 45,
+   "train": 0.8
+  },
+  "dormilon": {
+   "name_es": "Dormilón",
+   "sleep": 2.5,
+   "lay": 2.0,
+   "wander": 0.7,
+   "walk_speed": 0.8,
+   "type": 0.7,
+   "train": 0.5
+  },
+  "travieso": {
+   "name_es": "Travieso",
+   "ball": 1.6,
+   "social": 1.5,
+   "dance": 1.3,
+   "fun_decay": 1.3,
+   "type": 1.4
+  },
+  "tranquilo": {
+   "name_es": "Tranquilo",
+   "sit": 1.8,
+   "lay": 1.5,
+   "wander": 0.7,
+   "fun_decay": 0.7,
+   "walk_speed": 0.85,
+   "train": 0.6,
+   "type": 0.9
+  },
+  "orgulloso": {
+   "name_es": "Orgulloso",
+   "show": 2.5,
+   "stretch": 1.3,
+   "train": 1.6,
+   "type": 1.3
+  },
+  "energico": {
+   "name_es": "Enérgico",
+   "wander": 1.6,
+   "ball": 1.4,
+   "walk_speed": 1.35,
+   "sleep": 0.6,
+   "fly": 1.5,
+   "train": 1.7,
+   "type": 1.2
+  },
+  "grunon": {
+   "name_es": "Gruñón",
+   "social": 0.6,
+   "idle": 1.3,
+   "show": 1.3,
+   "train": 1.3
+  },
+  "jugueton": {
+   "name_es": "Juguetón",
+   "ball": 2.2,
+   "social": 1.6,
+   "dance": 1.5,
+   "fun_decay": 1.4,
+   "type": 1.3,
+   "train": 1.2
+  },
+  "curioso": {
+   "name_es": "Curioso",
+   "wander": 1.3,
+   "sky": 2.0,
+   "look_range": 1.6,
+   "fly": 1.3,
+   "type": 1.5
+  },
+  "sonador": {
+   "name_es": "Soñador",
+   "sky": 2.5,
+   "sit": 1.8,
+   "walk_speed": 0.85,
+   "type": 1.2,
+   "train": 0.7
+  },
+  "tiquismiquis": {
+   "name_es": "Tiquismiquis",
+   "idle": 1.2,
+   "stretch": 1.5,
+   "type": 1.1
+  },
+  "payaso": {
+   "name_es": "Payaso",
+   "dance": 2.5,
+   "show": 1.6,
+   "social": 1.4,
+   "type": 1.5,
+   "train": 1.1
+  },
+  "timido": {
+   "name_es": "Tímido",
+   "social": 0.5,
+   "look_range": 0.7,
+   "shy": 1.0,
+   "sit": 1.3,
+   "train": 0.6,
+   "type": 0.9
+  }
  },
  "species": {
-  "_doc": "nocturnal: duermen de día y están activos de noche. fly: vuelan a veces por la pantalla (además de los de tipo volador, salvo no_fly).",
-  "nocturnal": ["hoothoot", "noctowl", "spinarak", "ariados"],
-  "fly": [],
-  "no_fly": []
+  "_doc": "nocturnal: duermen de día y están activos de noche (además de los tipos de nocturnal_types). fly: vuelan por la pantalla aunque no lo diga su tipo/forma; no_fly: nunca. Vuelan solos los de tipo volador, los de forma con alas (wings, bug-wings), los de la habilidad Levitación y los fantasmas sin patas. flight_style: estilo de vuelo forzado por especie.",
+  "nocturnal": [
+   "hoothoot",
+   "noctowl",
+   "spinarak",
+   "ariados"
+  ],
+  "fly": [
+   "mew",
+   "celebi",
+   "jirachi",
+   "deoxys",
+   "latias",
+   "latios",
+   "manaphy",
+   "hoopa",
+   "cosmog",
+   "cosmoem",
+   "solgaleo",
+   "lunala",
+   "necrozma",
+   "magearna",
+   "eternatus",
+   "calyrex",
+   "enamorus",
+   "dreepy",
+   "drakloak",
+   "dragapult",
+   "hatenna",
+   "flutter-mane",
+   "iron-moth",
+   "iron-jugulis"
+  ],
+  "no_fly": [
+   "doduo",
+   "dodrio",
+   "farfetchd",
+   "sirfetchd",
+   "gyarados",
+   "pikipek",
+   "oricorio",
+   "hawlucha",
+   "rufflet",
+   "flamigo",
+   "squawkabilly",
+   "bombirdier",
+   "kilowattrel",
+   "wattrel",
+   "cramorant",
+   "shaymin",
+   "archen",
+   "archeops",
+   "tropius",
+   "zapdos-galar",
+   "chatot",
+   "spearow",
+   "cutiefly"
+  ],
+  "nocturnal_types": [
+   "ghost",
+   "dark"
+  ],
+  "flight_style": {
+   "rayquaza": "dragon",
+   "dragonite": "dragon",
+   "charizard": "dragon",
+   "salamence": "dragon",
+   "latias": "dragon",
+   "latios": "dragon",
+   "noivern": "dragon",
+   "flygon": "dragon",
+   "altaria": "bird"
+  }
+ },
+ "flight": {
+  "_doc": "Vuelos por la pantalla (pet/HomeArea.gd): pausa entre dos vuelos cualesquiera y entre dos del mismo Pokémon (s), y cuántos pueden volar a la vez.",
+  "gap": [
+   45,
+   120
+  ],
+  "gap_same": [
+   180,
+   360
+  ],
+  "max_fliers": 2
  }
 }

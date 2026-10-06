@@ -1,0 +1,1068 @@
+{
+ "id": "ruta_5",
+ "name_es": "Prado Chispa (Ruta 5)",
+ "encounters_to_boss": 24,
+ "level_range": [
+  18,
+  28
+ ],
+ "walk_seconds": [
+  18,
+  35
+ ],
+ "sections": [
+  {
+   "from": 0.0,
+   "biome": "pradera"
+  },
+  {
+   "from": 0.5,
+   "biome": "bosque"
+  }
+ ],
+ "day": [
+  {
+   "species": "raticate",
+   "min_level": 20,
+   "weight": 8
+  },
+  {
+   "species": "pikachu",
+   "min_level": 16,
+   "weight": 12
+  },
+  {
+   "species": "raichu",
+   "min_level": 28,
+   "weight": 5
+  },
+  {
+   "species": "clefairy",
+   "min_level": 16,
+   "weight": 10
+  },
+  {
+   "species": "clefable",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "jigglypuff",
+   "min_level": 16,
+   "weight": 11
+  },
+  {
+   "species": "wigglytuff",
+   "min_level": 28,
+   "weight": 3
+  },
+  {
+   "species": "gloom",
+   "min_level": 21,
+   "weight": 8
+  },
+  {
+   "species": "parasect",
+   "min_level": 24,
+   "weight": 5
+  },
+  {
+   "species": "persian",
+   "min_level": 28,
+   "weight": 6
+  },
+  {
+   "species": "weepinbell",
+   "min_level": 21,
+   "weight": 8
+  },
+  {
+   "species": "electrode",
+   "min_level": 28,
+   "weight": 4
+  },
+  {
+   "species": "lickitung",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "mr-mime",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "electabuzz",
+   "min_level": 28,
+   "weight": 3
+  },
+  {
+   "species": "tauros",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "jolteon",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "porygon",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "chikorita",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "lanturn",
+   "min_level": 27,
+   "weight": 5
+  },
+  {
+   "species": "cleffa",
+   "min_level": 2,
+   "weight": 10
+  },
+  {
+   "species": "igglybuff",
+   "min_level": 2,
+   "weight": 11
+  },
+  {
+   "species": "flaaffy",
+   "min_level": 15,
+   "weight": 8
+  },
+  {
+   "species": "ampharos",
+   "min_level": 28,
+   "weight": 3
+  },
+  {
+   "species": "jumpluff",
+   "min_level": 27,
+   "weight": 3
+  },
+  {
+   "species": "sunkern",
+   "min_level": 2,
+   "weight": 15
+  },
+  {
+   "species": "granbull",
+   "min_level": 23,
+   "weight": 5
+  },
+  {
+   "species": "ursaring",
+   "min_level": 28,
+   "weight": 4
+  },
+  {
+   "species": "elekid",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "blissey",
+   "min_level": 28,
+   "weight": 2
+  },
+  {
+   "species": "linoone",
+   "min_level": 20,
+   "weight": 6
+  },
+  {
+   "species": "ludicolo",
+   "min_level": 28,
+   "weight": 3
+  },
+  {
+   "species": "seedot",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "swellow",
+   "min_level": 22,
+   "weight": 3
+  },
+  {
+   "species": "kirlia",
+   "min_level": 20,
+   "weight": 8
+  },
+  {
+   "species": "shroomish",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "breloom",
+   "min_level": 23,
+   "weight": 6
+  },
+  {
+   "species": "loudred",
+   "min_level": 20,
+   "weight": 8
+  },
+  {
+   "species": "azurill",
+   "min_level": 2,
+   "weight": 10
+  },
+  {
+   "species": "electrike",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "manectric",
+   "min_level": 26,
+   "weight": 3
+  },
+  {
+   "species": "spinda",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "cacnea",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "grotle",
+   "min_level": 18,
+   "weight": 3
+  },
+  {
+   "species": "luxio",
+   "min_level": 15,
+   "weight": 8
+  },
+  {
+   "species": "luxray",
+   "min_level": 28,
+   "weight": 3
+  },
+  {
+   "species": "wormadam",
+   "min_level": 20,
+   "weight": 3
+  },
+  {
+   "species": "cherrim",
+   "min_level": 25,
+   "weight": 5
+  },
+  {
+   "species": "glameow",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "carnivine",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "togekiss",
+   "min_level": 28,
+   "weight": 2
+  },
+  {
+   "species": "porygon-z",
+   "min_level": 28,
+   "weight": 2
+  },
+  {
+   "species": "servine",
+   "min_level": 17,
+   "weight": 3
+  },
+  {
+   "species": "watchog",
+   "min_level": 20,
+   "weight": 17
+  },
+  {
+   "species": "lillipup",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "simisage",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "swadloon",
+   "min_level": 20,
+   "weight": 8
+  },
+  {
+   "species": "cottonee",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "whimsicott",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "flabebe",
+   "min_level": 2,
+   "weight": 15
+  },
+  {
+   "species": "floette",
+   "min_level": 19,
+   "weight": 8
+  },
+  {
+   "species": "skiddo",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "aromatisse",
+   "min_level": 16,
+   "weight": 9
+  },
+  {
+   "species": "slurpuff",
+   "min_level": 16,
+   "weight": 9
+  },
+  {
+   "species": "helioptile",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "heliolisk",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "sylveon",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "dedenne",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "toucannon",
+   "min_level": 28,
+   "weight": 3
+  },
+  {
+   "species": "charjabug",
+   "min_level": 20,
+   "weight": 8
+  },
+  {
+   "species": "ribombee",
+   "min_level": 25,
+   "weight": 5
+  },
+  {
+   "species": "morelull",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "bewear",
+   "min_level": 27,
+   "weight": 4
+  },
+  {
+   "species": "steenee",
+   "min_level": 18,
+   "weight": 8
+  },
+  {
+   "species": "comfey",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "thwackey",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "skwovet",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "greedent",
+   "min_level": 24,
+   "weight": 6
+  },
+  {
+   "species": "eldegoss",
+   "min_level": 20,
+   "weight": 5
+  },
+  {
+   "species": "dubwool",
+   "min_level": 24,
+   "weight": 8
+  },
+  {
+   "species": "boltund",
+   "min_level": 25,
+   "weight": 3
+  },
+  {
+   "species": "milcery",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "alcremie",
+   "min_level": 16,
+   "weight": 6
+  },
+  {
+   "species": "sprigatito",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "fidough",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "dachsbun",
+   "min_level": 26,
+   "weight": 6
+  },
+  {
+   "species": "smoliv",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "dolliv",
+   "min_level": 25,
+   "weight": 8
+  },
+  {
+   "species": "bellibolt",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "kilowattrel",
+   "min_level": 25,
+   "weight": 6
+  },
+  {
+   "species": "scovillain",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "tinkatuff",
+   "min_level": 24,
+   "weight": 6
+  },
+  {
+   "species": "hydrapple",
+   "min_level": 28,
+   "weight": 1
+  }
+ ],
+ "night": [
+  {
+   "species": "raticate",
+   "min_level": 20,
+   "weight": 4
+  },
+  {
+   "species": "pikachu",
+   "min_level": 16,
+   "weight": 6
+  },
+  {
+   "species": "raichu",
+   "min_level": 28,
+   "weight": 2
+  },
+  {
+   "species": "clefairy",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "clefable",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "jigglypuff",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "wigglytuff",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "gloom",
+   "min_level": 21,
+   "weight": 4
+  },
+  {
+   "species": "parasect",
+   "min_level": 24,
+   "weight": 2
+  },
+  {
+   "species": "persian",
+   "min_level": 28,
+   "weight": 3
+  },
+  {
+   "species": "weepinbell",
+   "min_level": 21,
+   "weight": 4
+  },
+  {
+   "species": "electrode",
+   "min_level": 28,
+   "weight": 2
+  },
+  {
+   "species": "lickitung",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mr-mime",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "electabuzz",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "tauros",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "jolteon",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "porygon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "chikorita",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "lanturn",
+   "min_level": 27,
+   "weight": 2
+  },
+  {
+   "species": "cleffa",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "igglybuff",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "flaaffy",
+   "min_level": 15,
+   "weight": 4
+  },
+  {
+   "species": "ampharos",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "jumpluff",
+   "min_level": 27,
+   "weight": 1
+  },
+  {
+   "species": "sunkern",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "granbull",
+   "min_level": 23,
+   "weight": 2
+  },
+  {
+   "species": "ursaring",
+   "min_level": 28,
+   "weight": 2
+  },
+  {
+   "species": "elekid",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "blissey",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "linoone",
+   "min_level": 20,
+   "weight": 3
+  },
+  {
+   "species": "ludicolo",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "seedot",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "swellow",
+   "min_level": 22,
+   "weight": 1
+  },
+  {
+   "species": "kirlia",
+   "min_level": 20,
+   "weight": 4
+  },
+  {
+   "species": "shroomish",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "breloom",
+   "min_level": 23,
+   "weight": 3
+  },
+  {
+   "species": "loudred",
+   "min_level": 20,
+   "weight": 4
+  },
+  {
+   "species": "azurill",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "electrike",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "manectric",
+   "min_level": 26,
+   "weight": 1
+  },
+  {
+   "species": "spinda",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "cacnea",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "grotle",
+   "min_level": 18,
+   "weight": 1
+  },
+  {
+   "species": "luxio",
+   "min_level": 15,
+   "weight": 4
+  },
+  {
+   "species": "luxray",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "wormadam",
+   "min_level": 20,
+   "weight": 1
+  },
+  {
+   "species": "cherrim",
+   "min_level": 25,
+   "weight": 2
+  },
+  {
+   "species": "glameow",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "carnivine",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "togekiss",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "porygon-z",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "servine",
+   "min_level": 17,
+   "weight": 1
+  },
+  {
+   "species": "watchog",
+   "min_level": 20,
+   "weight": 8
+  },
+  {
+   "species": "lillipup",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "simisage",
+   "min_level": 16,
+   "weight": 2
+  },
+  {
+   "species": "swadloon",
+   "min_level": 20,
+   "weight": 4
+  },
+  {
+   "species": "cottonee",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "whimsicott",
+   "min_level": 16,
+   "weight": 2
+  },
+  {
+   "species": "flabebe",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "floette",
+   "min_level": 19,
+   "weight": 4
+  },
+  {
+   "species": "skiddo",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "aromatisse",
+   "min_level": 16,
+   "weight": 4
+  },
+  {
+   "species": "slurpuff",
+   "min_level": 16,
+   "weight": 4
+  },
+  {
+   "species": "helioptile",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "heliolisk",
+   "min_level": 16,
+   "weight": 2
+  },
+  {
+   "species": "sylveon",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "dedenne",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "toucannon",
+   "min_level": 28,
+   "weight": 1
+  },
+  {
+   "species": "charjabug",
+   "min_level": 20,
+   "weight": 4
+  },
+  {
+   "species": "ribombee",
+   "min_level": 25,
+   "weight": 2
+  },
+  {
+   "species": "morelull",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "bewear",
+   "min_level": 27,
+   "weight": 2
+  },
+  {
+   "species": "steenee",
+   "min_level": 18,
+   "weight": 4
+  },
+  {
+   "species": "comfey",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "thwackey",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "skwovet",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "greedent",
+   "min_level": 24,
+   "weight": 3
+  },
+  {
+   "species": "eldegoss",
+   "min_level": 20,
+   "weight": 2
+  },
+  {
+   "species": "dubwool",
+   "min_level": 24,
+   "weight": 4
+  },
+  {
+   "species": "boltund",
+   "min_level": 25,
+   "weight": 1
+  },
+  {
+   "species": "milcery",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "alcremie",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "sprigatito",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "fidough",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "dachsbun",
+   "min_level": 26,
+   "weight": 3
+  },
+  {
+   "species": "smoliv",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "dolliv",
+   "min_level": 25,
+   "weight": 4
+  },
+  {
+   "species": "bellibolt",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "kilowattrel",
+   "min_level": 25,
+   "weight": 3
+  },
+  {
+   "species": "scovillain",
+   "min_level": 16,
+   "weight": 2
+  },
+  {
+   "species": "tinkatuff",
+   "min_level": 24,
+   "weight": 3
+  },
+  {
+   "species": "hydrapple",
+   "min_level": 28,
+   "weight": 1
+  }
+ ],
+ "boss": {
+  "species": "wormadam",
+  "level": 32,
+  "title_es": "¡Un Wormadam imponente bloquea el camino!"
+ },
+ "cleared_es": "¡Ruta despejada! Rumbo a Pantano Sombrío…",
+ "next": "ruta_6",
+ "capture": {
+  "hp_below": 0.5,
+  "chance_per_turn": 0.25
+ },
+ "drops": {
+  "chance": 0.35,
+  "table": [
+   {
+    "berry": "oran",
+    "weight": 30
+   },
+   {
+    "berry": "pecha",
+    "weight": 12
+   },
+   {
+    "berry": "cheri",
+    "weight": 12
+   },
+   {
+    "berry": "chesto",
+    "weight": 10
+   },
+   {
+    "berry": "rawst",
+    "weight": 10
+   },
+   {
+    "berry": "aspear",
+    "weight": 10
+   },
+   {
+    "berry": "figy",
+    "weight": 6
+   },
+   {
+    "berry": "wiki",
+    "weight": 6
+   },
+   {
+    "berry": "mago",
+    "weight": 6
+   },
+   {
+    "berry": "aguav",
+    "weight": 6
+   },
+   {
+    "berry": "iapapa",
+    "weight": 6
+   },
+   {
+    "berry": "sitrus",
+    "weight": 4
+   }
+  ]
+ },
+ "rewards": {
+  "gold_per_exp_unit": 0.1,
+  "boss_gold_mult": 5
+ },
+ "item_drops": {
+  "chance": 0.12,
+  "boss_chance": 1.0,
+  "boss_min_tier": 2,
+  "table": [
+   {
+    "item": "muscle_band",
+    "weight": 10
+   },
+   {
+    "item": "wise_glasses",
+    "weight": 10
+   },
+   {
+    "item": "rocky_helmet",
+    "weight": 10
+   },
+   {
+    "item": "assault_vest",
+    "weight": 10
+   },
+   {
+    "item": "quick_claw",
+    "weight": 8
+   },
+   {
+    "item": "leftovers",
+    "weight": 8
+   },
+   {
+    "item": "scope_lens",
+    "weight": 6
+   },
+   {
+    "item": "lucky_egg",
+    "weight": 5
+   },
+   {
+    "item": "amulet_coin",
+    "weight": 5
+   }
+  ]
+ }
+}

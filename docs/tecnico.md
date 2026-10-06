@@ -27,19 +27,21 @@
 Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde `native/`:
 `scons platform=windows target=template_debug` (y `template_release`). La primera compilación de godot-cpp tarda unos 4 min.
 
-## Pipeline de sprites
-1. `tools/fetch_sprites.py`: sparse checkout de SpriteCollab en `~/.cache/spritecollab`. Copia la forma base a `assets/raw/spritecollab/` y genera `data/sprite_credits.json`.
-2. `godot --headless --path . --import`: importa los PNG. Es necesario además para que Godot registre los `class_name` nuevos.
-3. `godot --headless --path . --script res://tools/import_sprites.gd` lee AnimData.xml y genera `pokemon/species/<name>/frames.res` + `meta.json`. Las alternativas quedan en `tools/import_log.txt`.
+## Pipeline de sprites (Fase 9: las 1025 especies)
+1. `tools/fetch_sprites.py`: clon parcial + sparse checkout de SpriteCollab en `~/.cache/spritecollab` (solo los archivos raíz de cada especie: `AnimData.xml`, hojas `-Anim`/`-Shadow`, retratos y créditos; ~330 MB fuera del proyecto). Las especies sin forma base pero con una forma alternativa usan `tools/sprite_forms.json`. Genera `data/sprite_credits.json`.
+2. `tools/pack_sprites.py`: por cada especie de `data/pokemon_roster.json` escribe en `pokemon/species/<nombre>/`:
+   - `sheet.png`: los cuadros de las animaciones de `WANTED`, recortados, **sin repetidos** y empacados por estantes (PNG indexado);
+   - `portraits.png`: tira de retratos de 40x40 (solo las emociones que usa el juego);
+   - `meta.json`: por animación `fw`, `fh`, `frames`, `dirs`, `durations`, `loop`, `cells[dir][cuadro]` (índice de celda), `ground`, `bbox`, `rush`/`hit`/`return`, `length_ticks` y `shadow`; además `cells` (x, y, w, h, margen x, margen y), `alias` (animación lógica → real, de `ALTERNATIVES`) y `portraits` (emoción → índice en la tira).
+   Escribe `data/sprite_index.json` (especies con arte) y `tools/import_log.txt`. Tarda ~40 s con varios procesos.
+3. `godot --headless --path . --import`: importa las hojas nuevas (y registra los `class_name` nuevos).
 
-`meta.json` por animación guarda:
-- `fw`, `fh`, `frames`, `dirs` (1 u 8);
-- `ground`: centro del marcador de sombra respecto al centro del cuadro;
-- `bbox`: píxeles opacos respecto al suelo;
-- `rush`, `hit`, `return` y `length_ticks` (a 60 fps).
+En el juego, `PokemonActor.frames_for(especie)` arma el `SpriteFrames` en memoria: cada cuadro es un `AtlasTexture` con `region` (el recorte) y `margin` (devuelve el tamaño del cuadro PMD, así el ancla no cambia). Guarda en caché los 40 más recientes. `PokemonActor.portrait(especie, [emociones])` devuelve el retrato como `AtlasTexture`.
+
+984 de 1025 especies tienen sprites en SpriteCollab. Las 41 restantes (sobre todo de las Gen 5–9; la lista sale en `tools/fetch_sprites.py`) existen en los datos, pero no aparecen en el mundo (`SpeciesDB.has_sprite`): no salen en rutas y una evolución hacia ellas espera. Cuando SpriteCollab las dibuje, basta con volver a correr los pasos 1–3 y `tools/gen_routes.py`.
 
 ## Datos canon
-`tools/fetch_pokeapi.py` genera `data/species.json`, `moves.json`, `types.json`, `natures.json`, `berries.json` y `growth.json`. Cachea las respuestas en `tools/.cache/pokeapi`. Los learnsets usan el primer version group disponible entre: scarlet-violet, sword-shield, ultra-sun-ultra-moon, sun-moon y x-y.
+`tools/fetch_pokeapi.py` (1025 especies, 8 hilos, caché en `tools/.cache/pokeapi`) genera `data/pokemon_roster.json`, `abilities.json`, `data/species.json`, `moves.json`, `types.json`, `natures.json`, `berries.json` y `growth.json`. Cachea las respuestas en `tools/.cache/pokeapi`. Los learnsets usan el primer version group disponible entre: scarlet-violet, sword-shield, ultra-sun-ultra-moon, sun-moon y x-y.
 
 ## Validación
 - `--scenario=still` deja a Charmander quieto en x lógica 100 (en pantalla: x≈180–218, y≈984–1034 a x2) y guarda `shots/p1_still.png`.
@@ -99,3 +101,21 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 - UI: `ui/Emote.gd` (globito con ícono de 7x7, no clicable), `ui/Bubble.gd` (`Bubble.say`, una línea, no clicable), `ui/ActionBar.gd`, `ui/BerryMenu.gd` (compacto) y `ui/PetCard.gd`. `PokemonActor.attached(key)` devuelve el cartel activo ("bubble", "emote" o "card"); solo hay uno a la vez.
 - Ajustes del jugador en `Game.settings` (`topmost`, `flights`, `app_react`, `wellbeing`), guardados en `save.json` y editables desde la bandeja. `Game.hide_pets(min)` esconde las mascotas.
 - Escenario: `--scenario=pet` genera p3_home, p3_sleep y p8_* (caricia, acciones, bayas, ficha, comer, cosquillas, rascar, mimos que curan, emociones, pelota, saludo, voltereta, pausa, ánimo, video y vuelo).
+
+## Movimientos con animación propia (Fase 9)
+- `tools/gen_move_fx.py` aplica `data/move_fx_rules.json` a los 692 movimientos de `data/moves.json` y escribe `data/move_fx.json`: por movimiento, `body` (animación lógica del cuerpo: Punch, Kick, Bite, Claw, Chop, Slam, Head, Swing, Spin, Multi, Quick, SpAttack, Sound, Shock, Rumble, Rise, Flap, Sink, Dance…), `style`, `part` (partícula) y `hits`. Las reglas buscan palabras en el nombre (punch, fang, beam, storm…), usan datos canon (`meta.drain`, `max_hits`, `target`, `category`) y tienen `overrides` por movimiento.
+- `battle/MoveFx.gd` dibuja 30 estilos: contact, punch, kick, slam, bite, slash, swing, spin, vine, projectile, barrage, beam, spray, bolt, rain, rise, quake, wave, wind, sound, psychic, drain, explosion, vanish, dive_bomb, aura, heal, status, shield y field. Los colores salen del tipo del movimiento (`type_colors`: claro, medio y oscuro de la paleta) y las partículas, de `assets/ui/fx_parts.png` (22 formas × 18 tipos, generado por `gen_ui.py → fx_parts()`). Los trazos (rayos, ondas, garras, colmillos) se dibujan en `_draw` a la resolución lógica, sin antialias.
+- Uso: `MoveFx.create(padre, atacante, punto, movimiento, defensor, chico)`, `fx.start()` y `await fx.wait_impact()`. En la pelea, `BattleController._attack` aplica el daño en el impacto, y `_stage_shake(px)` sacude el escenario. En casa (`small = true`) hay menos partículas y no hay sacudidas.
+- `--scenario=moves` prueba un movimiento de cada estilo y guarda `shots/p9_<estilo>_battle.png` (y `_a` a mitad del efecto).
+
+## Rutas para todas las especies (Fase 9)
+- `tools/gen_routes.py` genera de `ruta_2` a `ruta_13` (y agrega `next` a la Ruta 1). Cada especie con sprite va a una sola ruta según sus tipos y su nivel mínimo (forma básica: 2; evolución por nivel: su nivel canon; por piedra, intercambio o amistad: 14 más que su forma previa). Los legendarios y singulares están en el Santuario Legendario (Nv. 60–80, jefe Arceus). Las entradas llevan `min_level`, y `BattleController.wild_level` nunca baja de él.
+- Al vencer al jefe se pasa sola a la ruta `next` (`BattleController.load_route`). El guardado ya guardaba el id de la ruta; ahora `SaveManager.load_game` lo carga.
+- Biomas nuevos: `playa`, `montana`, `nieve`, `volcan` y `pantano` (`data/biomes/*.json`, con los mismos generadores y otros colores).
+- Evolución por amistad: `PokemonInstance.evolution_ready` también acepta las de `evolutions` con `trigger: level-up` y `happiness` (y `time` de día o de noche). Las de piedra e intercambio están en los datos, pero todavía no se usan.
+
+## Mascotas por tipo, entrenamiento y vuelos (Fase 9)
+- `pet/TypeAct.gd` ejecuta las acciones de `data/pet_types.json` (ver `docs/mascotas.md`).
+- `PetBrain.train()` y `perform_move()` usan `MoveFx` en chico; `HomeArea.run_spar()` es el combate de práctica.
+- Vuelos: `HomeArea` tiene un grupo de `FlightWindow` (hasta `flight.max_fliers` a la vez) y arma rutas que cruzan toda la pantalla, con rizos y pausas. `FlightWindow` ajusta su tamaño al Pokémon y tiene estilos (`bird`, `bug`, `dragon`, `float`).
+- `--scenario=types` saca `p9_types*`, `p9_train`, `p9_spar` y `p9_fly_<estilo>`.

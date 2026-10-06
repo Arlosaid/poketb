@@ -22,14 +22,17 @@ Para jugar: doble clic en `Jugar-Pokemon.bat` (en el Escritorio) o en `Jugar.bat
 # Compilar la extensión nativa (desde una consola con el entorno de MSVC, ver docs/tecnico.md)
 cd native && scons platform=windows target=template_debug && scons platform=windows target=template_release
 # Datos y assets (solo en desarrollo; el juego NO usa internet)
-python -I tools/fetch_sprites.py       # sparse checkout de SpriteCollab → assets/raw/spritecollab + data/sprite_credits.json
-python -I tools/fetch_pokeapi.py       # PokeAPI → data/*.json
+python -I tools/fetch_pokeapi.py       # PokeAPI (las 1025 especies) → data/*.json
+python -I tools/fetch_sprites.py       # sparse checkout de SpriteCollab en ~/.cache/spritecollab + data/sprite_credits.json
+python -I tools/pack_sprites.py        # caché → pokemon/species/<nombre>/{sheet,portraits}.png + meta.json
+python -I tools/gen_move_fx.py         # data/move_fx_rules.json → data/move_fx.json (animación de cada movimiento)
+python -I tools/gen_routes.py          # rutas 2–13 con todas las especies
 python -I tools/gen_ui.py              # marcos 9-patch, íconos, paleta → assets/ui
 python -I tools/gen_backgrounds.py     # capas de parallax → assets/bg (lee data/biomes/*.json)
 python -I tools/gen_credits.py         # CREDITS.md desde data/sprite_credits.json
-"<godot_console>" --headless --path . --script res://tools/import_sprites.gd   # AnimData.xml → SpriteFrames
+"<godot_console>" --headless --path . --import   # importa las hojas nuevas
 # Correr el juego
-"<godot_console>" --path . -- [--debug] [--scenario=still|pet|battle|gallery] [--autoquit=SEG]
+"<godot_console>" --path . -- [--debug] [--scenario=still|pet|battle|gallery|moves|types] [--autoquit=SEG]
 python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 ```
 
@@ -65,11 +68,14 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 - [x] Fase 6: pulido y créditos (`--scenario=showcase`: vista de conjunto de día y de noche).
 - [x] Fase 7: progresión estilo Taskbar Hero: monedas, árbol del entrenador, vitaminas, movimientos con maestría, objetos fusionables (`--scenario=growth`; capturas p7_*).
 - [x] Fase 8: mascotas vivas: siempre al frente, personalidad canon, diversión, globitos chicos, cosquillas, rascar, lanzar, pelota, juegos entre ellas, vuelos por la pantalla, reacciones a la PC y pausas (`--scenario=pet`; capturas p8_*).
+- [x] Fase 9: todas las especies (984 de 1025 con sprites), una animación para cada movimiento (`--scenario=moves`), 12 rutas nuevas con 5 biomas, acciones por tipo, entrenar, combates de práctica y vuelos por toda la pantalla (`--scenario=types`).
 
 ## Ideas para después del MVP
 - Ruta 2 "Bosque Verde" (solo es un JSON de ruta y un bioma).
 - Movimientos de estado.
 - Shiny (bajar variantes de SpriteCollab; tasa canon 1/4096).
+- Evoluciones por piedra e intercambio (los datos ya están en `species.json → evolutions`).
+- Elegir la ruta desde la PC (hoy se avanza sola al vencer al jefe).
 - Posarse sobre la barra de título de la ventana activa (estilo Shimeji).
 - Sonidos suaves enganchados a `BattleController.event`.
 - Panel de pelea redimensionable desde la PC.

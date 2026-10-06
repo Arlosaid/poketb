@@ -39,6 +39,11 @@ func _build() -> void:
 	ch.text = Personality.characteristic_text(mon)
 	ch.add_theme_color_override("font_color", Palette.WOOD)
 	v.add_child(ch)
+	if mon.ability() != "":
+		var ab := Label.new()
+		ab.text = "Habilidad: " + mon.ability_es()
+		ab.add_theme_color_override("font_color", Palette.WOOD)
+		v.add_child(ab)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 4)
 	v.add_child(row)

@@ -7,6 +7,8 @@ signal picked(uid: int)
 signal dropped(data: Dictionary, target: MonCell)
 
 const STAR := preload("res://assets/ui/sparkle.png")
+## Marca de los que pasean por la casa como mascotas (el compañero ya lleva la estrella).
+const HEART := preload("res://assets/ui/heart.png")
 
 var uid := 0
 var zone := "box"     # "team" | "box"
@@ -49,9 +51,7 @@ func show_mon(p: PokemonInstance) -> void:
 		tooltip_text = ""
 		queue_redraw()
 		return
-	var meta := PokemonActor.load_meta(p.species)
-	var ports: Dictionary = meta.get("portraits", {})
-	_portrait.texture = load(ports.get("Normal", ports.values()[0])) if not ports.is_empty() else null
+	_portrait.texture = PokemonActor.portrait(p.species)
 	_lv.text = "%d" % p.level
 	_portrait.modulate = Color(1, 1, 1, 0.55) if p.is_fainted() else Color.WHITE
 	queue_redraw()
@@ -60,6 +60,8 @@ func show_mon(p: PokemonInstance) -> void:
 func _draw() -> void:
 	if uid != 0 and uid == Game.roster.companion:
 		draw_texture(STAR, Vector2(size.x - 8, 2))
+	elif uid != 0 and Game.roster.is_pet(uid):
+		draw_texture(HEART, Vector2(size.x - 9, 2))
 	if selected:
 		var r := Rect2(Vector2.ZERO, size - Vector2(1, 1))
 		draw_rect(r, Palette.FLAME, false, 1.0)

@@ -1,0 +1,828 @@
+{
+ "id": "ruta_11",
+ "name_es": "Picos del Cielo (Ruta 11)",
+ "encounters_to_boss": 24,
+ "level_range": [
+  48,
+  60
+ ],
+ "walk_seconds": [
+  18,
+  35
+ ],
+ "sections": [
+  {
+   "from": 0.0,
+   "biome": "montana"
+  },
+  {
+   "from": 0.6,
+   "biome": "nieve"
+  }
+ ],
+ "day": [
+  {
+   "species": "zubat",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "magnemite",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "voltorb",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "rhydon",
+   "min_level": 42,
+   "weight": 4
+  },
+  {
+   "species": "aerodactyl",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "dragonite",
+   "min_level": 55,
+   "weight": 3
+  },
+  {
+   "species": "ledyba",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "pichu",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "natu",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "mareep",
+   "min_level": 2,
+   "weight": 15
+  },
+  {
+   "species": "yanma",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "murkrow",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "skarmory",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tyranitar",
+   "min_level": 55,
+   "weight": 1
+  },
+  {
+   "species": "plusle",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "minun",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "solrock",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "cradily",
+   "min_level": 40,
+   "weight": 3
+  },
+  {
+   "species": "armaldo",
+   "min_level": 40,
+   "weight": 3
+  },
+  {
+   "species": "tropius",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "salamence",
+   "min_level": 50,
+   "weight": 3
+  },
+  {
+   "species": "shinx",
+   "min_level": 2,
+   "weight": 15
+  },
+  {
+   "species": "shieldon",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "pachirisu",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "garchomp",
+   "min_level": 48,
+   "weight": 3
+  },
+  {
+   "species": "rhyperior",
+   "min_level": 56,
+   "weight": 2
+  },
+  {
+   "species": "electivire",
+   "min_level": 44,
+   "weight": 2
+  },
+  {
+   "species": "rotom",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "roggenrola",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "archen",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "archeops",
+   "min_level": 37,
+   "weight": 3
+  },
+  {
+   "species": "emolga",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "joltik",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "galvantula",
+   "min_level": 36,
+   "weight": 5
+  },
+  {
+   "species": "tynamo",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "eelektrik",
+   "min_level": 39,
+   "weight": 4
+  },
+  {
+   "species": "eelektross",
+   "min_level": 53,
+   "weight": 2
+  },
+  {
+   "species": "haxorus",
+   "min_level": 48,
+   "weight": 3
+  },
+  {
+   "species": "stunfisk",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "braviary",
+   "min_level": 54,
+   "weight": 4
+  },
+  {
+   "species": "vullaby",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "mandibuzz",
+   "min_level": 54,
+   "weight": 1
+  },
+  {
+   "species": "zweilous",
+   "min_level": 50,
+   "weight": 1
+  },
+  {
+   "species": "dragalge",
+   "min_level": 48,
+   "weight": 3
+  },
+  {
+   "species": "tyrunt",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "tyrantrum",
+   "min_level": 39,
+   "weight": 3
+  },
+  {
+   "species": "goomy",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "goodra",
+   "min_level": 50,
+   "weight": 3
+  },
+  {
+   "species": "noibat",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "noivern",
+   "min_level": 48,
+   "weight": 3
+  },
+  {
+   "species": "oricorio",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "minior",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "turtonator",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "togedemaru",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "jangmo-o",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "rookidee",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "yamper",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "toxel",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "pincurchin",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "stonjourner",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "morpeko",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "dracozolt",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "pawmi",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "nacli",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "tadbulb",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "wattrel",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "iron-thorns",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "baxcalibur",
+   "min_level": 54,
+   "weight": 1
+  },
+  {
+   "species": "raging-bolt",
+   "min_level": 2,
+   "weight": 1
+  }
+ ],
+ "night": [
+  {
+   "species": "zubat",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "magnemite",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "voltorb",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "rhydon",
+   "min_level": 42,
+   "weight": 2
+  },
+  {
+   "species": "aerodactyl",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "dragonite",
+   "min_level": 55,
+   "weight": 1
+  },
+  {
+   "species": "ledyba",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "pichu",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "natu",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "mareep",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "yanma",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "murkrow",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "skarmory",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tyranitar",
+   "min_level": 55,
+   "weight": 6
+  },
+  {
+   "species": "plusle",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "minun",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "solrock",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "cradily",
+   "min_level": 40,
+   "weight": 1
+  },
+  {
+   "species": "armaldo",
+   "min_level": 40,
+   "weight": 1
+  },
+  {
+   "species": "tropius",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "salamence",
+   "min_level": 50,
+   "weight": 1
+  },
+  {
+   "species": "shinx",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "shieldon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "pachirisu",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "garchomp",
+   "min_level": 48,
+   "weight": 1
+  },
+  {
+   "species": "rhyperior",
+   "min_level": 56,
+   "weight": 1
+  },
+  {
+   "species": "electivire",
+   "min_level": 44,
+   "weight": 1
+  },
+  {
+   "species": "rotom",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "roggenrola",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "archen",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "archeops",
+   "min_level": 37,
+   "weight": 1
+  },
+  {
+   "species": "emolga",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "joltik",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "galvantula",
+   "min_level": 36,
+   "weight": 2
+  },
+  {
+   "species": "tynamo",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "eelektrik",
+   "min_level": 39,
+   "weight": 2
+  },
+  {
+   "species": "eelektross",
+   "min_level": 53,
+   "weight": 1
+  },
+  {
+   "species": "haxorus",
+   "min_level": 48,
+   "weight": 1
+  },
+  {
+   "species": "stunfisk",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "braviary",
+   "min_level": 54,
+   "weight": 2
+  },
+  {
+   "species": "vullaby",
+   "min_level": 2,
+   "weight": 24
+  },
+  {
+   "species": "mandibuzz",
+   "min_level": 54,
+   "weight": 8
+  },
+  {
+   "species": "zweilous",
+   "min_level": 50,
+   "weight": 6
+  },
+  {
+   "species": "dragalge",
+   "min_level": 48,
+   "weight": 1
+  },
+  {
+   "species": "tyrunt",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tyrantrum",
+   "min_level": 39,
+   "weight": 1
+  },
+  {
+   "species": "goomy",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "goodra",
+   "min_level": 50,
+   "weight": 1
+  },
+  {
+   "species": "noibat",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "noivern",
+   "min_level": 48,
+   "weight": 1
+  },
+  {
+   "species": "oricorio",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "minior",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "turtonator",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "togedemaru",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "jangmo-o",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "rookidee",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "yamper",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "toxel",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "pincurchin",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "stonjourner",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "morpeko",
+   "min_level": 2,
+   "weight": 24
+  },
+  {
+   "species": "dracozolt",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "pawmi",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "nacli",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "tadbulb",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "wattrel",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "iron-thorns",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "baxcalibur",
+   "min_level": 54,
+   "weight": 1
+  },
+  {
+   "species": "raging-bolt",
+   "min_level": 2,
+   "weight": 1
+  }
+ ],
+ "boss": {
+  "species": "dragonite",
+  "level": 64,
+  "title_es": "¡Un Dragonite imponente bloquea el camino!"
+ },
+ "cleared_es": "¡Ruta despejada! Rumbo a Calle Victoria…",
+ "next": "ruta_12",
+ "capture": {
+  "hp_below": 0.5,
+  "chance_per_turn": 0.25
+ },
+ "drops": {
+  "chance": 0.35,
+  "table": [
+   {
+    "berry": "oran",
+    "weight": 30
+   },
+   {
+    "berry": "pecha",
+    "weight": 12
+   },
+   {
+    "berry": "cheri",
+    "weight": 12
+   },
+   {
+    "berry": "chesto",
+    "weight": 10
+   },
+   {
+    "berry": "rawst",
+    "weight": 10
+   },
+   {
+    "berry": "aspear",
+    "weight": 10
+   },
+   {
+    "berry": "figy",
+    "weight": 6
+   },
+   {
+    "berry": "wiki",
+    "weight": 6
+   },
+   {
+    "berry": "mago",
+    "weight": 6
+   },
+   {
+    "berry": "aguav",
+    "weight": 6
+   },
+   {
+    "berry": "iapapa",
+    "weight": 6
+   },
+   {
+    "berry": "sitrus",
+    "weight": 4
+   }
+  ]
+ },
+ "rewards": {
+  "gold_per_exp_unit": 0.1,
+  "boss_gold_mult": 5
+ },
+ "item_drops": {
+  "chance": 0.12,
+  "boss_chance": 1.0,
+  "boss_min_tier": 2,
+  "table": [
+   {
+    "item": "muscle_band",
+    "weight": 10
+   },
+   {
+    "item": "wise_glasses",
+    "weight": 10
+   },
+   {
+    "item": "rocky_helmet",
+    "weight": 10
+   },
+   {
+    "item": "assault_vest",
+    "weight": 10
+   },
+   {
+    "item": "quick_claw",
+    "weight": 8
+   },
+   {
+    "item": "leftovers",
+    "weight": 8
+   },
+   {
+    "item": "scope_lens",
+    "weight": 6
+   },
+   {
+    "item": "lucky_egg",
+    "weight": 5
+   },
+   {
+    "item": "amulet_coin",
+    "weight": 5
+   }
+  ]
+ }
+}

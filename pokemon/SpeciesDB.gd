@@ -8,6 +8,9 @@ static var _types: Dictionary
 static var _natures: Dictionary
 static var _berries: Dictionary
 static var _growth: Dictionary
+static var _abilities: Dictionary
+## Especies con sprites empacados (data/sprite_index.json). Solo estas aparecen en el mundo.
+static var _with_sprite: Dictionary
 
 
 static func _load(path: String) -> Dictionary:
@@ -24,6 +27,39 @@ static func has_species(name: String) -> bool:
 	if _species.is_empty():
 		_species = _load("res://data/species.json")
 	return _species.has(name)
+
+
+## Nombres de todas las especies (orden de data/species.json).
+static func all_species() -> Array:
+	if _species.is_empty():
+		_species = _load("res://data/species.json")
+	return _species.keys()
+
+
+## true si la especie tiene sprites (las que SpriteCollab aún no dibujó quedan fuera del mundo).
+static func has_sprite(name: String) -> bool:
+	if _with_sprite.is_empty():
+		for n in _load("res://data/sprite_index.json")["species"]:
+			_with_sprite[n] = true
+	return _with_sprite.has(name)
+
+
+## Especies con sprite (para encuentros, sorteos y escenarios).
+static func species_with_sprite() -> Array:
+	has_sprite("")
+	return _with_sprite.keys()
+
+
+static func ability(name: String) -> Dictionary:
+	if _abilities.is_empty():
+		_abilities = _load("res://data/abilities.json")
+	return _abilities.get(name, {"name_es": name.capitalize(), "desc_es": ""})
+
+
+static func has_move(name: String) -> bool:
+	if _moves.is_empty():
+		_moves = _load("res://data/moves.json")
+	return _moves.has(name)
 
 
 static func move(name: String) -> Dictionary:

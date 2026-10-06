@@ -1,0 +1,818 @@
+{
+ "id": "ruta_10",
+ "name_es": "Ruinas Psíquicas (Ruta 10)",
+ "encounters_to_boss": 24,
+ "level_range": [
+  42,
+  54
+ ],
+ "walk_seconds": [
+  18,
+  35
+ ],
+ "sections": [
+  {
+   "from": 0.0,
+   "biome": "pradera"
+  },
+  {
+   "from": 0.5,
+   "biome": "pantano"
+  }
+ ],
+ "day": [
+  {
+   "species": "abra",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "slowpoke",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "gengar",
+   "min_level": 39,
+   "weight": 1
+  },
+  {
+   "species": "drowzee",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "togepi",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "unown",
+   "min_level": 2,
+   "weight": 15
+  },
+  {
+   "species": "snubbull",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "ralts",
+   "min_level": 2,
+   "weight": 15
+  },
+  {
+   "species": "gardevoir",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "mawile",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "spoink",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "grumpig",
+   "min_level": 32,
+   "weight": 4
+  },
+  {
+   "species": "shuppet",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "banette",
+   "min_level": 37,
+   "weight": 1
+  },
+  {
+   "species": "dusclops",
+   "min_level": 37,
+   "weight": 2
+  },
+  {
+   "species": "wynaut",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "beldum",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "metang",
+   "min_level": 20,
+   "weight": 1
+  },
+  {
+   "species": "metagross",
+   "min_level": 45,
+   "weight": 1
+  },
+  {
+   "species": "chingling",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "bronzor",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "bronzong",
+   "min_level": 33,
+   "weight": 6
+  },
+  {
+   "species": "mime-jr",
+   "min_level": 2,
+   "weight": 9
+  },
+  {
+   "species": "magnezone",
+   "min_level": 44,
+   "weight": 2
+  },
+  {
+   "species": "dusknoir",
+   "min_level": 51,
+   "weight": 1
+  },
+  {
+   "species": "munna",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "woobat",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "sigilyph",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "yamask",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "gothita",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "gothorita",
+   "min_level": 32,
+   "weight": 6
+  },
+  {
+   "species": "gothitelle",
+   "min_level": 41,
+   "weight": 3
+  },
+  {
+   "species": "solosis",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "duosion",
+   "min_level": 32,
+   "weight": 6
+  },
+  {
+   "species": "reuniclus",
+   "min_level": 41,
+   "weight": 3
+  },
+  {
+   "species": "klinklang",
+   "min_level": 49,
+   "weight": 2
+  },
+  {
+   "species": "elgyem",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "beheeyem",
+   "min_level": 42,
+   "weight": 6
+  },
+  {
+   "species": "lampent",
+   "min_level": 41,
+   "weight": 2
+  },
+  {
+   "species": "golurk",
+   "min_level": 43,
+   "weight": 2
+  },
+  {
+   "species": "bisharp",
+   "min_level": 52,
+   "weight": 1
+  },
+  {
+   "species": "florges",
+   "min_level": 33,
+   "weight": 3
+  },
+  {
+   "species": "espurr",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "honedge",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "doublade",
+   "min_level": 35,
+   "weight": 2
+  },
+  {
+   "species": "aegislash",
+   "min_level": 49,
+   "weight": 1
+  },
+  {
+   "species": "spritzee",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "swirlix",
+   "min_level": 2,
+   "weight": 13
+  },
+  {
+   "species": "klefki",
+   "min_level": 2,
+   "weight": 5
+  },
+  {
+   "species": "phantump",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "pumpkaboo",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "sandygast",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "palossand",
+   "min_level": 42,
+   "weight": 1
+  },
+  {
+   "species": "mimikyu",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "sinistea",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "hatenna",
+   "min_level": 2,
+   "weight": 15
+  },
+  {
+   "species": "hattrem",
+   "min_level": 32,
+   "weight": 8
+  },
+  {
+   "species": "hatterene",
+   "min_level": 42,
+   "weight": 3
+  },
+  {
+   "species": "grimmsnarl",
+   "min_level": 42,
+   "weight": 1
+  },
+  {
+   "species": "cursola",
+   "min_level": 38,
+   "weight": 1
+  },
+  {
+   "species": "drakloak",
+   "min_level": 50,
+   "weight": 1
+  },
+  {
+   "species": "flittle",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "tinkatink",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "tinkaton",
+   "min_level": 38,
+   "weight": 3
+  },
+  {
+   "species": "veluza",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "scream-tail",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "flutter-mane",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "poltchageist",
+   "min_level": 2,
+   "weight": 2
+  }
+ ],
+ "night": [
+  {
+   "species": "abra",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "slowpoke",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "gengar",
+   "min_level": 39,
+   "weight": 6
+  },
+  {
+   "species": "drowzee",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "togepi",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "unown",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "snubbull",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "ralts",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "gardevoir",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "mawile",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "spoink",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "grumpig",
+   "min_level": 32,
+   "weight": 2
+  },
+  {
+   "species": "shuppet",
+   "min_level": 2,
+   "weight": 30
+  },
+  {
+   "species": "banette",
+   "min_level": 37,
+   "weight": 6
+  },
+  {
+   "species": "dusclops",
+   "min_level": 37,
+   "weight": 12
+  },
+  {
+   "species": "wynaut",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "beldum",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "metang",
+   "min_level": 20,
+   "weight": 1
+  },
+  {
+   "species": "metagross",
+   "min_level": 45,
+   "weight": 1
+  },
+  {
+   "species": "chingling",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "bronzor",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "bronzong",
+   "min_level": 33,
+   "weight": 3
+  },
+  {
+   "species": "mime-jr",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "magnezone",
+   "min_level": 44,
+   "weight": 1
+  },
+  {
+   "species": "dusknoir",
+   "min_level": 51,
+   "weight": 6
+  },
+  {
+   "species": "munna",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "woobat",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "sigilyph",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "yamask",
+   "min_level": 2,
+   "weight": 24
+  },
+  {
+   "species": "gothita",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "gothorita",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "gothitelle",
+   "min_level": 41,
+   "weight": 1
+  },
+  {
+   "species": "solosis",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "duosion",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "reuniclus",
+   "min_level": 41,
+   "weight": 1
+  },
+  {
+   "species": "klinklang",
+   "min_level": 49,
+   "weight": 1
+  },
+  {
+   "species": "elgyem",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "beheeyem",
+   "min_level": 42,
+   "weight": 3
+  },
+  {
+   "species": "lampent",
+   "min_level": 41,
+   "weight": 12
+  },
+  {
+   "species": "golurk",
+   "min_level": 43,
+   "weight": 12
+  },
+  {
+   "species": "bisharp",
+   "min_level": 52,
+   "weight": 6
+  },
+  {
+   "species": "florges",
+   "min_level": 33,
+   "weight": 1
+  },
+  {
+   "species": "espurr",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "honedge",
+   "min_level": 2,
+   "weight": 24
+  },
+  {
+   "species": "doublade",
+   "min_level": 35,
+   "weight": 12
+  },
+  {
+   "species": "aegislash",
+   "min_level": 49,
+   "weight": 6
+  },
+  {
+   "species": "spritzee",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "swirlix",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "klefki",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "phantump",
+   "min_level": 2,
+   "weight": 16
+  },
+  {
+   "species": "pumpkaboo",
+   "min_level": 2,
+   "weight": 16
+  },
+  {
+   "species": "sandygast",
+   "min_level": 2,
+   "weight": 18
+  },
+  {
+   "species": "palossand",
+   "min_level": 42,
+   "weight": 8
+  },
+  {
+   "species": "mimikyu",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "sinistea",
+   "min_level": 2,
+   "weight": 16
+  },
+  {
+   "species": "hatenna",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "hattrem",
+   "min_level": 32,
+   "weight": 4
+  },
+  {
+   "species": "hatterene",
+   "min_level": 42,
+   "weight": 1
+  },
+  {
+   "species": "grimmsnarl",
+   "min_level": 42,
+   "weight": 6
+  },
+  {
+   "species": "cursola",
+   "min_level": 38,
+   "weight": 4
+  },
+  {
+   "species": "drakloak",
+   "min_level": 50,
+   "weight": 6
+  },
+  {
+   "species": "flittle",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "tinkatink",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "tinkaton",
+   "min_level": 38,
+   "weight": 1
+  },
+  {
+   "species": "veluza",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "scream-tail",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "flutter-mane",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "poltchageist",
+   "min_level": 2,
+   "weight": 16
+  }
+ ],
+ "boss": {
+  "species": "scream-tail",
+  "level": 58,
+  "title_es": "¡Un Colagrito imponente bloquea el camino!"
+ },
+ "cleared_es": "¡Ruta despejada! Rumbo a Picos del Cielo…",
+ "next": "ruta_11",
+ "capture": {
+  "hp_below": 0.5,
+  "chance_per_turn": 0.25
+ },
+ "drops": {
+  "chance": 0.35,
+  "table": [
+   {
+    "berry": "oran",
+    "weight": 30
+   },
+   {
+    "berry": "pecha",
+    "weight": 12
+   },
+   {
+    "berry": "cheri",
+    "weight": 12
+   },
+   {
+    "berry": "chesto",
+    "weight": 10
+   },
+   {
+    "berry": "rawst",
+    "weight": 10
+   },
+   {
+    "berry": "aspear",
+    "weight": 10
+   },
+   {
+    "berry": "figy",
+    "weight": 6
+   },
+   {
+    "berry": "wiki",
+    "weight": 6
+   },
+   {
+    "berry": "mago",
+    "weight": 6
+   },
+   {
+    "berry": "aguav",
+    "weight": 6
+   },
+   {
+    "berry": "iapapa",
+    "weight": 6
+   },
+   {
+    "berry": "sitrus",
+    "weight": 4
+   }
+  ]
+ },
+ "rewards": {
+  "gold_per_exp_unit": 0.1,
+  "boss_gold_mult": 5
+ },
+ "item_drops": {
+  "chance": 0.12,
+  "boss_chance": 1.0,
+  "boss_min_tier": 2,
+  "table": [
+   {
+    "item": "muscle_band",
+    "weight": 10
+   },
+   {
+    "item": "wise_glasses",
+    "weight": 10
+   },
+   {
+    "item": "rocky_helmet",
+    "weight": 10
+   },
+   {
+    "item": "assault_vest",
+    "weight": 10
+   },
+   {
+    "item": "quick_claw",
+    "weight": 8
+   },
+   {
+    "item": "leftovers",
+    "weight": 8
+   },
+   {
+    "item": "scope_lens",
+    "weight": 6
+   },
+   {
+    "item": "lucky_egg",
+    "weight": 5
+   },
+   {
+    "item": "amulet_coin",
+    "weight": 5
+   }
+  ]
+ }
+}

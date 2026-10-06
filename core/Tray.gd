@@ -9,11 +9,16 @@ signal debug_action(id: int)
 enum { ID_PC, ID_BATTLE, ID_REST, ID_PAUSE, ID_CREDITS, ID_QUIT, ID_HIDE, ID_TOPMOST, ID_FLIGHTS, ID_APPS, ID_WELLBEING }
 ## Minutos que se esconden las mascotas con "Esconder mascotas".
 const HIDE_MINUTES := 30.0
+## Id de la nota del submenú de mascotas (los demás ids son uids, que empiezan en 1).
+const PETS_NOTE := 1 << 30
 enum { DBG_SPEED, DBG_LEVELS, DBG_EVOLVE, DBG_NIGHT, DBG_BOSS, DBG_SHOT }
 
 var indicator: StatusIndicator
 var menu: PopupMenu
 var debug_menu: PopupMenu
+## Submenú con una casilla por Pokémon para elegir quién pasea por la casa.
+var pets_menu: PopupMenu
+var _pets_sig := ""
 
 
 func _ready() -> void:
@@ -27,6 +32,13 @@ func _ready() -> void:
 	menu.add_radio_check_item("Modo descanso", ID_REST)
 	menu.add_check_item("Pausar", ID_PAUSE)
 	menu.add_separator()
+	pets_menu = PopupMenu.new()
+	pets_menu.name = "PetsMenu"
+	pets_menu.prefer_native_menu = true
+	pets_menu.hide_on_checkable_item_selection = false
+	menu.add_child(pets_menu)
+	pets_menu.id_pressed.connect(_on_pet_toggled)
+	menu.add_submenu_node_item("Mascotas", pets_menu)
 	menu.add_check_item("Esconder mascotas 30 min", ID_HIDE)
 	menu.add_check_item("Siempre al frente", ID_TOPMOST)
 	menu.add_check_item("Vuelos por la pantalla", ID_FLIGHTS)
@@ -62,7 +74,9 @@ func _ready() -> void:
 	Game.pause_changed.connect(func(_p: bool) -> void: _sync())
 	Game.settings_changed.connect(_sync)
 	Game.pets_hidden_changed.connect(func(_h: bool) -> void: _sync())
+	Game.roster.changed.connect(_sync_pets)
 	_sync()
+	_sync_pets()
 
 
 func _sync() -> void:
@@ -75,6 +89,39 @@ func _sync() -> void:
 	if debug_menu:
 		debug_menu.set_item_checked(debug_menu.get_item_index(DBG_SPEED), Game.clock.speed > 1.0)
 		debug_menu.set_item_checked(debug_menu.get_item_index(DBG_NIGHT), Game.clock.forced_hour >= 0.0)
+
+
+## Rearma el submenú de mascotas solo si cambió algo que se ve (el roster avisa seguido).
+## El id de cada casilla es el uid del Pokémon.
+func _sync_pets() -> void:
+	var r := Game.roster
+	var mons := r.team_members()
+	var box := r.box_members()
+	box.sort_custom(func(a: PokemonInstance, b: PokemonInstance) -> bool: return a.uid < b.uid)
+	mons.append_array(box)
+	var full := r.pets_full()
+	var sig := "%s|%d|%s" % [r.pet_uids(), r.companion, full]
+	for p in mons:
+		sig += "|%d:%s:%d" % [p.uid, p.display_name(), p.level]
+	if sig == _pets_sig:
+		return
+	_pets_sig = sig
+	pets_menu.clear()
+	for p in mons:
+		var star := "★ " if p.uid == r.companion else ""
+		pets_menu.add_check_item("%s%s  Nv. %d" % [star, p.display_name(), p.level], p.uid)
+		var i := pets_menu.get_item_index(p.uid)
+		var on := r.is_pet(p.uid)
+		pets_menu.set_item_checked(i, on)
+		# el compañero siempre pasea; con la casa llena solo se puede guardar
+		pets_menu.set_item_disabled(i, p.uid == r.companion or (full and not on))
+	pets_menu.add_separator()
+	pets_menu.add_item("Máximo %d a la vez" % Roster.PETS_MAX, PETS_NOTE)
+	pets_menu.set_item_disabled(pets_menu.get_item_index(PETS_NOTE), true)
+
+
+func _on_pet_toggled(uid: int) -> void:
+	Game.roster.toggle_pet(uid)
 
 
 func _on_id(id: int) -> void:

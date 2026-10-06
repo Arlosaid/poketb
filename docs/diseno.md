@@ -14,7 +14,7 @@ Mis Pokémon viven sobre mi barra de tareas. Mientras trabajo, una parte de mi e
 
 ## Modos
 - **Modo pelea:** el panel de pelea está activo y el equipo (1–6) recorre la ruta.
-- **Modo descanso:** el panel se pliega y todo el equipo vuelve a casa a recuperarse.
+- **Modo descanso:** el panel se pliega y el equipo descansa para recuperarse. En casa se ven las mascotas elegidas.
 - **Pausa:** el tiempo de juego se detiene; las mascotas siguen animadas pero sin necesidades.
 
 ## Bucle de pelea
@@ -78,6 +78,7 @@ Con ≥200 de amistad se activan los efectos de afecto Gen 6+: un 10% de aguanta
   - salvajes de nivel 2–8 que escalan con el progreso;
   - jefe Pidgeotto, Nv. 14.
 - Los capturados van a la PC, desde donde se arma el equipo (hasta 6) y se elige al compañero.
+- **Mascotas:** se elige quién pasea por la casa (hasta 6, del equipo o de las cajas; el compañero siempre está). Se hace desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Los que pelean en ese momento están en el panel y vuelven a casa al terminar.
 
 ## Progresión (Fase 7)
 Inspirada en Taskbar Hero, pero con piezas de Pokémon. Todo se paga con **monedas** que caen al ganar combates (también offline).
@@ -109,3 +110,11 @@ Menú: Abrir PC / Equipo · Modo pelea / Modo descanso · Pausar · Créditos ·
 
 ## Guardado
 Archivo `user://save.json`. Se guarda cada 60 s y al salir. Al abrir se calcula el progreso offline (máximo 8 h) y aparece un resumen breve.
+
+## Todos los Pokémon (Fase 9)
+- **Las 1025 especies** están en los datos canon. Las 984 que tienen sprites en SpriteCollab aparecen en el mundo; las otras 41 aparecerán cuando la comunidad las dibuje (basta con volver a correr las herramientas).
+- **Rutas:** después de la Ruta 1 vienen 11 rutas temáticas (Bosque Verde, Costa Celeste, Monte Roca, Prado Chispa, Pantano Sombrío, Volcán Ascuas, Cumbre Helada, Mar Abierto, Ruinas Psíquicas, Picos del Cielo y Calle Victoria) y el Santuario Legendario. Al vencer al jefe, el equipo pasa solo a la siguiente. Cada especie vive en una ruta según sus tipos y su nivel; los legendarios y singulares, en el Santuario.
+- **Cada movimiento tiene su animación:** el cuerpo hace el gesto que corresponde (puñetazo, patada, mordisco, zarpazo, cabezazo, giro, rugido, aleteo…) y sale el efecto de su estilo con los colores de su tipo (llamarada, rayo, trueno, lluvia de rocas, terremoto, ola, viento, ondas psíquicas, drenaje, explosión, excavar, vuelo…).
+- **En casa, cada tipo tiene lo suyo:** los de fuego sueltan brasas, los de agua hacen una fuente, los eléctricos echan chispas, los de planta hacen la fotosíntesis de día, los de tierra excavan y salen en otro lado, los psíquicos se teletransportan, los fantasmas se vuelven translúcidos y flotan, los bichos se cuelgan de un hilo de seda, los de roca ruedan, los de hielo hacen nevar y los de lucha practican golpes. Además entrenan sus movimientos y a veces hacen combates de práctica entre ellos (sin daño).
+- **Vuelos por toda la pantalla:** pájaros, bichos alados, dragones y fantasmas cruzan la pantalla de lado a lado, dan rizos y se quedan flotando un momento antes de volver. Pueden volar dos a la vez.
+- **Habilidad:** cada Pokémon tiene una de las habilidades normales de su especie (siempre la misma), que se ve en la ficha y en la PC.

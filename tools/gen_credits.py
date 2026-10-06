@@ -17,6 +17,10 @@ THIRD_PARTY = [
 def main():
     with open(os.path.join(ROOT, "data", "sprite_credits.json"), encoding="utf-8") as f:
         sc = json.load(f)
+    with open(os.path.join(ROOT, "data", "sprite_index.json"), encoding="utf-8") as f:
+        used = set(json.load(f)["species"])
+    with open(os.path.join(ROOT, "data", "species.json"), encoding="utf-8") as f:
+        species = json.load(f)
     L = ["# Créditos", "",
          "Proyecto personal y **no comercial**. Pokémon y sus nombres son marcas de Nintendo, Creatures Inc. y GAME FREAK inc.; "
          "este juego no está afiliado ni respaldado por ellos.", "",
@@ -26,7 +30,9 @@ def main():
     def fmt(lst):
         return ", ".join(("[%s](%s)" % (a["name"], a["contact"]) if a["contact"].startswith("http") else a["name"]) for a in lst) or "—"
     for e in sc["species"]:
-        L.append("| %04d | %s | %s | %s |" % (e["dex"], e["name"].capitalize(), fmt(e.get("sprite_authors", [])), fmt(e.get("portrait_authors", []))))
+        if e["name"] not in used:
+            continue  # solo las especies cuyo arte usa el juego
+        L.append("| %04d | %s | %s | %s |" % (e["dex"], species[e["name"]]["name_es"], fmt(e.get("sprite_authors", [])), fmt(e.get("portrait_authors", []))))
     L += ["", "## Otros recursos", ""]
     for name, author, lic, url, lic_file in THIRD_PARTY:
         L.append("- **%s** — %s · %s · %s%s" % (name, author, lic, url, (" · texto de la licencia: `%s`" % lic_file) if lic_file else ""))

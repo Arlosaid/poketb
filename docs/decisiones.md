@@ -155,3 +155,20 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **Diversión (Poké Recreo):** nueva necesidad de 0 a 100. Baja en casa estando despierto (de 100 a 0 en ~8 h, según el rasgo) y sube jugando, haciendo cosquillas, rascando, jugando con otras mascotas o volando. Con diversión baja solo piden jugar (globito de pelota) y no entra en el mal humor.
 - **Consumo:** con 5 min sin tocar la PC o con las mascotas escondidas se baja a 5 FPS, incluso si hay un combate (como ya pasaba con pantalla completa). `PcSense` consulta cada 3 s (la batería, cada 60 s).
 - **Shiny pendiente:** necesita bajar las variantes de SpriteCollab y decidir la tasa (canon 1/4096). Queda para otra fase.
+
+## 2026-10-06 — Elegir las mascotas
+
+- **Selección propia, separada del equipo:** antes paseaban por la casa los del equipo que no peleaban (más el compañero). A pedido del usuario, ahora hay una lista `Roster.pets` (máx. 6, `PETS_MAX`) con los que pasean, que pueden estar en el equipo o en las cajas. El compañero siempre pasea y cuenta para el máximo. Un Pokémon que pelea está en el panel, aunque sea mascota.
+- **Dónde se elige:** submenú "Mascotas" de la bandeja (una casilla por Pokémon; el menú solo se rearma si cambió la lista, los nombres o los niveles) y botón "Mascota" en la ficha de la PC. Las casillas de la PC marcan a las mascotas con un corazón.
+- **Compatibilidad:** las partidas viejas sin `pets` toman el equipo como mascotas (igual que antes). Los capturados nuevos salen a pasear si hay lugar.
+
+## 2026-10-06 — Fase 9: todas las especies y movimientos animados
+
+- **"Habilidades" = movimientos:** el pedido decía "las animaciones de todas sus habilidades". Se interpretó como los movimientos (ataques), que son lo que se anima. Igual se agregó la habilidad canon (Mar Llamas, Levitación…) a la ficha y a la PC.
+- **Hojas empacadas en vez de los PNG crudos:** traer los PNG crudos de SpriteCollab de 1025 especies serían ~1,1 GB y decenas de miles de archivos en el proyecto (y en git). `tools/pack_sprites.py` deja una hoja recortada y sin cuadros repetidos por especie: 58 MB en total. Se borraron `assets/raw/spritecollab` y el importador de Godot `tools/import_sprites.gd`; el `SpriteFrames` se arma en memoria.
+- **41 especies sin sprites:** SpriteCollab todavía no tiene su forma base (ni una alternativa). No se mezclaron sprites de otro estilo, porque romperían el arte. Están en los datos, pero no aparecen en el mundo hasta que existan.
+- **Una animación por estilo, no una por movimiento:** dibujar a mano 692 movimientos no es viable. Cada uno combina un cuerpo PMD específico (entre las especies hay 35 animaciones de ataque: Punch, Bite, Kick, Slam, Sound…, con alternativas para las que no las tienen), uno de 30 estilos de efecto, una partícula y los colores de su tipo. La asignación sale de los datos y se retoca en `overrides`.
+- **Niveles de las rutas:** el nivel mínimo de una evolución que no es por nivel (piedra, intercambio, amistad) no existe en canon. Se usa "nivel de su forma previa + 14" solo para decidir en qué ruta aparece; no es un dato canon del Pokémon.
+- **Evolución por amistad:** se activó porque el juego ya tiene amistad (canon: subir de nivel con amistad ≥160 y, en algunas, de día o de noche). Las de piedra e intercambio quedan para cuando haya objetos.
+- **Vuelos más frecuentes y por toda la pantalla:** a pedido ("los pájaros vuelan por toda la pantalla"). Pasaron de 2–5 min entre vuelos a 45–120 s, con hasta 2 a la vez, pero siguen las reglas de antes: nunca reciben clics y no vuelan con pantalla completa ni si no estás usando la PC.
+- **Arreglo de un `Main.gd` truncado:** otra sesión dejó `core/Main.gd` cortado a mitad de una línea (su cambio de "elegir las mascotas"). Se completó con el resto del archivo de git, conservando sus cambios.

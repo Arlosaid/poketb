@@ -42,11 +42,8 @@ static func run(seconds: float, battle_mode: bool, combat: BattleController) -> 
 		acc += per_min * EFFICIENCY * step / 60.0
 		while acc >= 1.0:
 			acc -= 1.0
-			var lr: Array = route["level_range"]
-			var f := float(combat.progress) / float(route["encounters_to_boss"])
-			var lvl := clampi(int(round(lerpf(lr[0], lr[1], f))) + rng.randi_range(-1, 1), 2, 100)
-			var table: Array = route["day"]
-			var foe := PokemonInstance.create(BattleMath.pick_weighted(table, "species", rng), lvl, rng)
+			var sp := BattleMath.pick_weighted(route["day"], "species", rng)
+			var foe := PokemonInstance.create(sp, BattleController.wild_level(route, combat.progress, sp, rng), rng)
 			foe.wild = true
 			var team_fighters: Array = fighting.map(func(u): return roster.get_member(u))
 			var coins := Progression.gold_for_win(foe, false, route, team_fighters)

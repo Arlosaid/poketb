@@ -1,0 +1,1042 @@
+{
+ "id": "ruta_13",
+ "name_es": "Santuario Legendario",
+ "encounters_to_boss": 30,
+ "level_range": [
+  60,
+  80
+ ],
+ "walk_seconds": [
+  18,
+  35
+ ],
+ "sections": [
+  {
+   "from": 0.0,
+   "biome": "pradera"
+  },
+  {
+   "from": 0.35,
+   "biome": "nieve"
+  },
+  {
+   "from": 0.7,
+   "biome": "volcan"
+  }
+ ],
+ "day": [
+  {
+   "species": "articuno",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zapdos",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "moltres",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mewtwo",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mew",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "raikou",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "entei",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "suicune",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "lugia",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "ho-oh",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "celebi",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "regirock",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "regice",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "registeel",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "latias",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "latios",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "kyogre",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "groudon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "rayquaza",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "jirachi",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "deoxys",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "uxie",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mesprit",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "azelf",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "dialga",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "palkia",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "heatran",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "regigigas",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "giratina",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "cresselia",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "phione",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "manaphy",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "darkrai",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "shaymin",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "arceus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "victini",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "cobalion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "terrakion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "virizion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tornadus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "thundurus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "reshiram",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zekrom",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "landorus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "kyurem",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "keldeo",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "meloetta",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "genesect",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "xerneas",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "yveltal",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zygarde",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "diancie",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "hoopa",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "volcanion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "type-null",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "silvally",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "tapu-koko",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tapu-lele",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tapu-bulu",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tapu-fini",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "cosmog",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "cosmoem",
+   "min_level": 43,
+   "weight": 3
+  },
+  {
+   "species": "solgaleo",
+   "min_level": 53,
+   "weight": 3
+  },
+  {
+   "species": "lunala",
+   "min_level": 57,
+   "weight": 1
+  },
+  {
+   "species": "necrozma",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "magearna",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "marshadow",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zeraora",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "meltan",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "melmetal",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "zacian",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zamazenta",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "eternatus",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "kubfu",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "urshifu",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "regieleki",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "regidrago",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "glastrier",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "spectrier",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "calyrex",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "enamorus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "ting-lu",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "chi-yu",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "koraidon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "miraidon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "munkidori",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "fezandipiti",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "ogerpon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "terapagos",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "pecharunt",
+   "min_level": 2,
+   "weight": 1
+  }
+ ],
+ "night": [
+  {
+   "species": "articuno",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zapdos",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "moltres",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mewtwo",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mew",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "raikou",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "entei",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "suicune",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "lugia",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "ho-oh",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "celebi",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "regirock",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "regice",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "registeel",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "latias",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "latios",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "kyogre",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "groudon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "rayquaza",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "jirachi",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "deoxys",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "uxie",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "mesprit",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "azelf",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "dialga",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "palkia",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "heatran",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "regigigas",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "giratina",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "cresselia",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "phione",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "manaphy",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "darkrai",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "shaymin",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "arceus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "victini",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "cobalion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "terrakion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "virizion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tornadus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "thundurus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "reshiram",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zekrom",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "landorus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "kyurem",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "keldeo",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "meloetta",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "genesect",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "xerneas",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "yveltal",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "zygarde",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "diancie",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "hoopa",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "volcanion",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "type-null",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "silvally",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "tapu-koko",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tapu-lele",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tapu-bulu",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "tapu-fini",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "cosmog",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "cosmoem",
+   "min_level": 43,
+   "weight": 1
+  },
+  {
+   "species": "solgaleo",
+   "min_level": 53,
+   "weight": 1
+  },
+  {
+   "species": "lunala",
+   "min_level": 57,
+   "weight": 6
+  },
+  {
+   "species": "necrozma",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "magearna",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "marshadow",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "zeraora",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "meltan",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "melmetal",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "zacian",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "zamazenta",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "eternatus",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "kubfu",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "urshifu",
+   "min_level": 16,
+   "weight": 2
+  },
+  {
+   "species": "regieleki",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "regidrago",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "glastrier",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "spectrier",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "calyrex",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "enamorus",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "ting-lu",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "chi-yu",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "koraidon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "miraidon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "munkidori",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "fezandipiti",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "ogerpon",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "terapagos",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "pecharunt",
+   "min_level": 2,
+   "weight": 2
+  }
+ ],
+ "boss": {
+  "species": "arceus",
+  "level": 90,
+  "title_es": "¡Un Arceus imponente bloquea el camino!"
+ },
+ "cleared_es": "¡Santuario despejado! Ya viste a los más raros del mundo.",
+ "next": null,
+ "capture": {
+  "hp_below": 0.5,
+  "chance_per_turn": 0.25
+ },
+ "drops": {
+  "chance": 0.35,
+  "table": [
+   {
+    "berry": "oran",
+    "weight": 30
+   },
+   {
+    "berry": "pecha",
+    "weight": 12
+   },
+   {
+    "berry": "cheri",
+    "weight": 12
+   },
+   {
+    "berry": "chesto",
+    "weight": 10
+   },
+   {
+    "berry": "rawst",
+    "weight": 10
+   },
+   {
+    "berry": "aspear",
+    "weight": 10
+   },
+   {
+    "berry": "figy",
+    "weight": 6
+   },
+   {
+    "berry": "wiki",
+    "weight": 6
+   },
+   {
+    "berry": "mago",
+    "weight": 6
+   },
+   {
+    "berry": "aguav",
+    "weight": 6
+   },
+   {
+    "berry": "iapapa",
+    "weight": 6
+   },
+   {
+    "berry": "sitrus",
+    "weight": 4
+   }
+  ]
+ },
+ "rewards": {
+  "gold_per_exp_unit": 0.1,
+  "boss_gold_mult": 5
+ },
+ "item_drops": {
+  "chance": 0.12,
+  "boss_chance": 1.0,
+  "boss_min_tier": 2,
+  "table": [
+   {
+    "item": "muscle_band",
+    "weight": 10
+   },
+   {
+    "item": "wise_glasses",
+    "weight": 10
+   },
+   {
+    "item": "rocky_helmet",
+    "weight": 10
+   },
+   {
+    "item": "assault_vest",
+    "weight": 10
+   },
+   {
+    "item": "quick_claw",
+    "weight": 8
+   },
+   {
+    "item": "leftovers",
+    "weight": 8
+   },
+   {
+    "item": "scope_lens",
+    "weight": 6
+   },
+   {
+    "item": "lucky_egg",
+    "weight": 5
+   },
+   {
+    "item": "amulet_coin",
+    "weight": 5
+   }
+  ]
+ }
+}

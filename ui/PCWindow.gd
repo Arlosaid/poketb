@@ -263,10 +263,8 @@ func _fill_detail() -> void:
 	fr.theme_type_variation = &"Slot"
 	top.add_child(fr)
 	var tr := TextureRect.new()
-	var meta := PokemonActor.load_meta(p.species)
-	var ports: Dictionary = meta["portraits"]
-	var emo := "Happy" if p.friendship >= 150 and ports.has("Happy") else ("Worried" if p.is_grumpy() and ports.has("Worried") else "Normal")
-	tr.texture = load(ports.get(emo, ports.get("Normal")))
+	var emo := "Happy" if p.friendship >= 150 else ("Worried" if p.is_grumpy() else "Normal")
+	tr.texture = PokemonActor.portrait(p.species, [emo])
 	tr.custom_minimum_size = Vector2(40, 40)
 	fr.add_child(tr)
 	var nv := VBoxContainer.new()
@@ -282,6 +280,9 @@ func _fill_detail() -> void:
 	if nat["increased"] != null:
 		nat_txt += " (+%s −%s)" % [STAT_ES[nat["increased"]], STAT_ES[nat["decreased"]]]
 	_detail.add_child(_text("Naturaleza: " + nat_txt, Palette.BARK))
+	if p.ability() != "":
+		var ab := _wrap("Habilidad: %s. %s" % [p.ability_es(), SpeciesDB.ability(p.ability())["desc_es"]], Palette.BARK)
+		_detail.add_child(ab)
 	_detail.add_child(_bar_row("PS", p.hp_frac(), false, "%d/%d" % [p.hp, p.max_hp()]))
 	_detail.add_child(_bar_row("Saciedad", p.fullness / 100.0, false))
 	_detail.add_child(_bar_row("Energía", p.energy / 100.0, true))
@@ -317,6 +318,15 @@ func _fill_detail() -> void:
 			team.append(p.uid)
 		Game.roster.set_team(team))
 	btns.add_child(tb)
+	# mascota: pasea por la casa (esté en el equipo o en las cajas)
+	var is_pet := Game.roster.is_pet(p.uid)
+	var pb := Button.new()
+	pb.text = "♥ Mascota" if is_pet else "Mascota"
+	pb.tooltip_text = "Pasea por la casa. Máximo %d a la vez; el compañero siempre." % Roster.PETS_MAX
+	pb.disabled = p.uid == Game.roster.companion or (not is_pet and Game.roster.pets_full())
+	pb.focus_mode = Control.FOCUS_NONE
+	pb.pressed.connect(Game.roster.toggle_pet.bind(p.uid))
+	btns.add_child(pb)
 
 
 func _text(t: String, c: Color = Palette.INK) -> Label:
@@ -408,13 +418,19 @@ func _build_credits_page() -> Control:
 	var cred: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/sprite_credits.json"))
 	v.add_child(_wrap("Proyecto personal y no comercial. Pokémon es de Nintendo, Creatures Inc. y GAME FREAK inc.", Palette.WOOD))
 	v.add_child(_text("Sprites y retratos: PMD SpriteCollab (%s)" % cred["license"]))
+	var lines := PackedStringArray()
 	for e in cred["species"]:
+		if not SpeciesDB.has_sprite(e["name"]):
+			continue
 		var names := {}
 		for k in ["sprite_authors", "portrait_authors"]:
 			for a in e.get(k, []):
 				var n: String = a["name"]
 				names["usuario anónimo de Discord" if n.begins_with("<@") else n] = true
-		v.add_child(_wrap("%s: %s" % [SpeciesDB.species(e["name"])["name_es"], ", ".join(names.keys())], Palette.BARK))
+		lines.append("%s: %s" % [SpeciesDB.species(e["name"])["name_es"], ", ".join(names.keys())])
+	# un solo Label: con ~1000 especies, un Label por línea tarda en armarse
+	v.add_child(_wrap("
+".join(lines), Palette.BARK))
 	v.add_child(_text("Fuente: Ark Pixel Font, de TakWolf (OFL 1.1)"))
 	v.add_child(_text("Datos: PokéAPI"))
 	v.add_child(_wrap("Marcos, íconos, bayas, fondos y cielo: hechos para este proyecto.", Palette.BARK))

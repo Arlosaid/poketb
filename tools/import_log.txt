@@ -1,241 +1,51 @@
-# Generado por tools/import_sprites.gd
-alt charmander: Joy -> Hop
-alt charmander: Stretch -> DeepBreath
-alt charmander: Dance -> Rotate
-alt charmander: Show -> Pose
-alt charmander: Laugh -> Rotate
-alt charmander: Leap -> LeapForth
-alt charmeleon: Joy -> Hop
-alt charmeleon: Stretch -> DeepBreath
-alt charmeleon: Dance -> Rotate
-alt charmeleon: Show -> Pose
-alt charmeleon: Laugh -> Rotate
-alt charmeleon: Leap -> LeapForth
-alt charizard: Wake -> Idle
-alt charizard: Laying -> Sleep
-alt charizard: Sit -> Idle
-alt charizard: Eat -> Idle
-alt charizard: Nod -> Hop
-alt charizard: Pose -> Hop
-alt charizard: LookUp -> Idle
-alt charizard: Joy -> Hop
-alt charizard: Stretch -> Idle
-alt charizard: Dance -> Rotate
-alt charizard: Show -> Rotate
-alt charizard: Laugh -> Rotate
-alt charizard: Tumble -> Hurt
-alt charizard: Trip -> Hurt
-alt charizard: Leap -> Hop
-alt caterpie: Wake -> Idle
-alt caterpie: Laying -> Sleep
-alt caterpie: Sit -> Idle
-alt caterpie: Eat -> Idle
-alt caterpie: Nod -> Hop
-alt caterpie: Pose -> Hop
-alt caterpie: LookUp -> Idle
-alt caterpie: Faint -> Hurt
-alt caterpie: Joy -> Hop
-alt caterpie: Stretch -> Idle
-alt caterpie: Dance -> Twirl
-alt caterpie: Show -> Twirl
-alt caterpie: Laugh -> Rotate
-alt caterpie: Tumble -> Hurt
-alt caterpie: Trip -> Hurt
-alt caterpie: Leap -> Hop
-alt metapod: Wake -> Idle
-alt metapod: Laying -> Sleep
-alt metapod: Sit -> Idle
-alt metapod: Eat -> Idle
-alt metapod: Nod -> Hop
-alt metapod: Pose -> Hop
-alt metapod: LookUp -> Idle
-alt metapod: Faint -> Hurt
-alt metapod: Joy -> Hop
-alt metapod: Stretch -> Idle
-alt metapod: Dance -> Rotate
-alt metapod: Show -> Rotate
-alt metapod: Laugh -> Rotate
-alt metapod: Tumble -> Hurt
-alt metapod: Trip -> Hurt
-alt metapod: Leap -> Hop
-alt butterfree: Wake -> Idle
-alt butterfree: Laying -> Sleep
-alt butterfree: Sit -> Idle
-alt butterfree: Eat -> Idle
-alt butterfree: Nod -> Hop
-alt butterfree: Pose -> Hop
-alt butterfree: LookUp -> Idle
-alt butterfree: Faint -> Hurt
-alt butterfree: Joy -> Hop
-alt butterfree: Stretch -> Idle
-alt butterfree: Dance -> Rotate
-alt butterfree: Show -> FlapAround
-alt butterfree: Laugh -> Rotate
-alt butterfree: Tumble -> Hurt
-alt butterfree: Trip -> Hurt
-alt butterfree: Leap -> Hop
-alt pidgey: Joy -> Hop
-alt pidgey: Stretch -> DeepBreath
-alt pidgey: Dance -> Rotate
-alt pidgey: Show -> FlapAround
-alt pidgey: Laugh -> Rotate
-alt pidgey: Leap -> LeapForth
-alt pidgeotto: Wake -> Idle
-alt pidgeotto: Laying -> Sleep
-alt pidgeotto: Sit -> Idle
-alt pidgeotto: Eat -> Idle
-alt pidgeotto: Nod -> Hop
-alt pidgeotto: Pose -> Hop
-alt pidgeotto: LookUp -> Idle
-alt pidgeotto: Faint -> Hurt
-alt pidgeotto: Joy -> Hop
-alt pidgeotto: Stretch -> Idle
-alt pidgeotto: Dance -> Rotate
-alt pidgeotto: Show -> FlapAround
-alt pidgeotto: Laugh -> Rotate
-alt pidgeotto: Tumble -> Hurt
-alt pidgeotto: Trip -> Hurt
-alt pidgeotto: Leap -> Hop
-alt pidgeot: Wake -> Idle
-alt pidgeot: Laying -> Sleep
-alt pidgeot: Sit -> Idle
-alt pidgeot: Eat -> Idle
-alt pidgeot: Nod -> Hop
-alt pidgeot: Pose -> Hop
-alt pidgeot: LookUp -> Idle
-alt pidgeot: Faint -> Hurt
-alt pidgeot: Joy -> Hop
-alt pidgeot: Stretch -> Idle
-alt pidgeot: Dance -> Rotate
-alt pidgeot: Show -> FlapAround
-alt pidgeot: Laugh -> Rotate
-alt pidgeot: Tumble -> Hurt
-alt pidgeot: Trip -> Hurt
-alt pidgeot: Leap -> Hop
-alt rattata: Wake -> Idle
-alt rattata: Laying -> Sleep
-alt rattata: Sit -> Idle
-alt rattata: Eat -> Idle
-alt rattata: Nod -> Hop
-alt rattata: Pose -> Hop
-alt rattata: LookUp -> Idle
-alt rattata: Faint -> Hurt
-alt rattata: Joy -> Hop
-alt rattata: Stretch -> Idle
-alt rattata: Dance -> Rotate
-alt rattata: Show -> TailWhip
-alt rattata: Laugh -> Rotate
-alt rattata: Tumble -> Hurt
-alt rattata: Trip -> Hurt
-alt rattata: Leap -> Hop
-alt raticate: Wake -> Idle
-alt raticate: Laying -> Sleep
-alt raticate: Sit -> Idle
-alt raticate: Eat -> Idle
-alt raticate: Nod -> Hop
-alt raticate: Pose -> Hop
-alt raticate: LookUp -> Idle
-alt raticate: Faint -> Hurt
-alt raticate: Joy -> Hop
-alt raticate: Stretch -> Idle
-alt raticate: Dance -> Rotate
-alt raticate: Show -> TailWhip
-alt raticate: Laugh -> Rotate
-alt raticate: Tumble -> Hurt
-alt raticate: Trip -> Hurt
-alt raticate: Leap -> Hop
-alt oddish: Wake -> Idle
-alt oddish: Laying -> Sleep
-alt oddish: Sit -> Idle
-alt oddish: Eat -> Idle
-alt oddish: Nod -> Hop
-alt oddish: Pose -> Hop
-alt oddish: LookUp -> Idle
-alt oddish: Faint -> Hurt
-alt oddish: Joy -> Hop
-alt oddish: Stretch -> Idle
-alt oddish: Dance -> Twirl
-alt oddish: Show -> Twirl
-alt oddish: Laugh -> Rotate
-alt oddish: Tumble -> Hurt
-alt oddish: Trip -> Hurt
-alt oddish: Leap -> Hop
-alt gloom: Wake -> Idle
-alt gloom: Laying -> Sleep
-alt gloom: Sit -> Idle
-alt gloom: Eat -> Idle
-alt gloom: Nod -> Hop
-alt gloom: Pose -> Hop
-alt gloom: LookUp -> Idle
-alt gloom: Faint -> Hurt
-alt gloom: Joy -> Hop
-alt gloom: Stretch -> Idle
-alt gloom: Dance -> Twirl
-alt gloom: Show -> Twirl
-alt gloom: Laugh -> Rotate
-alt gloom: Tumble -> Hurt
-alt gloom: Trip -> Hurt
-alt gloom: Leap -> Hop
-alt hoothoot: Wake -> Idle
-alt hoothoot: Laying -> Sleep
-alt hoothoot: Sit -> Idle
-alt hoothoot: Eat -> Idle
-alt hoothoot: Nod -> Hop
-alt hoothoot: Pose -> Hop
-alt hoothoot: LookUp -> Idle
-alt hoothoot: Faint -> Hurt
-alt hoothoot: Joy -> Hop
-alt hoothoot: Stretch -> Idle
-alt hoothoot: Dance -> Twirl
-alt hoothoot: Show -> Twirl
-alt hoothoot: Laugh -> Rotate
-alt hoothoot: Tumble -> Hurt
-alt hoothoot: Trip -> Hurt
-alt hoothoot: Leap -> Hop
-alt noctowl: Wake -> Idle
-alt noctowl: Laying -> Sleep
-alt noctowl: Sit -> Idle
-alt noctowl: Nod -> Hop
-alt noctowl: Pose -> Hop
-alt noctowl: LookUp -> Idle
-alt noctowl: Faint -> Hurt
-alt noctowl: Joy -> Hop
-alt noctowl: Stretch -> Idle
-alt noctowl: Dance -> Rotate
-alt noctowl: Show -> Rotate
-alt noctowl: Laugh -> Rotate
-alt noctowl: Tumble -> Hurt
-alt noctowl: Trip -> Hurt
-alt noctowl: Leap -> Hop
-alt spinarak: Wake -> Idle
-alt spinarak: Laying -> Sleep
-alt spinarak: Sit -> Idle
-alt spinarak: Eat -> Idle
-alt spinarak: Nod -> Hop
-alt spinarak: Pose -> Hop
-alt spinarak: LookUp -> Idle
-alt spinarak: Faint -> Hurt
-alt spinarak: Joy -> Hop
-alt spinarak: Stretch -> Idle
-alt spinarak: Dance -> Twirl
-alt spinarak: Show -> Twirl
-alt spinarak: Laugh -> Rotate
-alt spinarak: Tumble -> Hurt
-alt spinarak: Trip -> Hurt
-alt spinarak: Leap -> Hop
-alt ariados: Wake -> Idle
-alt ariados: Laying -> Sleep
-alt ariados: Sit -> Idle
-alt ariados: Eat -> Idle
-alt ariados: Nod -> Hop
-alt ariados: Pose -> Hop
-alt ariados: LookUp -> Idle
-alt ariados: Faint -> Hurt
-alt ariados: Joy -> Hop
-alt ariados: Stretch -> Idle
-alt ariados: Dance -> Twirl
-alt ariados: Show -> Twirl
-alt ariados: Laugh -> Rotate
-alt ariados: Tumble -> Hurt
-alt ariados: Trip -> Hurt
-alt ariados: Leap -> Hop
+# Generado por tools/pack_sprites.py
+SKIP simisear: sin sprites en SpriteCollab
+SKIP simipour: sin sprites en SpriteCollab
+SKIP tranquill: sin sprites en SpriteCollab
+SKIP blitzle: sin sprites en SpriteCollab
+SKIP zebstrika: sin sprites en SpriteCollab
+SKIP throh: sin sprites en SpriteCollab
+SKIP crustle: sin sprites en SpriteCollab
+SKIP tirtouga: sin sprites en SpriteCollab
+SKIP carracosta: sin sprites en SpriteCollab
+SKIP amoonguss: sin sprites en SpriteCollab
+SKIP frillish: sin sprites en SpriteCollab
+SKIP shelmet: sin sprites en SpriteCollab
+alt stunfisk: Walk -> Idle (copia)
+SKIP bouffalant: sin sprites en SpriteCollab
+alt aromatisse: Walk -> Idle (copia)
+SKIP trumbeak: sin sprites en SpriteCollab
+alt toucannon: Walk -> Idle (copia)
+SKIP gumshoos: sin sprites en SpriteCollab
+SKIP shiinotic: sin sprites en SpriteCollab
+SKIP oranguru: sin sprites en SpriteCollab
+SKIP rolycoly: sin sprites en SpriteCollab
+SKIP carkol: sin sprites en SpriteCollab
+SKIP coalossal: sin sprites en SpriteCollab
+SKIP mr-rime: sin sprites en SpriteCollab
+SKIP cufant: sin sprites en SpriteCollab
+SKIP zarude: sin sprites en SpriteCollab
+alt dolliv: Walk -> Idle (copia)
+SKIP squawkabilly: sin sprites en SpriteCollab
+SKIP maschiff: sin sprites en SpriteCollab
+SKIP mabosstiff: sin sprites en SpriteCollab
+SKIP shroodle: sin sprites en SpriteCollab
+alt grafaiai: Walk -> Idle (copia)
+SKIP brambleghast: sin sprites en SpriteCollab
+SKIP toedscruel: sin sprites en SpriteCollab
+SKIP klawf: sin sprites en SpriteCollab
+SKIP rabsca: sin sprites en SpriteCollab
+SKIP espathra: sin sprites en SpriteCollab
+SKIP bombirdier: sin sprites en SpriteCollab
+SKIP flamigo: sin sprites en SpriteCollab
+SKIP brute-bonnet: sin sprites en SpriteCollab
+alt iron-treads: Walk -> Idle (copia)
+SKIP iron-jugulis: sin sprites en SpriteCollab
+SKIP wo-chien: sin sprites en SpriteCollab
+SKIP chien-pao: sin sprites en SpriteCollab
+alt ting-lu: Walk -> Idle (copia)
+SKIP okidogi: sin sprites en SpriteCollab
+alt gouging-fire: Walk -> Idle (copia)
+alt raging-bolt: Walk -> Idle (copia)
+SKIP iron-boulder: sin sprites en SpriteCollab
+SKIP iron-crown: sin sprites en SpriteCollab

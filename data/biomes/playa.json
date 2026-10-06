@@ -1,0 +1,137 @@
+{
+	"id": "playa",
+	"name_es": "Costa",
+	"seed": 31,
+	"tile_w": 256,
+	"height": 56,
+	"ground_y": 49,
+	"particles": {
+		"day": "pollen",
+		"night": "fireflies"
+	},
+	"layers": [
+		{
+			"name": "clouds",
+			"gen": "clouds",
+			"speed": 0.06,
+			"drift": 1.5,
+			"colors": [
+				"paper",
+				"mist",
+				"haze"
+			],
+			"y": [
+				3,
+				16
+			],
+			"count": 4,
+			"overlay": false
+		},
+		{
+			"name": "far",
+			"gen": "hills",
+			"speed": 0.12,
+			"colors": [
+				"mist",
+				"sky",
+				"dusk"
+			],
+			"base_y": 35,
+			"amp": 1,
+			"waves": [
+				[
+					9,
+					1.0
+				],
+				[
+					17,
+					0.5
+				]
+			],
+			"overlay": false
+		},
+		{
+			"name": "far2",
+			"gen": "hills",
+			"speed": 0.2,
+			"colors": [
+				"cream",
+				"sand",
+				"tan"
+			],
+			"base_y": 41,
+			"amp": 2,
+			"waves": [
+				[
+					2,
+					1.0
+				],
+				[
+					5,
+					0.4
+				]
+			],
+			"overlay": false
+		},
+		{
+			"name": "mid",
+			"gen": "trees",
+			"speed": 0.4,
+			"colors": [
+				"sprout",
+				"grass",
+				"leaf",
+				"forest"
+			],
+			"base_y": 41,
+			"count": 3,
+			"r": [
+				3,
+				5
+			],
+			"gap": 0.8
+		},
+		{
+			"name": "near",
+			"gen": "meadow",
+			"speed": 1.0,
+			"colors": [
+				"cream",
+				"sand",
+				"sand",
+				"tan",
+				"cream",
+				"sand",
+				"tan",
+				"paper"
+			],
+			"top_y": 42,
+			"path": [
+				45,
+				53
+			],
+			"flowers": [
+				"paper",
+				"blush",
+				"petal"
+			]
+		},
+		{
+			"name": "front",
+			"gen": "tufts",
+			"speed": 1.35,
+			"colors": [
+				"sand",
+				"tan",
+				"oak",
+				"wood"
+			],
+			"flowers": [
+				"paper",
+				"petal",
+				"mist"
+			],
+			"count": 2
+		}
+	]
+}

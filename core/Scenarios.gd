@@ -28,6 +28,10 @@ func run(m: Node, scenario_name: String) -> void:
 			await _save_load()
 		"growth":
 			await _growth()
+		"moves":
+			await _moves()
+		"types":
+			await _types()
 		"hold":
 			# no hace nada: para pruebas externas (probe.ps1, barra de tareas) hasta --autoquit
 			await _wait(3600.0)
@@ -53,8 +57,18 @@ func _still() -> void:
 	await _wait(20.0)
 
 
+const GALLERY_SPECIES := [
+	"charmander", "bulbasaur", "squirtle", "pikachu", "pidgey", "gengar", "onix", "snorlax", "dragonite",
+	"mewtwo", "lugia", "rayquaza", "lucario", "garchomp", "zoroark", "greninja", "decidueye", "corviknight",
+	"dragapult", "sprigatito", "koraidon", "pecharunt",
+]
+
+
 func _gallery() -> void:
-	var roster: Array = JSON.parse_string(FileAccess.get_file_as_string("res://data/pokemon_roster.json"))["species"]
+	# una muestra de especies (las 1025 no caben en la franja)
+	var roster: Array = []
+	for n in GALLERY_SPECIES:
+		roster.append({"name": n})
 	var actors: Array[PokemonActor] = []
 	for i in roster.size():
 		var a := PokemonActor.new()
@@ -510,3 +524,133 @@ func _showcase() -> void:
 		await Game.shot("p6_showcase_%02d" % int(hour))
 		await _wait(4.0)
 	Game.clock.forced_hour = -1.0
+
+
+## Fase 9: un movimiento de cada estilo de animación (data/move_fx.json) en el panel de pelea.
+## Saca p9_<estilo>_battle.png en el momento del golpe.
+const MOVE_SAMPLES := [
+	["tackle", "eevee"], ["fire-punch", "charmeleon"], ["double-kick", "hitmonlee"], ["body-slam", "snorlax"],
+	["crunch", "mightyena"], ["slash", "scyther"], ["iron-tail", "pikachu"], ["rapid-spin", "blastoise"],
+	["vine-whip", "bulbasaur"], ["shadow-ball", "gengar"], ["bullet-seed", "breloom"], ["hyper-beam", "dragonite"],
+	["flamethrower", "charizard"], ["thunder", "raichu"], ["rock-slide", "golem"], ["stone-edge", "tyranitar"],
+	["earthquake", "garchomp"], ["surf", "lapras"], ["gust", "pidgeot"], ["hyper-voice", "wigglytuff"],
+	["psychic", "alakazam"], ["giga-drain", "venusaur"], ["explosion", "electrode"], ["dig", "dugtrio"],
+	["fly", "pidgeot"], ["swords-dance", "scizor"], ["recover", "starmie"], ["toxic", "nidoking"],
+	["protect", "blissey"], ["rain-dance", "kyogre"], ["ice-beam", "glaceon"], ["moonblast", "sylveon"],
+]
+
+
+func _moves() -> void:
+	Game.set_mode(Game.MODE_BATTLE)
+	await _wait(1.5)
+	var bc: BattleController = main.combat
+	bc.set_process(false)
+	bc._stop_all()
+	var stage: Node2D = bc.strip.stage
+	var gy: float = bc.strip.ground_y()
+	for sample in MOVE_SAMPLES:
+		var mv: String = sample[0]
+		var att := bc._spawn_actor(sample[1], Vector2(70, gy))
+		var def := bc._spawn_actor("snorlax" if sample[1] != "snorlax" else "lapras", Vector2(170, gy))
+		att.play_anim("Idle", "E")
+		def.play_anim("Idle", "W")
+		await _wait(0.4)
+		var body := MoveFx.body_anim(mv)
+		att.play_anim(body, "E", true)
+		await _wait(att.hit_time(body))
+		var fx := MoveFx.create(stage, att, MoveFx.body_center(def), mv, def)
+		fx.shake = bc._stage_shake
+		fx.start()
+		await _wait(0.1)
+		await Game.shot("p9_%s_a" % MoveFx.data(mv)["style"])
+		await fx.wait_impact()
+		def.play_anim("Hurt", "W", true)
+		await _wait(0.06)
+		await Game.shot("p9_%s" % MoveFx.data(mv)["style"])
+		await _wait(0.9)
+		att.queue_free()
+		def.queue_free()
+		await _wait(0.1)
+	print("[moves] estilos probados: ", MOVE_SAMPLES.size())
+
+
+## Fase 9: acciones propias de cada tipo, entrenar, combate de práctica y estilos de vuelo.
+## Saca p9_type_<acción>.png, p9_train, p9_spar y p9_fly_<estilo>.png.
+const TYPE_SAMPLES := [
+	["charmander", "brasas"], ["squirtle", "fuente"], ["pikachu", "chispas"], ["bulbasaur", "hojas"],
+	["sandshrew", "excavar"], ["abra", "teletransporte"], ["gastly", "atravesar"], ["spinarak", "colgar_de_seda"],
+	["machop", "puñetazos"], ["snorunt", "nevada"], ["clefairy", "danza_feerica"], ["geodude", "rodar"],
+	["pidgey", "revolotear"], ["dratini", "rugido"], ["koffing", "burbujas_toxicas"], ["magnemite", "pulirse"], ["eevee", "pose"], ["rhyhorn", "pisotón"], ["gyarados", "sacudirse"], ["umbreon", "sombra"],
+]
+
+
+func _types() -> void:
+	Game.set_mode(Game.MODE_REST)
+	await _wait(0.5)
+	var home: HomeArea = main.home
+	var r := Game.roster
+	# de a 5 (más el compañero): el máximo de mascotas paseando es Roster.PETS_MAX
+	var round_i := 0
+	var brains: Array[PetBrain] = []
+	for start in range(0, TYPE_SAMPLES.size(), 5):
+		var chunk := TYPE_SAMPLES.slice(start, start + 5)
+		var uids: Array[int] = []
+		for sample in chunk:
+			var p := PokemonInstance.create(sample[0], 20)
+			r.add(p)
+			uids.append(p.uid)
+		r.pets = uids
+		main._sync_home()
+		await _wait(0.8)
+		brains.clear()
+		for i in chunk.size():
+			var b := home.brain_for(uids[i])
+			b.actor.position = Vector2(40 + i * 60, home.ground_y)
+			b.force_state(PetBrain.State.IDLE, 1e9)
+			brains.append(b)
+		var comp := home.brain_for(r.companion)
+		if comp:
+			comp.actor.position.x = 380
+			comp.force_state(PetBrain.State.IDLE, 1e9)
+		await _wait(0.4)
+		for i in chunk.size():
+			var b := brains[i]
+			for t in b.mon.types():
+				for a in TypeAct.data()["types"].get(t, []):
+					if a["id"] == chunk[i][1]:
+						b.start_type_act(a, t)
+		await _wait(1.2)
+		await Game.shot("p9_types%d_a" % round_i)
+		await _wait(1.2)
+		await Game.shot("p9_types%d_b" % round_i)
+		await _wait(5.0)
+		round_i += 1
+	# entrenar y combate de práctica (con los últimos)
+	for b in brains:
+		b.force_state(PetBrain.State.IDLE, 1e9)
+	await _wait(0.5)
+	brains[0].train("dragon-breath")
+	await _wait(0.45)
+	await Game.shot("p9_train")
+	await _wait(1.5)
+	brains[0].actor.position.x = 120
+	brains[1].actor.position.x = 160
+	home.run_spar(brains[0], brains[1])
+	await _wait(0.9)
+	await Game.shot("p9_spar")
+	await _wait(6.0)
+	# estilos de vuelo
+	for pair in [["pidgeot", "bird"], ["butterfree", "bug"], ["haunter", "float"], ["dragonite", "dragon"]]:
+		var f := PokemonInstance.create(pair[0], 40)
+		r.add(f)
+		r.pets = [f.uid]
+		main._sync_home()
+		await _wait(0.6)
+		var fb := home.brain_for(f.uid)
+		print("[types] %s vuela=%s estilo=%s" % [pair[0], Personality.can_fly(pair[0]), Personality.flight_style(pair[0])])
+		home.force_flight(fb)
+		await _wait(2.5)
+		await Game.shot_window(home.flight, "p9_fly_" + pair[1])
+		home.abort_flight()
+		await _wait(0.5)
+	print("[types] listo")

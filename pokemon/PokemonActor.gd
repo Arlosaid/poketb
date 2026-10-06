@@ -13,8 +13,14 @@ const SPECIES_DIR := "res://pokemon/species/"
 ## Ancho de la sombra (px lógicos) según ShadowSize de AnimData (0, 1, 2).
 const SHADOW_W := [10, 14, 20]
 
+## SpriteFrames armados en memoria (los más recientes; ver FRAMES_CACHE_MAX).
+const FRAMES_CACHE_MAX := 40
+const PORTRAIT_SIZE := 40
+
 static var _meta_cache := {}
 static var _shadow_cache := {}
+static var _frames_cache := {}
+static var _portrait_cache := {}
 
 @export var species := "charmander":
 	set(v):
@@ -62,7 +68,7 @@ func _ready() -> void:
 
 func _load_species() -> void:
 	meta = load_meta(species)
-	sprite.sprite_frames = load(SPECIES_DIR + species + "/frames.res")
+	sprite.sprite_frames = frames_for(species)
 	shadow.texture = _shadow_texture(int(meta.get("shadow_size", 1)))
 	anim = ""
 	play_anim("Idle")
@@ -70,8 +76,70 @@ func _load_species() -> void:
 
 static func load_meta(sp: String) -> Dictionary:
 	if not _meta_cache.has(sp):
-		_meta_cache[sp] = JSON.parse_string(FileAccess.get_file_as_string(SPECIES_DIR + sp + "/meta.json"))
+		var path := SPECIES_DIR + sp + "/meta.json"
+		_meta_cache[sp] = JSON.parse_string(FileAccess.get_file_as_string(path)) if FileAccess.file_exists(path) else {}
 	return _meta_cache[sp]
+
+
+## SpriteFrames de una especie, armado desde su hoja empacada (tools/pack_sprites.py):
+## cada cuadro es un AtlasTexture recortado cuyo `margin` le devuelve el tamaño del cuadro PMD.
+static func frames_for(sp: String) -> SpriteFrames:
+	if _frames_cache.has(sp):
+		var cached: SpriteFrames = _frames_cache[sp]
+		_frames_cache.erase(sp)  # al final: es el más reciente
+		_frames_cache[sp] = cached
+		return cached
+	var m := load_meta(sp)
+	var frames := SpriteFrames.new()
+	frames.remove_animation(&"default")
+	var sheet: Texture2D = load(SPECIES_DIR + sp + "/sheet.png")
+	var cells: Array = m["cells"]
+	var atlases := {}
+	for an in m["anims"]:
+		var info: Dictionary = m["anims"][an]
+		var fw := float(info["fw"])
+		var fh := float(info["fh"])
+		var durations: Array = info["durations"]
+		for r in int(info["dirs"]):
+			var key := StringName("%s_%s" % [an, DIRS[r]])
+			frames.add_animation(key)
+			frames.set_animation_speed(key, 60.0)  # duraciones en ticks de 60 fps
+			frames.set_animation_loop(key, bool(info["loop"]))
+			var row: Array = info["cells"][r]
+			for c in row.size():
+				var ci := int(row[c])
+				if not atlases.has(ci):
+					var cell: Array = cells[ci]
+					var at := AtlasTexture.new()
+					at.atlas = sheet
+					at.region = Rect2(cell[0], cell[1], cell[2], cell[3])
+					at.margin = Rect2(cell[4], cell[5], fw - float(cell[2]), fh - float(cell[3]))
+					atlases[ci] = at
+				frames.add_frame(key, atlases[ci], float(durations[c]))
+	_frames_cache[sp] = frames
+	while _frames_cache.size() > FRAMES_CACHE_MAX:
+		_frames_cache.erase(_frames_cache.keys()[0])
+	return frames
+
+
+## Retrato de 40x40 de la primera emoción de `emotions` que tenga la especie (o null).
+static func portrait(sp: String, emotions: Array = ["Normal"]) -> Texture2D:
+	var ports: Dictionary = load_meta(sp).get("portraits", {})
+	for e in emotions + ["Normal"]:
+		if not ports.has(e):
+			continue
+		var key := "%s/%s" % [sp, e]
+		if not _portrait_cache.has(key):
+			var at := AtlasTexture.new()
+			at.atlas = load(SPECIES_DIR + sp + "/portraits.png")
+			at.region = Rect2(int(ports[e]) * PORTRAIT_SIZE, 0, PORTRAIT_SIZE, PORTRAIT_SIZE)
+			_portrait_cache[key] = at
+		return _portrait_cache[key]
+	return null
+
+
+static func has_portrait(sp: String, emotion: String) -> bool:
+	return load_meta(sp).get("portraits", {}).has(emotion)
 
 
 ## Nombre real de la animación tras aplicar alternativas.

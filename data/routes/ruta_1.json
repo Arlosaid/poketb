@@ -61,7 +61,7 @@
 		"level": 14,
 		"title_es": "¡Un Pidgeotto imponente bloquea el camino!"
 	},
-	"cleared_es": "¡Ruta despejada! Próximamente: Bosque Verde…",
+	"cleared_es": "¡Ruta despejada! Rumbo al Bosque Verde…",
 	"capture": {
 		"hp_below": 0.5,
 		"chance_per_turn": 0.25
@@ -165,5 +165,6 @@
 				"weight": 5
 			}
 		]
-	}
+	},
+	"next": "ruta_2"
 }

@@ -1,0 +1,80 @@
+{
+ "_doc": "Acciones propias de cada tipo en el modo mascota (pet/TypeActs.gd). Cada Pokémon elige entre las acciones de sus tipos. anim: animación lógica (tools/pack_sprites.py → ALTERNATIVES). kind: lo que hace (particles, teleport, dig, phase, hover, roll, web, glow). fx: patrón de partículas (rise, fall, orbit, fountain, zap, puff, sparkle). part: forma de assets/ui/fx_parts.png con los colores del tipo. dur: segundos. when: day/night (opcional). say: globito (opcional, ícono de Emote). weight multiplica a la base del tipo.",
+ "base_weight": 0.9,
+ "train_weight": 0.45,
+ "spar_chance": 0.35,
+ "types": {
+  "normal": [
+   {"id": "siesta_corta", "kind": "particles", "anim": "Laying", "fx": "puff", "part": "orb_s", "dur": 4.0, "weight": 0.6},
+   {"id": "pose", "kind": "particles", "anim": "Appeal", "fx": "sparkle", "part": "star", "dur": 1.6, "weight": 1.0}
+  ],
+  "fire": [
+   {"id": "brasas", "kind": "particles", "anim": "Charge", "fx": "rise", "part": "flame", "dur": 2.4, "weight": 1.2},
+   {"id": "calorcito", "kind": "glow", "anim": "Sit", "fx": "rise", "part": "orb_s", "dur": 6.0, "when": "night", "weight": 1.0}
+  ],
+  "water": [
+   {"id": "fuente", "kind": "particles", "anim": "Shoot", "fx": "fountain", "part": "drop", "dur": 2.2, "weight": 1.2},
+   {"id": "sacudirse", "kind": "particles", "anim": "Shake", "fx": "puff", "part": "drop", "dur": 1.4, "weight": 0.8},
+   {"id": "burbujas", "kind": "particles", "anim": "Idle", "fx": "rise", "part": "bubble", "dur": 3.0, "weight": 0.8}
+  ],
+  "electric": [
+   {"id": "chispas", "kind": "particles", "anim": "Shock", "fx": "zap", "part": "spark", "dur": 2.0, "weight": 1.3},
+   {"id": "cargar", "kind": "glow", "anim": "Charge", "fx": "orbit", "part": "spark", "dur": 3.0, "weight": 0.8}
+  ],
+  "grass": [
+   {"id": "fotosintesis", "kind": "glow", "anim": "Sit", "fx": "fall", "part": "orb_s", "dur": 7.0, "when": "day", "weight": 1.3},
+   {"id": "hojas", "kind": "particles", "anim": "Rotate", "fx": "orbit", "part": "leaf", "dur": 2.0, "weight": 1.0}
+  ],
+  "ice": [
+   {"id": "nevada", "kind": "particles", "anim": "Idle", "fx": "fall", "part": "flake", "dur": 4.5, "weight": 1.3},
+   {"id": "escarcha", "kind": "particles", "anim": "DeepBreath", "fx": "sparkle", "part": "shard", "dur": 1.8, "weight": 0.8}
+  ],
+  "fighting": [
+   {"id": "puñetazos", "kind": "particles", "anim": "Punch", "fx": "puff", "part": "star", "dur": 1.2, "repeat": 3, "weight": 1.4},
+   {"id": "patadas", "kind": "particles", "anim": "Kick", "fx": "puff", "part": "star", "dur": 1.2, "repeat": 2, "weight": 1.0}
+  ],
+  "poison": [
+   {"id": "burbujas_toxicas", "kind": "particles", "anim": "Gas", "fx": "rise", "part": "bubble", "dur": 3.0, "weight": 1.3}
+  ],
+  "ground": [
+   {"id": "excavar", "kind": "dig", "anim": "Sink", "fx": "puff", "part": "dust", "dur": 2.5, "weight": 1.5},
+   {"id": "pisotón", "kind": "particles", "anim": "Rumble", "fx": "puff", "part": "dust", "dur": 1.4, "weight": 0.7}
+  ],
+  "flying": [
+   {"id": "revolotear", "kind": "hover", "anim": "Flap", "fx": "fall", "part": "feather", "dur": 4.0, "weight": 1.4},
+   {"id": "plumas", "kind": "particles", "anim": "Flap", "fx": "puff", "part": "feather", "dur": 1.6, "weight": 0.7}
+  ],
+  "psychic": [
+   {"id": "teletransporte", "kind": "teleport", "anim": "Charge", "fx": "sparkle", "part": "ring", "dur": 1.0, "weight": 1.4},
+   {"id": "levitar", "kind": "hover", "anim": "Float", "fx": "orbit", "part": "ring", "dur": 5.0, "weight": 0.9}
+  ],
+  "bug": [
+   {"id": "colgar_de_seda", "kind": "web", "anim": "Idle", "fx": "sparkle", "part": "needle", "dur": 6.0, "weight": 1.2},
+   {"id": "zumbido", "kind": "particles", "anim": "Rotate", "fx": "orbit", "part": "orb_s", "dur": 2.0, "weight": 0.8}
+  ],
+  "rock": [
+   {"id": "rodar", "kind": "roll", "anim": "Spin", "fx": "puff", "part": "dust", "dur": 2.5, "weight": 1.2},
+   {"id": "tomar_sol", "kind": "glow", "anim": "Laying", "fx": "sparkle", "part": "star", "dur": 6.0, "when": "day", "weight": 0.8}
+  ],
+  "ghost": [
+   {"id": "atravesar", "kind": "phase", "anim": "Float", "fx": "rise", "part": "wisp", "dur": 5.0, "weight": 1.5},
+   {"id": "desaparecer", "kind": "teleport", "anim": "Idle", "fx": "rise", "part": "wisp", "dur": 1.2, "weight": 1.0}
+  ],
+  "dragon": [
+   {"id": "rugido", "kind": "particles", "anim": "Sound", "fx": "puff", "part": "swirl", "dur": 1.6, "weight": 1.2},
+   {"id": "aura", "kind": "glow", "anim": "Charge", "fx": "orbit", "part": "swirl", "dur": 3.0, "weight": 0.8}
+  ],
+  "dark": [
+   {"id": "acecho", "kind": "phase", "anim": "Walk", "fx": "puff", "part": "crescent", "dur": 4.0, "when": "night", "weight": 1.3},
+   {"id": "sombra", "kind": "teleport", "anim": "Idle", "fx": "puff", "part": "crescent", "dur": 1.0, "weight": 0.8}
+  ],
+  "steel": [
+   {"id": "pulirse", "kind": "glow", "anim": "Idle", "fx": "sparkle", "part": "star", "dur": 3.0, "weight": 1.2},
+   {"id": "rodar_metal", "kind": "roll", "anim": "Spin", "fx": "puff", "part": "shard", "dur": 2.0, "weight": 0.6}
+  ],
+  "fairy": [
+   {"id": "danza_feerica", "kind": "particles", "anim": "Dance", "fx": "orbit", "part": "heart", "dur": 2.6, "weight": 1.3},
+   {"id": "destellos", "kind": "glow", "anim": "Appeal", "fx": "sparkle", "part": "star", "dur": 2.0, "weight": 0.9}
+  ]
+ }
+}

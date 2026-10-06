@@ -1,0 +1,4157 @@
+{
+"_comment": "Generado por tools/gen_move_fx.py desde data/move_fx_rules.json.",
+"moves": {
+"absorb": {
+"body": "SpAttack",
+"hits": 1,
+"part": "leaf",
+"style": "drain"
+},
+"accelerock": {
+"body": "Quick",
+"hits": 1,
+"part": "rock",
+"style": "contact"
+},
+"acid": {
+"body": "Shoot",
+"hits": 1,
+"part": "bubble",
+"style": "wave"
+},
+"acid-armor": {
+"body": "Charge",
+"hits": 1,
+"part": "bubble",
+"style": "aura"
+},
+"acid-spray": {
+"body": "Shoot",
+"hits": 1,
+"part": "bubble",
+"style": "spray"
+},
+"acrobatics": {
+"body": "Quick",
+"hits": 1,
+"part": "feather",
+"style": "contact"
+},
+"acupressure": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"aerial-ace": {
+"body": "Quick",
+"hits": 1,
+"part": "feather",
+"style": "contact"
+},
+"aeroblast": {
+"body": "SpAttack",
+"hits": 1,
+"part": "feather",
+"style": "beam"
+},
+"after-you": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"agility": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"air-cutter": {
+"body": "Flap",
+"hits": 1,
+"part": "crescent",
+"style": "wind"
+},
+"air-slash": {
+"body": "Claw",
+"hits": 1,
+"part": "crescent",
+"style": "projectile"
+},
+"ally-switch": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"amnesia": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"anchor-shot": {
+"body": "Shoot",
+"hits": 1,
+"part": "shard",
+"style": "projectile"
+},
+"ancient-power": {
+"body": "SpAttack",
+"hits": 1,
+"part": "rock",
+"style": "psychic"
+},
+"apple-acid": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "spray"
+},
+"aqua-cutter": {
+"body": "Claw",
+"hits": 1,
+"part": "drop",
+"style": "slash"
+},
+"aqua-jet": {
+"body": "Quick",
+"hits": 1,
+"part": "drop",
+"style": "contact"
+},
+"aqua-ring": {
+"body": "Charge",
+"hits": 1,
+"part": "drop",
+"style": "aura"
+},
+"aqua-step": {
+"body": "Attack",
+"hits": 1,
+"part": "drop",
+"style": "contact"
+},
+"aqua-tail": {
+"body": "Swing",
+"hits": 1,
+"part": "drop",
+"style": "swing"
+},
+"arm-thrust": {
+"body": "Multi",
+"hits": 5,
+"part": "star",
+"style": "barrage"
+},
+"armor-cannon": {
+"body": "SpAttack",
+"hits": 1,
+"part": "flame",
+"style": "beam"
+},
+"aromatherapy": {
+"body": "Charge",
+"hits": 1,
+"part": "petal",
+"style": "aura"
+},
+"aromatic-mist": {
+"body": "Charge",
+"hits": 1,
+"part": "heart",
+"style": "aura"
+},
+"assurance": {
+"body": "Attack",
+"hits": 1,
+"part": "crescent",
+"style": "contact"
+},
+"astonish": {
+"body": "SpAttack",
+"hits": 1,
+"part": "wisp",
+"style": "psychic"
+},
+"attack-order": {
+"body": "Rise",
+"hits": 1,
+"part": "needle",
+"style": "rain"
+},
+"attract": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "status"
+},
+"aura-sphere": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_l",
+"style": "projectile"
+},
+"aura-wheel": {
+"body": "Spin",
+"hits": 1,
+"part": "spark",
+"style": "spin"
+},
+"aurora-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "shard",
+"style": "beam"
+},
+"aurora-veil": {
+"body": "Rise",
+"hits": 1,
+"part": "shard",
+"style": "field"
+},
+"autotomize": {
+"body": "Charge",
+"hits": 1,
+"part": "shard",
+"style": "aura"
+},
+"avalanche": {
+"body": "Rise",
+"hits": 1,
+"part": "shard",
+"style": "rain"
+},
+"axe-kick": {
+"body": "Kick",
+"hits": 1,
+"part": "star",
+"style": "kick"
+},
+"baby-doll-eyes": {
+"body": "Appeal",
+"hits": 1,
+"part": "heart",
+"style": "status"
+},
+"baneful-bunker": {
+"body": "Charge",
+"hits": 1,
+"part": "bubble",
+"style": "shield"
+},
+"barb-barrage": {
+"body": "Multi",
+"hits": 1,
+"part": "bubble",
+"style": "barrage"
+},
+"baton-pass": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"beak-blast": {
+"body": "Head",
+"hits": 1,
+"part": "feather",
+"style": "contact"
+},
+"beat-up": {
+"body": "Multi",
+"hits": 5,
+"part": "crescent",
+"style": "barrage"
+},
+"belch": {
+"body": "Shoot",
+"hits": 1,
+"part": "bubble",
+"style": "spray"
+},
+"belly-drum": {
+"body": "Sound",
+"hits": 1,
+"part": "star",
+"style": "sound"
+},
+"bide": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"bind": {
+"body": "Swing",
+"hits": 1,
+"part": "star",
+"style": "vine"
+},
+"bite": {
+"body": "Bite",
+"hits": 1,
+"part": "crescent",
+"style": "bite"
+},
+"bitter-blade": {
+"body": "Claw",
+"hits": 1,
+"part": "flame",
+"style": "drain"
+},
+"blaze-kick": {
+"body": "Kick",
+"hits": 1,
+"part": "flame",
+"style": "kick"
+},
+"bleakwind-storm": {
+"body": "SpAttack",
+"hits": 1,
+"part": "feather",
+"style": "wave"
+},
+"blizzard": {
+"body": "Rise",
+"hits": 1,
+"part": "flake",
+"style": "rain"
+},
+"block": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"blue-flare": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"body-press": {
+"body": "Slam",
+"hits": 1,
+"part": "star",
+"style": "slam"
+},
+"body-slam": {
+"body": "Slam",
+"hits": 1,
+"part": "star",
+"style": "slam"
+},
+"bolt-beak": {
+"body": "Head",
+"hits": 1,
+"part": "spark",
+"style": "contact"
+},
+"bolt-strike": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"bone-rush": {
+"body": "Multi",
+"hits": 5,
+"part": "rock",
+"style": "barrage"
+},
+"bonemerang": {
+"body": "Multi",
+"hits": 2,
+"part": "rock",
+"style": "barrage"
+},
+"boomburst": {
+"body": "Sound",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"bounce": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "dive_bomb"
+},
+"branch-poke": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "projectile"
+},
+"brave-bird": {
+"body": "Head",
+"hits": 1,
+"part": "feather",
+"style": "dive_bomb"
+},
+"breaking-swipe": {
+"body": "Claw",
+"hits": 1,
+"part": "swirl",
+"style": "slash"
+},
+"brick-break": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"brine": {
+"body": "Shoot",
+"hits": 1,
+"part": "drop",
+"style": "spray"
+},
+"brutal-swing": {
+"body": "Swing",
+"hits": 1,
+"part": "crescent",
+"style": "swing"
+},
+"bubble-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "bubble",
+"style": "spray"
+},
+"bug-bite": {
+"body": "Bite",
+"hits": 1,
+"part": "needle",
+"style": "bite"
+},
+"bug-buzz": {
+"body": "Shoot",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"bulk-up": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"bulldoze": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "quake"
+},
+"bullet-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "shard",
+"style": "punch"
+},
+"bullet-seed": {
+"body": "Multi",
+"hits": 5,
+"part": "orb_s",
+"style": "barrage"
+},
+"burn-up": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"burning-bulwark": {
+"body": "Charge",
+"hits": 1,
+"part": "flame",
+"style": "aura"
+},
+"calm-mind": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"charge": {
+"body": "Charge",
+"hits": 1,
+"part": "spark",
+"style": "aura"
+},
+"charge-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "spark",
+"style": "beam"
+},
+"charm": {
+"body": "Charge",
+"hits": 1,
+"part": "heart",
+"style": "aura"
+},
+"chatter": {
+"body": "Sound",
+"hits": 1,
+"part": "note",
+"style": "sound"
+},
+"circle-throw": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"clanging-scales": {
+"body": "Sound",
+"hits": 1,
+"part": "swirl",
+"style": "sound"
+},
+"clangorous-soul": {
+"body": "Charge",
+"hits": 1,
+"part": "swirl",
+"style": "aura"
+},
+"clear-smog": {
+"body": "Shoot",
+"hits": 1,
+"part": "dust",
+"style": "spray"
+},
+"close-combat": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"coil": {
+"body": "Charge",
+"hits": 1,
+"part": "bubble",
+"style": "aura"
+},
+"collision-course": {
+"body": "Slam",
+"hits": 1,
+"part": "star",
+"style": "slam"
+},
+"comeuppance": {
+"body": "Attack",
+"hits": 1,
+"part": "crescent",
+"style": "contact"
+},
+"confide": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"confuse-ray": {
+"body": "SpAttack",
+"hits": 1,
+"part": "wisp",
+"style": "status"
+},
+"confusion": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"conversion": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"conversion-2": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"copycat": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"core-enforcer": {
+"body": "SpAttack",
+"hits": 1,
+"part": "swirl",
+"style": "beam"
+},
+"cosmic-power": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"cotton-guard": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "aura"
+},
+"cotton-spore": {
+"body": "Charge",
+"hits": 1,
+"part": "orb_m",
+"style": "aura"
+},
+"counter": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"court-change": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"covet": {
+"body": "Bite",
+"hits": 1,
+"part": "star",
+"style": "bite"
+},
+"crabhammer": {
+"body": "Slam",
+"hits": 1,
+"part": "drop",
+"style": "slam"
+},
+"crafty-shield": {
+"body": "Rise",
+"hits": 1,
+"part": "heart",
+"style": "field"
+},
+"cross-chop": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"cross-poison": {
+"body": "Attack",
+"hits": 1,
+"part": "bubble",
+"style": "contact"
+},
+"crunch": {
+"body": "Bite",
+"hits": 1,
+"part": "crescent",
+"style": "bite"
+},
+"crush-claw": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "slash"
+},
+"crush-grip": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"curse": {
+"body": "Charge",
+"hits": 1,
+"part": "wisp",
+"style": "aura"
+},
+"cut": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "slash"
+},
+"dark-pulse": {
+"body": "SpAttack",
+"hits": 1,
+"part": "crescent",
+"style": "beam"
+},
+"dark-void": {
+"body": "SpAttack",
+"hits": 1,
+"part": "crescent",
+"style": "status"
+},
+"darkest-lariat": {
+"body": "Slam",
+"hits": 1,
+"part": "crescent",
+"style": "slam"
+},
+"dazzling-gleam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "psychic"
+},
+"decorate": {
+"body": "Charge",
+"hits": 1,
+"part": "heart",
+"style": "aura"
+},
+"defend-order": {
+"body": "Charge",
+"hits": 1,
+"part": "needle",
+"style": "aura"
+},
+"defense-curl": {
+"body": "Sink",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"defog": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "wind"
+},
+"destiny-bond": {
+"body": "Charge",
+"hits": 1,
+"part": "wisp",
+"style": "aura"
+},
+"detect": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "shield"
+},
+"diamond-storm": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "rain"
+},
+"dig": {
+"body": "Sink",
+"hits": 1,
+"part": "dust",
+"style": "vanish"
+},
+"dire-claw": {
+"body": "Claw",
+"hits": 1,
+"part": "bubble",
+"style": "slash"
+},
+"disable": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"disarming-voice": {
+"body": "Sound",
+"hits": 1,
+"part": "heart",
+"style": "sound"
+},
+"discharge": {
+"body": "Shoot",
+"hits": 1,
+"part": "spark",
+"style": "wave"
+},
+"dive": {
+"body": "Sink",
+"hits": 1,
+"part": "drop",
+"style": "vanish"
+},
+"doodle": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"doom-desire": {
+"body": "Rise",
+"hits": 1,
+"part": "shard",
+"style": "rain"
+},
+"double-edge": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"double-hit": {
+"body": "Multi",
+"hits": 2,
+"part": "star",
+"style": "barrage"
+},
+"double-iron-bash": {
+"body": "Multi",
+"hits": 2,
+"part": "shard",
+"style": "barrage"
+},
+"double-kick": {
+"body": "Kick",
+"hits": 2,
+"part": "star",
+"style": "kick"
+},
+"double-shock": {
+"body": "Multi",
+"hits": 1,
+"part": "spark",
+"style": "barrage"
+},
+"double-team": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"dragon-ascent": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "dive_bomb"
+},
+"dragon-breath": {
+"body": "Shoot",
+"hits": 1,
+"part": "swirl",
+"style": "spray"
+},
+"dragon-claw": {
+"body": "Claw",
+"hits": 1,
+"part": "swirl",
+"style": "slash"
+},
+"dragon-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "swirl",
+"style": "aura"
+},
+"dragon-darts": {
+"body": "Multi",
+"hits": 2,
+"part": "swirl",
+"style": "barrage"
+},
+"dragon-energy": {
+"body": "SpAttack",
+"hits": 1,
+"part": "swirl",
+"style": "beam"
+},
+"dragon-hammer": {
+"body": "Slam",
+"hits": 1,
+"part": "swirl",
+"style": "slam"
+},
+"dragon-pulse": {
+"body": "SpAttack",
+"hits": 1,
+"part": "swirl",
+"style": "beam"
+},
+"dragon-rush": {
+"body": "Attack",
+"hits": 1,
+"part": "swirl",
+"style": "contact"
+},
+"dragon-tail": {
+"body": "Swing",
+"hits": 1,
+"part": "swirl",
+"style": "swing"
+},
+"drain-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "drain"
+},
+"draining-kiss": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "drain"
+},
+"dream-eater": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "drain"
+},
+"drill-peck": {
+"body": "Head",
+"hits": 1,
+"part": "feather",
+"style": "contact"
+},
+"drill-run": {
+"body": "Head",
+"hits": 1,
+"part": "dust",
+"style": "contact"
+},
+"drum-beating": {
+"body": "Slam",
+"hits": 1,
+"part": "leaf",
+"style": "slam"
+},
+"dual-chop": {
+"body": "Chop",
+"hits": 2,
+"part": "swirl",
+"style": "punch"
+},
+"dual-wingbeat": {
+"body": "Flap",
+"hits": 2,
+"part": "feather",
+"style": "barrage"
+},
+"dynamax-cannon": {
+"body": "SpAttack",
+"hits": 1,
+"part": "swirl",
+"style": "beam"
+},
+"dynamic-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"earth-power": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "rise"
+},
+"earthquake": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "quake"
+},
+"echoed-voice": {
+"body": "Sound",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"eerie-impulse": {
+"body": "Charge",
+"hits": 1,
+"part": "spark",
+"style": "aura"
+},
+"electric-terrain": {
+"body": "Rise",
+"hits": 1,
+"part": "spark",
+"style": "field"
+},
+"electrify": {
+"body": "Charge",
+"hits": 1,
+"part": "spark",
+"style": "aura"
+},
+"electro-ball": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_l",
+"style": "projectile"
+},
+"electro-drift": {
+"body": "Spin",
+"hits": 1,
+"part": "spark",
+"style": "spin"
+},
+"electro-shot": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"electroweb": {
+"body": "Shoot",
+"hits": 1,
+"part": "spark",
+"style": "wave"
+},
+"ember": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"encore": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"endeavor": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"endure": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "shield"
+},
+"energy-ball": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_l",
+"style": "projectile"
+},
+"entrainment": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"eruption": {
+"body": "Rumble",
+"hits": 1,
+"part": "flame",
+"style": "rise"
+},
+"expanding-force": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"explosion": {
+"body": "Swell",
+"hits": 1,
+"part": "star",
+"style": "explosion"
+},
+"extrasensory": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"extreme-speed": {
+"body": "Quick",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"facade": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"fairy-lock": {
+"body": "Rise",
+"hits": 1,
+"part": "heart",
+"style": "field"
+},
+"fairy-wind": {
+"body": "Flap",
+"hits": 1,
+"part": "heart",
+"style": "wind"
+},
+"fake-out": {
+"body": "Quick",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"fake-tears": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"false-surrender": {
+"body": "Attack",
+"hits": 1,
+"part": "crescent",
+"style": "contact"
+},
+"false-swipe": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "slash"
+},
+"feather-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "feather",
+"style": "aura"
+},
+"feint": {
+"body": "Quick",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"fell-stinger": {
+"body": "Attack",
+"hits": 1,
+"part": "needle",
+"style": "contact"
+},
+"fickle-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "swirl",
+"style": "beam"
+},
+"fiery-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"fillet-away": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"final-gambit": {
+"body": "Swell",
+"hits": 1,
+"part": "star",
+"style": "explosion"
+},
+"fire-blast": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"fire-fang": {
+"body": "Bite",
+"hits": 1,
+"part": "flame",
+"style": "bite"
+},
+"fire-lash": {
+"body": "Swing",
+"hits": 1,
+"part": "flame",
+"style": "vine"
+},
+"fire-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "flame",
+"style": "punch"
+},
+"fire-spin": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"first-impression": {
+"body": "Quick",
+"hits": 1,
+"part": "needle",
+"style": "contact"
+},
+"fishious-rend": {
+"body": "Bite",
+"hits": 1,
+"part": "drop",
+"style": "bite"
+},
+"fissure": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "quake"
+},
+"flail": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"flame-burst": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"flame-charge": {
+"body": "Attack",
+"hits": 1,
+"part": "flame",
+"style": "contact"
+},
+"flame-wheel": {
+"body": "Spin",
+"hits": 1,
+"part": "flame",
+"style": "spin"
+},
+"flamethrower": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"flare-blitz": {
+"body": "Head",
+"hits": 1,
+"part": "flame",
+"style": "contact"
+},
+"flash-cannon": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_m",
+"style": "beam"
+},
+"flatter": {
+"body": "SpAttack",
+"hits": 1,
+"part": "crescent",
+"style": "status"
+},
+"fleur-cannon": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "beam"
+},
+"fling": {
+"body": "Shoot",
+"hits": 1,
+"part": "crescent",
+"style": "projectile"
+},
+"flip-turn": {
+"body": "Quick",
+"hits": 1,
+"part": "drop",
+"style": "contact"
+},
+"floral-healing": {
+"body": "Charge",
+"hits": 1,
+"part": "heart",
+"style": "heal"
+},
+"flower-shield": {
+"body": "Charge",
+"hits": 1,
+"part": "heart",
+"style": "aura"
+},
+"flower-trick": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "projectile"
+},
+"fly": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "dive_bomb"
+},
+"flying-press": {
+"body": "Flap",
+"hits": 1,
+"part": "star",
+"style": "dive_bomb"
+},
+"focus-blast": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_l",
+"style": "projectile"
+},
+"focus-energy": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"focus-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"follow-me": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"force-palm": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"forests-curse": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "aura"
+},
+"foul-play": {
+"body": "SpAttack",
+"hits": 1,
+"part": "crescent",
+"style": "psychic"
+},
+"freeze-dry": {
+"body": "Shoot",
+"hits": 1,
+"part": "shard",
+"style": "projectile"
+},
+"frost-breath": {
+"body": "Shoot",
+"hits": 1,
+"part": "flake",
+"style": "spray"
+},
+"fury-attack": {
+"body": "Multi",
+"hits": 5,
+"part": "star",
+"style": "barrage"
+},
+"fury-cutter": {
+"body": "Claw",
+"hits": 1,
+"part": "needle",
+"style": "slash"
+},
+"fury-swipes": {
+"body": "Claw",
+"hits": 5,
+"part": "star",
+"style": "slash"
+},
+"fusion-bolt": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"fusion-flare": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"future-sight": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "rain"
+},
+"gastro-acid": {
+"body": "Charge",
+"hits": 1,
+"part": "bubble",
+"style": "aura"
+},
+"gear-grind": {
+"body": "Attack",
+"hits": 2,
+"part": "shard",
+"style": "contact"
+},
+"gear-up": {
+"body": "Charge",
+"hits": 1,
+"part": "shard",
+"style": "aura"
+},
+"geomancy": {
+"body": "Charge",
+"hits": 1,
+"part": "heart",
+"style": "aura"
+},
+"giga-drain": {
+"body": "SpAttack",
+"hits": 1,
+"part": "leaf",
+"style": "drain"
+},
+"giga-impact": {
+"body": "Slam",
+"hits": 1,
+"part": "star",
+"style": "slam"
+},
+"gigaton-hammer": {
+"body": "Slam",
+"hits": 1,
+"part": "shard",
+"style": "slam"
+},
+"glaciate": {
+"body": "Shoot",
+"hits": 1,
+"part": "shard",
+"style": "wave"
+},
+"glaive-rush": {
+"body": "Attack",
+"hits": 1,
+"part": "swirl",
+"style": "contact"
+},
+"glare": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "status"
+},
+"grass-knot": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "projectile"
+},
+"grassy-terrain": {
+"body": "Rise",
+"hits": 1,
+"part": "leaf",
+"style": "field"
+},
+"grav-apple": {
+"body": "Slam",
+"hits": 1,
+"part": "leaf",
+"style": "slam"
+},
+"gravity": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "field"
+},
+"growl": {
+"body": "Sound",
+"hits": 1,
+"part": "note",
+"style": "sound"
+},
+"growth": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"grudge": {
+"body": "Charge",
+"hits": 1,
+"part": "wisp",
+"style": "aura"
+},
+"guard-split": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"guard-swap": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"guillotine": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "slash"
+},
+"gunk-shot": {
+"body": "Shoot",
+"hits": 1,
+"part": "bubble",
+"style": "projectile"
+},
+"gust": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "wind"
+},
+"gyro-ball": {
+"body": "Spin",
+"hits": 1,
+"part": "shard",
+"style": "spin"
+},
+"hail": {
+"body": "Rise",
+"hits": 1,
+"part": "shard",
+"style": "field"
+},
+"hammer-arm": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"harden": {
+"body": "Withdraw",
+"hits": 1,
+"part": "shard",
+"style": "aura"
+},
+"haze": {
+"body": "Rise",
+"hits": 1,
+"part": "shard",
+"style": "field"
+},
+"head-charge": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"head-smash": {
+"body": "Slam",
+"hits": 1,
+"part": "rock",
+"style": "slam"
+},
+"headbutt": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"headlong-rush": {
+"body": "Head",
+"hits": 1,
+"part": "dust",
+"style": "contact"
+},
+"heal-bell": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"heal-pulse": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "heal"
+},
+"healing-wish": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"heart-swap": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"heat-crash": {
+"body": "Slam",
+"hits": 1,
+"part": "flame",
+"style": "slam"
+},
+"heat-wave": {
+"body": "SpAttack",
+"hits": 1,
+"part": "flame",
+"style": "wave"
+},
+"heavy-slam": {
+"body": "Slam",
+"hits": 1,
+"part": "shard",
+"style": "slam"
+},
+"helping-hand": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"hex": {
+"body": "SpAttack",
+"hits": 1,
+"part": "wisp",
+"style": "psychic"
+},
+"hidden-power": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_m",
+"style": "projectile"
+},
+"high-horsepower": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "quake"
+},
+"high-jump-kick": {
+"body": "Kick",
+"hits": 1,
+"part": "star",
+"style": "kick"
+},
+"hone-claws": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"horn-attack": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"horn-drill": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"horn-leech": {
+"body": "Head",
+"hits": 1,
+"part": "leaf",
+"style": "drain"
+},
+"howl": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"hurricane": {
+"body": "Flap",
+"hits": 1,
+"part": "swirl",
+"style": "wind"
+},
+"hydro-pump": {
+"body": "Shoot",
+"hits": 1,
+"part": "drop",
+"style": "spray"
+},
+"hydro-steam": {
+"body": "Shoot",
+"hits": 1,
+"part": "drop",
+"style": "spray"
+},
+"hyper-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "beam"
+},
+"hyper-drill": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "beam"
+},
+"hyper-fang": {
+"body": "Bite",
+"hits": 1,
+"part": "star",
+"style": "bite"
+},
+"hyper-voice": {
+"body": "Sound",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"hyperspace-hole": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"hypnosis": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "status"
+},
+"ice-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "flake",
+"style": "beam"
+},
+"ice-fang": {
+"body": "Bite",
+"hits": 1,
+"part": "shard",
+"style": "bite"
+},
+"ice-hammer": {
+"body": "Slam",
+"hits": 1,
+"part": "shard",
+"style": "slam"
+},
+"ice-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "shard",
+"style": "punch"
+},
+"ice-shard": {
+"body": "Quick",
+"hits": 1,
+"part": "shard",
+"style": "contact"
+},
+"ice-spinner": {
+"body": "Spin",
+"hits": 1,
+"part": "shard",
+"style": "spin"
+},
+"icicle-crash": {
+"body": "Slam",
+"hits": 1,
+"part": "shard",
+"style": "slam"
+},
+"icicle-spear": {
+"body": "Multi",
+"hits": 5,
+"part": "shard",
+"style": "barrage"
+},
+"icy-wind": {
+"body": "Shoot",
+"hits": 1,
+"part": "flake",
+"style": "wave"
+},
+"imprison": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"incinerate": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "wave"
+},
+"inferno": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"infestation": {
+"body": "Shoot",
+"hits": 1,
+"part": "needle",
+"style": "spray"
+},
+"ingrain": {
+"body": "SpAttack",
+"hits": 1,
+"part": "leaf",
+"style": "status"
+},
+"instruct": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"iron-defense": {
+"body": "Charge",
+"hits": 1,
+"part": "shard",
+"style": "shield"
+},
+"iron-head": {
+"body": "Head",
+"hits": 1,
+"part": "shard",
+"style": "contact"
+},
+"iron-tail": {
+"body": "Swing",
+"hits": 1,
+"part": "shard",
+"style": "swing"
+},
+"ivy-cudgel": {
+"body": "Slam",
+"hits": 1,
+"part": "leaf",
+"style": "slam"
+},
+"jaw-lock": {
+"body": "Bite",
+"hits": 1,
+"part": "crescent",
+"style": "bite"
+},
+"jet-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "drop",
+"style": "punch"
+},
+"judgment": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "beam"
+},
+"jungle-healing": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "aura"
+},
+"kinesis": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"kings-shield": {
+"body": "Charge",
+"hits": 1,
+"part": "shard",
+"style": "shield"
+},
+"knock-off": {
+"body": "Attack",
+"hits": 1,
+"part": "crescent",
+"style": "contact"
+},
+"kowtow-cleave": {
+"body": "Claw",
+"hits": 1,
+"part": "crescent",
+"style": "slash"
+},
+"lands-wrath": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "quake"
+},
+"laser-focus": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"last-resort": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"last-respects": {
+"body": "Attack",
+"hits": 1,
+"part": "wisp",
+"style": "contact"
+},
+"lava-plume": {
+"body": "Rumble",
+"hits": 1,
+"part": "flame",
+"style": "rise"
+},
+"leaf-blade": {
+"body": "Claw",
+"hits": 1,
+"part": "leaf",
+"style": "slash"
+},
+"leaf-storm": {
+"body": "Rise",
+"hits": 1,
+"part": "leaf",
+"style": "rain"
+},
+"leaf-tornado": {
+"body": "Flap",
+"hits": 1,
+"part": "leaf",
+"style": "wind"
+},
+"leafage": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "projectile"
+},
+"leech-life": {
+"body": "Bite",
+"hits": 1,
+"part": "needle",
+"style": "drain"
+},
+"leech-seed": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_s",
+"style": "projectile"
+},
+"leer": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "status"
+},
+"lick": {
+"body": "Bite",
+"hits": 1,
+"part": "wisp",
+"style": "bite"
+},
+"life-dew": {
+"body": "Charge",
+"hits": 1,
+"part": "drop",
+"style": "heal"
+},
+"light-screen": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "shield"
+},
+"liquidation": {
+"body": "Attack",
+"hits": 1,
+"part": "drop",
+"style": "contact"
+},
+"lock-on": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"lovely-kiss": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "status"
+},
+"low-kick": {
+"body": "Kick",
+"hits": 1,
+"part": "star",
+"style": "kick"
+},
+"low-sweep": {
+"body": "Kick",
+"hits": 1,
+"part": "star",
+"style": "kick"
+},
+"lumina-crash": {
+"body": "Slam",
+"hits": 1,
+"part": "ring",
+"style": "projectile"
+},
+"lunar-blessing": {
+"body": "Sound",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"lunar-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"lunge": {
+"body": "Quick",
+"hits": 1,
+"part": "needle",
+"style": "contact"
+},
+"luster-purge": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "beam"
+},
+"mach-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"magic-coat": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"magic-powder": {
+"body": "Charge",
+"hits": 1,
+"part": "orb_s",
+"style": "aura"
+},
+"magic-room": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "field"
+},
+"magical-leaf": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "projectile"
+},
+"magma-storm": {
+"body": "Rumble",
+"hits": 1,
+"part": "flame",
+"style": "rise"
+},
+"magnet-rise": {
+"body": "Charge",
+"hits": 1,
+"part": "spark",
+"style": "aura"
+},
+"magnetic-flux": {
+"body": "Charge",
+"hits": 1,
+"part": "spark",
+"style": "aura"
+},
+"make-it-rain": {
+"body": "Rise",
+"hits": 1,
+"part": "orb_s",
+"style": "rain"
+},
+"malignant-chain": {
+"body": "SpAttack",
+"hits": 1,
+"part": "bubble",
+"style": "psychic"
+},
+"matcha-gotcha": {
+"body": "SpAttack",
+"hits": 1,
+"part": "leaf",
+"style": "drain"
+},
+"mean-look": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"mega-drain": {
+"body": "SpAttack",
+"hits": 1,
+"part": "leaf",
+"style": "drain"
+},
+"mega-kick": {
+"body": "Kick",
+"hits": 1,
+"part": "star",
+"style": "kick"
+},
+"mega-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"megahorn": {
+"body": "Head",
+"hits": 1,
+"part": "needle",
+"style": "contact"
+},
+"memento": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"metal-burst": {
+"body": "Attack",
+"hits": 1,
+"part": "shard",
+"style": "contact"
+},
+"metal-claw": {
+"body": "Claw",
+"hits": 1,
+"part": "shard",
+"style": "slash"
+},
+"metal-sound": {
+"body": "Charge",
+"hits": 1,
+"part": "shard",
+"style": "aura"
+},
+"meteor-assault": {
+"body": "Rise",
+"hits": 1,
+"part": "star",
+"style": "rain"
+},
+"meteor-mash": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"metronome": {
+"body": "Swing",
+"hits": 1,
+"part": "note",
+"style": "aura"
+},
+"mighty-cleave": {
+"body": "Claw",
+"hits": 1,
+"part": "rock",
+"style": "slash"
+},
+"milk-drink": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "heal"
+},
+"mimic": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"mind-blown": {
+"body": "Swell",
+"hits": 1,
+"part": "flame",
+"style": "explosion"
+},
+"mind-reader": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"minimize": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"mirror-coat": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"mist": {
+"body": "Rise",
+"hits": 1,
+"part": "shard",
+"style": "field"
+},
+"mist-ball": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_l",
+"style": "beam"
+},
+"misty-terrain": {
+"body": "Rise",
+"hits": 1,
+"part": "heart",
+"style": "field"
+},
+"moonblast": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_l",
+"style": "psychic"
+},
+"moongeist-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "wisp",
+"style": "beam"
+},
+"moonlight": {
+"body": "Charge",
+"hits": 1,
+"part": "heart",
+"style": "heal"
+},
+"morning-sun": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "heal"
+},
+"mortal-spin": {
+"body": "Spin",
+"hits": 1,
+"part": "bubble",
+"style": "spin"
+},
+"mud-shot": {
+"body": "Shoot",
+"hits": 1,
+"part": "dust",
+"style": "spray"
+},
+"mud-slap": {
+"body": "Shoot",
+"hits": 1,
+"part": "dust",
+"style": "spray"
+},
+"muddy-water": {
+"body": "SpAttack",
+"hits": 1,
+"part": "drop",
+"style": "wave"
+},
+"multi-attack": {
+"body": "Multi",
+"hits": 1,
+"part": "star",
+"style": "barrage"
+},
+"mystical-fire": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"mystical-power": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"nasty-plot": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"natural-gift": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"nature-power": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"natures-madness": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "psychic"
+},
+"night-daze": {
+"body": "SpAttack",
+"hits": 1,
+"part": "crescent",
+"style": "psychic"
+},
+"night-shade": {
+"body": "SpAttack",
+"hits": 1,
+"part": "wisp",
+"style": "psychic"
+},
+"night-slash": {
+"body": "Claw",
+"hits": 1,
+"part": "crescent",
+"style": "slash"
+},
+"no-retreat": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"noble-roar": {
+"body": "Sound",
+"hits": 1,
+"part": "star",
+"style": "sound"
+},
+"nuzzle": {
+"body": "Head",
+"hits": 1,
+"part": "spark",
+"style": "contact"
+},
+"oblivion-wing": {
+"body": "SpAttack",
+"hits": 1,
+"part": "feather",
+"style": "drain"
+},
+"obstruct": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"octazooka": {
+"body": "Shoot",
+"hits": 1,
+"part": "drop",
+"style": "spray"
+},
+"octolock": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"odor-sleuth": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "status"
+},
+"order-up": {
+"body": "Shoot",
+"hits": 1,
+"part": "swirl",
+"style": "projectile"
+},
+"origin-pulse": {
+"body": "SpAttack",
+"hits": 1,
+"part": "drop",
+"style": "wave"
+},
+"outrage": {
+"body": "Spin",
+"hits": 1,
+"part": "swirl",
+"style": "spin"
+},
+"overdrive": {
+"body": "Sound",
+"hits": 1,
+"part": "spark",
+"style": "sound"
+},
+"overheat": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"pain-split": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"parabolic-charge": {
+"body": "SpAttack",
+"hits": 1,
+"part": "spark",
+"style": "drain"
+},
+"parting-shot": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"pay-day": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_s",
+"style": "projectile"
+},
+"payback": {
+"body": "Attack",
+"hits": 1,
+"part": "crescent",
+"style": "contact"
+},
+"peck": {
+"body": "Head",
+"hits": 1,
+"part": "feather",
+"style": "contact"
+},
+"perish-song": {
+"body": "Sound",
+"hits": 1,
+"part": "note",
+"style": "sound"
+},
+"petal-blizzard": {
+"body": "Rise",
+"hits": 1,
+"part": "petal",
+"style": "rain"
+},
+"petal-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "petal",
+"style": "spray"
+},
+"phantom-force": {
+"body": "Sink",
+"hits": 1,
+"part": "wisp",
+"style": "vanish"
+},
+"photon-geyser": {
+"body": "Rumble",
+"hits": 1,
+"part": "ring",
+"style": "rise"
+},
+"pin-missile": {
+"body": "Multi",
+"hits": 5,
+"part": "needle",
+"style": "barrage"
+},
+"plasma-fists": {
+"body": "Punch",
+"hits": 1,
+"part": "spark",
+"style": "punch"
+},
+"play-nice": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"play-rough": {
+"body": "Spin",
+"hits": 1,
+"part": "heart",
+"style": "barrage"
+},
+"pluck": {
+"body": "Bite",
+"hits": 1,
+"part": "feather",
+"style": "bite"
+},
+"poison-fang": {
+"body": "Bite",
+"hits": 1,
+"part": "bubble",
+"style": "bite"
+},
+"poison-gas": {
+"body": "Gas",
+"hits": 1,
+"part": "dust",
+"style": "status"
+},
+"poison-jab": {
+"body": "Punch",
+"hits": 1,
+"part": "bubble",
+"style": "punch"
+},
+"poison-powder": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_s",
+"style": "status"
+},
+"poison-sting": {
+"body": "Shoot",
+"hits": 1,
+"part": "needle",
+"style": "projectile"
+},
+"poison-tail": {
+"body": "Swing",
+"hits": 1,
+"part": "bubble",
+"style": "swing"
+},
+"pollen-puff": {
+"body": "Shoot",
+"hits": 1,
+"part": "needle",
+"style": "projectile"
+},
+"population-bomb": {
+"body": "Multi",
+"hits": 1,
+"part": "star",
+"style": "barrage"
+},
+"pound": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"powder-snow": {
+"body": "Shoot",
+"hits": 1,
+"part": "flake",
+"style": "wave"
+},
+"power-gem": {
+"body": "SpAttack",
+"hits": 1,
+"part": "shard",
+"style": "psychic"
+},
+"power-split": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"power-swap": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"power-trick": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"power-trip": {
+"body": "Attack",
+"hits": 1,
+"part": "crescent",
+"style": "contact"
+},
+"power-up-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"power-whip": {
+"body": "Swing",
+"hits": 1,
+"part": "leaf",
+"style": "vine"
+},
+"precipice-blades": {
+"body": "Claw",
+"hits": 1,
+"part": "dust",
+"style": "slash"
+},
+"present": {
+"body": "Shoot",
+"hits": 1,
+"part": "heart",
+"style": "projectile"
+},
+"prismatic-laser": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "beam"
+},
+"protect": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "shield"
+},
+"psybeam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "beam"
+},
+"psyblade": {
+"body": "Claw",
+"hits": 1,
+"part": "ring",
+"style": "slash"
+},
+"psych-up": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"psychic": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"psychic-fangs": {
+"body": "Bite",
+"hits": 1,
+"part": "ring",
+"style": "bite"
+},
+"psychic-terrain": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "field"
+},
+"psycho-boost": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"psycho-cut": {
+"body": "Claw",
+"hits": 1,
+"part": "ring",
+"style": "slash"
+},
+"psycho-shift": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"psyshield-bash": {
+"body": "Head",
+"hits": 1,
+"part": "ring",
+"style": "contact"
+},
+"psyshock": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"psystrike": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"purify": {
+"body": "Charge",
+"hits": 1,
+"part": "bubble",
+"style": "aura"
+},
+"pyro-ball": {
+"body": "Kick",
+"hits": 1,
+"part": "flame",
+"style": "kick"
+},
+"quash": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"quick-attack": {
+"body": "Quick",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"quick-guard": {
+"body": "Rise",
+"hits": 1,
+"part": "star",
+"style": "field"
+},
+"quiver-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "needle",
+"style": "aura"
+},
+"rage-fist": {
+"body": "Punch",
+"hits": 1,
+"part": "wisp",
+"style": "punch"
+},
+"rage-powder": {
+"body": "Charge",
+"hits": 1,
+"part": "orb_s",
+"style": "aura"
+},
+"raging-bull": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"raging-fury": {
+"body": "Spin",
+"hits": 1,
+"part": "flame",
+"style": "spin"
+},
+"rain-dance": {
+"body": "Rise",
+"hits": 1,
+"part": "drop",
+"style": "field"
+},
+"rapid-spin": {
+"body": "Spin",
+"hits": 1,
+"part": "star",
+"style": "spin"
+},
+"razor-leaf": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "wave"
+},
+"razor-shell": {
+"body": "Claw",
+"hits": 1,
+"part": "drop",
+"style": "slash"
+},
+"recover": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "heal"
+},
+"recycle": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"reflect": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "shield"
+},
+"reflect-type": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"relic-song": {
+"body": "Sound",
+"hits": 1,
+"part": "note",
+"style": "sound"
+},
+"rest": {
+"body": "Sleep",
+"hits": 1,
+"part": "ring",
+"style": "heal"
+},
+"retaliate": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"revelation-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "star",
+"style": "spray"
+},
+"revenge": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"reversal": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"revival-blessing": {
+"body": "Sound",
+"hits": 1,
+"part": "star",
+"style": "sound"
+},
+"rising-voltage": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"roar": {
+"body": "Sound",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"roar-of-time": {
+"body": "SpAttack",
+"hits": 1,
+"part": "swirl",
+"style": "beam"
+},
+"rock-blast": {
+"body": "Multi",
+"hits": 5,
+"part": "rock",
+"style": "barrage"
+},
+"rock-polish": {
+"body": "Charge",
+"hits": 1,
+"part": "rock",
+"style": "aura"
+},
+"rock-slide": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "rain"
+},
+"rock-smash": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"rock-throw": {
+"body": "Shoot",
+"hits": 1,
+"part": "rock",
+"style": "projectile"
+},
+"rock-tomb": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "rain"
+},
+"rock-wrecker": {
+"body": "Attack",
+"hits": 1,
+"part": "rock",
+"style": "contact"
+},
+"role-play": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"rollout": {
+"body": "Spin",
+"hits": 1,
+"part": "rock",
+"style": "spin"
+},
+"roost": {
+"body": "Charge",
+"hits": 1,
+"part": "feather",
+"style": "heal"
+},
+"rototiller": {
+"body": "Charge",
+"hits": 1,
+"part": "dust",
+"style": "aura"
+},
+"round": {
+"body": "Sound",
+"hits": 1,
+"part": "note",
+"style": "sound"
+},
+"ruination": {
+"body": "SpAttack",
+"hits": 1,
+"part": "crescent",
+"style": "psychic"
+},
+"sacred-fire": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"sacred-sword": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "slash"
+},
+"safeguard": {
+"body": "Rise",
+"hits": 1,
+"part": "star",
+"style": "shield"
+},
+"salt-cure": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "rain"
+},
+"sand-attack": {
+"body": "Charge",
+"hits": 1,
+"part": "dust",
+"style": "aura"
+},
+"sand-tomb": {
+"body": "Rise",
+"hits": 1,
+"part": "dust",
+"style": "rain"
+},
+"sandsear-storm": {
+"body": "SpAttack",
+"hits": 1,
+"part": "dust",
+"style": "wave"
+},
+"sandstorm": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "field"
+},
+"scald": {
+"body": "Shoot",
+"hits": 1,
+"part": "drop",
+"style": "spray"
+},
+"scary-face": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "status"
+},
+"scratch": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "slash"
+},
+"screech": {
+"body": "Sound",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"searing-shot": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "wave"
+},
+"secret-sword": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "projectile"
+},
+"seed-bomb": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_m",
+"style": "projectile"
+},
+"seed-flare": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "projectile"
+},
+"seismic-toss": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"self-destruct": {
+"body": "Swell",
+"hits": 1,
+"part": "star",
+"style": "explosion"
+},
+"shadow-ball": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_l",
+"style": "projectile"
+},
+"shadow-claw": {
+"body": "Claw",
+"hits": 1,
+"part": "wisp",
+"style": "slash"
+},
+"shadow-force": {
+"body": "Sink",
+"hits": 1,
+"part": "wisp",
+"style": "vanish"
+},
+"shadow-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "wisp",
+"style": "punch"
+},
+"shadow-sneak": {
+"body": "Quick",
+"hits": 1,
+"part": "wisp",
+"style": "contact"
+},
+"shed-tail": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"sheer-cold": {
+"body": "Shoot",
+"hits": 1,
+"part": "shard",
+"style": "projectile"
+},
+"shell-smash": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"shell-trap": {
+"body": "Spin",
+"hits": 1,
+"part": "flame",
+"style": "spin"
+},
+"shift-gear": {
+"body": "Charge",
+"hits": 1,
+"part": "shard",
+"style": "aura"
+},
+"shock-wave": {
+"body": "Shoot",
+"hits": 1,
+"part": "spark",
+"style": "spray"
+},
+"shore-up": {
+"body": "Charge",
+"hits": 1,
+"part": "dust",
+"style": "heal"
+},
+"silk-trap": {
+"body": "Charge",
+"hits": 1,
+"part": "needle",
+"style": "aura"
+},
+"simple-beam": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"sing": {
+"body": "Sound",
+"hits": 1,
+"part": "note",
+"style": "sound"
+},
+"sketch": {
+"body": "Swing",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"skill-swap": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"skitter-smack": {
+"body": "Attack",
+"hits": 1,
+"part": "needle",
+"style": "contact"
+},
+"skull-bash": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"sky-attack": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "dive_bomb"
+},
+"slack-off": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "heal"
+},
+"slam": {
+"body": "Slam",
+"hits": 1,
+"part": "star",
+"style": "slam"
+},
+"slash": {
+"body": "Claw",
+"hits": 1,
+"part": "star",
+"style": "slash"
+},
+"sleep-powder": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_s",
+"style": "status"
+},
+"sleep-talk": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"sludge": {
+"body": "Shoot",
+"hits": 1,
+"part": "bubble",
+"style": "projectile"
+},
+"sludge-bomb": {
+"body": "Shoot",
+"hits": 1,
+"part": "bubble",
+"style": "projectile"
+},
+"sludge-wave": {
+"body": "SpAttack",
+"hits": 1,
+"part": "bubble",
+"style": "wave"
+},
+"smack-down": {
+"body": "Shoot",
+"hits": 1,
+"part": "rock",
+"style": "projectile"
+},
+"smart-strike": {
+"body": "Head",
+"hits": 1,
+"part": "shard",
+"style": "contact"
+},
+"smog": {
+"body": "Shoot",
+"hits": 1,
+"part": "dust",
+"style": "spray"
+},
+"smokescreen": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"snarl": {
+"body": "Sound",
+"hits": 1,
+"part": "crescent",
+"style": "sound"
+},
+"snipe-shot": {
+"body": "Shoot",
+"hits": 1,
+"part": "drop",
+"style": "spray"
+},
+"snore": {
+"body": "Sound",
+"hits": 1,
+"part": "star",
+"style": "sound"
+},
+"snowscape": {
+"body": "Charge",
+"hits": 1,
+"part": "shard",
+"style": "aura"
+},
+"soak": {
+"body": "Charge",
+"hits": 1,
+"part": "drop",
+"style": "aura"
+},
+"soft-boiled": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "heal"
+},
+"solar-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "leaf",
+"style": "beam"
+},
+"solar-blade": {
+"body": "Claw",
+"hits": 1,
+"part": "leaf",
+"style": "slash"
+},
+"spacial-rend": {
+"body": "Rise",
+"hits": 1,
+"part": "crescent",
+"style": "rain"
+},
+"spark": {
+"body": "Head",
+"hits": 1,
+"part": "spark",
+"style": "contact"
+},
+"sparkling-aria": {
+"body": "Sing",
+"hits": 1,
+"part": "bubble",
+"style": "sound"
+},
+"spectral-thief": {
+"body": "Bite",
+"hits": 1,
+"part": "wisp",
+"style": "bite"
+},
+"speed-swap": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"spicy-extract": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "aura"
+},
+"spikes": {
+"body": "Rise",
+"hits": 1,
+"part": "shard",
+"style": "rise"
+},
+"spiky-shield": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "shield"
+},
+"spin-out": {
+"body": "Swing",
+"hits": 1,
+"part": "shard",
+"style": "swing"
+},
+"spirit-break": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "psychic"
+},
+"spirit-shackle": {
+"body": "Shoot",
+"hits": 1,
+"part": "wisp",
+"style": "projectile"
+},
+"spit-up": {
+"body": "Shoot",
+"hits": 1,
+"part": "star",
+"style": "projectile"
+},
+"spite": {
+"body": "Charge",
+"hits": 1,
+"part": "wisp",
+"style": "aura"
+},
+"splash": {
+"body": "Hop",
+"hits": 1,
+"part": "drop",
+"style": "aura"
+},
+"spore": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_s",
+"style": "status"
+},
+"springtide-storm": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "wave"
+},
+"stealth-rock": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "rise"
+},
+"steam-eruption": {
+"body": "Rumble",
+"hits": 1,
+"part": "drop",
+"style": "rise"
+},
+"steel-roller": {
+"body": "Slam",
+"hits": 1,
+"part": "shard",
+"style": "slam"
+},
+"steel-wing": {
+"body": "Flap",
+"hits": 1,
+"part": "shard",
+"style": "swing"
+},
+"sticky-web": {
+"body": "Rise",
+"hits": 1,
+"part": "needle",
+"style": "field"
+},
+"stockpile": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"stomp": {
+"body": "Kick",
+"hits": 1,
+"part": "star",
+"style": "kick"
+},
+"stomping-tantrum": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "quake"
+},
+"stone-axe": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "rain"
+},
+"stone-edge": {
+"body": "Rumble",
+"hits": 1,
+"part": "shard",
+"style": "rise"
+},
+"stored-power": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "psychic"
+},
+"storm-throw": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"strength": {
+"body": "Slam",
+"hits": 1,
+"part": "star",
+"style": "slam"
+},
+"strength-sap": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "aura"
+},
+"string-shot": {
+"body": "Charge",
+"hits": 1,
+"part": "needle",
+"style": "aura"
+},
+"struggle": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"struggle-bug": {
+"body": "Shoot",
+"hits": 1,
+"part": "needle",
+"style": "wave"
+},
+"stuff-cheeks": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"stun-spore": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_s",
+"style": "status"
+},
+"submission": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"substitute": {
+"body": "Charge",
+"hits": 1,
+"part": "orb_m",
+"style": "aura"
+},
+"sucker-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "crescent",
+"style": "punch"
+},
+"sunny-day": {
+"body": "Rise",
+"hits": 1,
+"part": "flame",
+"style": "field"
+},
+"sunsteel-strike": {
+"body": "SpAttack",
+"hits": 1,
+"part": "shard",
+"style": "beam"
+},
+"super-fang": {
+"body": "Bite",
+"hits": 1,
+"part": "star",
+"style": "bite"
+},
+"superpower": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"supersonic": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "status"
+},
+"surf": {
+"body": "SpAttack",
+"hits": 1,
+"part": "drop",
+"style": "wave"
+},
+"swagger": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "status"
+},
+"swallow": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "heal"
+},
+"sweet-kiss": {
+"body": "SpAttack",
+"hits": 1,
+"part": "heart",
+"style": "status"
+},
+"sweet-scent": {
+"body": "Charge",
+"hits": 1,
+"part": "petal",
+"style": "aura"
+},
+"swift": {
+"body": "Shoot",
+"hits": 1,
+"part": "star",
+"style": "wave"
+},
+"switcheroo": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"swords-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"synthesis": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "heal"
+},
+"syrup-bomb": {
+"body": "Shoot",
+"hits": 1,
+"part": "leaf",
+"style": "projectile"
+},
+"tachyon-cutter": {
+"body": "SpAttack",
+"hits": 1,
+"part": "shard",
+"style": "beam"
+},
+"tackle": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"tail-glow": {
+"body": "Charge",
+"hits": 1,
+"part": "needle",
+"style": "aura"
+},
+"tail-slap": {
+"body": "Swing",
+"hits": 5,
+"part": "star",
+"style": "swing"
+},
+"tail-whip": {
+"body": "Swing",
+"hits": 1,
+"part": "star",
+"style": "status"
+},
+"tailwind": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "wind"
+},
+"take-down": {
+"body": "Head",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"take-heart": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"tar-shot": {
+"body": "SpAttack",
+"hits": 1,
+"part": "rock",
+"style": "status"
+},
+"taunt": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"tearful-look": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"teatime": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"techno-blast": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "beam"
+},
+"teeter-dance": {
+"body": "Dance",
+"hits": 1,
+"part": "star",
+"style": "status"
+},
+"teleport": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"tera-starstorm": {
+"body": "Rise",
+"hits": 1,
+"part": "star",
+"style": "rain"
+},
+"terrain-pulse": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "beam"
+},
+"thief": {
+"body": "Bite",
+"hits": 1,
+"part": "crescent",
+"style": "bite"
+},
+"thousand-arrows": {
+"body": "SpAttack",
+"hits": 1,
+"part": "dust",
+"style": "wave"
+},
+"thousand-waves": {
+"body": "Rumble",
+"hits": 1,
+"part": "dust",
+"style": "quake"
+},
+"thrash": {
+"body": "Spin",
+"hits": 1,
+"part": "star",
+"style": "spin"
+},
+"throat-chop": {
+"body": "Chop",
+"hits": 1,
+"part": "crescent",
+"style": "punch"
+},
+"thunder": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"thunder-cage": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"thunder-fang": {
+"body": "Bite",
+"hits": 1,
+"part": "spark",
+"style": "bite"
+},
+"thunder-punch": {
+"body": "Punch",
+"hits": 1,
+"part": "spark",
+"style": "punch"
+},
+"thunder-shock": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"thunder-wave": {
+"body": "SpAttack",
+"hits": 1,
+"part": "spark",
+"style": "status"
+},
+"thunderbolt": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"thunderclap": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"tickle": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"tidy-up": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"topsy-turvy": {
+"body": "Charge",
+"hits": 1,
+"part": "crescent",
+"style": "aura"
+},
+"torch-song": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"torment": {
+"body": "SpAttack",
+"hits": 1,
+"part": "crescent",
+"style": "status"
+},
+"toxic": {
+"body": "SpAttack",
+"hits": 1,
+"part": "bubble",
+"style": "status"
+},
+"toxic-spikes": {
+"body": "Rise",
+"hits": 1,
+"part": "needle",
+"style": "rise"
+},
+"toxic-thread": {
+"body": "SpAttack",
+"hits": 1,
+"part": "bubble",
+"style": "status"
+},
+"transform": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"tri-attack": {
+"body": "Shoot",
+"hits": 1,
+"part": "star",
+"style": "projectile"
+},
+"trick": {
+"body": "Charge",
+"hits": 1,
+"part": "ring",
+"style": "aura"
+},
+"trick-or-treat": {
+"body": "Charge",
+"hits": 1,
+"part": "wisp",
+"style": "aura"
+},
+"trick-room": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "field"
+},
+"triple-dive": {
+"body": "Sink",
+"hits": 1,
+"part": "drop",
+"style": "vanish"
+},
+"triple-kick": {
+"body": "Kick",
+"hits": 3,
+"part": "star",
+"style": "kick"
+},
+"trop-kick": {
+"body": "Kick",
+"hits": 1,
+"part": "leaf",
+"style": "kick"
+},
+"twin-beam": {
+"body": "SpAttack",
+"hits": 1,
+"part": "ring",
+"style": "beam"
+},
+"twister": {
+"body": "Flap",
+"hits": 1,
+"part": "swirl",
+"style": "wind"
+},
+"u-turn": {
+"body": "Quick",
+"hits": 1,
+"part": "needle",
+"style": "contact"
+},
+"uproar": {
+"body": "Sound",
+"hits": 1,
+"part": "ring",
+"style": "sound"
+},
+"v-create": {
+"body": "Shoot",
+"hits": 1,
+"part": "flame",
+"style": "spray"
+},
+"vacuum-wave": {
+"body": "Quick",
+"hits": 1,
+"part": "star",
+"style": "projectile"
+},
+"venom-drench": {
+"body": "Charge",
+"hits": 1,
+"part": "bubble",
+"style": "aura"
+},
+"venoshock": {
+"body": "Shoot",
+"hits": 1,
+"part": "bubble",
+"style": "projectile"
+},
+"vice-grip": {
+"body": "Attack",
+"hits": 1,
+"part": "star",
+"style": "contact"
+},
+"vine-whip": {
+"body": "Swing",
+"hits": 1,
+"part": "leaf",
+"style": "vine"
+},
+"vital-throw": {
+"body": "Chop",
+"hits": 1,
+"part": "star",
+"style": "punch"
+},
+"volt-switch": {
+"body": "Quick",
+"hits": 1,
+"part": "spark",
+"style": "projectile"
+},
+"water-gun": {
+"body": "Shoot",
+"hits": 1,
+"part": "drop",
+"style": "spray"
+},
+"water-pulse": {
+"body": "Shoot",
+"hits": 1,
+"part": "orb_l",
+"style": "projectile"
+},
+"water-shuriken": {
+"body": "Multi",
+"hits": 5,
+"part": "drop",
+"style": "barrage"
+},
+"water-sport": {
+"body": "Rise",
+"hits": 1,
+"part": "drop",
+"style": "field"
+},
+"water-spout": {
+"body": "SpAttack",
+"hits": 1,
+"part": "drop",
+"style": "wave"
+},
+"waterfall": {
+"body": "Attack",
+"hits": 1,
+"part": "drop",
+"style": "contact"
+},
+"wave-crash": {
+"body": "Slam",
+"hits": 1,
+"part": "drop",
+"style": "slam"
+},
+"weather-ball": {
+"body": "SpAttack",
+"hits": 1,
+"part": "orb_l",
+"style": "beam"
+},
+"whirlpool": {
+"body": "SpAttack",
+"hits": 1,
+"part": "drop",
+"style": "wave"
+},
+"whirlwind": {
+"body": "Flap",
+"hits": 1,
+"part": "swirl",
+"style": "wind"
+},
+"wicked-blow": {
+"body": "Punch",
+"hits": 1,
+"part": "crescent",
+"style": "punch"
+},
+"wide-guard": {
+"body": "Rise",
+"hits": 1,
+"part": "rock",
+"style": "field"
+},
+"wild-charge": {
+"body": "Head",
+"hits": 1,
+"part": "spark",
+"style": "contact"
+},
+"wildbolt-storm": {
+"body": "SpAttack",
+"hits": 1,
+"part": "spark",
+"style": "wave"
+},
+"will-o-wisp": {
+"body": "SpAttack",
+"hits": 1,
+"part": "flame",
+"style": "status"
+},
+"wing-attack": {
+"body": "Flap",
+"hits": 1,
+"part": "feather",
+"style": "swing"
+},
+"wish": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"withdraw": {
+"body": "Sink",
+"hits": 1,
+"part": "drop",
+"style": "aura"
+},
+"wonder-room": {
+"body": "Rise",
+"hits": 1,
+"part": "ring",
+"style": "field"
+},
+"wood-hammer": {
+"body": "Slam",
+"hits": 1,
+"part": "leaf",
+"style": "slam"
+},
+"work-up": {
+"body": "Charge",
+"hits": 1,
+"part": "star",
+"style": "aura"
+},
+"worry-seed": {
+"body": "Charge",
+"hits": 1,
+"part": "leaf",
+"style": "aura"
+},
+"wrap": {
+"body": "Swing",
+"hits": 1,
+"part": "star",
+"style": "vine"
+},
+"x-scissor": {
+"body": "Claw",
+"hits": 1,
+"part": "needle",
+"style": "slash"
+},
+"yawn": {
+"body": "SpAttack",
+"hits": 1,
+"part": "star",
+"style": "status"
+},
+"zap-cannon": {
+"body": "Shock",
+"hits": 1,
+"part": "spark",
+"style": "bolt"
+},
+"zen-headbutt": {
+"body": "Head",
+"hits": 1,
+"part": "ring",
+"style": "contact"
+},
+"zing-zap": {
+"body": "Head",
+"hits": 1,
+"part": "spark",
+"style": "contact"
+}
+}
+}

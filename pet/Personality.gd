@@ -49,13 +49,51 @@ static func weights(p: PokemonInstance) -> Dictionary:
 
 static func is_nocturnal(species: String) -> bool:
 	_load()
-	return species in _data["species"]["nocturnal"]
+	if species in _data["species"]["nocturnal"]:
+		return true
+	for t in SpeciesDB.species(species)["types"]:
+		if t in _data["species"].get("nocturnal_types", []):
+			return true
+	return false
 
 
-## Vuela a veces por la pantalla: los de tipo volador (y los de la lista "fly"), salvo "no_fly".
+## Formas de PokeAPI que vuelan (alas de ave o de insecto) y fantasmas que flotan.
+const WING_SHAPES := ["wings", "bug-wings"]
+const FLOATING_SHAPES := ["ball", "arms", "blob", "tentacles", "heads", "squiggle"]
+
+
+## Vuela a veces por toda la pantalla: tipo volador, forma con alas, Levitación,
+## fantasmas sin patas y la lista "fly"; nunca los de "no_fly".
 static func can_fly(species: String) -> bool:
 	_load()
 	var sp: Dictionary = _data["species"]
 	if species in sp["no_fly"]:
 		return false
-	return species in sp["fly"] or "flying" in SpeciesDB.species(species)["types"]
+	if species in sp["fly"]:
+		return true
+	var d := SpeciesDB.species(species)
+	if "flying" in d["types"] or d.get("shape", "") in WING_SHAPES or "levitate" in d.get("abilities", []):
+		return true
+	return "ghost" in d["types"] and d.get("shape", "") in FLOATING_SHAPES
+
+
+## Estilo de vuelo: "bird", "bug", "dragon" o "float" (ver FlightWindow).
+static func flight_style(species: String) -> String:
+	_load()
+	var forced: Dictionary = _data["species"].get("flight_style", {})
+	if forced.has(species):
+		return String(forced[species])
+	var d := SpeciesDB.species(species)
+	var types: Array = d["types"]
+	if "flying" not in types and ("levitate" in d.get("abilities", []) or "ghost" in types or "psychic" in types):
+		return "float"
+	if "bug" in types or d.get("shape", "") == "bug-wings":
+		return "bug"
+	if "dragon" in types:
+		return "dragon"
+	return "bird"
+
+
+static func flight_cfg() -> Dictionary:
+	_load()
+	return _data.get("flight", {})

@@ -50,13 +50,14 @@ var _walk_timer := 0.0
 var _epoch := 0
 var _tint_timer := 0.0
 var _rest_timer := 0.0
+var _shake_tween: Tween
 
 
 func setup(s: BattleStrip, d: DesktopWindow, route_id := "ruta_1") -> void:
 	strip = s
 	desk = d
 	rng.randomize()
-	route = JSON.parse_string(FileAccess.get_file_as_string("res://data/routes/%s.json" % route_id))
+	load_route(route_id)
 	log_box = BattleLog.new()
 	log_box.name = "BattleLog"
 	strip.add_child(log_box)
@@ -72,6 +73,31 @@ func setup(s: BattleStrip, d: DesktopWindow, route_id := "ruta_1") -> void:
 	pc_button = PCButton.new()
 	strip.add_child(pc_button)
 	relayout()
+
+
+## Cambia de ruta (data/routes/<id>.json). El avance vuelve a cero.
+func load_route(route_id: String) -> bool:
+	var path := "res://data/routes/%s.json" % route_id
+	if not FileAccess.file_exists(path):
+		return false
+	route = JSON.parse_string(FileAccess.get_file_as_string(path))
+	progress = 0
+	cleared = false
+	return true
+
+
+## Nivel de un salvaje de la tabla: sigue el avance de la ruta, pero nunca por debajo
+## del nivel en el que esa especie existe (una evolución no aparece a nivel 3).
+static func wild_level(r: Dictionary, prog: int, entry_species: String, rand: RandomNumberGenerator) -> int:
+	var lr: Array = r["level_range"]
+	var f := float(prog) / float(r["encounters_to_boss"])
+	var lvl := int(round(lerpf(lr[0], lr[1], f))) + rand.randi_range(-1, 1)
+	for t in ["day", "night"]:
+		for e in r[t]:
+			if e["species"] == entry_species:
+				lvl = maxi(lvl, int(e.get("min_level", 2)))
+				break
+	return clampi(lvl, 2, 100)
 
 
 ## Recoloca la HUD interna (llamar tras BattleStrip.layout).
@@ -282,9 +308,7 @@ func _encounter(e: int) -> void:
 	else:
 		var table: Array = route["night" if Game.clock.is_night() else "day"]
 		sp = BattleMath.pick_weighted(table, "species", rng)
-		var lr: Array = route["level_range"]
-		var f := float(progress) / float(route["encounters_to_boss"])
-		lvl = clampi(int(round(lerpf(lr[0], lr[1], f))) + rng.randi_range(-1, 1), 2, 100)
+		lvl = wild_level(route, progress, sp, rng)
 	wild = PokemonInstance.create(sp, lvl, rng)
 	wild.wild = true
 	var w := strip.inner.size.x
@@ -376,12 +400,18 @@ func _attack(e: int, att: PokemonInstance, def: PokemonInstance) -> void:
 	var r := BattleMath.attack(att, def, move, rng, affection)
 	var md := SpeciesDB.move(move)
 	var face := "W" if att.wild else "E"
-	var anim := "Attack"
-	if md["damage_class"] == "special" and aa.has_real("Shoot"):
-		anim = "Shoot"
+	# cuerpo y efecto propios de cada movimiento (data/move_fx.json)
+	var anim := MoveFx.body_anim(move)
 	log_box.say("¡%s usó %s!" % [_name(att), md["name_es"]], 1.0)
 	aa.play_anim(anim, face, true)
 	await _wait(aa.hit_time(anim))
+	if not _alive(e):
+		return
+	var fx := MoveFx.create(strip.stage, aa, MoveFx.body_center(da), move, da)
+	fx.miss = r["miss"]
+	fx.shake = _stage_shake
+	fx.start()
+	await fx.wait_impact()
 	if not _alive(e):
 		return
 	if r["miss"]:
@@ -431,10 +461,20 @@ func _hit_fx(da: PokemonActor, dmg: int, crit: bool) -> void:
 		t.tween_property(da.sprite, "position:x", base.x + (2.0 if i % 2 == 0 else -2.0), 0.04)
 	t.tween_property(da.sprite, "position:x", base.x, 0.04)
 	Fx.float_text(strip.stage, da.position + da.head_point(), str(dmg), Palette.HONEY if crit else Palette.PAPER, Palette.INK)
-	# sacudida mínima del escenario
-	var st := strip.stage.create_tween()
-	st.tween_property(strip.stage, "position:y", 1.0, 0.04)
-	st.tween_property(strip.stage, "position:y", 0.0, 0.06)
+	_stage_shake(1.0)
+
+
+
+## Sacudida del escenario de `px` píxeles enteros (la usan los golpes y MoveFx).
+func _stage_shake(px: float) -> void:
+	if _shake_tween and _shake_tween.is_valid():
+		_shake_tween.kill()
+	var amp := maxf(1.0, roundf(px))
+	_shake_tween = strip.stage.create_tween()
+	_shake_tween.tween_property(strip.stage, "position:y", amp, 0.04)
+	if amp > 1.0:
+		_shake_tween.tween_property(strip.stage, "position:y", -amp + 1.0, 0.05)
+	_shake_tween.tween_property(strip.stage, "position:y", 0.0, 0.06)
 
 
 func _flash(a: PokemonActor, amount: float, dur: float) -> void:
@@ -557,6 +597,11 @@ func _victory(e: int, captured: bool) -> void:
 			event.emit("cleared")
 		cleared = true
 		progress = 0
+		# siguiente ruta (si hay): más especies, más nivel y otro bioma
+		var nxt = route.get("next")
+		if nxt != null and load_route(String(nxt)):
+			log_box.say("¡Llegaron a %s!" % route["name_es"], 2.4)
+			event.emit("new_route")
 	_remove_wild()
 	our_chip.appear(false)
 	await _wait(0.6)
@@ -735,7 +780,7 @@ func debug_levels(n: int) -> void:
 func debug_evolve() -> void:
 	for p in fighters:
 		var evo = p.data()["evolution"]
-		if evo != null and SpeciesDB.has_species(evo["to"]):
+		if evo != null and SpeciesDB.has_sprite(evo["to"]):
 			if p.level < int(evo["level"]):
 				p.gain_exp(SpeciesDB.exp_for_level(p.data()["growth_rate"], int(evo["level"])) - p.xp)
 			if state == State.WALK:

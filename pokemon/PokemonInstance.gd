@@ -80,6 +80,17 @@ func types() -> Array:
 	return data()["types"]
 
 
+## Habilidad canon (una de las normales de su especie, fija por su pid).
+func ability() -> String:
+	var ab: Array = data().get("abilities", [])
+	return String(ab[pid % ab.size()]) if not ab.is_empty() else ""
+
+
+func ability_es() -> String:
+	var a := ability()
+	return String(SpeciesDB.ability(a)["name_es"]) if a != "" else ""
+
+
 ## Stat canon (EV = 0). HP: ((2B+IV)·L/100)+L+10; resto: (((2B+IV)·L/100)+5)·naturaleza.
 ## Los Pokémon del jugador (uid != 0) suman encima el árbol, los objetos y las vitaminas.
 func stat(s: String) -> int:
@@ -223,13 +234,20 @@ func gain_exp(amount: int) -> Array[int]:
 
 
 ## Especie a la que evoluciona ahora mismo (o "" si no toca o no tenemos sus sprites).
+## Por nivel, o por amistad alta al subir de nivel (canon; algunas solo de día o de noche).
 func evolution_ready() -> String:
 	var evo = data()["evolution"]
-	if evo == null or level < int(evo["level"]):
-		return ""
-	if not SpeciesDB.has_species(evo["to"]):
-		return ""
-	return evo["to"]
+	if evo != null and level >= int(evo["level"]) and SpeciesDB.has_sprite(evo["to"]):
+		return evo["to"]
+	for e in data().get("evolutions", []):
+		if e["trigger"] != "level-up" or not e.has("happiness") or e.has("level") or e.has("item"):
+			continue
+		if friendship < int(e["happiness"]) or not SpeciesDB.has_sprite(e["to"]):
+			continue
+		var t: String = e.get("time", "")
+		if t == "" or (t == "night") == Game.clock.is_night():
+			return e["to"]
+	return ""
 
 
 func evolve(to: String) -> void:

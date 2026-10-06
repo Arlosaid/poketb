@@ -76,3 +76,9 @@ Una sola fuente pixel (ver `docs/decisiones.md` → Fuente) en su tamaño nativo
 - **Botón compacto "Chip"** (`chip*.png`, 9-patch con margen 2) con íconos de acción de 9x9 (`actions.png`): baya, pelota, luna, sol y ficha.
 - **Pelota de juguete** (`toy_ball.png`, 8x8): flama con lunares, contorno tinta. No rota: al rodar se espeja horizontalmente.
 - Todo lo genera `tools/gen_ui.py` con la paleta y pasa su chequeo.
+
+## Movimientos (Fase 9)
+- **Partículas de 8x8** (`fx_parts.png`): 22 formas (orbes, estrella de impacto, chispa, llama, gota, burbuja, hoja, cristal, copo, roca, polvo, nota, pluma, remolino, fuego fatuo, aguja, anillo, corazón, media luna y pétalo) pintadas en tres tonos con los colores del tipo del movimiento (una fila por tipo). Todo con la paleta.
+- **Trazos** (rayos, relámpagos, olas, garras, colmillos, escudos) de 1 a 5 px de grosor en los mismos tres tonos, sin antialias y con un desvanecido en el último tercio.
+- En casa se ven más chicos y sin sacudidas, para no distraer.
+- **Biomas nuevos:** costa (mar al fondo y arena), montaña (picos azulados y pinos), cumbre nevada, volcán (cono rojizo y roca oscura) y pantano (niebla lila y juncos).

@@ -1,0 +1,1572 @@
+{
+ "_doc": "Reglas para elegir la animación de cada movimiento. tools/gen_move_fx.py las aplica a data/moves.json y escribe data/move_fx.json (una entrada por movimiento, que se puede retocar a mano en 'overrides'). body: animación lógica del cuerpo (tools/pack_sprites.py → ALTERNATIVES). style: efecto de battle/MoveFx.gd. part: partícula de assets/ui/fx_parts.png (columna). Los colores salen del tipo del movimiento (type_colors: claro, medio, oscuro; nombres de la paleta). Gana la primera regla cuyo texto aparezca en el nombre del movimiento; si ninguna aplica, se usa el estilo por tipo y clase.",
+ "parts": [
+  "orb_s",
+  "orb_m",
+  "orb_l",
+  "star",
+  "spark",
+  "flame",
+  "drop",
+  "bubble",
+  "leaf",
+  "shard",
+  "flake",
+  "rock",
+  "dust",
+  "note",
+  "feather",
+  "swirl",
+  "wisp",
+  "needle",
+  "ring",
+  "heart",
+  "crescent",
+  "petal"
+ ],
+ "type_colors": {
+  "normal": [
+   "paper",
+   "cream",
+   "tan"
+  ],
+  "fire": [
+   "honey",
+   "flame",
+   "ember"
+  ],
+  "water": [
+   "mist",
+   "sky",
+   "dusk"
+  ],
+  "electric": [
+   "paper",
+   "honey",
+   "amber"
+  ],
+  "grass": [
+   "lime",
+   "sprout",
+   "leaf"
+  ],
+  "ice": [
+   "paper",
+   "mist",
+   "haze"
+  ],
+  "fighting": [
+   "honey",
+   "flame",
+   "berry"
+  ],
+  "poison": [
+   "orchid",
+   "lilac",
+   "plum"
+  ],
+  "ground": [
+   "sand",
+   "tan",
+   "oak"
+  ],
+  "flying": [
+   "paper",
+   "mist",
+   "haze"
+  ],
+  "psychic": [
+   "petal",
+   "blush",
+   "orchid"
+  ],
+  "bug": [
+   "lime",
+   "sprout",
+   "grass"
+  ],
+  "rock": [
+   "tan",
+   "oak",
+   "wood"
+  ],
+  "ghost": [
+   "orchid",
+   "lilac",
+   "night"
+  ],
+  "dragon": [
+   "haze",
+   "dusk",
+   "night"
+  ],
+  "dark": [
+   "lilac",
+   "plum",
+   "ink"
+  ],
+  "steel": [
+   "paper",
+   "mist",
+   "dusk"
+  ],
+  "fairy": [
+   "paper",
+   "petal",
+   "blush"
+  ]
+ },
+ "type_part": {
+  "normal": "star",
+  "fire": "flame",
+  "water": "drop",
+  "electric": "spark",
+  "grass": "leaf",
+  "ice": "shard",
+  "fighting": "star",
+  "poison": "bubble",
+  "ground": "dust",
+  "flying": "feather",
+  "psychic": "ring",
+  "bug": "needle",
+  "rock": "rock",
+  "ghost": "wisp",
+  "dragon": "swirl",
+  "dark": "crescent",
+  "steel": "shard",
+  "fairy": "heart"
+ },
+ "rules": [
+  {
+   "match": [
+    "self-destruct",
+    "explosion",
+    "misty-explosion",
+    "mind-blown",
+    "final-gambit"
+   ],
+   "body": "Swell",
+   "style": "explosion"
+  },
+  {
+   "match": [
+    "drain",
+    "absorb",
+    "leech",
+    "giga-drain",
+    "horn-leech",
+    "dream-eater",
+    "bitter-blade",
+    "matcha-gotcha",
+    "parabolic-charge",
+    "oblivion-wing"
+   ],
+   "style": "drain",
+   "body": "SpAttack"
+  },
+  {
+   "match": [
+    "dig",
+    "dive",
+    "phantom-force",
+    "shadow-force"
+   ],
+   "body": "Sink",
+   "style": "vanish"
+  },
+  {
+   "match": [
+    "fly",
+    "bounce",
+    "sky-attack",
+    "sky-drop",
+    "dragon-ascent",
+    "triple-dive"
+   ],
+   "body": "Flap",
+   "style": "dive_bomb"
+  },
+  {
+   "match": [
+    "bite",
+    "fang",
+    "crunch",
+    "chomp",
+    "jaw",
+    "fishious",
+    "super-fang",
+    "hyper-fang",
+    "lick",
+    "bug-bite",
+    "pluck",
+    "covet",
+    "thief"
+   ],
+   "body": "Bite",
+   "style": "bite"
+  },
+  {
+   "match": [
+    "punch",
+    "mach",
+    "jab",
+    "fist",
+    "hammer-arm",
+    "sky-uppercut",
+    "rage-fist",
+    "plasma",
+    "comet",
+    "meteor-mash",
+    "dizzy",
+    "power-up",
+    "wicked-blow",
+    "surging-strikes",
+    "drain-punch",
+    "dynamic-punch",
+    "focus-punch"
+   ],
+   "body": "Punch",
+   "style": "punch"
+  },
+  {
+   "match": [
+    "kick",
+    "stomp",
+    "trop",
+    "low-sweep",
+    "triple-axel",
+    "blaze",
+    "axe-kick",
+    "thunderous",
+    "pyro-ball"
+   ],
+   "body": "Kick",
+   "style": "kick"
+  },
+  {
+   "match": [
+    "claw",
+    "slash",
+    "scratch",
+    "cut",
+    "swipe",
+    "scissor",
+    "blade",
+    "sword",
+    "cleave",
+    "razor-shell",
+    "aqua-cutter",
+    "psycho-cut",
+    "kowtow",
+    "ceaseless",
+    "night-slash",
+    "x-scissor",
+    "fury-cutter",
+    "false-swipe",
+    "dire-claw",
+    "psyblade",
+    "mighty-cleave",
+    "guillotine",
+    "crush-claw"
+   ],
+   "body": "Claw",
+   "style": "slash"
+  },
+  {
+   "match": [
+    "chop",
+    "karate",
+    "force-palm",
+    "brick-break",
+    "dual-chop",
+    "throat-chop",
+    "rock-smash",
+    "vital-throw",
+    "circle-throw",
+    "storm-throw",
+    "seismic-toss",
+    "submission"
+   ],
+   "body": "Chop",
+   "style": "punch"
+  },
+  {
+   "match": [
+    "slam",
+    "body-press",
+    "heavy",
+    "crash",
+    "hammer",
+    "smash",
+    "giga-impact",
+    "strength",
+    "sweeping",
+    "wood-hammer",
+    "crabhammer",
+    "dragon-hammer",
+    "ice-hammer",
+    "steel-roller",
+    "collision",
+    "darkest-lariat",
+    "drum-beating",
+    "grav-apple",
+    "ivy-cudgel"
+   ],
+   "body": "Slam",
+   "style": "slam"
+  },
+  {
+   "match": [
+    "head",
+    "zen-headbutt",
+    "skull-bash",
+    "iron-head",
+    "psyshield",
+    "head-charge",
+    "head-smash",
+    "horn",
+    "megahorn",
+    "drill-peck",
+    "peck",
+    "beak",
+    "drill-run",
+    "smart-strike"
+   ],
+   "body": "Head",
+   "style": "contact"
+  },
+  {
+   "match": [
+    "tail",
+    "whip",
+    "slap",
+    "spin-out",
+    "brutal-swing",
+    "aqua-tail",
+    "poison-tail",
+    "iron-tail",
+    "dragon-tail",
+    "breaking-swipe",
+    "low-kick"
+   ],
+   "body": "Swing",
+   "style": "swing"
+  },
+  {
+   "match": [
+    "spin",
+    "rollout",
+    "gyro",
+    "ice-ball",
+    "flame-wheel",
+    "steel-wheel",
+    "rapid-spin",
+    "mortal-spin",
+    "aura-wheel",
+    "ice-spinner",
+    "electro-drift",
+    "shell-trap",
+    "rolling"
+   ],
+   "body": "Spin",
+   "style": "spin"
+  },
+  {
+   "match": [
+    "vine",
+    "power-whip",
+    "fire-lash",
+    "wrap",
+    "bind",
+    "constrict",
+    "jaw-lock"
+   ],
+   "body": "Swing",
+   "style": "vine"
+  },
+  {
+   "match": [
+    "double",
+    "triple",
+    "fury-attack",
+    "arm-thrust",
+    "dual",
+    "twin",
+    "population-bomb",
+    "beat-up",
+    "dragon-darts",
+    "multi",
+    "barb-barrage",
+    "bone-rush",
+    "bonemerang",
+    "tail-slap",
+    "water-shuriken",
+    "icicle-spear",
+    "rock-blast",
+    "pin-missile",
+    "bullet-seed",
+    "scale-shot",
+    "surging"
+   ],
+   "body": "Multi",
+   "style": "barrage"
+  },
+  {
+   "match": [
+    "quick",
+    "extreme-speed",
+    "aqua-jet",
+    "accelerock",
+    "jet-punch",
+    "shadow-sneak",
+    "ice-shard",
+    "sucker-punch",
+    "fake-out",
+    "first-impression",
+    "feint",
+    "vacuum-wave",
+    "bullet-punch",
+    "aerial-ace",
+    "u-turn",
+    "flip-turn",
+    "volt-switch",
+    "acrobatics",
+    "lunge",
+    "zippy",
+    "grassy-glide"
+   ],
+   "body": "Quick",
+   "style": "contact"
+  },
+  {
+   "match": [
+    "earthquake",
+    "magnitude",
+    "bulldoze",
+    "fissure",
+    "stomping-tantrum",
+    "lands-wrath",
+    "high-horsepower",
+    "precipice-blades",
+    "thousand-waves",
+    "tectonic"
+   ],
+   "body": "Rumble",
+   "style": "quake"
+  },
+  {
+   "match": [
+    "surf",
+    "muddy-water",
+    "sludge-wave",
+    "heat-wave",
+    "wave-crash",
+    "water-spout",
+    "origin-pulse",
+    "thousand-arrows",
+    "oceanic",
+    "whirlpool",
+    "springtide-storm",
+    "bleakwind-storm",
+    "wildbolt-storm",
+    "sandsear-storm"
+   ],
+   "body": "SpAttack",
+   "style": "wave"
+  },
+  {
+   "match": [
+    "blizzard",
+    "hail",
+    "meteor",
+    "rock-slide",
+    "petal-blizzard",
+    "leaf-storm",
+    "avalanche",
+    "icicle-crash",
+    "diamond-storm",
+    "draco",
+    "dragon-darts",
+    "make-it-rain",
+    "tera-starstorm",
+    "attack-order",
+    "doom-desire",
+    "future-sight",
+    "spacial-rend",
+    "gigaton-hammer",
+    "salt-cure",
+    "stone-axe",
+    "rock-tomb",
+    "sand-tomb"
+   ],
+   "body": "Rise",
+   "style": "rain"
+  },
+  {
+   "match": [
+    "thunder",
+    "bolt-strike",
+    "zap-cannon",
+    "fusion-bolt",
+    "rising-voltage",
+    "thunderclap",
+    "electro-shot"
+   ],
+   "body": "Shock",
+   "style": "bolt"
+  },
+  {
+   "match": [
+    "stone-edge",
+    "eruption",
+    "lava-plume",
+    "magma-storm",
+    "spikes",
+    "photon-geyser",
+    "earth-power",
+    "steam-eruption",
+    "headlong-rush",
+    "geyser"
+   ],
+   "body": "Rumble",
+   "style": "rise"
+  },
+  {
+   "match": [
+    "beam",
+    "ray",
+    "laser",
+    "cannon",
+    "pulse",
+    "flash",
+    "aurora",
+    "hyper-beam",
+    "solar",
+    "psybeam",
+    "aeroblast",
+    "core-enforcer",
+    "dynamax",
+    "prismatic",
+    "lumina-crash",
+    "luster-purge",
+    "mist-ball",
+    "judgment",
+    "techno-blast",
+    "fleur",
+    "moongeist",
+    "sunsteel",
+    "roar-of-time",
+    "eternabeam",
+    "dragon-energy",
+    "fickle",
+    "terrain-pulse",
+    "weather-ball",
+    "hyper-drill",
+    "tachyon-cutter"
+   ],
+   "body": "SpAttack",
+   "style": "beam"
+  },
+  {
+   "match": [
+    "flamethrower",
+    "water-gun",
+    "hydro-pump",
+    "bubble",
+    "fire-spin",
+    "ember",
+    "inferno",
+    "incinerate",
+    "overheat",
+    "blast-burn",
+    "flame-burst",
+    "dragon-breath",
+    "frost-breath",
+    "icy-wind",
+    "powder-snow",
+    "smog",
+    "clear-smog",
+    "acid",
+    "scald",
+    "hydro-steam",
+    "torch-song",
+    "mystical-fire",
+    "searing-shot",
+    "burn-up",
+    "fiery-dance",
+    "infestation",
+    "belch",
+    "octazooka",
+    "mud-shot",
+    "mud-slap",
+    "brine",
+    "snipe-shot",
+    "fire-blast",
+    "sacred-fire",
+    "v-create",
+    "blue-flare",
+    "fusion-flare",
+    "electroweb",
+    "discharge",
+    "shock-wave",
+    "charge-beam",
+    "thunder-shock",
+    "thunderbolt",
+    "spark",
+    "nuzzle",
+    "zing-zap",
+    "bug-buzz"
+   ],
+   "body": "Shoot",
+   "style": "spray"
+  },
+  {
+   "match": [
+    "roar",
+    "voice",
+    "sing",
+    "growl",
+    "screech",
+    "uproar",
+    "boomburst",
+    "snarl",
+    "chatter",
+    "round",
+    "sparkling-aria",
+    "relic-song",
+    "clanging",
+    "noble",
+    "snore",
+    "perish",
+    "torch",
+    "overdrive",
+    "drum",
+    "alluring"
+   ],
+   "body": "Sound",
+   "style": "sound"
+  },
+  {
+   "match": [
+    "gust",
+    "wind",
+    "twister",
+    "air-slash",
+    "air-cutter",
+    "razor-wind",
+    "whirlwind",
+    "hurricane",
+    "leaf-tornado",
+    "fairy-wind",
+    "tailwind",
+    "defog"
+   ],
+   "body": "Flap",
+   "style": "wind"
+  },
+  {
+   "match": [
+    "psychic",
+    "confusion",
+    "extrasensory",
+    "psyshock",
+    "psystrike",
+    "expanding-force",
+    "stored-power",
+    "psycho-boost",
+    "mystical-power",
+    "hyperspace",
+    "night-daze",
+    "esper",
+    "lusterpurge",
+    "dazzling-gleam",
+    "moonblast",
+    "draining-kiss",
+    "spirit-break",
+    "natures-madness",
+    "power-gem",
+    "ancient-power",
+    "hex",
+    "night-shade",
+    "astonish",
+    "ominous",
+    "foul-play",
+    "dark-pulse",
+    "malignant-chain",
+    "ruination"
+   ],
+   "body": "SpAttack",
+   "style": "psychic"
+  },
+  {
+   "match": [
+    "ball",
+    "bomb",
+    "shot",
+    "bullet",
+    "orb",
+    "sphere",
+    "seed",
+    "missile",
+    "throw",
+    "fling",
+    "swift",
+    "magical-leaf",
+    "razor-leaf",
+    "leafage",
+    "ice-shard",
+    "shadow-ball",
+    "energy-ball",
+    "focus-blast",
+    "sludge",
+    "gunk",
+    "poison-sting",
+    "spit",
+    "stone",
+    "smack-down",
+    "rock-throw",
+    "apple-acid",
+    "syrup",
+    "pollen",
+    "present",
+    "mud-bomb",
+    "water-pulse",
+    "electro-ball",
+    "weather",
+    "spirit-shackle",
+    "branch-poke",
+    "anchor-shot",
+    "barrage",
+    "pay-day",
+    "tri-attack",
+    "flower-trick",
+    "order-up",
+    "glaciate",
+    "freeze-dry",
+    "sheer-cold"
+   ],
+   "body": "Shoot",
+   "style": "projectile"
+  }
+ ],
+ "status_rules": [
+  {
+   "category": [
+    "heal"
+   ],
+   "style": "heal",
+   "body": "Charge"
+  },
+  {
+   "category": [
+    "net-good-stats"
+   ],
+   "style": "aura",
+   "body": "Charge"
+  },
+  {
+   "category": [
+    "ailment",
+    "swagger"
+   ],
+   "style": "status",
+   "body": "SpAttack"
+  },
+  {
+   "category": [
+    "field-effect",
+    "whole-field-effect"
+   ],
+   "style": "field",
+   "body": "Rise"
+  },
+  {
+   "category": [
+    "force-switch"
+   ],
+   "style": "wind",
+   "body": "Sound"
+  }
+ ],
+ "status_default": {
+  "style": "aura",
+  "body": "Charge"
+ },
+ "defaults": {
+  "physical": {
+   "body": "Attack",
+   "style": "contact"
+  },
+  "special": {
+   "normal": {
+    "body": "Shoot",
+    "style": "projectile"
+   },
+   "fire": {
+    "body": "Shoot",
+    "style": "spray"
+   },
+   "water": {
+    "body": "Shoot",
+    "style": "spray"
+   },
+   "electric": {
+    "body": "Shock",
+    "style": "bolt"
+   },
+   "grass": {
+    "body": "Shoot",
+    "style": "projectile"
+   },
+   "ice": {
+    "body": "Shoot",
+    "style": "projectile"
+   },
+   "fighting": {
+    "body": "SpAttack",
+    "style": "projectile"
+   },
+   "poison": {
+    "body": "Shoot",
+    "style": "projectile"
+   },
+   "ground": {
+    "body": "Rumble",
+    "style": "rise"
+   },
+   "flying": {
+    "body": "Flap",
+    "style": "wind"
+   },
+   "psychic": {
+    "body": "SpAttack",
+    "style": "psychic"
+   },
+   "bug": {
+    "body": "Shoot",
+    "style": "projectile"
+   },
+   "rock": {
+    "body": "Rise",
+    "style": "rain"
+   },
+   "ghost": {
+    "body": "SpAttack",
+    "style": "psychic"
+   },
+   "dragon": {
+    "body": "SpAttack",
+    "style": "spray"
+   },
+   "dark": {
+    "body": "SpAttack",
+    "style": "psychic"
+   },
+   "steel": {
+    "body": "SpAttack",
+    "style": "beam"
+   },
+   "fairy": {
+    "body": "SpAttack",
+    "style": "psychic"
+   }
+  }
+ },
+ "overrides": {
+  "_doc": "movimiento → campos que reemplazan lo que diga la regla (body, style, part, hits).",
+  "solar-beam": {
+   "style": "beam"
+  },
+  "solar-blade": {
+   "body": "Claw",
+   "style": "slash"
+  },
+  "dragon-claw": {
+   "part": "swirl"
+  },
+  "shadow-claw": {
+   "part": "wisp"
+  },
+  "leaf-blade": {
+   "part": "leaf"
+  },
+  "sacred-sword": {
+   "part": "star"
+  },
+  "secret-sword": {
+   "part": "star"
+  },
+  "psycho-cut": {
+   "part": "ring"
+  },
+  "sing": {
+   "part": "note"
+  },
+  "round": {
+   "part": "note"
+  },
+  "relic-song": {
+   "part": "note"
+  },
+  "sparkling-aria": {
+   "body": "Sing",
+   "style": "sound",
+   "part": "bubble"
+  },
+  "petal-dance": {
+   "body": "Dance",
+   "style": "spray",
+   "part": "petal"
+  },
+  "petal-blizzard": {
+   "part": "petal"
+  },
+  "fiery-dance": {
+   "body": "Dance"
+  },
+  "revelation-dance": {
+   "body": "Dance",
+   "style": "spray"
+  },
+  "quiver-dance": {
+   "body": "Dance"
+  },
+  "dragon-dance": {
+   "body": "Dance"
+  },
+  "swords-dance": {
+   "body": "Dance"
+  },
+  "teeter-dance": {
+   "body": "Dance"
+  },
+  "feather-dance": {
+   "body": "Dance",
+   "part": "feather"
+  },
+  "lunar-dance": {
+   "body": "Dance"
+  },
+  "outrage": {
+   "body": "Spin",
+   "style": "spin"
+  },
+  "thrash": {
+   "body": "Spin",
+   "style": "spin"
+  },
+  "raging-fury": {
+   "body": "Spin",
+   "style": "spin"
+  },
+  "struggle": {
+   "body": "Attack",
+   "style": "contact"
+  },
+  "tackle": {
+   "body": "Head",
+   "style": "contact"
+  },
+  "take-down": {
+   "body": "Head",
+   "style": "contact"
+  },
+  "double-edge": {
+   "body": "Head",
+   "style": "contact"
+  },
+  "wild-charge": {
+   "body": "Head",
+   "style": "contact",
+   "part": "spark"
+  },
+  "volt-tackle": {
+   "body": "Head",
+   "style": "contact",
+   "part": "spark"
+  },
+  "flare-blitz": {
+   "body": "Head",
+   "style": "contact",
+   "part": "flame"
+  },
+  "brave-bird": {
+   "body": "Head",
+   "style": "dive_bomb",
+   "part": "feather"
+  },
+  "wing-attack": {
+   "body": "Flap",
+   "style": "swing",
+   "part": "feather"
+  },
+  "steel-wing": {
+   "body": "Flap",
+   "style": "swing"
+  },
+  "dual-wingbeat": {
+   "body": "Flap",
+   "style": "barrage",
+   "part": "feather"
+  },
+  "hidden-power": {
+   "style": "projectile",
+   "part": "orb_m"
+  },
+  "swift": {
+   "part": "star"
+  },
+  "present": {
+   "part": "heart"
+  },
+  "pay-day": {
+   "part": "orb_s"
+  },
+  "make-it-rain": {
+   "part": "orb_s"
+  },
+  "pin-missile": {
+   "part": "needle"
+  },
+  "poison-sting": {
+   "part": "needle"
+  },
+  "fell-stinger": {
+   "part": "needle"
+  },
+  "twineedle": {
+   "part": "needle"
+  },
+  "string-shot": {
+   "part": "needle"
+  },
+  "sticky-web": {
+   "part": "needle"
+  },
+  "silver-wind": {
+   "part": "orb_s"
+  },
+  "bubble-beam": {
+   "style": "spray",
+   "part": "bubble"
+  },
+  "bubble": {
+   "part": "bubble"
+  },
+  "acid": {
+   "part": "bubble"
+  },
+  "smog": {
+   "part": "dust"
+  },
+  "clear-smog": {
+   "part": "dust"
+  },
+  "poison-gas": {
+   "part": "dust",
+   "body": "Gas"
+  },
+  "sludge-bomb": {
+   "part": "bubble"
+  },
+  "sludge": {
+   "part": "bubble"
+  },
+  "gunk-shot": {
+   "part": "bubble"
+  },
+  "mud-shot": {
+   "part": "dust"
+  },
+  "mud-slap": {
+   "body": "Shoot",
+   "style": "spray",
+   "part": "dust"
+  },
+  "sand-attack": {
+   "part": "dust"
+  },
+  "bone-rush": {
+   "part": "rock"
+  },
+  "bonemerang": {
+   "part": "rock"
+  },
+  "ice-beam": {
+   "part": "flake"
+  },
+  "blizzard": {
+   "part": "flake"
+  },
+  "powder-snow": {
+   "part": "flake"
+  },
+  "icy-wind": {
+   "part": "flake"
+  },
+  "frost-breath": {
+   "part": "flake"
+  },
+  "moonblast": {
+   "part": "orb_l"
+  },
+  "dazzling-gleam": {
+   "part": "star"
+  },
+  "draining-kiss": {
+   "part": "heart"
+  },
+  "charm": {
+   "part": "heart"
+  },
+  "attract": {
+   "part": "heart"
+  },
+  "sweet-kiss": {
+   "part": "heart"
+  },
+  "play-rough": {
+   "body": "Spin",
+   "style": "barrage",
+   "part": "heart"
+  },
+  "shadow-ball": {
+   "part": "orb_l"
+  },
+  "energy-ball": {
+   "part": "orb_l"
+  },
+  "focus-blast": {
+   "part": "orb_l"
+  },
+  "aura-sphere": {
+   "part": "orb_l"
+  },
+  "electro-ball": {
+   "part": "orb_l"
+  },
+  "pyro-ball": {
+   "part": "flame"
+  },
+  "weather-ball": {
+   "part": "orb_l"
+  },
+  "mist-ball": {
+   "part": "orb_l"
+  },
+  "seed-bomb": {
+   "part": "orb_m"
+  },
+  "bullet-seed": {
+   "part": "orb_s"
+  },
+  "rock-blast": {
+   "part": "rock"
+  },
+  "rock-throw": {
+   "part": "rock"
+  },
+  "rock-slide": {
+   "part": "rock"
+  },
+  "rock-tomb": {
+   "part": "rock"
+  },
+  "stone-edge": {
+   "part": "shard"
+  },
+  "power-gem": {
+   "part": "shard"
+  },
+  "ancient-power": {
+   "part": "rock"
+  },
+  "meteor-mash": {
+   "part": "star"
+  },
+  "spacial-rend": {
+   "part": "crescent"
+  },
+  "night-slash": {
+   "part": "crescent"
+  },
+  "air-slash": {
+   "part": "crescent"
+  },
+  "air-cutter": {
+   "body": "Flap",
+   "style": "wind",
+   "part": "crescent"
+  },
+  "razor-leaf": {
+   "part": "leaf"
+  },
+  "magical-leaf": {
+   "part": "leaf"
+  },
+  "leafage": {
+   "part": "leaf"
+  },
+  "leaf-storm": {
+   "part": "leaf"
+  },
+  "leaf-tornado": {
+   "part": "leaf"
+  },
+  "confusion": {
+   "part": "ring"
+  },
+  "psybeam": {
+   "part": "ring"
+  },
+  "hex": {
+   "part": "wisp"
+  },
+  "night-shade": {
+   "part": "wisp"
+  },
+  "astonish": {
+   "part": "wisp"
+  },
+  "lick": {
+   "part": "wisp"
+  },
+  "dark-pulse": {
+   "part": "crescent"
+  },
+  "flash-cannon": {
+   "part": "orb_m"
+  },
+  "dragon-pulse": {
+   "part": "swirl"
+  },
+  "dragon-breath": {
+   "part": "swirl"
+  },
+  "twister": {
+   "part": "swirl"
+  },
+  "hurricane": {
+   "part": "swirl"
+  },
+  "gust": {
+   "part": "feather"
+  },
+  "whirlwind": {
+   "part": "swirl"
+  },
+  "uproar": {
+   "part": "ring"
+  },
+  "hyper-voice": {
+   "part": "ring"
+  },
+  "boomburst": {
+   "part": "ring"
+  },
+  "bug-buzz": {
+   "style": "sound",
+   "part": "ring"
+  },
+  "echoed-voice": {
+   "part": "ring"
+  },
+  "disarming-voice": {
+   "part": "heart"
+  },
+  "snarl": {
+   "part": "crescent"
+  },
+  "chatter": {
+   "part": "note"
+  },
+  "growl": {
+   "part": "note"
+  },
+  "screech": {
+   "part": "ring"
+  },
+  "roar": {
+   "part": "ring"
+  },
+  "perish-song": {
+   "part": "note"
+  },
+  "lovely-kiss": {
+   "part": "heart"
+  },
+  "sweet-scent": {
+   "part": "petal"
+  },
+  "aromatherapy": {
+   "part": "petal"
+  },
+  "sleep-powder": {
+   "part": "orb_s"
+  },
+  "stun-spore": {
+   "part": "orb_s"
+  },
+  "poison-powder": {
+   "part": "orb_s"
+  },
+  "spore": {
+   "part": "orb_s"
+  },
+  "cotton-spore": {
+   "part": "orb_m"
+  },
+  "rage-powder": {
+   "part": "orb_s"
+  },
+  "magic-powder": {
+   "part": "orb_s"
+  },
+  "leech-seed": {
+   "style": "projectile",
+   "part": "orb_s"
+  },
+  "spikes": {
+   "style": "rise",
+   "part": "shard"
+  },
+  "toxic-spikes": {
+   "style": "rise",
+   "part": "needle"
+  },
+  "stealth-rock": {
+   "style": "rise",
+   "part": "rock"
+  },
+  "rest": {
+   "body": "Sleep",
+   "style": "heal"
+  },
+  "splash": {
+   "body": "Hop",
+   "style": "aura",
+   "part": "drop"
+  },
+  "teleport": {
+   "body": "Charge",
+   "style": "aura",
+   "part": "ring"
+  },
+  "transform": {
+   "body": "Charge",
+   "style": "aura",
+   "part": "ring"
+  },
+  "sketch": {
+   "body": "Swing",
+   "style": "aura",
+   "part": "star"
+  },
+  "metronome": {
+   "body": "Swing",
+   "style": "aura",
+   "part": "note"
+  },
+  "celebrate": {
+   "body": "Appeal",
+   "style": "aura",
+   "part": "star"
+  },
+  "happy-hour": {
+   "body": "Appeal",
+   "style": "aura",
+   "part": "orb_s"
+  },
+  "hold-hands": {
+   "body": "Appeal",
+   "style": "aura",
+   "part": "heart"
+  },
+  "baby-doll-eyes": {
+   "body": "Appeal",
+   "style": "status",
+   "part": "heart"
+  },
+  "tail-whip": {
+   "body": "Swing",
+   "style": "status",
+   "part": "star"
+  },
+  "leer": {
+   "body": "Charge",
+   "style": "status",
+   "part": "crescent"
+  },
+  "scary-face": {
+   "body": "Charge",
+   "style": "status",
+   "part": "crescent"
+  },
+  "glare": {
+   "body": "Charge",
+   "style": "status",
+   "part": "crescent"
+  },
+  "harden": {
+   "body": "Withdraw",
+   "style": "aura",
+   "part": "shard"
+  },
+  "withdraw": {
+   "body": "Sink",
+   "style": "aura",
+   "part": "drop"
+  },
+  "defense-curl": {
+   "body": "Sink",
+   "style": "aura",
+   "part": "star"
+  },
+  "protect": {
+   "body": "Charge",
+   "style": "shield"
+  },
+  "detect": {
+   "body": "Charge",
+   "style": "shield"
+  },
+  "endure": {
+   "body": "Charge",
+   "style": "shield"
+  },
+  "light-screen": {
+   "style": "shield"
+  },
+  "reflect": {
+   "style": "shield"
+  },
+  "barrier": {
+   "style": "shield"
+  },
+  "iron-defense": {
+   "style": "shield"
+  },
+  "baneful-bunker": {
+   "style": "shield"
+  },
+  "spiky-shield": {
+   "style": "shield"
+  },
+  "kings-shield": {
+   "style": "shield"
+  },
+  "safeguard": {
+   "style": "shield"
+  },
+  "substitute": {
+   "style": "aura",
+   "part": "orb_m"
+  },
+  "drain-punch": {
+   "body": "Punch",
+   "style": "drain"
+  },
+  "horn-leech": {
+   "body": "Head",
+   "style": "drain"
+  },
+  "leech-life": {
+   "body": "Bite",
+   "style": "drain"
+  },
+  "bitter-blade": {
+   "body": "Claw",
+   "style": "drain"
+  },
+  "dream-eater": {
+   "body": "SpAttack",
+   "style": "drain",
+   "part": "ring"
+  },
+  "tachyon-cutter": {
+   "body": "SpAttack",
+   "style": "beam"
+  },
+  "fire-spin": {
+   "body": "Shoot",
+   "style": "spray"
+  },
+  "twin-beam": {
+   "body": "SpAttack",
+   "style": "beam"
+  },
+  "stomping-tantrum": {
+   "body": "Rumble",
+   "style": "quake"
+  },
+  "acid-spray": {
+   "body": "Shoot",
+   "style": "spray",
+   "part": "bubble"
+  },
+  "psychic-fangs": {
+   "body": "Bite",
+   "style": "bite",
+   "part": "ring"
+  },
+  "thunder-fang": {
+   "body": "Bite",
+   "style": "bite",
+   "part": "spark"
+  },
+  "thunder-punch": {
+   "body": "Punch",
+   "style": "punch",
+   "part": "spark"
+  },
+  "fire-fang": {
+   "body": "Bite",
+   "style": "bite",
+   "part": "flame"
+  },
+  "ice-fang": {
+   "body": "Bite",
+   "style": "bite",
+   "part": "shard"
+  },
+  "poison-fang": {
+   "body": "Bite",
+   "style": "bite",
+   "part": "bubble"
+  },
+  "thunder-cage": {
+   "body": "Shock",
+   "style": "bolt"
+  },
+  "headlong-rush": {
+   "body": "Head",
+   "style": "contact",
+   "part": "dust"
+  },
+  "water-pulse": {
+   "body": "Shoot",
+   "style": "projectile",
+   "part": "orb_l"
+  },
+  "spark": {
+   "body": "Head",
+   "style": "contact"
+  },
+  "nuzzle": {
+   "body": "Head",
+   "style": "contact"
+  },
+  "power-whip": {
+   "body": "Swing",
+   "style": "vine"
+  },
+  "zing-zap": {
+   "body": "Head",
+   "style": "contact"
+  },
+  "vine-whip": {
+   "body": "Swing",
+   "style": "vine"
+  }
+ }
+}

@@ -1,0 +1,958 @@
+{
+ "id": "ruta_7",
+ "name_es": "Volcán Ascuas (Ruta 7)",
+ "encounters_to_boss": 24,
+ "level_range": [
+  26,
+  37
+ ],
+ "walk_seconds": [
+  18,
+  35
+ ],
+ "sections": [
+  {
+   "from": 0.0,
+   "biome": "montana"
+  },
+  {
+   "from": 0.5,
+   "biome": "volcan"
+  }
+ ],
+ "day": [
+  {
+   "species": "charmander",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "charmeleon",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "charizard",
+   "min_level": 36,
+   "weight": 3
+  },
+  {
+   "species": "nidoqueen",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "nidoking",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "vulpix",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "ninetales",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "dugtrio",
+   "min_level": 26,
+   "weight": 3
+  },
+  {
+   "species": "growlithe",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "arcanine",
+   "min_level": 16,
+   "weight": 5
+  },
+  {
+   "species": "alakazam",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "graveler",
+   "min_level": 25,
+   "weight": 8
+  },
+  {
+   "species": "golem",
+   "min_level": 37,
+   "weight": 3
+  },
+  {
+   "species": "ponyta",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "marowak",
+   "min_level": 28,
+   "weight": 5
+  },
+  {
+   "species": "magmar",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "flareon",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "meganium",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "cyndaquil",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "quilava",
+   "min_level": 14,
+   "weight": 3
+  },
+  {
+   "species": "typhlosion",
+   "min_level": 36,
+   "weight": 3
+  },
+  {
+   "species": "slugma",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "magcargo",
+   "min_level": 37,
+   "weight": 5
+  },
+  {
+   "species": "piloswine",
+   "min_level": 33,
+   "weight": 5
+  },
+  {
+   "species": "houndour",
+   "min_level": 2,
+   "weight": 2
+  },
+  {
+   "species": "magby",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "pupitar",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "torchic",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "swampert",
+   "min_level": 36,
+   "weight": 3
+  },
+  {
+   "species": "lairon",
+   "min_level": 32,
+   "weight": 6
+  },
+  {
+   "species": "numel",
+   "min_level": 2,
+   "weight": 17
+  },
+  {
+   "species": "camerupt",
+   "min_level": 33,
+   "weight": 10
+  },
+  {
+   "species": "torkoal",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "vibrava",
+   "min_level": 35,
+   "weight": 8
+  },
+  {
+   "species": "whiscash",
+   "min_level": 30,
+   "weight": 5
+  },
+  {
+   "species": "claydol",
+   "min_level": 36,
+   "weight": 6
+  },
+  {
+   "species": "torterra",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "chimchar",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "rampardos",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "bastiodon",
+   "min_level": 30,
+   "weight": 3
+  },
+  {
+   "species": "gastrodon",
+   "min_level": 30,
+   "weight": 5
+  },
+  {
+   "species": "hippowdon",
+   "min_level": 34,
+   "weight": 4
+  },
+  {
+   "species": "tepig",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "stoutland",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "pansear",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "gigalith",
+   "min_level": 37,
+   "weight": 3
+  },
+  {
+   "species": "excadrill",
+   "min_level": 31,
+   "weight": 4
+  },
+  {
+   "species": "palpitoad",
+   "min_level": 25,
+   "weight": 8
+  },
+  {
+   "species": "seismitoad",
+   "min_level": 36,
+   "weight": 3
+  },
+  {
+   "species": "krokorok",
+   "min_level": 29,
+   "weight": 2
+  },
+  {
+   "species": "darumaka",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "darmanitan",
+   "min_level": 35,
+   "weight": 4
+  },
+  {
+   "species": "litwick",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "heatmor",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "larvesta",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "fennekin",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "braixen",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "delphox",
+   "min_level": 36,
+   "weight": 3
+  },
+  {
+   "species": "talonflame",
+   "min_level": 35,
+   "weight": 3
+  },
+  {
+   "species": "litleo",
+   "min_level": 2,
+   "weight": 14
+  },
+  {
+   "species": "pyroar",
+   "min_level": 35,
+   "weight": 4
+  },
+  {
+   "species": "gogoat",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "litten",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "torracat",
+   "min_level": 17,
+   "weight": 3
+  },
+  {
+   "species": "incineroar",
+   "min_level": 34,
+   "weight": 1
+  },
+  {
+   "species": "lycanroc",
+   "min_level": 25,
+   "weight": 6
+  },
+  {
+   "species": "mudsdale",
+   "min_level": 30,
+   "weight": 4
+  },
+  {
+   "species": "salandit",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "salazzle",
+   "min_level": 33,
+   "weight": 3
+  },
+  {
+   "species": "tsareena",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "scorbunny",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "raboot",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "cinderace",
+   "min_level": 35,
+   "weight": 3
+  },
+  {
+   "species": "sandaconda",
+   "min_level": 36,
+   "weight": 8
+  },
+  {
+   "species": "sizzlipede",
+   "min_level": 2,
+   "weight": 12
+  },
+  {
+   "species": "fuecoco",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "crocalor",
+   "min_level": 16,
+   "weight": 3
+  },
+  {
+   "species": "skeledirge",
+   "min_level": 36,
+   "weight": 1
+  },
+  {
+   "species": "garganacl",
+   "min_level": 37,
+   "weight": 3
+  },
+  {
+   "species": "charcadet",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "armarouge",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "glimmora",
+   "min_level": 35,
+   "weight": 1
+  }
+ ],
+ "night": [
+  {
+   "species": "charmander",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "charmeleon",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "charizard",
+   "min_level": 36,
+   "weight": 1
+  },
+  {
+   "species": "nidoqueen",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "nidoking",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "vulpix",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "ninetales",
+   "min_level": 16,
+   "weight": 2
+  },
+  {
+   "species": "dugtrio",
+   "min_level": 26,
+   "weight": 1
+  },
+  {
+   "species": "growlithe",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "arcanine",
+   "min_level": 16,
+   "weight": 2
+  },
+  {
+   "species": "alakazam",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "graveler",
+   "min_level": 25,
+   "weight": 4
+  },
+  {
+   "species": "golem",
+   "min_level": 37,
+   "weight": 1
+  },
+  {
+   "species": "ponyta",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "marowak",
+   "min_level": 28,
+   "weight": 2
+  },
+  {
+   "species": "magmar",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "flareon",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "meganium",
+   "min_level": 32,
+   "weight": 1
+  },
+  {
+   "species": "cyndaquil",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "quilava",
+   "min_level": 14,
+   "weight": 1
+  },
+  {
+   "species": "typhlosion",
+   "min_level": 36,
+   "weight": 1
+  },
+  {
+   "species": "slugma",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "magcargo",
+   "min_level": 37,
+   "weight": 2
+  },
+  {
+   "species": "piloswine",
+   "min_level": 33,
+   "weight": 2
+  },
+  {
+   "species": "houndour",
+   "min_level": 2,
+   "weight": 16
+  },
+  {
+   "species": "magby",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "pupitar",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "torchic",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "swampert",
+   "min_level": 36,
+   "weight": 1
+  },
+  {
+   "species": "lairon",
+   "min_level": 32,
+   "weight": 3
+  },
+  {
+   "species": "numel",
+   "min_level": 2,
+   "weight": 8
+  },
+  {
+   "species": "camerupt",
+   "min_level": 33,
+   "weight": 5
+  },
+  {
+   "species": "torkoal",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "vibrava",
+   "min_level": 35,
+   "weight": 4
+  },
+  {
+   "species": "whiscash",
+   "min_level": 30,
+   "weight": 2
+  },
+  {
+   "species": "claydol",
+   "min_level": 36,
+   "weight": 3
+  },
+  {
+   "species": "torterra",
+   "min_level": 32,
+   "weight": 1
+  },
+  {
+   "species": "chimchar",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "rampardos",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "bastiodon",
+   "min_level": 30,
+   "weight": 1
+  },
+  {
+   "species": "gastrodon",
+   "min_level": 30,
+   "weight": 2
+  },
+  {
+   "species": "hippowdon",
+   "min_level": 34,
+   "weight": 2
+  },
+  {
+   "species": "tepig",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "stoutland",
+   "min_level": 32,
+   "weight": 1
+  },
+  {
+   "species": "pansear",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "gigalith",
+   "min_level": 37,
+   "weight": 1
+  },
+  {
+   "species": "excadrill",
+   "min_level": 31,
+   "weight": 2
+  },
+  {
+   "species": "palpitoad",
+   "min_level": 25,
+   "weight": 4
+  },
+  {
+   "species": "seismitoad",
+   "min_level": 36,
+   "weight": 1
+  },
+  {
+   "species": "krokorok",
+   "min_level": 29,
+   "weight": 12
+  },
+  {
+   "species": "darumaka",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "darmanitan",
+   "min_level": 35,
+   "weight": 2
+  },
+  {
+   "species": "litwick",
+   "min_level": 2,
+   "weight": 24
+  },
+  {
+   "species": "heatmor",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "larvesta",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "fennekin",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "braixen",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "delphox",
+   "min_level": 36,
+   "weight": 1
+  },
+  {
+   "species": "talonflame",
+   "min_level": 35,
+   "weight": 1
+  },
+  {
+   "species": "litleo",
+   "min_level": 2,
+   "weight": 7
+  },
+  {
+   "species": "pyroar",
+   "min_level": 35,
+   "weight": 2
+  },
+  {
+   "species": "gogoat",
+   "min_level": 32,
+   "weight": 1
+  },
+  {
+   "species": "litten",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "torracat",
+   "min_level": 17,
+   "weight": 1
+  },
+  {
+   "species": "incineroar",
+   "min_level": 34,
+   "weight": 6
+  },
+  {
+   "species": "lycanroc",
+   "min_level": 25,
+   "weight": 3
+  },
+  {
+   "species": "mudsdale",
+   "min_level": 30,
+   "weight": 2
+  },
+  {
+   "species": "salandit",
+   "min_level": 2,
+   "weight": 4
+  },
+  {
+   "species": "salazzle",
+   "min_level": 33,
+   "weight": 1
+  },
+  {
+   "species": "tsareena",
+   "min_level": 32,
+   "weight": 1
+  },
+  {
+   "species": "scorbunny",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "raboot",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "cinderace",
+   "min_level": 35,
+   "weight": 1
+  },
+  {
+   "species": "sandaconda",
+   "min_level": 36,
+   "weight": 4
+  },
+  {
+   "species": "sizzlipede",
+   "min_level": 2,
+   "weight": 6
+  },
+  {
+   "species": "fuecoco",
+   "min_level": 2,
+   "weight": 1
+  },
+  {
+   "species": "crocalor",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "skeledirge",
+   "min_level": 36,
+   "weight": 6
+  },
+  {
+   "species": "garganacl",
+   "min_level": 37,
+   "weight": 1
+  },
+  {
+   "species": "charcadet",
+   "min_level": 2,
+   "weight": 3
+  },
+  {
+   "species": "armarouge",
+   "min_level": 16,
+   "weight": 1
+  },
+  {
+   "species": "glimmora",
+   "min_level": 35,
+   "weight": 1
+  }
+ ],
+ "boss": {
+  "species": "lycanroc",
+  "level": 41,
+  "title_es": "¡Un Lycanroc imponente bloquea el camino!"
+ },
+ "cleared_es": "¡Ruta despejada! Rumbo a Cumbre Helada…",
+ "next": "ruta_8",
+ "capture": {
+  "hp_below": 0.5,
+  "chance_per_turn": 0.25
+ },
+ "drops": {
+  "chance": 0.35,
+  "table": [
+   {
+    "berry": "oran",
+    "weight": 30
+   },
+   {
+    "berry": "pecha",
+    "weight": 12
+   },
+   {
+    "berry": "cheri",
+    "weight": 12
+   },
+   {
+    "berry": "chesto",
+    "weight": 10
+   },
+   {
+    "berry": "rawst",
+    "weight": 10
+   },
+   {
+    "berry": "aspear",
+    "weight": 10
+   },
+   {
+    "berry": "figy",
+    "weight": 6
+   },
+   {
+    "berry": "wiki",
+    "weight": 6
+   },
+   {
+    "berry": "mago",
+    "weight": 6
+   },
+   {
+    "berry": "aguav",
+    "weight": 6
+   },
+   {
+    "berry": "iapapa",
+    "weight": 6
+   },
+   {
+    "berry": "sitrus",
+    "weight": 4
+   }
+  ]
+ },
+ "rewards": {
+  "gold_per_exp_unit": 0.1,
+  "boss_gold_mult": 5
+ },
+ "item_drops": {
+  "chance": 0.12,
+  "boss_chance": 1.0,
+  "boss_min_tier": 2,
+  "table": [
+   {
+    "item": "muscle_band",
+    "weight": 10
+   },
+   {
+    "item": "wise_glasses",
+    "weight": 10
+   },
+   {
+    "item": "rocky_helmet",
+    "weight": 10
+   },
+   {
+    "item": "assault_vest",
+    "weight": 10
+   },
+   {
+    "item": "quick_claw",
+    "weight": 8
+   },
+   {
+    "item": "leftovers",
+    "weight": 8
+   },
+   {
+    "item": "scope_lens",
+    "weight": 6
+   },
+   {
+    "item": "lucky_egg",
+    "weight": 5
+   },
+   {
+    "item": "amulet_coin",
+    "weight": 5
+   }
+  ]
+ }
+}
