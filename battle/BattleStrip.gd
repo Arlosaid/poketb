@@ -1,25 +1,32 @@
 class_name BattleStrip
 extends Control
-## Panel de pelea anclado a la derecha de la franja: marco de madera, fondo con
-## parallax y los Pokémon que pelean. El panel en sí NO bloquea el mouse: solo los
-## Pokémon y los botones registrados en Passthrough son clicables.
+## Escena de pelea dentro de su ventana propia (BattleWindow): sin marco ni cielo,
+## solo el camino con algo de decorado y los Pokémon que pelean. Solo el camino
+## (para arrastrar la ventana) y los Pokémon son clicables; el resto deja pasar el mouse.
 
-const FRAME := 4          # grosor del marco (px lógicos)
-const SHADOW := 1
+## Se emite al soltar la ventana tras arrastrarla.
+signal dropped
 
-var frame: NinePatchRect
+## Alto (px lógicos) de la franja de camino que sirve de asa de arrastre.
+const GRAB_H := 17.0
+
 var inner: Control
 var backdrop: Backdrop
 ## Contenedor de actores (coordenadas del área interior).
 var stage: Node2D
 var px_scale := 2
+## Mientras se arrastra, la ventana sigue al cursor.
+var dragging := false
+var desk: DesktopWindow
+
+var _grab := Vector2i.ZERO
+var _cursor_set := false
 
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	inner = Control.new()
 	inner.name = "Inner"
-	inner.clip_contents = true
 	inner.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(inner)
 	backdrop = Backdrop.new()
@@ -30,27 +37,56 @@ func _ready() -> void:
 	stage.y_sort_enabled = true
 	stage.z_index = 1
 	inner.add_child(stage)
-	frame = NinePatchRect.new()
-	frame.name = "Frame"
-	frame.texture = load("res://assets/ui/battle_frame.png")
-	frame.patch_margin_left = FRAME
-	frame.patch_margin_top = FRAME
-	frame.patch_margin_right = FRAME + SHADOW
-	frame.patch_margin_bottom = FRAME + SHADOW
-	frame.draw_center = false
-	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(frame)
+	Passthrough.register(self)
 
 
-## Coloca el panel (en px lógicos del viewport) y reconstruye el fondo.
-func layout(rect: Rect2i, biome_id: String, scale_px: int) -> void:
+## Asa de arrastre: la franja del camino (los Pokémon, registrados después, tienen prioridad).
+func get_click_rect() -> Rect2:
+	return Rect2(0.0, size.y - GRAB_H, size.x, GRAB_H)
+
+
+func _input(event: InputEvent) -> void:
+	var win := get_window()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed and not dragging and Passthrough.hovered() == self:
+			dragging = true
+			_grab = DisplayServer.mouse_get_position() - win.position
+			Passthrough.capture_count += 1
+			get_viewport().set_input_as_handled()
+		elif not event.pressed and dragging:
+			dragging = false
+			Passthrough.capture_count -= 1
+			dropped.emit()
+	elif event is InputEventMouseMotion and dragging:
+		var gp := DisplayServer.mouse_get_position()
+		win.position = _clamp_to_screen(gp, gp - _grab, win.size)
+		if desk:
+			desk.keep_awake()
+
+
+func _process(_delta: float) -> void:
+	# Cursor de mover solo mientras el mouse está sobre el asa.
+	var over := dragging or Passthrough.hovered() == self
+	if over != _cursor_set:
+		_cursor_set = over
+		DisplayServer.cursor_set_shape(DisplayServer.CURSOR_DRAG if over else DisplayServer.CURSOR_ARROW)
+
+
+## Mantiene la ventana dentro de la pantalla donde está el cursor (cualquier monitor).
+static func _clamp_to_screen(cursor: Vector2i, pos: Vector2i, win_size: Vector2i) -> Vector2i:
+	var screen := DisplayServer.get_screen_from_rect(Rect2i(cursor, Vector2i.ONE))
+	var r := Rect2i(DisplayServer.screen_get_position(screen), DisplayServer.screen_get_size(screen))
+	return Vector2i(
+		clampi(pos.x, r.position.x, r.end.x - win_size.x),
+		clampi(pos.y, r.position.y, r.end.y - win_size.y))
+
+
+## Dimensiona la escena (px lógicos) y reconstruye el fondo.
+func layout(logical: Vector2i, biome_id: String, scale_px: int) -> void:
 	px_scale = scale_px
-	position = rect.position
-	size = rect.size
-	frame.size = rect.size
-	inner.position = Vector2(FRAME, FRAME)
-	inner.size = Vector2(rect.size) - Vector2(FRAME * 2 + SHADOW, FRAME * 2 + SHADOW)
-	backdrop.setup(biome_id, Vector2i(inner.size), px_scale)
+	size = Vector2(logical)
+	inner.size = size
+	backdrop.setup(biome_id, logical, px_scale)
 
 
 func ground_y() -> float:

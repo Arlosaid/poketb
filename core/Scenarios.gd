@@ -77,7 +77,7 @@ func _gallery() -> void:
 	foe.interactive = false
 	bs.stage.add_child(foe)
 	for biome in ["pradera", "bosque"]:
-		bs.layout(Rect2i(bs.position, bs.size), biome, bs.px_scale)
+		bs.layout(BattleWindow.LOGICAL, biome, bs.px_scale)
 		hero.position = Vector2(70, bs.ground_y())
 		foe.position = Vector2(bs.inner.size.x - 90, bs.ground_y())
 		hero.play_anim("Walk", "E")
@@ -92,7 +92,7 @@ func _gallery() -> void:
 				await get_tree().process_frame
 			await Game.shot("p2_strip_%s_%02d" % [biome, int(hour)])
 	Game.clock.forced_hour = -1.0
-	bs.layout(Rect2i(bs.position, bs.size), "pradera", bs.px_scale)
+	bs.layout(BattleWindow.LOGICAL, "pradera", bs.px_scale)
 
 	# Prueba del tema de UI: panel crema, diálogo oscuro, corazones y bayas.
 	var p := PanelContainer.new()

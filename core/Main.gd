@@ -1,23 +1,18 @@
 extends Node2D
 ## Escena raíz. Arma los sistemas y conecta las señales entre ellos.
 
-## Fracción del ancho lógico que ocupa el panel de pelea (a la derecha).
-const BATTLE_WIDTH_FRAC := 0.40
-const BATTLE_HEIGHT := 64
-## Margen entre la casa y el panel de pelea.
-const HOME_GAP := 10.0
-
 var desk: DesktopWindow
 var tray: Tray
 var world: Node2D
 var home: HomeArea
 var hud: Control
+var battle_win: BattleWindow
 var battle: BattleStrip
 var combat: BattleController
 var saver: SaveManager
 var pc: PCWindow
 
-var _battle_rect := Rect2i()
+var _battle_placed := false
 var _needs_timer := 0.0
 
 
@@ -36,15 +31,22 @@ func _ready() -> void:
 	hud.theme = UiTheme.theme()
 	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(hud)
-	battle = BattleStrip.new()
-	battle.name = "BattleStrip"
-	hud.add_child(battle)
+	# La pelea vive en su propia ventana, que se arrastra a cualquier parte.
+	battle_win = BattleWindow.new(desk.scale)
+	battle_win.name = "BattleWindow"
+	add_child(battle_win)
+	battle = battle_win.strip
+	battle.desk = desk
+	battle.dropped.connect(_on_battle_dropped)
+	desk.extra_windows.append(battle_win)
+	Game.battle_window = battle_win
 	combat = BattleController.new()
 	combat.name = "BattleController"
 	add_child(combat)
-	combat.setup(battle, desk, hud)
+	combat.setup(battle, desk)
 	saver = SaveManager.new()
 	saver.name = "SaveManager"
+	saver.battle_window = battle_win
 	add_child(saver)
 	saver.setup(combat)
 	home = HomeArea.new()
@@ -65,6 +67,8 @@ func _ready() -> void:
 
 	Game.roster.new_game()
 	var away := saver.load_game()
+	battle_win.place(saver.saved_battle_pos)
+	_battle_placed = true
 	_on_geometry(desk.logical_size)
 	if away >= 120.0:
 		_offline(away)
@@ -86,9 +90,9 @@ func _process(_delta: float) -> void:
 
 func _on_geometry(logical: Vector2i) -> void:
 	hud.size = logical
-	var w := int(round(logical.x * BATTLE_WIDTH_FRAC))
-	_battle_rect = Rect2i(logical.x - w - 2, logical.y - BATTLE_HEIGHT, w, BATTLE_HEIGHT)
-	battle.layout(_battle_rect, "pradera", desk.scale)
+	battle_win.rescale(desk.scale)
+	if _battle_placed:
+		battle_win.place(battle_win.position)
 	combat.relayout()
 	_apply_mode(false)
 
@@ -109,26 +113,36 @@ func _sync_home() -> void:
 	if c != 0 and c not in fighting and c not in uids:
 		uids.append(c)
 	# Los que vuelven de pelear entran caminando desde el lado del panel.
-	home.sync(uids, c, home.x_max if Game.mode == Game.MODE_BATTLE else -1.0)
+	home.sync(uids, c, _panel_entry_x() if Game.mode == Game.MODE_BATTLE else -1.0)
 
 
 func _on_mode_changed(_m: StringName) -> void:
 	_apply_mode(true)
 
 
-## Modo pelea: panel visible y casa a su izquierda. Modo descanso: el panel se
-## esconde bajando detrás del borde y la casa ocupa todo el ancho.
-func _apply_mode(animate: bool) -> void:
-	var resting := Game.mode == Game.MODE_REST
-	var target_y := float(_battle_rect.position.y + (BATTLE_HEIGHT + 2 if resting else 0))
-	if animate:
-		var t := battle.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		t.tween_property(battle, "position:y", target_y, 0.35)
-	else:
-		battle.position.y = target_y
-	var right := float(desk.logical_size.x - 10) if resting else _battle_rect.position.x - HOME_GAP
-	home.set_bounds(10.0, right, desk.ground_y())
+## Modo pelea: la ventana del panel se ve. Modo descanso: se oculta y las mascotas
+## ocupan todo el ancho de la barra. La casa siempre usa todo el ancho.
+func _apply_mode(_animate: bool) -> void:
+	_update_battle_visibility()
+	home.set_bounds(10.0, float(desk.logical_size.x - 10), desk.ground_y())
 	_sync_home()
+
+
+func _update_battle_visibility() -> void:
+	var show := Game.mode == Game.MODE_BATTLE and not desk.fullscreen_app
+	if battle_win.visible != show:
+		battle_win.visible = show
+
+
+## X (en la franja de casa) por donde entran caminando los que vuelven de pelear:
+## la del panel, o el borde más cercano si el panel está fuera de esta pantalla.
+func _panel_entry_x() -> float:
+	var cx := battle_win.position.x + battle_win.size.x / 2.0 - get_tree().root.position.x
+	return clampf(cx / desk.scale, home.x_min, home.x_max)
+
+
+func _on_battle_dropped() -> void:
+	saver.save()
 
 
 func _on_debug(id: int) -> void:
@@ -154,8 +168,11 @@ func _open_pc(tab := "pokemon") -> void:
 	add_child(pc)
 	# encima de la franja, centrada sobre la casa
 	var win := get_tree().root
-	var x := win.position.x + int(_battle_rect.position.x * desk.scale / 2) - pc.size.x / 2
-	pc.position = Vector2i(maxi(win.position.x + 8, x), win.position.y - pc.size.y - 4)
+	if battle_win.visible:
+		var bx := battle_win.position.x + battle_win.size.x / 2 - pc.size.x / 2
+		pc.position = Vector2i(maxi(8, bx), maxi(8, battle_win.position.y - pc.size.y - 4))
+	else:
+		pc.position = Vector2i(win.position.x + (win.size.x - pc.size.x) / 2, win.position.y - pc.size.y - 4)
 	pc.show_tab(tab)
 
 
@@ -183,3 +200,4 @@ func _notification(what: int) -> void:
 func _on_fullscreen_app(active: bool) -> void:
 	world.visible = not active
 	hud.visible = not active
+	_update_battle_visibility()

@@ -1,12 +1,14 @@
 class_name BattleLog
 extends PanelContainer
-## Cajita de diálogo (estilo Explorers) que flota justo encima del panel de pelea y
-## muestra un mensaje a la vez. Así no tapa la escena.
+## Cajita de diálogo (estilo Explorers) pegada al borde superior de la ventana de
+## pelea, centrada. Muestra un mensaje a la vez (con salto de línea si es largo).
 
 var _label: Label
 var _queue: Array = []   # [[texto, segundos], ...]
 var _busy := false
-var anchor_rect := Rect2()
+## Ancho de la ventana donde se centra la cajita (px lógicos).
+var area_width := 216.0
+const MAX_TEXT := 190.0
 
 
 func _ready() -> void:
@@ -43,8 +45,13 @@ func _next() -> void:
 	_label.text = item[0]
 	_hold = item[1]
 	_elapsed = 0.0
+	var font := _label.get_theme_font("font")
+	var fs := _label.get_theme_font_size("font_size")
+	var wide := font.get_string_size(item[0], HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > MAX_TEXT
+	_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if wide else TextServer.AUTOWRAP_OFF
+	_label.custom_minimum_size.x = MAX_TEXT if wide else 0.0
 	reset_size()
-	position = Vector2(anchor_rect.position.x + 6.0, anchor_rect.position.y - size.y + 2.0).round()
+	position = Vector2((area_width - size.x) / 2.0, 0.0).round()
 	if modulate.a < 1.0:
 		create_tween().tween_property(self, "modulate:a", 1.0, 0.12)
 

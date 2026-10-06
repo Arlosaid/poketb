@@ -12,6 +12,9 @@ const AUTOSAVE_EVERY := 60.0
 var combat: BattleController
 ## Si es true, no se guarda al cerrar (para el escenario que prepara un guardado viejo).
 var skip_quit_save := false
+## Posición guardada de la ventana de pelea (null = la de por defecto).
+var saved_battle_pos: Variant = null
+var battle_window: Window
 var _timer := 0.0
 
 
@@ -30,6 +33,14 @@ func _file() -> String:
 	return SCENARIO_FILE if Game.scenario != "" else FILE
 
 
+func _battle_pos_json() -> Variant:
+	if is_instance_valid(battle_window):
+		return [battle_window.position.x, battle_window.position.y]
+	if saved_battle_pos is Vector2i:
+		return [saved_battle_pos.x, saved_battle_pos.y]
+	return null
+
+
 ## `age`: segundos a restar a la marca de tiempo (solo para probar el progreso offline).
 func save(age := 0.0) -> void:
 	var data := {
@@ -38,6 +49,7 @@ func save(age := 0.0) -> void:
 		"mode": String(Game.mode),
 		"roster": Game.roster.to_dict(),
 		"route": {"id": combat.route.get("id", "ruta_1"), "progress": combat.progress, "cleared": combat.cleared},
+		"ui": {"battle_pos": _battle_pos_json()},
 	}
 	var tmp := _file() + ".tmp"
 	var f := FileAccess.open("user://" + tmp, FileAccess.WRITE)
@@ -72,4 +84,7 @@ func load_game() -> float:
 	combat.progress = int(r.get("progress", 0))
 	combat.cleared = bool(r.get("cleared", false))
 	Game.mode = StringName(d.get("mode", "battle"))
+	var bp = d.get("ui", {}).get("battle_pos")
+	if bp is Array and bp.size() == 2:
+		saved_battle_pos = Vector2i(int(bp[0]), int(bp[1]))
 	return maxf(0.0, Time.get_unix_time_from_system() - float(d.get("saved_at", 0.0)))

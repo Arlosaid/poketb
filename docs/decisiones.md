@@ -118,3 +118,6 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **Los escenarios fijan `Game.forced_idle = 0`** para que los resultados no dependan de si el usuario tocó el mouse.
 - **Créditos dentro del juego:** pestaña "Créditos" de la PC, también desde la bandeja. `CREDITS.md` se genera con `tools/gen_credits.py`.
 - **Las partidas creadas durante las pruebas se borraron:** el primer arranque real empieza de cero, con Charmander Nv. 5.
+- **Panel de pelea como ventana propia (estilo Taskbar Hero):** `BattleWindow` (216x96 px lógicos, transparente, sin marco ni cielo, siempre al frente, sin foco). Solo se ven el camino, algo de arbolado (capas con `overlay` en `data/biomes/*.json`) y los Pokémon. Se arrastra desde la franja del camino a cualquier punto de cualquier pantalla; la posición se guarda (`ui.battle_pos` en `save.json`) y, si el monitor ya no existe, vuelve a la posición por defecto. En reposo se oculta. La casa (mascotas) usa siempre todo el ancho de la barra.
+- **`Passthrough` es multi-ventana:** cada ventana con nodos registrados activa/desactiva su propio clic a través según el cursor.
+- **Capturas de la pelea:** `Game.shot()` guarda también `<nombre>_battle.png` con la ventana de pelea.

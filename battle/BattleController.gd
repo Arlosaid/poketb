@@ -12,6 +12,8 @@ signal event(kind: String)
 
 enum State { IDLE, WALK, BATTLE, RESTING }
 
+## Alto (en la ventana) donde van las fichas de nombre/PS, bajo la cajita de diálogo.
+const CHIP_Y := 25.0
 const LEAD_X := 96.0
 const FOLLOW_GAP := 24.0
 const MAX_VISIBLE := 4
@@ -48,14 +50,14 @@ var _tint_timer := 0.0
 var _rest_timer := 0.0
 
 
-func setup(s: BattleStrip, d: DesktopWindow, hud: Control, route_id := "ruta_1") -> void:
+func setup(s: BattleStrip, d: DesktopWindow, route_id := "ruta_1") -> void:
 	strip = s
 	desk = d
 	rng.randomize()
 	route = JSON.parse_string(FileAccess.get_file_as_string("res://data/routes/%s.json" % route_id))
 	log_box = BattleLog.new()
 	log_box.name = "BattleLog"
-	hud.add_child(log_box)
+	strip.add_child(log_box)
 	our_chip = InfoChip.new(false, true)
 	foe_chip = InfoChip.new(true, false)
 	progress_bar = RouteProgress.new()
@@ -73,11 +75,12 @@ func relayout() -> void:
 	if our_chip == null:
 		return
 	var w := strip.inner.size.x
-	our_chip.position = Vector2(4, 3)
-	foe_chip.position = Vector2(w - 4 - foe_chip.size.x, 3)
-	progress_bar.position = Vector2(round(strip.size.x - progress_bar.size.x - 10.0), -3.0)
+	# Debajo de la cajita de diálogo (arriba): fichas en las esquinas, ruta al centro bajo ellas.
+	our_chip.position = Vector2(4, CHIP_Y)
+	foe_chip.position = Vector2(w - 4 - foe_chip.size.x, CHIP_Y)
+	progress_bar.position = Vector2(round((strip.size.x - progress_bar.size.x) / 2.0), CHIP_Y + 17.0)
 	_wipe_rect.size = strip.inner.size
-	log_box.anchor_rect = Rect2(strip.position, strip.size)
+	log_box.area_width = strip.size.x
 	var b := _section_biome()
 	if b != biome or strip.backdrop.biome.get("id", "") != b:
 		biome = b

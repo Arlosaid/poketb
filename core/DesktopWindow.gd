@@ -20,6 +20,8 @@ const ACTIVE_HOLD := 1.0
 var scale := 2
 var logical_size := Vector2i(960, LOGICAL_HEIGHT)
 var fullscreen_app := false
+## Otras ventanas del juego que también van sin ícono de barra y siempre al frente.
+var extra_windows: Array[Window] = []
 
 var _last_geom := Rect2i()
 var _active_until := 0.0
@@ -76,9 +78,13 @@ func _maintain() -> void:
 	var native: Object = Game.native
 	if native == null:
 		return
-	var wid := get_tree().root.get_window_id()
-	native.hide_from_taskbar(wid)
-	native.reassert_topmost(wid)
+	var wins: Array[Window] = [get_tree().root]
+	wins.append_array(extra_windows)
+	for w in wins:
+		if is_instance_valid(w) and w.visible:
+			var wid := w.get_window_id()
+			native.hide_from_taskbar(wid)
+			native.reassert_topmost(wid)
 	var fs: bool = native.is_fullscreen_app_active()
 	if fs != fullscreen_app:
 		fullscreen_app = fs

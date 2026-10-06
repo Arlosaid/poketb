@@ -22,6 +22,8 @@ var dt := 0.0
 var autoquit := 0.0
 ## Si es >= 0, sustituye a la inactividad real del sistema (escenarios y depuración).
 var forced_idle := -1.0
+## Ventana del panel de pelea (para incluirla en las capturas de revisión).
+var battle_window: Window = null
 
 
 func _enter_tree() -> void:
@@ -76,6 +78,9 @@ func shot(shot_name: String) -> void:
 	DirAccess.make_dir_recursive_absolute(dir)
 	img.save_png(dir + shot_name + ".png")
 	print("[shot] ", dir + shot_name + ".png")
+	# La pelea vive en su propia ventana: va en un archivo aparte (<nombre>_battle.png).
+	if is_instance_valid(battle_window) and battle_window.visible:
+		battle_window.get_texture().get_image().save_png(dir + shot_name + "_battle.png")
 
 
 ## Captura de una ventana secundaria (por ejemplo, la PC).

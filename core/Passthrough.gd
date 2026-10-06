@@ -14,7 +14,8 @@ extends Node
 const MARGIN := 2.0
 
 var _nodes: Array[Node] = []
-var _click_through := false
+## Estado de clic a través por ventana (id de ventana → bool).
+var _through := {}
 var _hover: Node = null
 ## Mientras se arrastra algo, la ventana no suelta el mouse.
 var capture_count := 0
@@ -41,18 +42,21 @@ func hovered() -> Node:
 	return _hover
 
 
-## Posición del cursor en coordenadas del viewport principal, aunque la ventana no reciba eventos.
-func mouse_in_viewport() -> Vector2:
-	if fake_mouse.is_finite():
+## Posición del cursor en coordenadas del viewport de la ventana `win` (la principal
+## por defecto), aunque la ventana no reciba eventos.
+func mouse_in_viewport(win: Window = null) -> Vector2:
+	var root := get_tree().root
+	if win == null:
+		win = root
+	if win == root and fake_mouse.is_finite():
 		return fake_mouse
-	var win := get_tree().root
 	var local := Vector2(DisplayServer.mouse_get_position() - win.position)
 	return win.get_final_transform().affine_inverse() * local
 
 
 func _process(_delta: float) -> void:
-	var p := mouse_in_viewport()
 	_hover = null
+	var windows := {get_tree().root: true}
 	# Recorremos al revés: lo último registrado suele estar encima.
 	for i in range(_nodes.size() - 1, -1, -1):
 		var n := _nodes[i]
@@ -60,20 +64,27 @@ func _process(_delta: float) -> void:
 			continue
 		if n is CanvasItem and not (n as CanvasItem).is_visible_in_tree():
 			continue
+		var w := n.get_window()
+		if not w.visible:
+			continue
+		windows[w] = true
+		if _hover != null:
+			continue
 		var r: Rect2 = n.get_click_rect()
-		if r.grow(MARGIN).has_point(p):
+		if r.grow(MARGIN).has_point(mouse_in_viewport(w)):
 			_hover = n
-			break
-	var want := _hover == null and capture_count == 0 and not disabled
-	_set_click_through(want)
+	var hover_win: Window = _hover.get_window() if _hover != null else null
+	for w: Window in windows:
+		_set_click_through(w, hover_win != w and capture_count == 0 and not disabled)
 
 
-func _set_click_through(enabled: bool) -> void:
-	if enabled == _click_through or Game.native == null:
+func _set_click_through(w: Window, enabled: bool) -> void:
+	var id := w.get_window_id()
+	if Game.native == null or _through.get(id, false) == enabled:
 		return
-	_click_through = enabled
-	Game.native.set_click_through(get_tree().root.get_window_id(), enabled)
+	_through[id] = enabled
+	Game.native.set_click_through(id, enabled)
 
 
 func is_click_through() -> bool:
-	return _click_through
+	return _through.get(get_tree().root.get_window_id(), false)

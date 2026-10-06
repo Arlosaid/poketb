@@ -24,7 +24,8 @@
 				3,
 				16
 			],
-			"count": 4
+			"count": 4,
+			"overlay": false
 		},
 		{
 			"name": "far",
@@ -50,7 +51,8 @@
 					5,
 					0.25
 				]
-			]
+			],
+			"overlay": false
 		},
 		{
 			"name": "far2",
@@ -76,7 +78,8 @@
 					11,
 					0.15
 				]
-			]
+			],
+			"overlay": false
 		},
 		{
 			"name": "mid",
@@ -139,4 +142,4 @@
 			"count": 5
 		}
 	]
-}
+}
