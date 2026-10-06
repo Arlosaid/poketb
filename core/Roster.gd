@@ -121,7 +121,7 @@ func tick(dt: float, battling: Array, sleeping: Array) -> void:
 
 ## Caricia: devuelve cuánta amistad ganó (0 si ya lo acariciaste mucho esta hora).
 func pet(p: PokemonInstance) -> int:
-	var now := Game.clock.elapsed
+	var now := Time.get_unix_time_from_system()
 	if now - p.pets_hour_start > 3600.0:
 		p.pets_hour_start = now
 		p.pets_this_hour = 0

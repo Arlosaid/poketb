@@ -19,6 +19,10 @@ func run(m: Node, scenario_name: String) -> void:
 			await _pet()
 		"battle":
 			await _battle()
+		"save_write":
+			await _save_write()
+		"save_load":
+			await _save_load()
 		_:
 			push_error("Escenario desconocido: " + scenario_name)
 	Game.quit()
@@ -258,3 +262,40 @@ func _battle() -> void:
 	print("[battle] eventos vistos: ", seen.keys(), " progreso ", bc.progress, " equipo ", r.team_members().map(func(p): return "%s Nv%d PS%d/%d" % [p.species, p.level, p.hp, p.max_hp()]))
 	await _wait(1.0)
 	await Game.shot("p4_end")
+
+
+## Paso 1: arma una partida con capturas y bayas, y la guarda "hace 3 horas".
+func _save_write() -> void:
+	var r := Game.roster
+	r.add(PokemonInstance.create("pidgey", 5))
+	var od := PokemonInstance.create("oddish", 4)
+	r.add(od)
+	r.add(PokemonInstance.create("hoothoot", 6))
+	for i in 5:
+		r.add(PokemonInstance.create(["rattata", "caterpie", "spinarak"][i % 3], 3 + i))
+	r.get_member(r.companion).known_flavors = {"spicy": "likes", "dry": "hates"}
+	r.add_berry("sitrus", 2)
+	r.add_berry("figy", 1)
+	main.saver.save(3.0 * 3600.0)
+	main.saver.skip_quit_save = true
+	print("[save] guardado de prueba con ", r.members.size(), " Pokémon")
+
+
+## Paso 2: carga, calcula el progreso offline (3 h) y muestra la PC.
+func _save_load() -> void:
+	print("[save] cargado: ", Game.roster.members.size(), " Pokémon, equipo ", Game.roster.team.size())
+	await _wait(2.5)
+	await Game.shot("p5_offline")
+	main._open_pc("pokemon")
+	await _wait(0.6)
+	await Game.shot_window(main.pc, "p5_pc_pokemon")
+	main.pc._select(Game.roster.team[1])
+	await _wait(0.3)
+	await Game.shot_window(main.pc, "p5_pc_select")
+	main.pc.show_tab("bayas")
+	await _wait(0.3)
+	await Game.shot_window(main.pc, "p5_pc_bayas")
+	main.pc.show_tab("creditos")
+	await _wait(0.3)
+	await Game.shot_window(main.pc, "p5_pc_creditos")
+	await _wait(8.0)  # margen para comprobar con tools/probe.ps1 que la PC no está en la barra

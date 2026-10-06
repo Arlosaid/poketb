@@ -98,3 +98,15 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **La barra de avance de la ruta** es una pestaña de madera sobre el borde del marco, para no tapar el sol.
 - **La velocidad x10 de depuración** usa `Engine.time_scale`, así que acelera también los tweens y las animaciones.
 - **En pausa** no se inician encuentros nuevos ni se avanza; la pelea en curso termina su turno.
+
+## 2026-10-06 — Fase 5 (PC, guardado y offline)
+
+- **Guardado** en `user://save.json` (en Windows: `%APPDATA%\Godotpp_userdata\Taskbar Pokémon\`). Se guarda cada 60 s reales y al salir. La escritura es atómica (`.tmp` + renombrar) y el archivo lleva `version` del esquema. Los escenarios usan `scenario_save.json` y nunca tocan la partida real.
+- **Ritmo:** la caminata entre encuentros pasó de 6–12 s a 18–35 s. Con el ritmo anterior, 3 h offline llevaban al equipo del Nv. 5 al 22, demasiado rápido para algo que corre todo el día.
+- **Offline:** simulación por minutos, con tope de 8 h y eficiencia del 35% ("pelean con más calma sin ti"). Respeta energía, descansos y hambre. Da EXP, evoluciones, bayas y amistad. No captura y nunca enfrenta al jefe, que siempre se pelea en vivo. El resumen es compacto (título + 3 renglones) para caber en la franja.
+- **La PC** es una `Window` nativa transitoria de la principal: no aparece en la barra de tareas (verificado). No usa `always_on_top`, porque Godot no lo permite en transitorias; igual queda encima por ser propiedad de una ventana topmost. Se mueve arrastrando la barra de título.
+- **Pestañas de la PC:**
+  - Pokémon: el equipo de 6 + cajas con arrastrar y soltar (reordenar, cambiar o mandar a la caja) y un detalle con retrato según el ánimo, tipos, naturaleza (+/−), amistad en 5 corazones, PS, saciedad, energía, sabores descubiertos (♥ le gusta, × no le gusta, · neutro, ? sin descubrir) y botones "Compañero" y "Al equipo/A la caja".
+  - Bayas.
+  - Créditos: también se abre desde la bandeja. Los IDs de Discord sin nombre público se muestran como "usuario anónimo de Discord".
+- **La estrella** de la casilla marca al compañero. Los debilitados aparecen semitransparentes.

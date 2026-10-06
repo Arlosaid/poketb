@@ -59,5 +59,5 @@ python -I tools/compose_shot.py shots/<captura>.png --x0 0 --x1 400 --zoom 3
 - [x] Fase 2: pipeline de arte (importador, paleta, fuente, marcos, fondos con parallax, cielo según la hora). `--scenario=gallery` genera las capturas de revisión.
 - [x] Fase 3: modo mascota (`--scenario=pet` genera las capturas p3_*).
 - [x] Fase 4: modo pelea (`--scenario=battle`: encuentro, golpe, captura, nivel, evolución, jefe, debilitado; capturas p4_*).
-- [ ] Fase 5: PC, guardado y offline.
+- [x] Fase 5: PC, guardado y offline (`--scenario=save_write` y luego `--scenario=save_load`; capturas p5_*).
 - [ ] Fase 6: pulido y créditos.

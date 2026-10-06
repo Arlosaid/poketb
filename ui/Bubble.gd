@@ -39,7 +39,11 @@ static func show_for(hud: Control, actor: PokemonActor, emotion: String, text :=
 
 
 static func portrait_texture(actor: PokemonActor, emotion: String) -> Texture2D:
-	var ports: Dictionary = actor.meta.get("portraits", {})
+	return portrait_for(actor.species, emotion)
+
+
+static func portrait_for(species: String, emotion: String) -> Texture2D:
+	var ports: Dictionary = PokemonActor.load_meta(species).get("portraits", {})
 	for e in PORTRAIT_FALLBACK.get(emotion, [emotion, "Normal"]):
 		if ports.has(e):
 			return load(ports[e])

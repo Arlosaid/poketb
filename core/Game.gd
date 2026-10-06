@@ -78,6 +78,15 @@ func shot(shot_name: String) -> void:
 	print("[shot] ", dir + shot_name + ".png")
 
 
+## Captura de una ventana secundaria (por ejemplo, la PC).
+func shot_window(win: Window, shot_name: String) -> void:
+	await RenderingServer.frame_post_draw
+	var img := win.get_texture().get_image()
+	var dir := ProjectSettings.globalize_path("res://shots/")
+	img.save_png(dir + shot_name + ".png")
+	print("[shot] ", dir + shot_name + ".png")
+
+
 func quit() -> void:
 	# El guardado se engancha a esta notificación (SaveManager, fase 5).
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

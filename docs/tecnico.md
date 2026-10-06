@@ -66,3 +66,8 @@ Para compilar hace falta VS 2022 Build Tools (C++) y `pip install scons`. Desde 
 - `battle/BattleController.gd` es la máquina de estados (IDLE, WALK, BATTLE, RESTING). Las secuencias son corrutinas que `_epoch` cancela al cambiar de modo. La señal `event(kind)` marca los momentos clave.
 - HUD: `InfoChip` (nombre, PS y EXP), `RouteProgress` (pestaña sobre el marco), `BattleLog` (diálogo encima del panel) y `ui/HpBar.gd`.
 - Las rutas se definen en `data/routes/*.json`: tablas de día y de noche, rango de niveles, secciones de bioma, jefe, captura y botín de bayas.
+
+## Guardado, offline y PC
+- `core/SaveManager.gd` maneja `save(age)` y `load_game()`, que devuelve los segundos que pasaron. `Main._notification(WM_CLOSE_REQUEST)` guarda al salir.
+- `battle/OfflineSim.gd` (simulación) y `ui/OfflineSummary.gd` (resumen).
+- `ui/PCWindow.gd` (Window nativa con la misma escala entera) y `ui/MonCell.gd` (casilla con drag & drop). `Game.shot_window()` captura ventanas secundarias.

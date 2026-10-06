@@ -14,6 +14,8 @@ var home: HomeArea
 var hud: Control
 var battle: BattleStrip
 var combat: BattleController
+var saver: SaveManager
+var pc: PCWindow
 
 var _battle_rect := Rect2i()
 var _needs_timer := 0.0
@@ -41,6 +43,10 @@ func _ready() -> void:
 	combat.name = "BattleController"
 	add_child(combat)
 	combat.setup(battle, desk, hud)
+	saver = SaveManager.new()
+	saver.name = "SaveManager"
+	add_child(saver)
+	saver.setup(combat)
 	home = HomeArea.new()
 	home.name = "Home"
 	home.setup(desk, hud)
@@ -53,10 +59,15 @@ func _ready() -> void:
 	home.pc_requested.connect(_open_pc)
 	tray.open_pc_requested.connect(_open_pc)
 	tray.debug_action.connect(_on_debug)
+	tray.credits_requested.connect(func() -> void: _open_pc("creditos"))
+	Game.roster.changed.connect(_on_roster_changed)
 	combat.fighters_changed.connect(_sync_home)
 
 	Game.roster.new_game()
+	var away := saver.load_game()
 	_on_geometry(desk.logical_size)
+	if away >= 120.0:
+		_offline(away)
 
 	if Game.scenario != "":
 		var sc := Scenarios.new()
@@ -134,8 +145,39 @@ func _on_debug(id: int) -> void:
 			battle.backdrop.refresh()
 
 
-func _open_pc() -> void:
-	print("[Main] abrir PC (fase 5)")
+func _open_pc(tab := "pokemon") -> void:
+	if is_instance_valid(pc):
+		pc.show_tab(tab)
+		pc.grab_focus()
+		return
+	pc = PCWindow.new(desk.scale)
+	add_child(pc)
+	# encima de la franja, centrada sobre la casa
+	var win := get_tree().root
+	var x := win.position.x + int(_battle_rect.position.x * desk.scale / 2) - pc.size.x / 2
+	pc.position = Vector2i(maxi(win.position.x + 8, x), win.position.y - pc.size.y - 4)
+	pc.show_tab(tab)
+
+
+func _on_roster_changed() -> void:
+	# Cambios hechos en la PC: el equipo en ruta se actualiza al momento.
+	if combat.state == BattleController.State.WALK:
+		combat._rebuild_fighters()
+		combat._formation(true)
+
+
+## Progreso mientras el juego estuvo cerrado (tope 8 h) y su resumen.
+func _offline(seconds: float) -> void:
+	var s := OfflineSim.run(seconds, Game.mode == Game.MODE_BATTLE, combat)
+	combat.relayout()
+	await get_tree().create_timer(1.5).timeout
+	var c := Game.roster.companion_member()
+	OfflineSummary.show_in(hud, s, c.species if c else "")
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and not saver.skip_quit_save:
+		saver.save()
 
 
 func _on_fullscreen_app(active: bool) -> void:

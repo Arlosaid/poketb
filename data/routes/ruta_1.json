@@ -2,42 +2,121 @@
 	"id": "ruta_1",
 	"name_es": "Ruta 1",
 	"encounters_to_boss": 20,
-	"level_range": [2, 8],
-	"walk_seconds": [6, 12],
+	"level_range": [
+		2,
+		8
+	],
+	"walk_seconds": [
+		18,
+		35
+	],
 	"sections": [
-		{"from": 0.0, "biome": "pradera"},
-		{"from": 0.7, "biome": "bosque"}
+		{
+			"from": 0.0,
+			"biome": "pradera"
+		},
+		{
+			"from": 0.7,
+			"biome": "bosque"
+		}
 	],
 	"day": [
-		{"species": "pidgey", "weight": 35},
-		{"species": "rattata", "weight": 30},
-		{"species": "caterpie", "weight": 20},
-		{"species": "oddish", "weight": 15}
+		{
+			"species": "pidgey",
+			"weight": 35
+		},
+		{
+			"species": "rattata",
+			"weight": 30
+		},
+		{
+			"species": "caterpie",
+			"weight": 20
+		},
+		{
+			"species": "oddish",
+			"weight": 15
+		}
 	],
 	"night": [
-		{"species": "hoothoot", "weight": 35},
-		{"species": "spinarak", "weight": 30},
-		{"species": "rattata", "weight": 20},
-		{"species": "oddish", "weight": 15}
+		{
+			"species": "hoothoot",
+			"weight": 35
+		},
+		{
+			"species": "spinarak",
+			"weight": 30
+		},
+		{
+			"species": "rattata",
+			"weight": 20
+		},
+		{
+			"species": "oddish",
+			"weight": 15
+		}
 	],
-	"boss": {"species": "pidgeotto", "level": 14, "title_es": "¡Un Pidgeotto imponente bloquea el camino!"},
+	"boss": {
+		"species": "pidgeotto",
+		"level": 14,
+		"title_es": "¡Un Pidgeotto imponente bloquea el camino!"
+	},
 	"cleared_es": "¡Ruta despejada! Próximamente: Bosque Verde…",
-	"capture": {"hp_below": 0.5, "chance_per_turn": 0.25},
+	"capture": {
+		"hp_below": 0.5,
+		"chance_per_turn": 0.25
+	},
 	"drops": {
 		"chance": 0.35,
 		"table": [
-			{"berry": "oran", "weight": 30},
-			{"berry": "pecha", "weight": 12},
-			{"berry": "cheri", "weight": 12},
-			{"berry": "chesto", "weight": 10},
-			{"berry": "rawst", "weight": 10},
-			{"berry": "aspear", "weight": 10},
-			{"berry": "figy", "weight": 6},
-			{"berry": "wiki", "weight": 6},
-			{"berry": "mago", "weight": 6},
-			{"berry": "aguav", "weight": 6},
-			{"berry": "iapapa", "weight": 6},
-			{"berry": "sitrus", "weight": 4}
+			{
+				"berry": "oran",
+				"weight": 30
+			},
+			{
+				"berry": "pecha",
+				"weight": 12
+			},
+			{
+				"berry": "cheri",
+				"weight": 12
+			},
+			{
+				"berry": "chesto",
+				"weight": 10
+			},
+			{
+				"berry": "rawst",
+				"weight": 10
+			},
+			{
+				"berry": "aspear",
+				"weight": 10
+			},
+			{
+				"berry": "figy",
+				"weight": 6
+			},
+			{
+				"berry": "wiki",
+				"weight": 6
+			},
+			{
+				"berry": "mago",
+				"weight": 6
+			},
+			{
+				"berry": "aguav",
+				"weight": 6
+			},
+			{
+				"berry": "iapapa",
+				"weight": 6
+			},
+			{
+				"berry": "sitrus",
+				"weight": 4
+			}
 		]
 	}
 }
