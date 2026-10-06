@@ -1,7 +1,7 @@
 # Diseño del juego (MVP)
 
 ## Fantasía
-Mis Pokémon viven sobre mi barra de tareas. Mientras trabajo, una parte de mi equipo explora una ruta y pelea sola en un panel pequeño a la derecha. Los demás descansan en "casa" (a la izquierda): pasean, se sientan, se duermen y me miran cuando acerco el cursor. Mi compañero siempre está visible. Los cuido con caricias y bayas. Nunca hay castigos crueles.
+Mis Pokémon viven sobre mi barra de tareas. Mientras trabajo, una parte de mi equipo explora una ruta y pelea sola en un panel pequeño a la derecha. Los demás descansan en "casa" (a la izquierda): pasean, se sientan, se duermen y me miran cuando acerco el cursor. Las mascotas las elijo yo y se quedan en casa. Los cuido con caricias y bayas. Nunca hay castigos crueles.
 
 ## Pantalla
 ```
@@ -78,7 +78,7 @@ Con ≥200 de amistad se activan los efectos de afecto Gen 6+: un 10% de aguanta
   - salvajes de nivel 2–8 que escalan con el progreso;
   - jefe Pidgeotto, Nv. 14.
 - Los capturados van a la PC, desde donde se arma el equipo (hasta 6) y se elige al compañero.
-- **Mascotas:** se elige quién pasea por la casa (hasta 6, del equipo o de las cajas; el compañero siempre está). Se hace desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Los que pelean en ese momento están en el panel y vuelven a casa al terminar.
+- **Mascotas:** se elige quién vive en la casa (hasta 6, del equipo o de las cajas, compañero incluido o no). Se hace desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Las mascotas no pelean: se quedan siempre en casa. Pelean los del equipo que no son mascotas; si todo el equipo es mascota, el panel lo avisa.
 
 ## Progresión (Fase 7)
 Inspirada en Taskbar Hero, pero con piezas de Pokémon. Todo se paga con **monedas** que caen al ganar combates (también offline).

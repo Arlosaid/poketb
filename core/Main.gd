@@ -188,9 +188,13 @@ func _open_pc(tab := "pokemon") -> void:
 
 func _on_roster_changed() -> void:
 	# Cambios hechos en la PC: el equipo en ruta se actualiza al momento.
+	# Las mascotas no pelean: si eliges una del equipo, sale de la ruta y va a casa.
 	if combat.state == BattleController.State.WALK:
 		combat._rebuild_fighters()
-		combat._formation(true)
+		if combat.fighters.is_empty():
+			combat._enter_resting(combat._no_fighters_msg("Tu equipo descansa en casa…"))
+		else:
+			combat._formation(true)
 
 
 ## Progreso mientras el juego estuvo cerrado (tope 8 h) y su resumen.

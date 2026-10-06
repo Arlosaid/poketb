@@ -172,3 +172,11 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **Evolución por amistad:** se activó porque el juego ya tiene amistad (canon: subir de nivel con amistad ≥160 y, en algunas, de día o de noche). Las de piedra e intercambio quedan para cuando haya objetos.
 - **Vuelos más frecuentes y por toda la pantalla:** a pedido ("los pájaros vuelan por toda la pantalla"). Pasaron de 2–5 min entre vuelos a 45–120 s, con hasta 2 a la vez, pero siguen las reglas de antes: nunca reciben clics y no vuelan con pantalla completa ni si no estás usando la PC.
 - **Arreglo de un `Main.gd` truncado:** otra sesión dejó `core/Main.gd` cortado a mitad de una línea (su cambio de "elegir las mascotas"). Se completó con el resto del archivo de git, conservando sus cambios.
+
+## 2026-10-06 — Las mascotas se quedan en casa
+
+- **Pedido:** "en el menú debo yo elegir a los que estén de mascotas y así se queden, no que estén entrando y saliendo". Antes, una mascota que también estaba en el equipo salía a pelear y volvía al cansarse, y cada captura se volvía mascota sola.
+- **Las mascotas no pelean** (elegido por el usuario frente a "se queda en casa y además pelea en el panel"). `Roster.can_fight` las excluye; el panel avisa si todo el equipo es mascota.
+- **El compañero ya no es mascota a la fuerza:** si no, el inicial nunca pelearía. Se puede marcar o desmarcar como cualquier otro.
+- **Capturas:** ya no se vuelven mascotas solas (`Roster.auto_pet` solo en los escenarios).
+- **Partidas viejas** (`pets_format` < 2): se quitan de las mascotas los que están en el equipo, para no dejar al equipo sin pelear; el compañero, si estaba en la caja, queda de mascota.

@@ -64,8 +64,9 @@ Documento de traspaso: cómo está hecho el modo mascota (Fase 8), dónde se aju
 - Mientras hay un menú abierto (`_menu`), la mascota espera.
 
 ### Quién pasea
-- `Main._sync_home` muestra `Roster.pet_uids()` menos los que pelean. El compañero siempre está incluido.
-- El jugador elige desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Hay un máximo de 6 a la vez y pueden venir de las cajas.
+- `Main._sync_home` muestra `Roster.pet_uids()`. **Las mascotas no pelean** (`Roster.can_fight` las excluye), así que se quedan siempre en casa: nadie entra ni sale solo. El compañero es una mascota más (puede serlo o no).
+- Los capturados nuevos **no** se vuelven mascotas solos (salvo en los escenarios de prueba: `Roster.auto_pet`).
+- El jugador elige desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Hay un máximo de 6 a la vez y pueden venir de las cajas. Si eliges a uno que va caminando por la ruta, sale del panel al momento; si está en medio de un combate, sale al terminar.
 
 ### Interacciones
 | Gesto | Efecto |

@@ -322,8 +322,8 @@ func _fill_detail() -> void:
 	var is_pet := Game.roster.is_pet(p.uid)
 	var pb := Button.new()
 	pb.text = "♥ Mascota" if is_pet else "Mascota"
-	pb.tooltip_text = "Pasea por la casa. Máximo %d a la vez; el compañero siempre." % Roster.PETS_MAX
-	pb.disabled = p.uid == Game.roster.companion or (not is_pet and Game.roster.pets_full())
+	pb.tooltip_text = "Se queda en casa y no pelea. Máximo %d a la vez." % Roster.PETS_MAX
+	pb.disabled = not is_pet and Game.roster.pets_full()
 	pb.focus_mode = Control.FOCUS_NONE
 	pb.pressed.connect(Game.roster.toggle_pet.bind(p.uid))
 	btns.add_child(pb)

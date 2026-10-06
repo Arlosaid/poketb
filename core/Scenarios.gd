@@ -10,6 +10,12 @@ var main: Node
 func run(m: Node, scenario_name: String) -> void:
 	main = m
 	Game.forced_idle = 0.0  # resultados deterministas: el usuario "está activo"
+	# Los escenarios de casa esperan al compañero y a los capturados paseando; en la
+	# vista de conjunto, el compañero pelea y los demás quedan de mascota.
+	if scenario_name in ["still", "pet", "types", "hold", "showcase"]:
+		Game.roster.auto_pet = true
+	if scenario_name in ["still", "pet", "types", "hold"]:
+		Game.roster.pets.push_front(Game.roster.companion)
 	await get_tree().process_frame
 	match scenario_name:
 		"still":

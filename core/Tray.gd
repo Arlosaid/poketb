@@ -113,10 +113,10 @@ func _sync_pets() -> void:
 		var i := pets_menu.get_item_index(p.uid)
 		var on := r.is_pet(p.uid)
 		pets_menu.set_item_checked(i, on)
-		# el compañero siempre pasea; con la casa llena solo se puede guardar
-		pets_menu.set_item_disabled(i, p.uid == r.companion or (full and not on))
+		# con la casa llena solo se puede quitar
+		pets_menu.set_item_disabled(i, full and not on)
 	pets_menu.add_separator()
-	pets_menu.add_item("Máximo %d a la vez" % Roster.PETS_MAX, PETS_NOTE)
+	pets_menu.add_item("Máximo %d; las mascotas no pelean" % Roster.PETS_MAX, PETS_NOTE)
 	pets_menu.set_item_disabled(pets_menu.get_item_index(PETS_NOTE), true)
 
 

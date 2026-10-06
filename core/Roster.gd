@@ -10,8 +10,10 @@ signal berries_changed
 signal wallet_changed
 
 const TEAM_MAX := 6
-## Cuántos pasean a la vez por la casa (el compañero siempre está, y cuenta).
+## Cuántos pasean a la vez por la casa.
 const PETS_MAX := 6
+## Versión del significado de `pets` en el guardado (2: las mascotas no pelean).
+const PETS_FORMAT := 2
 ## Por segundo de juego.
 const FULLNESS_DECAY_HOME := 100.0 / (10.0 * 3600.0)   # de lleno a vacío en ~10 h
 const FULLNESS_DECAY_BATTLE_MULT := 2.0
@@ -37,8 +39,11 @@ const CHEERFUL_EXP_PCT := 5.0
 var members := {}            # uid → PokemonInstance
 var team: Array[int] = []    # uids en orden
 var companion := 0
-## Los que el jugador eligió como mascotas (uids). Pueden estar en el equipo o en las cajas.
+## Los que el jugador eligió como mascotas (uids). Se quedan siempre en casa y no
+## pelean, aunque estén en el equipo. Solo cambian desde la PC o la bandeja.
 var pets: Array[int] = []
+## Solo para los escenarios de prueba: los capturados pasan a ser mascotas solos.
+var auto_pet := false
 var berries := {}            # nombre → cantidad
 var gold := 0
 var skills := {}             # id del nodo → nivel
@@ -78,7 +83,7 @@ func add(p: PokemonInstance) -> void:
 	members[p.uid] = p
 	if team.size() < TEAM_MAX:
 		team.append(p.uid)
-	if pets.size() < PETS_MAX:
+	if auto_pet and pets.size() < PETS_MAX:
 		pets.append(p.uid)
 	changed.emit()
 
@@ -117,16 +122,14 @@ func set_team(uids: Array) -> void:
 	changed.emit()
 
 
-## ¿Pasea por la casa? El compañero siempre.
+## ¿Es mascota? (vive en casa y no pelea)
 func is_pet(uid: int) -> bool:
-	return uid == companion or uid in pets
+	return uid in pets
 
 
-## Mascotas elegidas, con el compañero siempre incluido (y sin pasarse de PETS_MAX).
+## Mascotas elegidas (sin pasarse de PETS_MAX).
 func pet_uids() -> Array[int]:
 	var out: Array[int] = []
-	if members.has(companion):
-		out.append(companion)
 	for u in pets:
 		if out.size() >= PETS_MAX:
 			break
@@ -140,9 +143,9 @@ func pets_full() -> bool:
 	return pet_uids().size() >= PETS_MAX
 
 
-## Lo saca a pasear o lo guarda en la PC. El compañero no se puede guardar.
+## Lo hace mascota (se queda en casa y deja de pelear) o lo devuelve a la PC.
 func toggle_pet(uid: int) -> void:
-	if not members.has(uid) or uid == companion:
+	if not members.has(uid):
 		return
 	if uid in pets:
 		pets.erase(uid)
@@ -153,9 +156,9 @@ func toggle_pet(uid: int) -> void:
 	changed.emit()
 
 
-## ¿Puede pelear ahora? (sin debilitarse y con energía)
+## ¿Puede pelear ahora? (no es mascota, sin debilitarse y con energía)
 func can_fight(p: PokemonInstance) -> bool:
-	return not p.is_fainted() and p.energy >= ENERGY_TO_FIGHT
+	return not is_pet(p.uid) and not p.is_fainted() and p.energy >= ENERGY_TO_FIGHT
 
 
 ## Avanza las necesidades. `battling`: uids peleando ahora; `sleeping`: uids dormidos en casa.
@@ -476,7 +479,7 @@ func to_dict() -> Dictionary:
 	var ms := []
 	for u in members:
 		ms.append(members[u].to_dict())
-	return {"members": ms, "team": team, "companion": companion, "pets": pets, "berries": berries, "next_uid": next_uid, "gold": gold, "skills": skills, "bag": bag, "bonds": bonds, "cheer_until": cheer_until, "cheer_pct": cheer_pct}
+	return {"members": ms, "team": team, "companion": companion, "pets": pets, "pets_format": PETS_FORMAT, "berries": berries, "next_uid": next_uid, "gold": gold, "skills": skills, "bag": bag, "bonds": bonds, "cheer_until": cheer_until, "cheer_pct": cheer_pct}
 
 
 func from_dict(d: Dictionary) -> void:
@@ -488,6 +491,12 @@ func from_dict(d: Dictionary) -> void:
 	companion = int(d.get("companion", 0))
 	# partidas viejas: las mascotas eran el equipo
 	pets.assign(d.get("pets", d["team"]).map(func(x): return int(x)))
+	if int(d.get("pets_format", 1)) < PETS_FORMAT:
+		# Antes las mascotas también peleaban y muchas se eligieron solas al capturarlas:
+		# las del equipo siguen peleando; el compañero, si estaba en la caja, queda de mascota.
+		pets.assign(pets.filter(func(u: int) -> bool: return u not in team))
+		if members.has(companion) and companion not in team and companion not in pets:
+			pets.push_front(companion)
 	berries = d.get("berries", {})
 	next_uid = int(d.get("next_uid", members.size() + 1))
 	gold = int(d.get("gold", 0))

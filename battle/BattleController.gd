@@ -163,7 +163,7 @@ func _process(delta: float) -> void:
 func _start_route() -> void:
 	_rebuild_fighters(false)
 	if fighters.is_empty():
-		_enter_resting("Tu equipo descansa en casa…")
+		_enter_resting(_no_fighters_msg("Tu equipo descansa en casa…"))
 		return
 	state = State.WALK
 	_walk_timer = rng.randf_range(route["walk_seconds"][0], route["walk_seconds"][1])
@@ -183,6 +183,14 @@ func _stop_all() -> void:
 	fighters_changed.emit()
 
 
+## Si nadie pelea porque todo el equipo es mascota, lo dice; si no, `msg`.
+func _no_fighters_msg(msg: String) -> String:
+	for p in Game.roster.team_members():
+		if not Game.roster.is_pet(p.uid):
+			return msg
+	return "Todo tu equipo está de mascota. Elige quién pelea en la PC."
+
+
 func _enter_resting(msg: String) -> void:
 	state = State.RESTING
 	_rest_timer = 2.0
@@ -192,6 +200,8 @@ func _enter_resting(msg: String) -> void:
 ## ¿Alguien del equipo ya descansó lo suficiente para volver a la ruta?
 func _ready_to_return() -> bool:
 	for p in Game.roster.team_members():
+		if Game.roster.is_pet(p.uid):
+			continue
 		if not p.is_fainted() and p.energy >= Roster.ENERGY_TO_RETURN and p.hp_frac() >= 0.5:
 			return true
 	return false
