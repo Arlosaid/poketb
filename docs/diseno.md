@@ -78,7 +78,7 @@ Con ≥200 de amistad se activan los efectos de afecto Gen 6+: un 10% de aguanta
   - salvajes de nivel 2–8 que escalan con el progreso;
   - jefe Pidgeotto, Nv. 14.
 - Los capturados van a la PC, desde donde se arma el equipo (hasta 6) y se elige al compañero.
-- **Mascotas:** se elige quién vive en la casa (hasta 6, del equipo o de las cajas, compañero incluido o no). Se hace desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Las mascotas no pelean: se quedan siempre en casa. Pelean los del equipo que no son mascotas; si todo el equipo es mascota, el panel lo avisa.
+- **Mascotas:** se elige quién vive en la casa (hasta 6, compañero incluido o no) en la pestaña "Mascotas" de la PC o en la bandeja. Las mascotas no pelean y se quedan siempre en casa. Un Pokémon está en el equipo, de mascota o en la caja, nunca en dos a la vez. Si el equipo queda vacío, el panel lo avisa.
 
 ## Progresión (Fase 7)
 Inspirada en Taskbar Hero, pero con piezas de Pokémon. Todo se paga con **monedas** que caen al ganar combates (también offline).

@@ -66,7 +66,9 @@ Documento de traspaso: cómo está hecho el modo mascota (Fase 8), dónde se aju
 ### Quién pasea
 - `Main._sync_home` muestra `Roster.pet_uids()`. **Las mascotas no pelean** (`Roster.can_fight` las excluye), así que se quedan siempre en casa: nadie entra ni sale solo. El compañero es una mascota más (puede serlo o no).
 - Los capturados nuevos **no** se vuelven mascotas solos (salvo en los escenarios de prueba: `Roster.auto_pet`).
-- El jugador elige desde la bandeja (submenú "Mascotas") o con el botón "Mascota" de la ficha en la PC. Hay un máximo de 6 a la vez y pueden venir de las cajas. Si eliges a uno que va caminando por la ruta, sale del panel al momento; si está en medio de un combate, sale al terminar.
+- **Tres listas sin cruces:** equipo (`Roster.team`, pelean), mascotas (`Roster.pets`, viven en casa) y cajas (`box_members()`, el resto). `set_team`, `set_pets` y `toggle_pet` mantienen que nadie esté en dos a la vez.
+- El jugador elige en la pestaña **Mascotas** de la PC (6 casillas + cajas, con arrastrar y soltar y botones "Al equipo" / "A mascotas" / "A la caja" en la ficha) o desde la bandeja (submenú "Mascotas"). Hay un máximo de 6. Si eliges a uno que va caminando por la ruta, sale del panel al momento; si está en medio de un combate, sale al terminar.
+- Para revisar un guardado real sin tocarlo: copiar `save.json` a `scenario_save.json` (en `%APPDATA%/Godot/app_userdata/Taskbar Pokémon/`) y correr `--scenario=save_load_pets` (imprime quién está en casa y saca `pets_*`).
 
 ### Interacciones
 | Gesto | Efecto |

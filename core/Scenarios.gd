@@ -32,6 +32,8 @@ func run(m: Node, scenario_name: String) -> void:
 			await _save_write()
 		"save_load":
 			await _save_load()
+		"save_load_pets":
+			await _save_load_pets()
 		"growth":
 			await _growth()
 		"moves":
@@ -415,6 +417,31 @@ func _save_write() -> void:
 	print("[save] guardado de prueba con ", r.members.size(), " Pokémon")
 
 
+## Carga un guardado (copiado a scenario_save.json) y muestra quién está en casa.
+func _save_load_pets() -> void:
+	var r := Game.roster
+	await _wait(3.0)
+	print("[pets] mascotas ", r.pet_uids(), " pelean ", main.fighting_uids(), " en casa ", main.home.home_uids())
+	for u in main.home.home_uids():
+		var a: PokemonActor = main.home.actor_for(u)
+		print("[pets] %d %s pos=%s vis=%s alpha=%.2f estado=%s" % [u, a.species, a.position, a.is_visible_in_tree(), a.modulate.a, main.home.brain_for(u).state])
+	print("[pets] home vis=", main.home.is_visible_in_tree(), " límites ", main.home.x_min, "..", main.home.x_max, " suelo ", main.home.ground_y)
+	await Game.shot("pets_home")
+	main._open_pc("pokemon")
+	await _wait(0.6)
+	await Game.shot_window(main.pc, "pets_pc_equipo")
+	main.pc.show_tab("mascotas")
+	await _wait(0.4)
+	await Game.shot_window(main.pc, "pets_pc_mascotas")
+	# pasar uno del equipo a mascotas: deja el equipo y aparece en casa
+	var moved: int = r.team[r.team.size() - 1]
+	r.toggle_pet(moved)
+	await _wait(2.0)
+	print("[pets] movido ", moved, " equipo ", r.team, " mascotas ", r.pets, " en casa ", main.home.home_uids())
+	await Game.shot_window(main.pc, "pets_pc_mascotas2")
+	await _wait(1.0)
+
+
 ## Paso 2: carga, calcula el progreso offline (3 h) y muestra la PC.
 func _save_load() -> void:
 	print("[save] cargado: ", Game.roster.members.size(), " Pokémon, equipo ", Game.roster.team.size())
@@ -500,15 +527,8 @@ func _showcase() -> void:
 	for sp in ["pidgey", "oddish", "caterpie", "rattata"]:
 		var p := PokemonInstance.create(sp, 4)
 		r.add(p)
-	# Charmander pelea solo; los demás descansan en casa.
-	var others: Array[int] = [ch.uid]
-	for p in r.members.values():
-		if p.uid != ch.uid:
-			others.append(p.uid)
-	r.set_team(others)
-	for p in r.team_members():
-		if p.uid != ch.uid:
-			p.energy = 5.0  # cansados: se quedan en casa
+	# Charmander pelea solo; los demás son mascotas y viven en casa.
+	r.set_team([ch.uid])
 	main.combat.route["walk_seconds"] = [2.0, 3.0]
 	Game.set_mode(Game.MODE_BATTLE)
 	for hour in [12.0, 21.5]:

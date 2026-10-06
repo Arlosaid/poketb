@@ -1,7 +1,7 @@
 class_name MonCell
 extends PanelContainer
 ## Casilla de la PC con el retrato de un Pokémon. Se puede arrastrar y soltar
-## (equipo ↔ cajas, y reordenar el equipo).
+## (equipo ↔ mascotas ↔ cajas, y reordenar cada fila).
 
 signal picked(uid: int)
 signal dropped(data: Dictionary, target: MonCell)
@@ -11,7 +11,7 @@ const STAR := preload("res://assets/ui/sparkle.png")
 const HEART := preload("res://assets/ui/heart.png")
 
 var uid := 0
-var zone := "box"     # "team" | "box"
+var zone := "box"     # "team" | "pets" | "box"
 var index := 0
 var selected := false:
 	set(v):

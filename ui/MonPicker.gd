@@ -42,10 +42,11 @@ func _arrow(t: String, dir: int) -> Button:
 	return b
 
 
-## Todos los uids en orden: equipo y luego cajas.
+## Todos los uids en orden: equipo, mascotas y luego cajas.
 static func order() -> Array[int]:
 	var r := Game.roster
 	var out: Array[int] = r.team.duplicate()
+	out.append_array(r.pets)
 	var rest: Array[int] = []
 	for u in r.members:
 		if u not in out:

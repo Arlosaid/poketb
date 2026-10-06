@@ -75,7 +75,7 @@ En el juego, `PokemonActor.frames_for(especie)` arma el `SpriteFrames` en memori
 ## Guardado, offline y PC
 - `core/SaveManager.gd` maneja `save(age)` y `load_game()`, que devuelve los segundos que pasaron. `Main._notification(WM_CLOSE_REQUEST)` guarda al salir.
 - `battle/OfflineSim.gd` (simulación) y `ui/OfflineSummary.gd` (resumen).
-- `ui/PCWindow.gd` (Window nativa con la misma escala entera) y `ui/MonCell.gd` (casilla con drag & drop). `Game.shot_window()` captura ventanas secundarias.
+- `ui/PCWindow.gd` (Window nativa con la misma escala entera; pestañas Equipo y Mascotas con la misma página `_build_pokemon_page(id, zone)`) y `ui/MonCell.gd` (casilla con drag & drop entre las zonas `team`, `pets` y `box`). `Game.shot_window()` captura ventanas secundarias.
 
 ## Progresión (Fase 7)
 - `core/Progression.gd`: datos y fórmulas puras (árbol, objetos, costos, monedas, EXP, sorteo de objetos). Lee `data/skill_tree.json` y `data/items.json`.

@@ -1,7 +1,8 @@
 class_name PCWindow
 extends Window
 ## La PC: ventana nativa pequeña (transitoria de la principal, así que no aparece en la
-## barra de tareas) con marco propio. Pestañas: Pokémon (equipo + cajas + detalle), Entrenar
+## barra de tareas) con marco propio. Pestañas: Equipo (los que pelean + cajas + detalle),
+## Mascotas (las que viven en casa + cajas + detalle), Entrenar
 ## (vitaminas, movimientos, objetos), Mochila (fusionar y equipar), Árbol del entrenador,
 ## Bayas y Créditos. Las monedas se ven siempre arriba.
 
@@ -14,8 +15,9 @@ var selected_uid := 0
 
 var _pages := {}
 var _tab_buttons := {}
-var _team_cells: Array[MonCell] = []
-var _box_grid: GridContainer
+## Pestañas de Pokémon: id → {"zone": "team"|"pets", "cells", "grid", "detail"}.
+var _mon_pages := {}
+## Ficha de la pestaña de Pokémon que se ve.
 var _detail: VBoxContainer
 var _berry_list: VBoxContainer
 var _gold: Label
@@ -76,9 +78,9 @@ func _ready() -> void:
 	_gold.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bar.add_child(_gold)
 	var group := ButtonGroup.new()
-	for id in ["pokemon", "entrenar", "mochila", "arbol", "bayas", "creditos"]:
+	for id in ["pokemon", "mascotas", "entrenar", "mochila", "arbol", "bayas", "creditos"]:
 		var b := Button.new()
-		b.text = {"pokemon": "Pokémon", "entrenar": "Entrenar", "mochila": "Mochila", "arbol": "Árbol", "bayas": "Bayas", "creditos": "Créditos"}[id]
+		b.text = {"pokemon": "Equipo", "mascotas": "Mascotas", "entrenar": "Entrenar", "mochila": "Mochila", "arbol": "Árbol", "bayas": "Bayas", "creditos": "Créditos"}[id]
 		b.toggle_mode = true
 		b.button_group = group
 		b.focus_mode = Control.FOCUS_NONE
@@ -94,7 +96,8 @@ func _ready() -> void:
 	var body := Control.new()
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	v.add_child(body)
-	_pages["pokemon"] = _build_pokemon_page()
+	_pages["pokemon"] = _build_pokemon_page("pokemon", "team")
+	_pages["mascotas"] = _build_pokemon_page("mascotas", "pets")
 	_train = TrainPage.new()
 	_train.pick.connect(_select)
 	_pages["entrenar"] = _train
@@ -127,7 +130,14 @@ func show_tab(id: String) -> void:
 	for k in _pages:
 		_pages[k].visible = (k == id)
 	_tab_buttons[id].button_pressed = true
-	_refresh_current()
+	if _mon_pages.has(id) and is_inside_tree():
+		# al cambiar de pestaña, la ficha muestra a alguien de esa fila
+		var row: Array = Game.roster.team if _mon_pages[id]["zone"] == "team" else Game.roster.pets
+		if not row.is_empty() and selected_uid not in row:
+			selected_uid = row[0]
+		refresh()
+	else:
+		_refresh_current()
 
 
 func _on_wallet() -> void:
@@ -153,41 +163,48 @@ func _refresh_current() -> void:
 
 # ------------------------------------------------------------------ Pokémon
 
-func _build_pokemon_page() -> Control:
+## Página de Pokémon: arriba la fila de la zona (`team`: los que pelean; `pets`: las
+## mascotas, que viven en casa y no pelean), abajo las cajas y a la derecha la ficha.
+func _build_pokemon_page(id: String, zone: String) -> Control:
 	var h := HBoxContainer.new()
 	h.add_theme_constant_override("separation", 4)
 	var left := VBoxContainer.new()
 	left.add_theme_constant_override("separation", 1)
 	h.add_child(left)
-	left.add_child(_caption("Equipo"))
-	var team_row := HBoxContainer.new()
-	team_row.add_theme_constant_override("separation", 1)
-	left.add_child(team_row)
-	for i in Roster.TEAM_MAX:
-		var c := MonCell.new("team", i)
+	if zone == "team":
+		left.add_child(_caption("Equipo: pelean en la ruta"))
+	else:
+		left.add_child(_caption("Mascotas: viven en casa, no pelean"))
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 1)
+	left.add_child(row)
+	var cells: Array[MonCell] = []
+	for i in (Roster.TEAM_MAX if zone == "team" else Roster.PETS_MAX):
+		var c := MonCell.new(zone, i)
 		c.picked.connect(_select)
 		c.dropped.connect(_on_drop)
-		team_row.add_child(c)
-		_team_cells.append(c)
-	left.add_child(_caption("Cajas"))
+		row.add_child(c)
+		cells.append(c)
+	left.add_child(_caption("Cajas (arrastra para mover)"))
 	var sc := ScrollContainer.new()
 	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	sc.custom_minimum_size = Vector2(6 * 45, 92)
 	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	left.add_child(sc)
-	_box_grid = GridContainer.new()
-	_box_grid.columns = 6
-	_box_grid.add_theme_constant_override("h_separation", 1)
-	_box_grid.add_theme_constant_override("v_separation", 1)
-	sc.add_child(_box_grid)
+	var grid := GridContainer.new()
+	grid.columns = 6
+	grid.add_theme_constant_override("h_separation", 1)
+	grid.add_theme_constant_override("v_separation", 1)
+	sc.add_child(grid)
 
 	var dp := PanelContainer.new()
 	dp.theme_type_variation = &"Slot"
 	dp.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	h.add_child(dp)
-	_detail = VBoxContainer.new()
-	_detail.add_theme_constant_override("separation", 1)
-	dp.add_child(_detail)
+	var detail := VBoxContainer.new()
+	detail.add_theme_constant_override("separation", 1)
+	dp.add_child(detail)
+	_mon_pages[id] = {"zone": zone, "cells": cells, "grid": grid, "detail": detail}
 	return h
 
 
@@ -202,25 +219,32 @@ func refresh() -> void:
 	if not is_inside_tree():
 		return
 	var r := Game.roster
-	var team := r.team_members()
-	for i in _team_cells.size():
-		_team_cells[i].show_mon(team[i] if i < team.size() else null)
-		_team_cells[i].selected = _team_cells[i].uid == selected_uid and selected_uid != 0
-	for c in _box_grid.get_children():
-		c.queue_free()
-	var box := r.box_members()
-	box.sort_custom(func(a: PokemonInstance, b: PokemonInstance) -> bool: return a.uid < b.uid)
-	var n := maxi(12, int(ceil((box.size() + 1) / 6.0)) * 6)
-	for i in n:
-		var c := MonCell.new("box", i)
-		c.picked.connect(_select)
-		c.dropped.connect(_on_drop)
-		c.show_mon(box[i] if i < box.size() else null)
-		c.selected = c.uid == selected_uid and selected_uid != 0
-		_box_grid.add_child(c)
 	if selected_uid == 0 or r.get_member(selected_uid) == null:
 		selected_uid = r.companion
-	_fill_detail()
+	# Solo se arma la pestaña de Pokémon que se ve.
+	if _mon_pages.has(_current):
+		var pg: Dictionary = _mon_pages[_current]
+		var top: Array[PokemonInstance] = r.team_members() if pg["zone"] == "team" else r.pet_members()
+		var cells: Array = pg["cells"]
+		for i in cells.size():
+			var cell: MonCell = cells[i]
+			cell.show_mon(top[i] if i < top.size() else null)
+			cell.selected = cell.uid == selected_uid and selected_uid != 0
+		var grid: GridContainer = pg["grid"]
+		for c in grid.get_children():
+			c.queue_free()
+		var box := r.box_members()
+		box.sort_custom(func(a: PokemonInstance, b: PokemonInstance) -> bool: return a.uid < b.uid)
+		var n := maxi(12, int(ceil((box.size() + 1) / 6.0)) * 6)
+		for i in n:
+			var c := MonCell.new("box", i)
+			c.picked.connect(_select)
+			c.dropped.connect(_on_drop)
+			c.show_mon(box[i] if i < box.size() else null)
+			c.selected = c.uid == selected_uid and selected_uid != 0
+			grid.add_child(c)
+		_detail = pg["detail"]
+		_fill_detail()
 	_refresh_current()
 
 
@@ -231,23 +255,32 @@ func _select(uid: int) -> void:
 
 func _on_drop(data: Dictionary, target: MonCell) -> void:
 	var r := Game.roster
-	var team: Array[int] = r.team.duplicate()
 	var uid := int(data["uid"])
-	if target.zone == "team":
-		var cur := team.find(uid)
-		if cur >= 0:
-			# reordenar dentro del equipo
-			team.remove_at(cur)
-			team.insert(mini(target.index, team.size()), uid)
-		elif target.uid != 0:
-			# reemplaza al que estaba en esa casilla (que va a la caja)
-			team[team.find(target.uid)] = uid
-		elif team.size() < Roster.TEAM_MAX:
-			team.append(uid)
-	elif target.zone == "box" and uid in team and team.size() > 1:
-		team.erase(uid)
-	r.set_team(team)
 	selected_uid = uid
+	if target.zone == "box":
+		if uid in r.team:
+			var team: Array[int] = r.team.duplicate()
+			team.erase(uid)
+			r.set_team(team)
+		elif r.is_pet(uid):
+			r.toggle_pet(uid)
+		return
+	var cap := Roster.TEAM_MAX if target.zone == "team" else Roster.PETS_MAX
+	var list: Array[int] = (r.team if target.zone == "team" else r.pets).duplicate()
+	var cur := list.find(uid)
+	if cur >= 0:
+		# reordenar dentro de la misma fila
+		list.remove_at(cur)
+		list.insert(mini(target.index, list.size()), uid)
+	elif target.uid != 0:
+		# reemplaza al que estaba en esa casilla (que va a la caja)
+		list[list.find(target.uid)] = uid
+	elif list.size() < cap:
+		list.append(uid)
+	if target.zone == "team":
+		r.set_team(list)
+	else:
+		r.set_pets(list)
 
 
 func _fill_detail() -> void:
@@ -305,28 +338,41 @@ func _fill_detail() -> void:
 	cb.focus_mode = Control.FOCUS_NONE
 	cb.pressed.connect(func() -> void: Game.roster.set_companion(p.uid))
 	btns.add_child(cb)
-	var in_team := p.uid in Game.roster.team
-	var tb := Button.new()
-	tb.text = "A la caja" if in_team else "Al equipo"
-	tb.disabled = (in_team and Game.roster.team.size() <= 1) or (not in_team and Game.roster.team.size() >= Roster.TEAM_MAX)
-	tb.focus_mode = Control.FOCUS_NONE
-	tb.pressed.connect(func() -> void:
-		var team: Array[int] = Game.roster.team.duplicate()
-		if in_team:
-			team.erase(p.uid)
-		else:
+	# Dónde vive: en el equipo (pelea), de mascota (en casa) o en la caja. Solo uno a la vez.
+	var r := Game.roster
+	var in_team := p.uid in r.team
+	var is_pet := r.is_pet(p.uid)
+	if not in_team:
+		var tb := Button.new()
+		tb.text = "Al equipo"
+		tb.tooltip_text = "Pelea en la ruta. Máximo %d." % Roster.TEAM_MAX
+		tb.disabled = r.team.size() >= Roster.TEAM_MAX
+		tb.focus_mode = Control.FOCUS_NONE
+		tb.pressed.connect(func() -> void:
+			var team: Array[int] = r.team.duplicate()
 			team.append(p.uid)
-		Game.roster.set_team(team))
-	btns.add_child(tb)
-	# mascota: pasea por la casa (esté en el equipo o en las cajas)
-	var is_pet := Game.roster.is_pet(p.uid)
-	var pb := Button.new()
-	pb.text = "♥ Mascota" if is_pet else "Mascota"
-	pb.tooltip_text = "Se queda en casa y no pelea. Máximo %d a la vez." % Roster.PETS_MAX
-	pb.disabled = not is_pet and Game.roster.pets_full()
-	pb.focus_mode = Control.FOCUS_NONE
-	pb.pressed.connect(Game.roster.toggle_pet.bind(p.uid))
-	btns.add_child(pb)
+			r.set_team(team))
+		btns.add_child(tb)
+	if not is_pet:
+		var pb := Button.new()
+		pb.text = "A mascotas"
+		pb.tooltip_text = "Sale del equipo, vive en casa y no pelea. Máximo %d." % Roster.PETS_MAX
+		pb.disabled = r.pets_full()
+		pb.focus_mode = Control.FOCUS_NONE
+		pb.pressed.connect(r.toggle_pet.bind(p.uid))
+		btns.add_child(pb)
+	if in_team or is_pet:
+		var xb := Button.new()
+		xb.text = "A la caja"
+		xb.focus_mode = Control.FOCUS_NONE
+		xb.pressed.connect(func() -> void:
+			if is_pet:
+				r.toggle_pet(p.uid)
+			else:
+				var team: Array[int] = r.team.duplicate()
+				team.erase(p.uid)
+				r.set_team(team))
+		btns.add_child(xb)
 
 
 func _text(t: String, c: Color = Palette.INK) -> Label:

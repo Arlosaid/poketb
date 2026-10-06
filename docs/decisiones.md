@@ -180,3 +180,5 @@ Formato: fecha · decisión · por qué. Las más recientes van abajo.
 - **El compañero ya no es mascota a la fuerza:** si no, el inicial nunca pelearía. Se puede marcar o desmarcar como cualquier otro.
 - **Capturas:** ya no se vuelven mascotas solas (`Roster.auto_pet` solo en los escenarios).
 - **Partidas viejas** (`pets_format` < 2): se quitan de las mascotas los que están en el equipo, para no dejar al equipo sin pelear; el compañero, si estaba en la caja, queda de mascota.
+- **Pestaña aparte y listas separadas** (segundo pedido: "quiero que sea una pestaña aparte para que no se confunda con los que tengo para pelear"): el equipo y las mascotas ya no se cruzan. Pasar a uno a mascotas lo saca del equipo y viceversa. La PC tiene las pestañas "Equipo" y "Mascotas". En partidas con `pets_format` 2, los que estaban en las dos listas quedan de mascota (`pets_format` 3).
+- **Equipo vacío permitido:** si pasas a todos a mascotas, nadie pelea y el panel lo dice. Antes el equipo no podía quedar en 0.

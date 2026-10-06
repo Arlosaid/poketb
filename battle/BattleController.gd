@@ -183,12 +183,11 @@ func _stop_all() -> void:
 	fighters_changed.emit()
 
 
-## Si nadie pelea porque todo el equipo es mascota, lo dice; si no, `msg`.
+## Si nadie pelea porque el equipo está vacío (todos pasaron a mascotas), lo dice; si no, `msg`.
 func _no_fighters_msg(msg: String) -> String:
-	for p in Game.roster.team_members():
-		if not Game.roster.is_pet(p.uid):
-			return msg
-	return "Todo tu equipo está de mascota. Elige quién pelea en la PC."
+	if not Game.roster.team.is_empty():
+		return msg
+	return "No hay nadie en el equipo. Arma tu equipo en la PC."
 
 
 func _enter_resting(msg: String) -> void:

@@ -12,8 +12,9 @@ signal wallet_changed
 const TEAM_MAX := 6
 ## Cuántos pasean a la vez por la casa.
 const PETS_MAX := 6
-## Versión del significado de `pets` en el guardado (2: las mascotas no pelean).
-const PETS_FORMAT := 2
+## Versión del significado de `pets` en el guardado (2: las mascotas no pelean;
+## 3: equipo y mascotas son listas separadas, nadie está en las dos).
+const PETS_FORMAT := 3
 ## Por segundo de juego.
 const FULLNESS_DECAY_HOME := 100.0 / (10.0 * 3600.0)   # de lleno a vacío en ~10 h
 const FULLNESS_DECAY_BATTLE_MULT := 2.0
@@ -40,7 +41,7 @@ var members := {}            # uid → PokemonInstance
 var team: Array[int] = []    # uids en orden
 var companion := 0
 ## Los que el jugador eligió como mascotas (uids). Se quedan siempre en casa y no
-## pelean, aunque estén en el equipo. Solo cambian desde la PC o la bandeja.
+## pelean: nunca están también en el equipo. Solo cambian desde la PC o la bandeja.
 var pets: Array[int] = []
 ## Solo para los escenarios de prueba: los capturados pasan a ser mascotas solos.
 var auto_pet := false
@@ -81,10 +82,10 @@ func add(p: PokemonInstance) -> void:
 	p.wild = false
 	p.caught_at = Time.get_unix_time_from_system()
 	members[p.uid] = p
-	if team.size() < TEAM_MAX:
-		team.append(p.uid)
 	if auto_pet and pets.size() < PETS_MAX:
 		pets.append(p.uid)
+	elif team.size() < TEAM_MAX:
+		team.append(p.uid)
 	changed.emit()
 
 
@@ -99,10 +100,18 @@ func team_members() -> Array[PokemonInstance]:
 	return out
 
 
+func pet_members() -> Array[PokemonInstance]:
+	var out: Array[PokemonInstance] = []
+	for u in pet_uids():
+		out.append(members[u])
+	return out
+
+
+## Los que no pelean ni son mascotas.
 func box_members() -> Array[PokemonInstance]:
 	var out: Array[PokemonInstance] = []
 	for u in members:
-		if u not in team:
+		if u not in team and u not in pets:
 			out.append(members[u])
 	return out
 
@@ -117,8 +126,17 @@ func set_companion(uid: int) -> void:
 		changed.emit()
 
 
+## Los que entran al equipo dejan de ser mascotas.
 func set_team(uids: Array) -> void:
 	team.assign(uids.slice(0, TEAM_MAX).map(func(x): return int(x)))
+	pets.assign(pets.filter(func(u: int) -> bool: return u not in team))
+	changed.emit()
+
+
+## Ordena las mascotas (las que entran dejan el equipo).
+func set_pets(uids: Array) -> void:
+	pets.assign(uids.slice(0, PETS_MAX).map(func(x): return int(x)))
+	team.assign(team.filter(func(u: int) -> bool: return u not in pets))
 	changed.emit()
 
 
@@ -143,7 +161,7 @@ func pets_full() -> bool:
 	return pet_uids().size() >= PETS_MAX
 
 
-## Lo hace mascota (se queda en casa y deja de pelear) o lo devuelve a la PC.
+## Lo hace mascota (sale del equipo, se queda en casa y no pelea) o lo devuelve a las cajas.
 func toggle_pet(uid: int) -> void:
 	if not members.has(uid):
 		return
@@ -151,6 +169,7 @@ func toggle_pet(uid: int) -> void:
 		pets.erase(uid)
 	elif not pets_full():
 		pets.append(uid)
+		team.erase(uid)
 	else:
 		return
 	changed.emit()
@@ -491,12 +510,14 @@ func from_dict(d: Dictionary) -> void:
 	companion = int(d.get("companion", 0))
 	# partidas viejas: las mascotas eran el equipo
 	pets.assign(d.get("pets", d["team"]).map(func(x): return int(x)))
-	if int(d.get("pets_format", 1)) < PETS_FORMAT:
+	if int(d.get("pets_format", 1)) < 2:
 		# Antes las mascotas también peleaban y muchas se eligieron solas al capturarlas:
 		# las del equipo siguen peleando; el compañero, si estaba en la caja, queda de mascota.
 		pets.assign(pets.filter(func(u: int) -> bool: return u not in team))
 		if members.has(companion) and companion not in team and companion not in pets:
 			pets.push_front(companion)
+	# Nadie en las dos listas: si quedó en ambas, se queda de mascota (así lo eligió el jugador).
+	team.assign(team.filter(func(u: int) -> bool: return u not in pets))
 	berries = d.get("berries", {})
 	next_uid = int(d.get("next_uid", members.size() + 1))
 	gold = int(d.get("gold", 0))

@@ -95,10 +95,9 @@ func _sync() -> void:
 ## El id de cada casilla es el uid del Pokémon.
 func _sync_pets() -> void:
 	var r := Game.roster
-	var mons := r.team_members()
-	var box := r.box_members()
-	box.sort_custom(func(a: PokemonInstance, b: PokemonInstance) -> bool: return a.uid < b.uid)
-	mons.append_array(box)
+	var mons: Array[PokemonInstance] = []
+	for u in MonPicker.order():
+		mons.append(r.get_member(u))
 	var full := r.pets_full()
 	var sig := "%s|%d|%s" % [r.pet_uids(), r.companion, full]
 	for p in mons:
@@ -116,7 +115,7 @@ func _sync_pets() -> void:
 		# con la casa llena solo se puede quitar
 		pets_menu.set_item_disabled(i, full and not on)
 	pets_menu.add_separator()
-	pets_menu.add_item("Máximo %d; las mascotas no pelean" % Roster.PETS_MAX, PETS_NOTE)
+	pets_menu.add_item("Máximo %d; salen del equipo y no pelean" % Roster.PETS_MAX, PETS_NOTE)
 	pets_menu.set_item_disabled(pets_menu.get_item_index(PETS_NOTE), true)
 
 
