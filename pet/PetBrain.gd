@@ -174,13 +174,14 @@ func _choose_next() -> void:
 		"ball": (3.0 * _wv("ball") * (1.6 if bored else 1.0)) if home.ball_available() and mon.energy > 20.0 else 0.0,
 		"fly": (1.4 * _wv("fly")) if home.can_start_flight(self) else 0.0,
 		"climb": (1.2 * _wv("climb")) if home.can_start_climb(self) else 0.0,
+		"warp": (1.3 * _wv("warp")) if home.can_start_warp(self) else 0.0,
 		# propio de su tipo (brasas, chispas, excavar...) y practicar sus movimientos
 		"type": float(TypeAct.data()["base_weight"]) * _wv("type") * calm,
 		"train": (float(TypeAct.data()["train_weight"]) * _wv("train") * calm) if mon.energy > 25.0 else 0.0,
 	}
 	if weak:
 		# Débil: descansa para recuperarse (y los mimos le curan un poco).
-		for k in ["dance", "show", "social", "ball", "fly", "climb", "type", "train"]:
+		for k in ["dance", "show", "social", "ball", "fly", "climb", "warp", "type", "train"]:
 			c[k] = 0.0
 		c["wander"] *= 0.3
 		c["lay"] *= 4.0
@@ -212,6 +213,7 @@ func _choose_next() -> void:
 			"ball": start_chase()
 			"fly": home.start_flight(self)
 			"climb": home.start_climb(self)
+			"warp": home.start_warp(self)
 			"type": start_type_act()
 			"train": train()
 		return
@@ -624,6 +626,23 @@ func land_from_flight(x: float) -> void:
 	_vy = 0.0
 	_enter(State.FALL)
 	mon.fun = minf(100.0, mon.fun + 6.0)
+
+
+## Se teletransporta por la pantalla (HomeArea lo esconde y lo lleva la WarpWindow).
+func leave_warping() -> void:
+	_close_popups()
+	_enter(State.AWAY)
+
+
+## Vuelve del teletransporte: aparece en `x` con efecto de sparkle.
+func land_from_warp(x: float) -> void:
+	actor.visible = true
+	actor.modulate.a = 0.0
+	actor.position = Vector2(clampf(x, home.x_min, home.x_max), home.ground_y)
+	var tw := actor.create_tween()
+	tw.tween_property(actor, "modulate:a", 1.0, 0.3)
+	_enter(State.IDLE, randf_range(1.0, 3.0))
+	mon.fun = minf(100.0, mon.fun + 4.0)
 
 
 ## Se va a escalar por el borde de la pantalla (HomeArea lo esconde y lo lleva la ClimbWindow).

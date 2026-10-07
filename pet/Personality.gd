@@ -60,10 +60,12 @@ static func is_nocturnal(species: String) -> bool:
 ## Formas de PokeAPI que vuelan (alas de ave o de insecto) y fantasmas que flotan.
 const WING_SHAPES := ["wings", "bug-wings"]
 const FLOATING_SHAPES := ["ball", "arms", "blob", "tentacles", "heads", "squiggle"]
+## Formas que no flotan aunque el tipo lo permitiría (terrestres por naturaleza).
+const GROUNDED_SHAPES := ["quadruped", "fish", "serpentine"]
 
 
 ## Vuela a veces por toda la pantalla: tipo volador, forma con alas, Levitación,
-## fantasmas sin patas y la lista "fly"; nunca los de "no_fly".
+## fantasmas sin patas, fantasmas humanoides, hadas flotantes y la lista "fly"; nunca "no_fly".
 static func can_fly(species: String) -> bool:
 	_load()
 	var sp: Dictionary = _data["species"]
@@ -74,7 +76,14 @@ static func can_fly(species: String) -> bool:
 	var d := SpeciesDB.species(species)
 	if "flying" in d["types"] or d.get("shape", "") in WING_SHAPES or "levitate" in d.get("abilities", []):
 		return true
-	return "ghost" in d["types"] and d.get("shape", "") in FLOATING_SHAPES
+	var shape: String = d.get("shape", "")
+	# Todos los fantasmas excepto cuadrúpedos y peces flotan por la pantalla.
+	if "ghost" in d["types"] and shape not in GROUNDED_SHAPES:
+		return true
+	# Hadas con formas flotantes o erguidas (Clefable, Alcremie, Comfey…).
+	if "fairy" in d["types"] and shape in FLOATING_SHAPES + ["upright"]:
+		return true
+	return false
 
 
 ## Estilo de vuelo: "bird", "bug", "dragon" o "float" (ver FlightWindow).
@@ -85,13 +94,30 @@ static func flight_style(species: String) -> String:
 		return String(forced[species])
 	var d := SpeciesDB.species(species)
 	var types: Array = d["types"]
-	if "flying" not in types and ("levitate" in d.get("abilities", []) or "ghost" in types or "psychic" in types):
+	if "flying" not in types and ("levitate" in d.get("abilities", [])
+			or "ghost" in types or "psychic" in types or "fairy" in types):
 		return "float"
 	if "bug" in types or d.get("shape", "") == "bug-wings":
 		return "bug"
 	if "dragon" in types:
 		return "dragon"
 	return "bird"
+
+
+## Se teletransporta por la pantalla: todos los de tipo psíquico (excepto "no_warp").
+static func can_warp(species: String) -> bool:
+	_load()
+	var sp: Dictionary = _data["species"]
+	if species in sp.get("no_warp", []):
+		return false
+	if species in sp.get("warp", []):
+		return true
+	return "psychic" in SpeciesDB.species(species)["types"]
+
+
+static func warp_cfg() -> Dictionary:
+	_load()
+	return _data.get("warp", {})
 
 
 static func flight_cfg() -> Dictionary:

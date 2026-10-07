@@ -36,6 +36,10 @@ var _climb_windows: Array[ClimbWindow] = []
 var _climbers := {}  # ClimbWindow → PetBrain
 var _next_climb_at := 0.0
 var _climb_ready_at := {}  # uid → segundos desde que puede volver a escalar
+var _warp_windows: Array[WarpWindow] = []
+var _warpers := {}  # WarpWindow → PetBrain
+var _next_warp_at := 0.0
+var _warp_ready_at := {}  # uid → segundos desde que puede volver a teletransportarse
 
 
 func setup(d: DesktopWindow, h: Control) -> void:
@@ -104,6 +108,7 @@ func sync(uids: Array, companion_uid: int, enter_from_x := -1.0) -> void:
 			_brains.erase(u)
 			_abort_flight_of(b)
 			_abort_climb_of(b)
+			_abort_warp_of(b)
 			_leave(b.actor)
 	for u in uids:
 		var mon: PokemonInstance = Game.roster.get_member(u)
@@ -467,6 +472,81 @@ func _abort_climb_of(b: PetBrain) -> void:
 			c.abort()
 
 
+# ------------------------------------------------------------------ teletransporte psíquico
+
+func can_start_warp(b: PetBrain) -> bool:
+	var cfg := Personality.warp_cfg()
+	if _warpers.size() >= int(cfg.get("max_warpers", 1)) or _now() < _next_warp_at:
+		return false
+	if not _flights_allowed():
+		return false
+	if not Personality.can_warp(b.mon.species) or b.mon.energy < 15.0 or b.mon.is_fainted():
+		return false
+	return _now() >= float(_warp_ready_at.get(b.mon.uid, 0.0))
+
+
+func _free_warp_window() -> WarpWindow:
+	for w in _warp_windows:
+		if not w.visible and not _warpers.has(w):
+			return w
+	var ww := WarpWindow.new(desk.scale)
+	ww.name = "WarpWindow%d" % _warp_windows.size()
+	ww.desk = desk
+	get_tree().root.add_child(ww)
+	ww.finished.connect(_on_warp_finished.bind(ww))
+	_warp_windows.append(ww)
+	return ww
+
+
+## Teletransporta al Pokémon a 2-4 posiciones aleatorias de la pantalla y vuelve.
+func start_warp(b: PetBrain) -> void:
+	var ww := _free_warp_window()
+	var root := get_tree().root
+	var sc := float(desk.scale)
+	var home_screen := Vector2(root.position) + b.actor.position * sc
+	var usable := DisplayServer.screen_get_usable_rect(DisplayServer.window_get_current_screen())
+	var margin := 60.0 * sc
+	var x_lo := float(usable.position.x) + margin
+	var x_hi := float(usable.end.x) - margin
+	var y_lo := float(usable.position.y) + margin
+	var y_hi := float(usable.end.y) - margin
+	var stops := randi_range(2, 4)
+	var pts := PackedVector2Array()
+	for i in stops:
+		pts.append(Vector2(randf_range(x_lo, x_hi), randf_range(y_lo, y_hi)))
+	_warpers[ww] = b
+	var cfg := Personality.warp_cfg()
+	var gap: Array = cfg.get("gap", [50, 130])
+	var gap_same: Array = cfg.get("gap_same", [200, 420])
+	_next_warp_at = _now() + randf_range(float(gap[0]), float(gap[1]))
+	_warp_ready_at[b.mon.uid] = _now() + randf_range(float(gap_same[0]), float(gap_same[1]))
+	Emote.show_on(self, b.actor, "exclaim", 0.6)
+	b.leave_warping()
+	ww.warp(b.mon.species, pts, home_screen, desk.scale)
+
+
+func _on_warp_finished(land: Vector2i, ww: WarpWindow) -> void:
+	var b: PetBrain = _warpers.get(ww)
+	_warpers.erase(ww)
+	if b == null or not is_instance_valid(b):
+		return
+	var x := (float(land.x) - float(get_tree().root.position.x)) / float(desk.scale)
+	b.land_from_warp(x)
+
+
+func abort_warp() -> void:
+	for w in _warp_windows:
+		if w.visible:
+			w.abort()
+
+
+func _abort_warp_of(b: PetBrain) -> void:
+	for w in _warpers.keys():
+		if _warpers[w] == b:
+			_warpers.erase(w)
+			w.abort()
+
+
 # ------------------------------------------------------------------ combate de práctica
 
 ## Se turnan para lucir movimientos (sin daño: solo el efecto y un "¡ay!" de juego).
@@ -565,5 +645,6 @@ func set_hidden(h: bool) -> void:
 	if h:
 		abort_flight()
 		abort_climb()
+		abort_warp()
 		if is_instance_valid(ball):
 			ball.queue_free()
