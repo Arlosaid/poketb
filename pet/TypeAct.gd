@@ -333,23 +333,52 @@ func _roll(dur: float, anim: String) -> bool:
 	return true
 
 
-## Se cuelga de un hilo de seda desde arriba y se mece un rato.
+## Se cuelga de un hilo de seda.
+## Elige entre tres modos: techo (hilo sale por arriba del viewport), borde izquierdo
+## (hilo sale por la izquierda) o borde derecho (hilo sale por la derecha).
 func _web(dur: float) -> bool:
 	_thread = Line2D.new()
 	_thread.width = 1.0
 	_thread.default_color = Palette.a(Palette.TAN, 0.9)
 	_thread.antialiased = false
 	add_child(_thread)
-	var top := Vector2(actor.position.x, 2.0)
-	var height := randf_range(14.0, 22.0)
+	var vp_w := brain.home.get_viewport_rect().size.x
+	# 60 % techo, 20 % borde izq, 20 % borde der
+	var r0 := randf()
+	var mode := 0 if r0 < 0.6 else (1 if r0 < 0.8 else 2)
+	var top: Vector2
+	var center_x: float
+	var height: float
+	var sway_vert := false
+	match mode:
+		0:  # Techo: hilo sube y sale por arriba del viewport
+			center_x = brain.home.random_x()
+			top = Vector2(center_x, -420.0)
+			height = randf_range(brain.home.ground_y * 0.55, brain.home.ground_y - 8.0)
+		1:  # Borde izquierdo: hilo sale por la izquierda
+			center_x = clampf(brain.home.x_min + randf_range(8.0, 28.0), brain.home.x_min, brain.home.x_max)
+			top = Vector2(-130.0, brain.home.ground_y - randf_range(8.0, 24.0))
+			height = randf_range(8.0, 18.0)
+			sway_vert = true
+		2:  # Borde derecho: hilo sale por la derecha
+			center_x = clampf(brain.home.x_max - randf_range(8.0, 28.0), brain.home.x_min, brain.home.x_max)
+			top = Vector2(vp_w + 130.0, brain.home.ground_y - randf_range(8.0, 24.0))
+			height = randf_range(8.0, 18.0)
+			sway_vert = true
 	var t := 0.0
 	var k := 0
+	actor.position.x = center_x
 	while t < dur:
 		var u := t / dur
 		var lift := height * minf(1.0, minf(u, 1.0 - u) * 4.0)
 		var sway := sin(t * 2.2) * 2.0 * minf(1.0, lift / 6.0)
-		actor.position = Vector2(top.x + roundf(sway), roundf(brain.home.ground_y - lift))
-		actor.air = lift
+		if sway_vert:
+			actor.position = Vector2(center_x, roundf(brain.home.ground_y - lift - sway * 2.5))
+			actor.position.y = clampf(actor.position.y, 2.0, brain.home.ground_y)
+		else:
+			actor.position = Vector2(roundf(center_x + sway), roundf(brain.home.ground_y - lift))
+			actor.position.x = clampf(actor.position.x, brain.home.x_min, brain.home.x_max)
+		actor.air = maxf(0.0, brain.home.ground_y - actor.position.y)
 		var head := actor.position + actor.head_point()
 		_thread.points = PackedVector2Array([top, head.round()])
 		_thread.visible = lift > 1.0
@@ -359,5 +388,5 @@ func _web(dur: float) -> bool:
 		if not await _wait(0.05):
 			return false
 		t += 0.05
-	actor.position.x = top.x
+	actor.position.x = center_x
 	return true

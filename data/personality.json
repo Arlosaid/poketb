@@ -45,6 +45,7 @@
   "social": 1.0,
   "ball": 1.0,
   "fly": 1.0,
+  "climb": 1.0,
   "walk_speed": 1.0,
   "look_range": 1.0,
   "fun_decay": 1.0,
@@ -223,6 +224,8 @@
    "ghost",
    "dark"
   ],
+  "climb": [],
+  "no_climb": [],
   "flight_style": {
    "rayquaza": "dragon",
    "dragonite": "dragon",
@@ -246,5 +249,11 @@
    360
   ],
   "max_fliers": 2
+ },
+ "climb": {
+  "_doc": "Escalada por el borde de pantalla (pet/ClimbWindow.gd): pausa entre dos escaladas cualesquiera y entre dos del mismo Pokémon (s), y cuántos pueden escalar a la vez.",
+  "gap": [60, 150],
+  "gap_same": [240, 480],
+  "max_climbers": 1
  }
 }

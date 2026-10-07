@@ -102,7 +102,7 @@ func fly(species: String, start: Vector2, waypoints: PackedVector2Array, scale_p
 
 ## Animación lógica del vuelo según el estilo.
 func _anim_name() -> String:
-	return "Float" if style == "float" else "Walk"
+	return "Float" if style == "float" else "Flap"
 
 
 ## Cancela el vuelo y aterriza ya (pantalla completa, esconder mascotas, etc.).

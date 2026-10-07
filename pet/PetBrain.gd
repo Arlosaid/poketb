@@ -173,13 +173,14 @@ func _choose_next() -> void:
 		"social": (1.0 * _wv("social") * calm * (1.6 if bored else 1.0)) if home.has_partner_for(self) else 0.0,
 		"ball": (3.0 * _wv("ball") * (1.6 if bored else 1.0)) if home.ball_available() and mon.energy > 20.0 else 0.0,
 		"fly": (1.4 * _wv("fly")) if home.can_start_flight(self) else 0.0,
+		"climb": (1.2 * _wv("climb")) if home.can_start_climb(self) else 0.0,
 		# propio de su tipo (brasas, chispas, excavar...) y practicar sus movimientos
 		"type": float(TypeAct.data()["base_weight"]) * _wv("type") * calm,
 		"train": (float(TypeAct.data()["train_weight"]) * _wv("train") * calm) if mon.energy > 25.0 else 0.0,
 	}
 	if weak:
 		# Débil: descansa para recuperarse (y los mimos le curan un poco).
-		for k in ["dance", "show", "social", "ball", "fly", "type", "train"]:
+		for k in ["dance", "show", "social", "ball", "fly", "climb", "type", "train"]:
 			c[k] = 0.0
 		c["wander"] *= 0.3
 		c["lay"] *= 4.0
@@ -210,6 +211,7 @@ func _choose_next() -> void:
 			"social": home.start_social(self)
 			"ball": start_chase()
 			"fly": home.start_flight(self)
+			"climb": home.start_climb(self)
 			"type": start_type_act()
 			"train": train()
 		return
@@ -339,7 +341,7 @@ func _fall(delta: float) -> void:
 		_vy = minf(_vy, GLIDE_MAX_VY)
 		_vx = move_toward(_vx, 0.0, 60.0 * delta)
 		if absf(_vx) > 5.0 or actor.air > 2.0:
-			actor.play_anim("Walk", "E" if _vx >= 0.0 else "W")
+			actor.play_anim("Flap", "E" if _vx >= 0.0 else "W")
 	actor.position.y += _vy * delta
 	actor.position.x += _vx * delta
 	var vp := actor.get_viewport_rect().size
@@ -622,6 +624,21 @@ func land_from_flight(x: float) -> void:
 	_vy = 0.0
 	_enter(State.FALL)
 	mon.fun = minf(100.0, mon.fun + 6.0)
+
+
+## Se va a escalar por el borde de la pantalla (HomeArea lo esconde y lo lleva la ClimbWindow).
+func leave_climbing() -> void:
+	_close_popups()
+	_enter(State.AWAY)
+
+
+## Vuelve de escalar: aterriza en `x` caminando.
+func land_from_climb(x: float) -> void:
+	actor.visible = true
+	actor.position = Vector2(clampf(x, home.x_min, home.x_max), home.ground_y)
+	actor.air = 0.0
+	_enter(State.IDLE, randf_range(1.0, 2.5))
+	mon.fun = minf(100.0, mon.fun + 5.0)
 
 
 ## Reacción breve a algo que pasa en la PC (app nueva, volviste, etc.).

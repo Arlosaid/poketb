@@ -32,6 +32,10 @@ var _flight_windows: Array[FlightWindow] = []
 var _fliers := {}  # FlightWindow → PetBrain
 var _next_flight_at := 0.0
 var _flight_ready_at := {}  # uid → segundos (ticks) desde que puede volver a volar
+var _climb_windows: Array[ClimbWindow] = []
+var _climbers := {}  # ClimbWindow → PetBrain
+var _next_climb_at := 0.0
+var _climb_ready_at := {}  # uid → segundos desde que puede volver a escalar
 
 
 func setup(d: DesktopWindow, h: Control) -> void:
@@ -99,6 +103,7 @@ func sync(uids: Array, companion_uid: int, enter_from_x := -1.0) -> void:
 			var b: PetBrain = _brains[u]
 			_brains.erase(u)
 			_abort_flight_of(b)
+			_abort_climb_of(b)
 			_leave(b.actor)
 	for u in uids:
 		var mon: PokemonInstance = Game.roster.get_member(u)
@@ -376,6 +381,92 @@ func force_flight(b: PetBrain) -> void:
 	start_flight(b)
 
 
+# ------------------------------------------------------------------ escalada por el borde
+
+func can_start_climb(b: PetBrain) -> bool:
+	var cfg := Personality.climb_cfg()
+	if _climbers.size() >= int(cfg.get("max_climbers", 1)) or _now() < _next_climb_at:
+		return false
+	if not _flights_allowed():
+		return false
+	if not Personality.can_climb(b.mon.species) or b.mon.energy < 20.0 or b.mon.is_fainted():
+		return false
+	return _now() >= float(_climb_ready_at.get(b.mon.uid, 0.0))
+
+
+func _free_climb_window() -> ClimbWindow:
+	for c in _climb_windows:
+		if not c.visible and not _climbers.has(c):
+			return c
+	var cw := ClimbWindow.new(desk.scale)
+	cw.name = "ClimbWindow%d" % _climb_windows.size()
+	cw.desk = desk
+	get_tree().root.add_child(cw)
+	cw.finished.connect(_on_climb_finished.bind(cw))
+	_climb_windows.append(cw)
+	return cw
+
+
+## Sube al Pokémon por el borde izquierdo o derecho de la pantalla.
+func start_climb(b: PetBrain) -> void:
+	var cw := _free_climb_window()
+	var root := get_tree().root
+	var sc := float(desk.scale)
+	var start_screen := Vector2(root.position) + b.actor.position * sc
+	var usable := DisplayServer.screen_get_usable_rect(DisplayServer.window_get_current_screen())
+	var top_y := float(usable.position.y) + 20.0 * sc
+	var bottom_y := float(usable.end.y) - 90.0 * sc
+	var left_x := float(usable.position.x) + 2.0
+	var right_x := float(usable.end.x) - float(cw.size.x) - 2.0
+	# Escala por el borde más cercano a su posición actual.
+	var use_left := b.actor.position.x < (x_min + x_max) / 2.0
+	var wall_x := left_x if use_left else right_x
+	var wall_name := "left" if use_left else "right"
+	var land_x := randf_range(x_min, x_max)
+	var land_screen := Vector2(float(root.position.x) + land_x * sc, start_screen.y)
+	# Ruta: home → borde → sube a altura aleatoria → (pausa) → baja → home
+	var peak_y := randf_range(top_y, (top_y + bottom_y) * 0.55)
+	var pts := PackedVector2Array()
+	pts.append(Vector2(wall_x, bottom_y))
+	pts.append(Vector2(wall_x, peak_y))
+	var pauses := {}
+	if randf() < 0.5:
+		pauses[pts.size() - 1] = randf_range(1.5, 4.0)
+	pts.append(Vector2(wall_x, bottom_y))
+	pts.append(land_screen)
+	_climbers[cw] = b
+	var cfg := Personality.climb_cfg()
+	var gap: Array = cfg.get("gap", [60, 150])
+	var gap_same: Array = cfg.get("gap_same", [240, 480])
+	_next_climb_at = _now() + randf_range(float(gap[0]), float(gap[1]))
+	_climb_ready_at[b.mon.uid] = _now() + randf_range(float(gap_same[0]), float(gap_same[1]))
+	Emote.show_on(self, b.actor, "exclaim", 0.8)
+	b.leave_climbing()
+	cw.climb(b.mon.species, start_screen, pts, desk.scale, wall_name, pauses)
+
+
+func _on_climb_finished(land: Vector2i, cw: ClimbWindow) -> void:
+	var b: PetBrain = _climbers.get(cw)
+	_climbers.erase(cw)
+	if b == null or not is_instance_valid(b):
+		return
+	var x := (float(land.x) - float(get_tree().root.position.x)) / float(desk.scale)
+	b.land_from_climb(x)
+
+
+func abort_climb() -> void:
+	for c in _climb_windows:
+		if c.visible:
+			c.abort()
+
+
+func _abort_climb_of(b: PetBrain) -> void:
+	for c in _climbers.keys():
+		if _climbers[c] == b:
+			_climbers.erase(c)
+			c.abort()
+
+
 # ------------------------------------------------------------------ combate de práctica
 
 ## Se turnan para lucir movimientos (sin daño: solo el efecto y un "¡ay!" de juego).
@@ -473,5 +564,6 @@ func set_hidden(h: bool) -> void:
 	visible = not h
 	if h:
 		abort_flight()
+		abort_climb()
 		if is_instance_valid(ball):
 			ball.queue_free()

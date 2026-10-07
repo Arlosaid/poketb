@@ -97,3 +97,24 @@ static func flight_style(species: String) -> String:
 static func flight_cfg() -> Dictionary:
 	_load()
 	return _data.get("flight", {})
+
+
+## Sube por el borde de la pantalla: bichos, especies con ventosas/agarre pegajoso y la
+## lista "climb" de personality.json; nunca las de "no_climb".
+static func can_climb(species: String) -> bool:
+	_load()
+	var sp: Dictionary = _data["species"]
+	if species in sp.get("no_climb", []):
+		return false
+	if species in sp.get("climb", []):
+		return true
+	var d := SpeciesDB.species(species)
+	if "bug" in d["types"]:
+		return true
+	var abilities: Array = d.get("abilities", [])
+	return "suction-cups" in abilities or "sticky-hold" in abilities
+
+
+static func climb_cfg() -> Dictionary:
+	_load()
+	return _data.get("climb", {})
